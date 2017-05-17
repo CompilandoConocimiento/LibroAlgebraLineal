@@ -74,6 +74,105 @@
 \tableofcontents{}
 \clearpage
 
+% ======================================================================================
+% =============================     ESPACIOS Y SUBESPACIOS    ==========================
+% ======================================================================================
+\chapter{Espacios y SubEspacios}
+    \clearpage
+
+    % =====================================================
+    % ============    ESPACIOS VECTORIALES         ========
+    % =====================================================
+    \section{Espacios Vectoriales}
+        Un espacio vectorial $V$ es un Conjunto de objetos
+        llamados Vectores (Dahh!), junto con dos operaciones:
+
+        \begin{itemize}
+            \item \textbf{Suma de Vectores}: Recibe 2 vectores y regresa 1 vector
+            \item \textbf{Producto Escalar}: Recibe 1 vector y 1 escalar y regresa 1 vector
+        \end{itemize}
+
+        Lo importantes es que estas operaciones, satisfascan los 10 Axiomas
+        que se enumeran a continuacion:
+
+        \begin{enumerate}
+            \item \textbf{Es Cerrado en Suma}:\\
+            Si $x \in V$ y $y \in V$, entonces $x+y \in V$
+
+            \item \textbf{Es Asociativo}:\\
+            Para todos $x,y,z \in V$, $(x+y) + z = x + (y+z)$
+
+            \item \textbf{Existe en O Vector}:\\
+            Existe un vector $0 \in V$ tal que todos $x \in V, x + 0 = 0 $
+
+            \item \textbf{Inverso de un Vector}:\\
+            Si $x \in V$, existe un vector $-x$ en V tal que $x+(-x) = 0$
+
+            \item \textbf{Es Conmutativo}:\\
+            Si $x,y \in V$ , entonces $x + y = y + x$
+
+            \item \textbf{Multiplo de un Vector}:\\
+            Si $x \in V$, y $\alpha \in K$, entonces $\alpha x \in V$
+
+            \item \textbf{Existe un Uno}:\\
+            Para todo vector $x \in V$, tenemos que $1x = x$  
+
+            \item Si $x,y \in V$ y $\alpha \in K$, entonces $\alpha(x+y) = \alpha x + \alpha y$
+
+            \item Si $x \in V$ y $\alpha \in K$, entonces $\alpha(\beta x) = \alpha \beta x$          
+
+        \end{enumerate}
+
+
+        % ==========================
+        % ====   PROPIEDADES  ======
+        % ==========================
+        \subsection{Propiedades}
+        Podemos ver algunas caracteristicas muy útiles de los Espacios vectoriales, sea $V$ 
+        un Espacio vectorial, entonces:
+        \begin{itemize}
+            \item $\alpha 0 = 0 $, $\forall \alpha \in \mathbb{R}$\\
+            \item $0x = 0$, $\forall x \in V$
+            \item Si $\alpha x = 0$, entonces $\alpha = 0$ ó bien $x = 0$ ó ambos.
+            \item $(-1)x = -x$ $\forall x \in V$
+        \end{itemize}
+
+
+    % =====================================================
+    % ============    SUBESPACIOS VECTORIALES      ========
+    % =====================================================
+    \clearpage
+    \section{SubEspacios Vectoriales}    
+    
+        Un Subconjunto no vacio $H$ de un Espacio vectorial V
+        es un Subespacio de $V$ si se cumplen que:
+
+        \begin{enumerate}
+            \item \textbf{Cerradura de la Suma}
+            Si $x \in H$ y $y \in H$, entonces $x + y \in H$
+
+            \item \textbf{Cerradura de la Producto Escalar}
+            Si $x \in H$, entonces $\alpha x \in H$, para
+            todo escalar $\alpha$
+        \end{enumerate}
+
+        Otra forma de probar es checar la combinacion lineal $\alpha w_1 + \beta w_2 \in W$
+        ya que se cumplen las dos condiciones.
+
+        % ==========================
+        % ====   PROPIEDADES  ======
+        % ==========================
+        \subsection{Propiedades}
+
+        \begin{itemize}
+            \item \{$0_v$\} es un Subespacio.
+
+            \item $V$ es un Subespacio de $V$
+
+            \item $W_1 inter W_2$ es un Subespacio de $V$
+
+            \item $W_1 + W_2$ es un Subespacio de $V$
+        \end{itemize}
 
 % ======================================================================================
 % =============================     SISTEMAS DE COORDENADAS   ==========================
