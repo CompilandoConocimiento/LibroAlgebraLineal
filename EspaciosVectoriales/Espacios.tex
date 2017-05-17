@@ -1,0 +1,480 @@
+% ****************************************************************************************
+% ************************     	ESPACIOS VECTORIALES	  ********************************
+% ****************************************************************************************
+
+
+% =======================================================
+% =======	ALL COMMANDS AND RULES FOR DOC 	 ============
+% =======================================================
+\documentclass[12pt]{article}							    %Type of docuemtn and size of font
+\usepackage[margin=1.2in]{geometry}							%Margins
+
+\usepackage[spanish]{babel}									%Please use spanish
+\usepackage[utf8]{inputenc}									%Please use spanish	
+\usepackage[T1]{fontenc}									%Please use spanish
+
+\usepackage{amsthm, amssymb, amsfonts}				        %Make math beautiful
+\usepackage[fleqn]{amsmath}                                 %Please make equations left
+\decimalpoint												%Make math beautiful
+\setlength{\parindent}{0pt}									%Eliminate ugly indentation
+
+\usepackage{graphicx}										%Allow to create graphics
+\usepackage{wrapfig}                                    	%Allow to create images
+\graphicspath{ {Graphics/} }                                %Where are the images :D
+\usepackage{listings}										%We will be using code here
+\usepackage[inline]{enumitem}								%We will need to enumarate
+
+\usepackage{fancyhdr}										%Lets make awesome headers/footers
+\renewcommand{\footrulewidth}{0.5pt}						%We will need this!
+\setlength{\headheight}{16pt} 								%We will need this!
+\setlength{\parskip}{0.5em}									%We will need this!
+\pagestyle{fancy}											%Lets make awesome headers/footers
+\lhead{\footnotesize{\leftmark}}							%Headers!
+\rhead{\footnotesize{\rightmark}}							%Headers!
+\lfoot{Compilando Conocimiento}								%Footers!
+\rfoot{Oscar Rosas}						                    %Footers!
+
+\author{Oscar Andrés Rosas}						            %Who I am
+
+
+
+
+% =====================================================
+% ============     	  COVER PAGE	   ================
+% =====================================================
+\begin{document}
+\begin{titlepage}
+
+	\center
+	% ============ UNIVERSITY NAME AND DATA =========
+	\textbf{\textsc{\Large Proyecto Compilando Conocimiento}}\\[1.0cm] 
+	\textsc{\Large Algebra Lineal}\\[1.0cm] 
+
+	% ============ NAME OF THE DOCUMENT  ============
+	\rule{\linewidth}{0.5mm} \\[1.0cm]
+		{ \huge \bfseries Espacios Vectoriales}\\[1.0cm] 
+	\rule{\linewidth}{0.5mm} \\[2.0cm]
+	
+	% ====== SEMI TITLE ==========
+	{\LARGE Espacios Vectoriales}\\[7cm] 
+	
+	% ============  MY INFORMATION  =================
+	\begin{center} \large
+	\textbf{\textsc{Autor:}}\\
+	Rosas Hernandez Oscar Andres
+	\end{center}
+
+	\vfill
+
+\end{titlepage}
+
+
+
+
+% ======================================================================================
+% ==================================     DOCUMENT  =====================================
+% ======================================================================================
+
+
+% =====================================================
+% ============    SISTEMA DE COORDENADAS       ========
+% =====================================================
+\section{Sistemas de Coordenadas}
+
+% ==========================
+% ==== EXPLICACION =========
+% ==========================
+\subsection{¿Qué son?}
+Sea una $B = \{ v_!, v_2, \cdots, v_n\}$ una base de un Espacio Vectorial V.
+Sean $v \in V$.
+Sean $\alpha_1, \alpha_2, \cdots, \alpha_n \in K$ tales que:
+
+\begin{equation}
+    v = \sum_{i=1}^{n} \alpha_i v_i
+\end{equation}
+
+Si esto pasa, entonces podemos decir que  $\alpha_1, \alpha_2, \cdots, \alpha_n$ son únicos.
+
+\subsection{Demostración}
+\begin{itemize}
+    \item Propon otros escalares que cumplen con generar al mismo vector
+    \item Pero como son base, son linealmente independientes, por lo tanto ambos escalares deben ser iguales
+\end{itemize}
+
+
+\subsection{Coordenadas}
+Sea una $B = \{ v_!, v_2, \cdots, v_n\}$ una base de un Espacio Vectorial V.
+Sean $v \in V$.
+Sean $\alpha_1, \alpha_2, \cdots, \alpha_n \in K$ tales que $v = \sum_{i=1}^{n} \alpha_i v_i$.
+
+Entonces podemos definir las coordenadas de nuestro pequeño e inocente $v$ en la Base B como:
+
+\begin{equation}
+    [v]_B = 
+    \begin{pmatrix} 
+        \alpha_1    \\
+        \alpha_2    \\
+        \cdots      \\
+        \alpha_n 
+    \end{pmatrix}
+    \in K^n
+\end{equation}
+
+
+\clearpage
+
+% ==========================
+% ====   EJEMPLOS  =========
+% ==========================
+\subsubsection{Ejemplo:}
+Considerere a $B = \{ (1+x), (1+x^2) , (x + x^2) \}$ como una base de un Polinomio de $\mathbb{R}_2[x]$.
+
+Sea $p(x) = 1+8x+3x^2$.
+
+Luego podemos ver que podemos escribirlo como:
+$3(1+x) + (-2)(1+x^2) + (5)(x+x^2)$
+
+Es decir, podemos escribirlo como:
+$[p(x)]_B =  \begin{pmatrix} 3\\-2\\5\end{pmatrix}$
+ 
+
+Para encontrarlos lo que tuvimos que hacer fue plantear el siguiente sistema de ecuaciones:
+\begin{equation*}
+    \alpha_1 + \alpha_2 = 1  \\
+    \alpha_1 + \alpha_3 = 8  \\
+    \alpha_2 + \alpha_3 = 3  \\
+\end{equation*}
+
+
+
+\subsection{Propiedades}
+Podemos ver entonces que estas coordenadas se comporta de manera muy muy bonita:
+
+\begin{itemize}
+    \item $[v_1 + v_2]_B = [v_1]_B + [v_2]_B$
+    \item $[\alpha v_1]_B = \alpha [v_1]_B$
+\end{itemize}
+
+\subsection{Cambio de Coordenadas}
+
+Sea $B_1 = \{v_1,v_2, \cdots, v_n\}$ y sean  $B_2 = \{u_1,u_2, \cdots, u_n\}$.
+
+Podemos cambiar de base usando la siguiente Matriz:
+
+\begin{equation*}
+    C_{B_1 \to B_2}= C_{B_1}^{B_2} = C_{\frac{B_2}{B_1}} = \left( [v_1]_{B_2} + [v_2]_{B_2} + \cdots + [v_n]_{B_2}   \right)
+\end{equation*}
+
+Podemos ver entonces que:
+\begin{equation*}
+    [v]_{B_2} = C_{B_1 \to B_2} [v]_{B_1}
+\end{equation*}
+
+Para encontrarla lo mas útil de la vida será:
+\begin{equation}
+    \begin{pmatrix}  Base 2  \vert Base 1 \end{pmatrix} \to_{Gauss-Jordan}
+    \begin{pmatrix}  I_n  \vert C_{B_1 \to B_2} \end{pmatrix}
+\end{equation}
+
+
+
+\subsubsection{Propiedades}
+Podemos saber algunas cosas super interesantes como:
+\begin{itemize}
+    \item Si tenemos ya una matriz de cambio de base podemos obtener el otro cambio simplemente sacando la inversa a la matriz:
+    $ C^{-1}_{\frac{B_2}{B_1}} = C_{\frac{B_1}{B_2}} $
+    
+    \item Podemos ver que existe algo que me tienta a llamar 'inversos' o que 'se cancela': 
+    $ C_{\frac{B_3}{B_2}} C_{\frac{B_2}{B_1}} = C_{\frac{B_3}{B_1}} $
+
+\end{itemize}
+
+% ==========================
+% ====   EJEMPLOS  =========
+% ==========================
+\subsubsection{Ejemplo 1}
+
+Por ejemplo, sea:
+\begin{equation*}
+    B_1 = \left\{
+        \begin{pmatrix} 1 \\ 1 \\0 \end{pmatrix}, \begin{pmatrix} 1 \\ 0 \\1 \end{pmatrix},
+        \begin{pmatrix} 0 \\ 1 \\1 \end{pmatrix}
+    \right\}
+\end{equation*}
+
+\begin{equation*}
+    B_2 = \left\{
+        \begin{pmatrix} 1 \\ 0 \\0 \end{pmatrix}, \begin{pmatrix} 1 \\ 1 \\0 \end{pmatrix},
+        \begin{pmatrix} 1 \\ 1 \\1 \end{pmatrix}
+    \right\}
+\end{equation*}
+
+Entonces, podemos encontrar la Matriz de Cambio de Coordenadas de $B_2$ al $B_1$ como:
+
+\begin{equation*}
+    \left(
+    \begin{matrix}
+        1 & 1 & 1 \\
+        0 & 1 & 1 \\
+        0 & 0 & 1 \\
+    \end{matrix}
+    \Big|
+    \begin{matrix}
+        1 & 1 & 0 \\
+        0 & 0 & 1 \\
+        0 & 1 & 1 \\
+    \end{matrix}
+    \right)
+    = \left(
+    I_3
+    \big|
+    \begin{matrix}
+        0 & 1 & -1 \\
+        1 & -1 & 0 \\
+        0 & 1 & 1 \\
+    \end{matrix}
+    \right)
+\end{equation*}
+
+Entonces ya al final podemos decir que:
+\begin{equation*}
+    C_{B_2 \to B_1} =
+    \begin{pmatrix}
+        0 & 1 & -1 \\
+        1 & -1 & 0 \\
+        0 & 1 & 1 \\
+    \end{pmatrix}
+\end{equation*}
+
+
+
+% ==========================
+% ====   EJEMPLOS  =========
+% ==========================
+\subsubsection{Ejemplo 2}
+
+Si queremos encontrar la matriz de cambio de base entre:
+\begin{itemize}
+    \item $B_1 = < (1+x), (1+x^2), (x+x^2) >$ 
+    \item $B_2 = < (1), (1+x), (1+x+x^2) >$ 
+\end{itemize}
+
+Entonces podemos tener esta Matriz de Cambio de Base:
+
+\begin{equation*}
+    \begin{pmatrix}
+        1 & 1 & 1 | & 1 & 1 & 0 \\
+        0 & 1 & 1 | & 1 & 0 & 1 \\
+        0 & 0 & 1 | & 0 & 1 & 1 \\
+    \end{pmatrix}
+    \to_{Gauss-Jordan}
+    \begin{pmatrix}
+        1 & 0 & 0 | & 0 & 1 & -1 \\
+        0 & 1 & 0 | & 1 & -1 & 0 \\
+        0 & 0 & 1 | & 0 & 1 & 1 \\
+    \end{pmatrix}
+\end{equation*}
+
+Por lo tanto podemos concordar que:
+\begin{equation*}
+    C_{\frac{B_2}{B_1}}
+    \begin{pmatrix}
+        0 & 1 & -1 \\
+        1 & -1 & 0 \\
+        0 & 1 & 1  \\
+    \end{pmatrix}
+\end{equation*}
+
+
+
+% ==========================
+% ====   EJEMPLOS  =========
+% ==========================
+\subsubsection{Ejemplo 3}
+
+Por ejemplo, sea:
+\begin{equation*}
+    B_1 = \left\{
+        \begin{pmatrix}\bar{1}&\bar{2}\\\bar{4}&\bar{0}\end{pmatrix},
+        \begin{pmatrix}\bar{0}&\bar{1}\\\bar{0}&\bar{1}\end{pmatrix},
+        \begin{pmatrix}\bar{1}&\bar{1}\\\bar{3}&\bar{0}\end{pmatrix},
+        \begin{pmatrix}\bar{1}&\bar{0}\\\bar{0}&\bar{0}\end{pmatrix},
+    \right\}
+\end{equation*}
+
+Y la canonica:
+\begin{equation*}
+    B_2 = \left\{
+        \begin{pmatrix}\bar{1}&\bar{0}\\\bar{0}&\bar{0}\end{pmatrix},
+        \begin{pmatrix}\bar{0}&\bar{1}\\\bar{0}&\bar{0}\end{pmatrix},
+        \begin{pmatrix}\bar{0}&\bar{0}\\\bar{1}&\bar{0}\end{pmatrix},
+        \begin{pmatrix}\bar{0}&\bar{0}\\\bar{0}&\bar{1}\end{pmatrix},
+    \right\}
+\end{equation*}
+
+Entonces, podemos encontrar la Matriz de Cambio de Coordenadas de $B_2$ al $B_1$ como:
+
+
+\begin{equation*}
+    \begin{pmatrix}
+        \bar{1} & \bar{0} & \bar{0} & \bar{0} | & \bar{1} & \bar{0} & \bar{1} & \bar{1} \\
+        \bar{0} & \bar{1} & \bar{0} & \bar{0} | & \bar{2} & \bar{1} & \bar{1} & \bar{0} \\
+        \bar{0} & \bar{0} & \bar{1} & \bar{0} | & \bar{4} & \bar{0} & \bar{3} & \bar{0} \\
+        \bar{0} & \bar{0} & \bar{0} & \bar{1} | & \bar{0} & \bar{1} & \bar{0} & \bar{0} \\
+    \end{pmatrix}
+\end{equation*}
+
+Por lo tanto podemos concordar que:
+\begin{equation*}
+    C_{\frac{B_2}{B_1}} = 
+    \begin{pmatrix}
+        \bar{1} & \bar{0} & \bar{1} & \bar{1} \\
+        \bar{2} & \bar{1} & \bar{1} & \bar{0} \\
+        \bar{4} & \bar{0} & \bar{3} & \bar{0} \\
+        \bar{0} & \bar{1} & \bar{0} & \bar{0} \\
+    \end{pmatrix}
+\end{equation*}
+
+
+
+
+
+
+
+
+
+% =====================================================
+% ===== ESPACIOS EUCLIDEANOS Y PRODUCTO INTERNO   =====
+% =====================================================
+\clearpage
+\section{Espacios Euclideanos y Producto Interno}
+
+% ==========================
+% ==== EXPLICACION =========
+% ==========================
+\subsection{¿Qué son?}
+Son un espacio vectorial, en nuestro caso lo vamos a considerar sobre los reales, la principal caracteristica de estos espacios es que cumplen con que tienen un producto interno:
+
+
+% ==========================
+% ==== PRODUCTO INTERNO ====
+% ==========================
+\subsection{Producto Interno}
+Un producto interno será aquella función $<,>$ tal que reciba 2 vectores y te regrese un vector: $\vec v \times \vec v \to \mathbb{R}$ tal que para todo 3 vectores cuales quiera $v, w, u \in V$ y para todo $\alpha , \beta \in  \mathbb{R} $ tenemos que:
+
+\begin{itemize}
+    \item $<\alpha v + \beta w, u> = \alpha <v, u> + \beta <w, u>$
+    \item $<u, v> = <v, u>$
+    \item $<v, v> \geq 0 $ y $ <v, v> = 0 \leftrightarrow v = 0$
+\end{itemize}
+
+En el caso de que tenga un producto interno que cumpla estas caracteristicas podemos decir que nuestro espacio vectorial es Euclidiano.
+
+\subsubsection{Producto Internos Comunes}
+Por ejemplo para vectores en $\mathbb{R}^n$ como:
+
+\begin{itemize}
+    \item Matrices: $<A, B> = traza( transpuesta(A)B)$ \\ Es decir, es la suma de todos los elementos de la diagonal
+    principal de la matriz resultante de la multiplicación de la transpuesta de A con B.
+
+    \item $\mathbb{R}^n$: $<v, u> = v_x u_x + v_y u_y \cdots$ \\ Es decir, lo que conocemos como el producto punto. 
+\end{itemize}
+
+
+\subsubsection{Propiedades}
+Podemos saber que:
+\begin{itemize}
+    \item $<v, 0_v> = 0$
+    \item Si $<u, v> = <v, u>$ y $\forall n \in V$, entonces $v = 0_v$
+\end{itemize}
+
+
+% ==========================
+% ==== NORMA DE UN VECTOR ==
+% ==========================
+\subsection{Norma de un Vector}
+Podemos definir una norma de un vector $v \in V$ como:
+\begin{equation}
+    ||v|| = \sqrt{<v,v>}
+\end{equation}
+
+% ==========================
+% ====   EJEMPLO   =========
+% ==========================
+\subsubsection{Ejemplo}
+
+\begin{equation*}
+    ||\begin{pmatrix} 3 & -2 \\ 0 & 6 \end{pmatrix}|| = \sqrt{ \left<  \begin{pmatrix} 3 & -2 \\ 0 & 6 \end{pmatrix}, \begin{pmatrix} 3 & -2 \\ 0 & 6 \end{pmatrix} \right>} =  \sqrt{ traza  \begin{pmatrix} 13 & -12 \\ -12 & 36 \end{pmatrix} } = \sqrt{13+36} = 7  
+\end{equation*}
+
+
+\subsubsection{Propiedades}
+\begin{itemize}
+    \item $||v|| \geq 0$ y también $||v|| = 0$ ssi $v = 0_v$   
+    \item $|| \alpha v||  = |\alpha| ||v|| $
+    \item $||<v, u>||  \leq ||u|| ||v|| $ Esta es conocida como Desigualdad de Cauchy-Shuartz
+    \item $||v + u||  \leq ||u|| + ||v|| $ Esta es conocida como Desigualdad del Triangulo
+\end{itemize}
+
+
+
+% ==========================
+% ==== OCTOGONAL ==
+% ==========================
+\subsection{Conjuntos Octogonales}
+Decimos que el conjunto $S = \{v_1, v_2, \cdots, v_n \}$ de vectores de un espacio euclidiano es: \\
+
+i) Ortogonal: Si $\forall i, j \in \{1, \cdots, n \}$ $(i\neq j) \to <v_i, v_j> = 0$ \\
+
+i) Ortonormal: Si ademas de Ortogonal tenemos que $||v_i|| = 1$ $\forall i\in \{1, \cdots, n \}$
+
+% ==========================
+% ====   EJEMPLO   =========
+% ==========================
+\subsubsection{Ejemplo}
+
+Este conjunto no es ni Ortogonal ni Ortonormal:
+\begin{equation*}
+    S_1 = \left< \begin{bmatrix} 1\\1\\0\end{bmatrix} , \begin{bmatrix} 1\\0\\1\end{bmatrix}, \begin{bmatrix} 0\\1\\1\end{bmatrix} \right> 
+\end{equation*}
+
+Este conjunto es Ortogonal pero no Ortonormal:
+\begin{equation*}
+    S_1 = \left< \begin{bmatrix} 1\\0\\1\end{bmatrix} , \begin{bmatrix} 0\\-3\\0\end{bmatrix}, \begin{bmatrix} 2\\0\\-2\end{bmatrix} \right> 
+\end{equation*}
+
+
+\subsubsection{Propiedades}
+Sea $S = \{ v_1 , v_2 , \cdots, v_n \} \subseteq V$
+
+\begin{itemize}
+    \item Si S es Ortogonal y $v_i \neq 0_v$ $\forall i \in \{1, \cdots, n\}$ entonces podemos concluir que S es Linealmente independiente.
+
+    \item Si S es Ortonormal, entonce el vector de la forma:
+    $ w = v - <v, v_1> v_1 - <v, v_2> v_2 - \cdots - <v, v_n> v_n $
+    O visto mas bonito $w = v - \sum_{i = 1}^{n} <v, v_i>v_i$
+    es ortogonal a S $\forall v \in V$
+\end{itemize}
+
+
+
+% =====================================================
+% ============        BIBLIOGRAPHY   ==================
+% =====================================================
+\clearpage
+\bibliographystyle{plain}
+	\begin{thebibliography}{9}
+
+	% ============ REFERENCE #1 ========
+	\bibitem{Sitio1} 
+		ProbRob
+		\\\texttt{Youtube.com}
+
+
+	 
+
+\end{thebibliography}
+
+
+
+\end{document}
