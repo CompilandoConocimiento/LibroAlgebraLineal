@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  17 MAY 2017 14:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  17 MAY 2017 15:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -681,15 +681,19 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Try loading font information for U+msb on input line 3.
 (/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-))
+) [1
+
+])
 \tf@toc=\write3
 \openout3 = `Espacios.toc'.
 
- [1
-
-]
+LaTeX Info: Redefining \. on input line 75.
+LaTeX Info: Redefining \% on input line 75.
+LaTeX Info: Redefining \. on input line 75.
+LaTeX Info: Redefining \% on input line 75.
+ [2]
 Cap\'{\i }tulo 1.
-[2
+[3
 
 
 ]
@@ -701,102 +705,142 @@ LaTeX Info: Redefining \. on input line 138.
 LaTeX Info: Redefining \% on input line 138.
 LaTeX Info: Redefining \. on input line 138.
 LaTeX Info: Redefining \% on input line 138.
-[3
+[4
 
 ]
 LaTeX Info: Redefining \. on input line 144.
 LaTeX Info: Redefining \% on input line 144.
 LaTeX Info: Redefining \. on input line 144.
 LaTeX Info: Redefining \% on input line 144.
- [4]
-LaTeX Info: Redefining \. on input line 180.
-LaTeX Info: Redefining \% on input line 180.
-LaTeX Info: Redefining \. on input line 180.
-LaTeX Info: Redefining \% on input line 180.
- [5
+ [5]
+LaTeX Info: Redefining \. on input line 181.
+LaTeX Info: Redefining \% on input line 181.
+LaTeX Info: Redefining \. on input line 181.
+LaTeX Info: Redefining \% on input line 181.
+ [6
 
 ]
-Cap\'{\i }tulo 2.
-[6
-
-]
-LaTeX Info: Redefining \. on input line 224.
-LaTeX Info: Redefining \% on input line 224.
-LaTeX Info: Redefining \. on input line 224.
-LaTeX Info: Redefining \% on input line 224.
+LaTeX Info: Redefining \. on input line 234.
+LaTeX Info: Redefining \% on input line 234.
+LaTeX Info: Redefining \. on input line 234.
+LaTeX Info: Redefining \% on input line 234.
  [7
 
 ]
-LaTeX Info: Redefining \. on input line 265.
-LaTeX Info: Redefining \% on input line 265.
-LaTeX Info: Redefining \. on input line 265.
-LaTeX Info: Redefining \% on input line 265.
- [8
+Overfull \hbox (21.5737pt too wide) in paragraph at lines 255--258
+[]\T1/cmr/m/n/12 Sean $\OML/cmm/m/it/12 n \OT1/cmr/m/n/12 + 1$ \T1/cmr/m/n/12 V
+ec-to-res: $\OMS/cmsy/m/n/12 f\OML/cmm/m/it/12 v[]; v[]; []  ; v[]; v[]\OMS/cms
+y/m/n/12 g$\T1/cmr/m/n/12 , de un es-pa-cio vec-to-rial $\OML/cmm/m/it/12 V$\T1
+/cmr/m/n/12 . Si $\OMS/cmsy/m/n/12 f\OML/cmm/m/it/12 v[]; v[]; []  ; v[]\OMS/cm
+sy/m/n/12 g$
+ []
+
+LaTeX Info: Redefining \. on input line 268.
+LaTeX Info: Redefining \% on input line 268.
+LaTeX Info: Redefining \. on input line 268.
+LaTeX Info: Redefining \% on input line 268.
+[8
 
 ]
-LaTeX Info: Redefining \. on input line 353.
-LaTeX Info: Redefining \% on input line 353.
-LaTeX Info: Redefining \. on input line 353.
-LaTeX Info: Redefining \% on input line 353.
- [9
+Overfull \hbox (4.54933pt too wide) in paragraph at lines 314--316
+[]\T1/cmr/m/n/12 Sea $\OML/cmm/m/it/12 H$ \T1/cmr/m/n/12 un Subes-pa-cio vec-to
+-rial de V. En-ton-ces H es de di-men-sión fi-ni-ta y $\OML/cmm/m/it/12 dim\OT1
+/cmr/m/n/12 (\OML/cmm/m/it/12 H\OT1/cmr/m/n/12 ) \OMS/cmsy/m/n/12 ^^T
+ []
+
+LaTeX Info: Redefining \. on input line 325.
+LaTeX Info: Redefining \% on input line 325.
+LaTeX Info: Redefining \. on input line 325.
+LaTeX Info: Redefining \% on input line 325.
+[9
 
 ]
-LaTeX Info: Redefining \. on input line 442.
-LaTeX Info: Redefining \% on input line 442.
-LaTeX Info: Redefining \. on input line 442.
-LaTeX Info: Redefining \% on input line 442.
+LaTeX Info: Redefining \. on input line 333.
+LaTeX Info: Redefining \% on input line 333.
+LaTeX Info: Redefining \. on input line 333.
+LaTeX Info: Redefining \% on input line 333.
  [10]
-LaTeX Info: Redefining \. on input line 449.
-LaTeX Info: Redefining \% on input line 449.
-LaTeX Info: Redefining \. on input line 449.
-LaTeX Info: Redefining \% on input line 449.
- [11]
-Cap\'{\i }tulo 3.
-[12
+Cap\'{\i }tulo 2.
+[11
 
 ]
-LaTeX Info: Redefining \. on input line 462.
-LaTeX Info: Redefining \% on input line 462.
-LaTeX Info: Redefining \. on input line 462.
-LaTeX Info: Redefining \% on input line 462.
+LaTeX Info: Redefining \. on input line 377.
+LaTeX Info: Redefining \% on input line 377.
+LaTeX Info: Redefining \. on input line 377.
+LaTeX Info: Redefining \% on input line 377.
+ [12
+
+]
+LaTeX Info: Redefining \. on input line 418.
+LaTeX Info: Redefining \% on input line 418.
+LaTeX Info: Redefining \. on input line 418.
+LaTeX Info: Redefining \% on input line 418.
  [13
 
 ]
-LaTeX Info: Redefining \. on input line 501.
-LaTeX Info: Redefining \% on input line 501.
-LaTeX Info: Redefining \. on input line 501.
-LaTeX Info: Redefining \% on input line 501.
+LaTeX Info: Redefining \. on input line 506.
+LaTeX Info: Redefining \% on input line 506.
+LaTeX Info: Redefining \. on input line 506.
+LaTeX Info: Redefining \% on input line 506.
  [14
 
 ]
-LaTeX Info: Redefining \. on input line 531.
-LaTeX Info: Redefining \% on input line 531.
-LaTeX Info: Redefining \. on input line 531.
-LaTeX Info: Redefining \% on input line 531.
- [15
+LaTeX Info: Redefining \. on input line 595.
+LaTeX Info: Redefining \% on input line 595.
+LaTeX Info: Redefining \. on input line 595.
+LaTeX Info: Redefining \% on input line 595.
+ [15]
+LaTeX Info: Redefining \. on input line 602.
+LaTeX Info: Redefining \% on input line 602.
+LaTeX Info: Redefining \. on input line 602.
+LaTeX Info: Redefining \% on input line 602.
+ [16]
+Cap\'{\i }tulo 3.
+[17
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 534--535
+LaTeX Info: Redefining \. on input line 615.
+LaTeX Info: Redefining \% on input line 615.
+LaTeX Info: Redefining \. on input line 615.
+LaTeX Info: Redefining \% on input line 615.
+ [18
+
+]
+LaTeX Info: Redefining \. on input line 654.
+LaTeX Info: Redefining \% on input line 654.
+LaTeX Info: Redefining \. on input line 654.
+LaTeX Info: Redefining \% on input line 654.
+ [19
+
+]
+LaTeX Info: Redefining \. on input line 684.
+LaTeX Info: Redefining \% on input line 684.
+LaTeX Info: Redefining \. on input line 684.
+LaTeX Info: Redefining \% on input line 684.
+ [20
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 687--688
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 536--537
+Underfull \hbox (badness 10000) in paragraph at lines 689--690
 
  []
 
-LaTeX Info: Redefining \. on input line 574.
-LaTeX Info: Redefining \% on input line 574.
-LaTeX Info: Redefining \. on input line 574.
-LaTeX Info: Redefining \% on input line 574.
-[16
+LaTeX Info: Redefining \. on input line 727.
+LaTeX Info: Redefining \% on input line 727.
+LaTeX Info: Redefining \. on input line 727.
+LaTeX Info: Redefining \% on input line 727.
+[21
 
 ]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 581.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 734.
 
  (/usr/local/texlive/2016/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-) [17
+) [22
 
 
 ]
@@ -835,10 +879,10 @@ mf-dist/fonts/type1/public/cm-super/sfrm2074.pfb></usr/local/texlive/2016/texmf
 -dist/fonts/type1/public/cm-super/sftt1200.pfb></usr/local/texlive/2016/texmf-d
 ist/fonts/type1/public/cm-super/sfxc1440.pfb></usr/local/texlive/2016/texmf-dis
 t/fonts/type1/public/cm-super/sfxc1728.pfb>
-Output written on Espacios.pdf (18 pages, 276722 bytes).
+Output written on Espacios.pdf (23 pages, 292208 bytes).
 PDF statistics:
- 152 PDF objects out of 1000 (max. 8388607)
- 108 compressed objects within 2 object streams
+ 168 PDF objects out of 1000 (max. 8388607)
+ 119 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

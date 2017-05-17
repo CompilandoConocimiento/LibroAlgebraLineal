@@ -174,6 +174,159 @@
             \item $W_1 + W_2$ es un Subespacio de $V$
         \end{itemize}
 
+
+    % =====================================================
+    % ============    INDEPENDENCIA Y DEPENDENCIA     =====
+    % =====================================================
+    \clearpage
+    \section{Independecia y Dependencia}   
+
+        % ==========================
+        % ====   INDEPENDECIA  =====
+        % ==========================
+        \subsection{Independencia Lineal}
+        Sea A una matriz de $n \times n$. Entonces cada uno de los siguientes siete enunciados implica a los otros seis.
+        \begin{itemize}
+            \item A es Invertible.
+            \item $Det(A) \neq 0$.
+            \item La unica solución al Sistema Homogéneo $Ax=0$ es la solución $x=0$.
+            \item El sistema $Ax=b$ posee una solución única para todo n-vector b.
+            \item A es equivalente por filas a la Matriz Identidad.
+            \item A puede ser escrita como el producto de matrices elementales.
+            \item Las columnas y los renglones de A son Linealmente Independientes.
+        \end{itemize}
+
+        Podemos generalizar aún más esto de la siguiente manera como: 
+
+        Sean A  = $\begin{bmatrix} F_{1} \\ F_{2} \\ F_{n} \end{bmatrix} $ 
+                = $\begin{bmatrix} C_{1} &  C_{2} &  C_{n} \end{bmatrix} $
+                pertenecen a $M_{m\times n} (K)$
+
+        Es decir sea A un Vector de Vectores (estos últimos sean Vectores Fila
+        o Columna, la verdad no importa), entonces los siguientes
+        enunciados son equivalentes:
+
+        \begin{itemize}
+            \item A es Invertible
+            \item $F_1, F_2, \cdots ,F_n$ generan a $K^n$
+            \item $C_1, C_2, \cdots, C_n$ generan a $K^n$
+            \item $F_1, F_2, \cdots, F_n$ son Linealmente Independientes en $K^n$
+            \item $C_1, C_2, \cdots, C_n$ son Linealmente Independientes en $K^n$
+            \item $B = (F_1, F_2, \cdots, F_n)$ es base de $K^n$
+            \item B = ($C_1, C_2, \cdots, C_n)$ es base de $K^n$
+        \end{itemize}
+        
+
+        % ==========================
+        % ====   PROPIEDADES  ======
+        % ==========================
+        \subsection{Propiedades}
+        \begin{itemize}
+            \item Un conjunto de n vectores en $\mathbb{R}^m$ es siempre Linealmente
+             \textbf{Dependiente} si $n > m$. (Si hay mas incognitas que ecuaciones).
+        \end{itemize}
+
+
+
+    % =====================================================
+    % ============    GENERARIO DE ESPACIO       ==========
+    % ===================================================== 
+    \clearpage
+    \section{Generación de Espacios}
+        Los vectores $v_1,v_2,\dots,v_n$ forman un Espacio Vectorial $V$, o se dice
+        que  generan a $V$, si todo vector en $V$ puede expresarse como Combinacion lineal de ellos.
+
+
+        Esto es, para todo $v \in V$, existen escalares $\{a_1,a_2,\dots,a_n\}$ tales que:
+
+        \begin{equation}
+            v = a_1v_1 + a_2v_2 + \cdots + a_nv_n
+        \end{equation}
+
+
+        % ==========================
+        % ====   PROPIEDADES  ======
+        % ==========================
+        \subsection{Propiedades}
+        \begin{itemize}
+            \item Un Conjunto de n Vectores linealmente independientes en
+            $\mathbb{R}^n$ genera a $\mathbb{R}^n$
+
+            \item Sean $n+1$ Vectores: $\{ v_1, v_2, \cdots, v_n, v_{n+1} \}$, 
+            de un espacio vectorial $V$. Si $\{ v_1, v_2, \cdots, v_n \}$ generan a $V$,
+            entonces $\{ v_1, v_2, \cdots, v_n, v_{n+1} \}$ también generan a $V$.
+
+            \item Si $\{ v_1, v_2, \cdots, v_n \}$ son linealmente independientes,
+            entonces los $n-1$ vectores, $\{v_1, v_2, \cdots, v_{n-1}, v_n \}$ son
+            Linealmente Independientes.
+
+        \end{itemize}
+
+    % =====================================================
+    % ============    BASES DE DIMENSIONES       ==========
+    % ===================================================== 
+    \clearpage
+    \section{Bases y Dimensión}
+
+        % ==========================
+        % ====      BASES     ======
+        % ==========================
+        \subsection{Bases}
+        Un conjunto de vectores forman una Base para V si:
+        \begin{itemize}
+            \item Dicho conjunto es Linealmente Independiente.
+
+            \item Dicho conjunto es genera a V.
+        \end{itemize}
+
+        \subsubsection{Propiedades}
+        Un Conjunto de vectores forman una Base para V si Todo conjunto de n vectores
+        linealmente independientes en $\mathbb{R}^n$ es un Base en $\mathbb{R}^n$
+
+        Si $\{ v_1, v_2,\cdots, v_n\}$ es una Base de $V$ y si $v \in V$, entonces
+        existe un conjunto Único de escalares $c_1, c_2, \cdots, c_n$ tales que:
+
+        \begin{equation}
+            v = c_1v_1 + c_2v_2 + \cdots + c_nv_n
+        \end{equation}
+
+        Si $\{u_1, u_2, \cdots, u_n\}$ y $\{v_1, v_2, \cdots, v_n\}$ son bases del
+        Espacio vectorial V, entonces $m = n$, cualesquiera dos bases en un espacio
+        vectorial V poseen el mismo número de vectores.
+
+        % ==========================
+        % ====    DIMENSION     ====
+        % ==========================
+        \subsection{Dimensión}
+        Si el Espacio vectorial $V$ posee una base finita, la dimension de V es el 
+        número de vectores en la base, y V se llama Espacio vectorial de dimension finita.
+
+        Cualesquiera n vectores linealmente independientes en un Espacio
+        vectorial V de dimensión n, constituyen una base.
+
+        \begin{itemize}
+            \item De otra manera, $V$ se denomina Espacio vectorial de dimension infinita.
+            Si $V=\{0\}$, entones V se dice que es de Dimensión 0.
+
+            \item Supongase que $dim(V) = n$. Si $\{u_1, u_2, \cdots, u_n\}$ es un Conjunto de m vectores
+            Linealmente Independientes en $V$, entonces $m \leq n$.
+
+            \item Sea $H$ un Subespacio vectorial de V. Entonces H es de dimensión finita
+            y $dim(H) \leq dim(V)$.
+
+        \end{itemize}
+
+        \subsubsection{Observaciones - Dimensiones Comunes}
+
+        Sea $ B = (V_1, V_2, \cdots, V_n)$, osea, sea B un Conjuntos de Vectores:
+
+        \begin{itemize}
+            \item $dim(K^n) = n$
+            \item $dim(M_{m \times n}(K)) = mn$
+            \item $dim(K_{n}{[X]}) = n + 1$
+        \end{itemize}
+
+
 % ======================================================================================
 % =============================     SISTEMAS DE COORDENADAS   ==========================
 % ======================================================================================
