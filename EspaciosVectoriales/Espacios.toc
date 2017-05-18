@@ -36,7 +36,6 @@
 \contentsline {subsection}{\numberline {3.2.1}Producto Internos Comunes}{22}
 \contentsline {subsection}{\numberline {3.2.2}Propiedades del Producto Interno}{22}
 \contentsline {section}{\numberline {3.3}Norma de un Vector}{23}
-\contentsline {subsubsection}{Ejemplo}{23}
 \contentsline {subsection}{\numberline {3.3.1}Propiedades de la Norma}{23}
 \contentsline {section}{\numberline {3.4}Conjuntos Octogonales}{24}
 \contentsline {subsubsection}{Ejemplo}{24}
