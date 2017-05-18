@@ -295,8 +295,70 @@
         vectorial V poseen el mismo número de vectores.
 
         % ==========================
+        % ====   PROPIEDADES  ======
+        % ==========================
+        \subsubsection{Observaciones}
+        Sea $n = dim(V)$. Entonces los siguientes enunciados son equivalentes:
+        \begin{itemize}
+            \item $v_1, v_2, \cdots ,v_n$ Generan a V
+            \item $v_1, v_2, \cdots ,v_n$ Son Linealmente Independientes
+            \item $B = \{ v_1, v_2, \cdots ,v_n \}$ son una Base de V
+        \end{itemize}
+
+        Sea $n = dim(V)$. Entonces los siguientes enunciados son verdaderos:
+        \begin{itemize}
+            \item Todo conjunto $\{ v_1, v_2, \cdots ,v_n$ con $n < m$ que generan a V
+            se puede reducir a una base de V.
+
+            \item Todo conjunto$\{ v_1, v_2, \cdots ,v_n$ con $m < n$ que sea Linealmente
+            Independiente se puede completar a una base
+        \end{itemize}
+
+        % ==========================
+        % ====      EJEMPLO     ====
+        % ==========================
+        \subsubsection{Ejemplo}
+
+            Para que valores de $a$ los siguentes vectores forman una base de $\mathbb{R}^3$:
+            \begin{equation*}
+                \left\{
+                    \begin{bmatrix} 1 \\ 1 \\ a \end{bmatrix},
+                    \begin{bmatrix} 1 \\ a \\ 1 \end{bmatrix},
+                    \begin{bmatrix} a \\ 1 \\ 1 \end{bmatrix} 
+                \right\}
+            \end{equation*}
+
+
+            Para poder resolver esto basta con seguir las propiedades:
+
+            Forman una base en $\mathbb{R}^3$ ssi la siguiente Matriz es Invertible:
+            \begin{equation*}
+                A = \begin{bmatrix} 1 & 1 & a \\ 1 & a & 1 \\ a & 1 & 1 \end{bmatrix}
+            \end{equation*}
+
+            Ssi, la Determinante de A sea difetente de 0.
+
+            \begin{equation*}
+            \begin{split}
+            det(A) & = 3a-a^3-2 = -(a^3+3a-2) \\
+                   & = - (a-1)(a^2+a-2) = -(a-1)(a-1)(a+2) = -(a-1)^2(a+2)
+            \end{split}
+            \end{equation*}
+
+            Con esto logramos ver que las raices de dicha expresión es 1 y -2.
+            Pero sabemos que dicho Determinante no puede ser 0, por lo tanto tenemos que:
+
+            \begin{equation*}
+                A = \begin{bmatrix} 1 & 1 & a \\ 1 & a & 1 \\ a & 1 & 1 \end{bmatrix}
+            \end{equation*}
+
+            Genera a $\mathbb{R}^3$ siempre y cuando $a \neq 1$ ó $a \neq -2$ 
+
+
+        % ==========================
         % ====    DIMENSION     ====
         % ==========================
+        \clearpage
         \subsection{Dimensión}
         Si el Espacio vectorial $V$ posee una base finita, la dimension de V es el 
         número de vectores en la base, y V se llama Espacio vectorial de dimension finita.
@@ -316,8 +378,11 @@
 
         \end{itemize}
 
-        \subsubsection{Observaciones - Dimensiones Comunes}
 
+        % ==========================
+        % ====   PROPIEDADES  ======
+        % ==========================
+        \subsubsection{Dimensiones Comunes}
         Sea $ B = (V_1, V_2, \cdots, V_n)$, osea, sea B un Conjuntos de Vectores:
 
         \begin{itemize}

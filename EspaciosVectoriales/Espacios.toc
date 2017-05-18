@@ -12,26 +12,28 @@
 \contentsline {section}{\numberline {1.5}Bases y Dimensi\IeC {\'o}n}{9}
 \contentsline {subsection}{\numberline {1.5.1}Bases}{9}
 \contentsline {subsubsection}{Propiedades}{9}
-\contentsline {subsection}{\numberline {1.5.2}Dimensi\IeC {\'o}n}{9}
-\contentsline {subsubsection}{Observaciones - Dimensiones Comunes}{10}
-\contentsline {chapter}{\numberline {2}Sistemas de Coordenadas}{11}
-\contentsline {section}{\numberline {2.1}Sistemas de Coordenadas}{12}
-\contentsline {subsection}{\numberline {2.1.1}Demostraci\IeC {\'o}n}{12}
-\contentsline {subsection}{\numberline {2.1.2}\IeC {\textquestiondown }Qu\IeC {\'e} es un Sistema de Coordenadas?}{12}
-\contentsline {subsubsection}{Ejemplo:}{13}
-\contentsline {subsection}{\numberline {2.1.3}Propiedades}{13}
-\contentsline {section}{\numberline {2.2}Cambio de Coordenadas}{14}
-\contentsline {subsubsection}{Ejemplo 1}{14}
-\contentsline {subsubsection}{Ejemplo 2}{15}
-\contentsline {subsubsection}{Ejemplo 3}{15}
-\contentsline {chapter}{\numberline {3}Espacios Euclideanos}{17}
-\contentsline {section}{\numberline {3.1}Espacios Euclideanos}{18}
-\contentsline {section}{\numberline {3.2}Producto Interno}{19}
-\contentsline {subsection}{\numberline {3.2.1}Producto Internos Comunes}{19}
-\contentsline {subsection}{\numberline {3.2.2}Propiedades del Producto Interno}{19}
-\contentsline {section}{\numberline {3.3}Norma de un Vector}{20}
-\contentsline {subsubsection}{Ejemplo}{20}
-\contentsline {subsection}{\numberline {3.3.1}Propiedades de la Norma}{20}
-\contentsline {section}{\numberline {3.4}Conjuntos Octogonales}{21}
+\contentsline {subsubsection}{Observaciones}{9}
+\contentsline {subsubsection}{Ejemplo}{10}
+\contentsline {subsection}{\numberline {1.5.2}Dimensi\IeC {\'o}n}{11}
+\contentsline {subsubsection}{Dimensiones Comunes}{11}
+\contentsline {chapter}{\numberline {2}Sistemas de Coordenadas}{12}
+\contentsline {section}{\numberline {2.1}Sistemas de Coordenadas}{13}
+\contentsline {subsection}{\numberline {2.1.1}Demostraci\IeC {\'o}n}{13}
+\contentsline {subsection}{\numberline {2.1.2}\IeC {\textquestiondown }Qu\IeC {\'e} es un Sistema de Coordenadas?}{13}
+\contentsline {subsubsection}{Ejemplo:}{14}
+\contentsline {subsection}{\numberline {2.1.3}Propiedades}{14}
+\contentsline {section}{\numberline {2.2}Cambio de Coordenadas}{15}
+\contentsline {subsubsection}{Ejemplo 1}{15}
+\contentsline {subsubsection}{Ejemplo 2}{16}
+\contentsline {subsubsection}{Ejemplo 3}{16}
+\contentsline {chapter}{\numberline {3}Espacios Euclideanos}{18}
+\contentsline {section}{\numberline {3.1}Espacios Euclideanos}{19}
+\contentsline {section}{\numberline {3.2}Producto Interno}{20}
+\contentsline {subsection}{\numberline {3.2.1}Producto Internos Comunes}{20}
+\contentsline {subsection}{\numberline {3.2.2}Propiedades del Producto Interno}{20}
+\contentsline {section}{\numberline {3.3}Norma de un Vector}{21}
 \contentsline {subsubsection}{Ejemplo}{21}
-\contentsline {subsection}{\numberline {3.4.1}Propiedades}{21}
+\contentsline {subsection}{\numberline {3.3.1}Propiedades de la Norma}{21}
+\contentsline {section}{\numberline {3.4}Conjuntos Octogonales}{22}
+\contentsline {subsubsection}{Ejemplo}{22}
+\contentsline {subsection}{\numberline {3.4.1}Propiedades}{22}
