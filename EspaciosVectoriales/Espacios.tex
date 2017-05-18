@@ -226,10 +226,66 @@
              \textbf{Dependiente} si $n > m$. (Si hay mas incognitas que ecuaciones).
         \end{itemize}
 
+        % ==========================
+        % ====    EJEMPLOS    ======
+        % ==========================
+        \subsection{Ejemplo}
+
+            Tengamos el Sistema $\{3,2x,-x^2\}$ y veamos si es Linealmente Independiente:
+
+            Sea $\alpha_1, \alpha_2, \alpha_3 \in \mathbb{R}$ tales que:
+            \begin{equation*}
+                \alpha_1(3) + \alpha_2(2x) + \alpha_3(-x^2) = 0
+            \end{equation*}
+
+            Entonces tenemos el sistema:
+            \begin{equation*}
+                \begin{bmatrix}
+                    0 & 0 & -\alpha_3 & = 0\\
+                    0 & 2\alpha_2 & 0 & = 0\\
+                    3\alpha_1 & 0 & 0 & = 0\\
+                \end{bmatrix}
+            \end{equation*}
+
+            Así que $\alpha_1=\alpha_2=\alpha_3 = 0$, por lo que $\{3,2x,-x^2\}$ son
+            Linealmente Independientes.
+
+        % ==========================
+        % ====    EJEMPLOS    ======
+        % ==========================
+        \subsection{Ejemplo}
+
+            Tengamos el Sistema $\{1+x,2+2x-3x^2,x^2\}$ y veamos si es Linealmente Independiente:
+
+            Sea $\alpha_1, \alpha_2, \alpha_3 \in \mathbb{R}$ tales que:
+            \begin{equation*}
+                \alpha_1(1+x) + \alpha_2(2+2x) + \alpha_3(x^2) = 0
+            \end{equation*}
+
+            Entonces tenemos el sistema:
+            \begin{equation*}
+                \begin{bmatrix}
+                    0 & -3\alpha_2 & \alpha_3 & = 0\\
+                    \alpha_1 & 2\alpha_2 & 0 & = 0\\
+                    \alpha_1 & 2\alpha_2 & 0 & = 0\\
+                \end{bmatrix}
+                \to
+                \begin{bmatrix}
+                    0 & -3 & 1 \\
+                    1 & 2 & 0  \\
+                    1 & 2 & 0  \\
+                \end{bmatrix}
+            \end{equation*}
+
+            Donde este sistema tiene infinitas soluciones, por lo tanto $\{1+x,2+2x-3x^2,x^2\}$ son
+            Linealmente Dependientes.
+        
+        
+
 
 
     % =====================================================
-    % ============    GENERARIO DE ESPACIO       ==========
+    % ============    GENERACION DE ESPACIO      ==========
     % ===================================================== 
     \clearpage
     \section{Generación de Espacios}
@@ -261,6 +317,74 @@
             Linealmente Independientes.
 
         \end{itemize}
+
+
+        % ==========================
+        % ====     EJEMPLO    ======
+        % ==========================
+            \subsubsection{Ejemplo}
+            Determine si el siguiente conjunto de vectores $\{ 3, 2x, -x^2\}$ genera
+            a $\mathbb{R}_2 [x]$, es decir que genera a todos los
+            polinómios de máximo grado 2.
+
+            Sea $ax^2 + bx +c \in \mathbb{R}_2 [x]$.
+
+            Luego tenemos que
+            $\alpha_1 (3) + \alpha_2 (2x) + \alpha_3 (-x^2) = ax^2 + bx +c$,
+            entonces tenemos el Sistema que:
+
+            \begin{equation*}
+                \begin{bmatrix}
+                    0 & 0 & -\alpha_3 & = a\\
+                    0 & 2\alpha_2 & 0 & = b\\
+                    3\alpha_1 & 0 & 0 & = c\\
+                \end{bmatrix}
+                \to
+                \begin{bmatrix}
+                    0 & 0 & -1 & | a\\
+                    0 & 2 & 0 &  | b\\
+                    3 & 0 & 0 &  | c\\
+                \end{bmatrix}
+            \end{equation*}
+
+            Donde es obvio que su determinante no es 0, (es 6 :p), esto quiere decir que el
+            sistema siempre tiene solución.
+
+            Por lo tanto este conjunto si que genera a $\mathbb{R}_2 [x]$.
+
+        % ==========================
+        % ====     EJEMPLO    ======
+        % ==========================
+            \subsubsection{Ejemplo}
+            Determine si el siguiente conjunto de vectores $\{ 1+x,2+2x-3x^2,x^2\}$ genera
+            a $\mathbb{R}_2 [x]$, es decir que genera a todos los
+            polinómios de máximo grado 2.
+
+            Sea $ax^2 + bx +c \in \mathbb{R}_2 [x]$.
+
+            Luego tenemos que
+            $\alpha_1 (1+x) + \alpha_2 (2+2x-3x^2) + \alpha_3 (x^2) = ax^2 + bx +c$,
+            entonces tenemos el Sistema que:
+            
+            \begin{equation*}
+                \begin{bmatrix}
+                    0 & -3\alpha_2 & \alpha_3 & = a\\
+                    \alpha_1 & 2\alpha_2 & 0 & = b\\
+                    \alpha_1 & 2\alpha_2 & 0 & = c\\
+                \end{bmatrix}
+                \to
+                \begin{bmatrix}
+                    0 & -3 & 1 & | a\\
+                    1 & 2 & 0 &  | b\\
+                    1 & 2 & 0 &  | c\\
+                \end{bmatrix}
+            \end{equation*}
+
+            Donde es obvio que su determinante es 0, esto quiere decir que el
+            sistema NO siempre tiene solución.
+
+            Por lo tanto este conjunto NO genera a $\mathbb{R}_2 [x]$.
+
 
     % =====================================================
     % ============    BASES DE DIMENSIONES       ==========
