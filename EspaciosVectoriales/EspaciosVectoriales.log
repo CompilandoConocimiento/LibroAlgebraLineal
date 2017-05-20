@@ -1,9 +1,12 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  18 MAY 2017 14:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  19 MAY 2017 21:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**/Users/mac/Downloads/ApuntesAlgebraLineal/EspaciosVectoriales/Espacios.tex
-(/Users/mac/Downloads/ApuntesAlgebraLineal/EspaciosVectoriales/Espacios.tex
+**/Users/mac/Desktop/ApuntesAlgebraLineal/EspaciosVectoriales/EspaciosVectorial
+es.tex
+
+(/Users/mac/Desktop/ApuntesAlgebraLineal/EspaciosVectoriales/EspaciosVectoriale
+s.tex
 LaTeX2e <2016/03/31>
 Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
 (/usr/local/texlive/2016/texmf-dist/tex/latex/base/report.cls
@@ -554,11 +557,11 @@ Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \f@ncyO@olf=\skip57
 \f@ncyO@orf=\skip58
 )
-(./Espacios.aux
+(./EspaciosVectoriales.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 )
-\openout1 = `Espacios.aux'.
+\openout1 = `EspaciosVectoriales.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
 LaTeX Font Info:    ... okay on input line 45.
@@ -671,21 +674,23 @@ e
 [1
 
 {/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-(./Espacios.toc
+(./EspaciosVectoriales.toc
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
 LaTeX Font Info:    Try loading font information for U+msa on input line 3.
- (/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsa.fd
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Try loading font information for U+msb on input line 3.
+
 (/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 ])
 \tf@toc=\write3
-\openout3 = `Espacios.toc'.
+\openout3 = `EspaciosVectoriales.toc'.
 
 LaTeX Info: Redefining \. on input line 75.
 LaTeX Info: Redefining \% on input line 75.
@@ -861,18 +866,18 @@ File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 
 
 ]
-(./Espacios.aux
+(./EspaciosVectoriales.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 ) ) 
 Here is how much of TeX's memory you used:
  6100 strings out of 493014
- 80795 string characters out of 6133351
+ 80910 string characters out of 6133351
  169755 words of memory out of 5000000
  9527 multiletter control sequences out of 15000+600000
  19726 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,11n,43p,362b,540s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,11n,43p,374b,540s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc
 }</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
 </usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
@@ -896,7 +901,7 @@ mf-dist/fonts/type1/public/cm-super/sfrm2074.pfb></usr/local/texlive/2016/texmf
 -dist/fonts/type1/public/cm-super/sftt1200.pfb></usr/local/texlive/2016/texmf-d
 ist/fonts/type1/public/cm-super/sfxc1440.pfb></usr/local/texlive/2016/texmf-dis
 t/fonts/type1/public/cm-super/sfxc1728.pfb>
-Output written on Espacios.pdf (26 pages, 297864 bytes).
+Output written on EspaciosVectoriales.pdf (26 pages, 297606 bytes).
 PDF statistics:
  178 PDF objects out of 1000 (max. 8388607)
  126 compressed objects within 2 object streams
