@@ -1,0 +1,391 @@
+% ****************************************************************************************
+% ******************        TRANSFORMACIONES LINEALES     ********************************
+% ****************************************************************************************
+
+
+% =======================================================
+% =======   ALL COMMANDS AND RULES FOR DOC   ============
+% =======================================================
+\documentclass[12pt]{report}                                %Type of docuemtn and size of font
+\usepackage[margin=1.2in]{geometry}                         %Margins
+
+\usepackage[spanish]{babel}                                 %Please use spanish
+\usepackage[utf8]{inputenc}                                 %Please use spanish 
+\usepackage[T1]{fontenc}                                    %Please use spanish
+
+\usepackage{amsthm, amssymb, amsfonts, mathrsfs}            %Make math beautiful
+\usepackage[fleqn]{amsmath}                                 %Please make equations left
+\decimalpoint                                               %Make math beautiful
+\setlength{\parindent}{0pt}                                 %Eliminate ugly indentation
+
+\usepackage{graphicx}                                       %Allow to create graphics
+\usepackage{wrapfig}                                        %Allow to create images
+\graphicspath{ {Graphics/} }                                %Where are the images :D
+\usepackage{listings}                                       %We will be using code here
+\usepackage[inline]{enumitem}                               %We will need to enumarate
+
+\usepackage{fancyhdr}                                       %Lets make awesome headers/footers
+\renewcommand{\footrulewidth}{0.5pt}                        %We will need this!
+\setlength{\headheight}{16pt}                               %We will need this!
+\setlength{\parskip}{0.5em}                                 %We will need this!
+\pagestyle{fancy}                                           %Lets make awesome headers/footers
+\lhead{\footnotesize{\leftmark}}                            %Headers!
+\rhead{\footnotesize{\rightmark}}                           %Headers!
+\lfoot{Compilando Conocimiento}                             %Footers!
+\rfoot{Oscar Rosas}                                         %Footers!
+
+\author{Oscar Andrés Rosas}                                 %Who I am
+
+
+
+
+% =====================================================
+% ============        COVER PAGE       ================
+% =====================================================
+\begin{document}
+\begin{titlepage}
+
+    \center
+    % ============ UNIVERSITY NAME AND DATA =========
+    \textbf{\textsc{\Large Proyecto Compilando Conocimiento}}\\[1.0cm] 
+    \textsc{\Large Algebra Lineal}\\[1.0cm] 
+
+    % ============ NAME OF THE DOCUMENT  ============
+    \rule{\linewidth}{0.5mm} \\[1.0cm]
+        { \huge \bfseries Transformaciones Lineales}\\[1.0cm] 
+    \rule{\linewidth}{0.5mm} \\[2.0cm]
+    
+    % ====== SEMI TITLE ==========
+    {\LARGE Transformaciones Lineales}\\[7cm] 
+    
+    % ============  MY INFORMATION  =================
+    \begin{center} \large
+    \textbf{\textsc{Autor:}}\\
+    Rosas Hernandez Oscar Andres
+    \end{center}
+
+    \vfill
+
+\end{titlepage}
+
+
+% =====================================================
+% ========                INDICE              =========
+% =====================================================
+\tableofcontents{}
+\clearpage
+
+% ======================================================================================
+% =============================    TRANSFORMACIONES LINEALES    ========================
+% ======================================================================================
+\chapter{Transformaciones Lineales}
+    \clearpage
+
+    % =====================================================
+    % ============           DEFINICION            ========
+    % =====================================================
+    \section{Definición}
+        Sea $V$ y $W$ dos espacios vectoriales sobre un \textbf{mismo} campo $K$. Una
+        transformación lineal de $V \to W$ es una función que cumpla con esto:
+
+        $\mathscr{T}: V \to W $ tal que $\forall v_1, v_2, v_3 \in V $ y $\forall \alpha \in K$
+        tenemos que se cumple que:
+
+        \begin{itemize}
+            \item $\mathscr{T} (v_1 + v_2) = \mathscr{T}(v_1) + \mathscr{T}(v_2)$
+            \item $\mathscr{T} (\alpha v_1) = \alpha \mathscr{T}(v_1)$ 
+        \end{itemize}
+
+        \subsubsection{Combinación Lineal}
+        Podemos tambien tener que como consecuencia de lo que tenemos arriba que podemos
+        encontrar que $\mathscr{T}$ es una transformación lineal si y solo si se cumple que:
+
+        $\forall v_1, v_2 \in V$ y $\forall \alpha, \beta \in K$ se cumple que:
+        \begin{equation}
+            \mathscr{T}(\alpha v_1 + \beta v_2) = \alpha \mathscr{T}(v_1) + \beta \mathscr{T}(v_2)
+        \end{equation}
+
+        \subsubsection{Saber si algo es una $\mathscr{T}$}
+        Así que para probar que una $\mathscr{T}$ es o no transformación lineal basta con verificar
+        que se cumplan las 2 propiedades originales. 
+
+        % ========================
+        % =====   EJEMPLO   ======
+        % ========================
+        \clearpage
+        \subsubsection{Ejemplos}
+            Sea $\mathbb{R}^3 \to \mathbb{R}^2$ tal que:
+            \begin{equation*}
+                \mathscr{T}\left( \begin{matrix} x\\y\\z \end{matrix} \right) =
+                \left( \begin{matrix} x-z\\y+z \end{matrix} \right)
+            \end{equation*}
+
+            Probemos la primera propiedad como:
+            \begin{equation*}
+            \begin{split}
+                \mathscr{T} (v_1 + v_2) & =
+                \mathscr{T} \left( \begin{matrix} x_1\\y_1\\z_1 \end{matrix} + \begin{matrix} x_2\\y_2\\z_2 \end{matrix} \right)
+                \\
+                & = \mathscr{T} \left( \begin{matrix} x_1+x_2\\y_1+y_2\\z_1+z_2 \end{matrix} \right)
+                  = \begin{matrix} (x_1+x_2)-(z_1+z_2) \\ (y_1+y_2)+(z_1+z_2) \end{matrix}
+                  = \begin{matrix}(x_1-z_1)\\(y_1+z_1)\end{matrix} + \begin{matrix}(x_2-z_2)\\(y_2+z_2)\end{matrix} 
+                  = 
+                  \mathscr{T} \left(\begin{matrix} x_1\\y_1\\z_1 \end{matrix} \right)
+                  +
+                  \mathscr{T} \left( \begin{matrix} x_2\\y_2\\z_2 \end{matrix} \right)            
+                \\
+                & = \mathscr{T}(v_1) + \mathscr{T}(v_2)
+            \end{split}
+            \end{equation*}
+
+            Probemos la segunda propiedad:
+            \begin{equation*}
+            \begin{split}
+                \mathscr{T} (\alpha v_1) & =
+                \mathscr{T} \left( \alpha \cdot \begin{matrix} x\\y\\z \end{matrix} \right) \\
+                & = \mathscr{T} \left( \begin{matrix} \alpha x\\ \alpha y\\ \alpha z\end{matrix} \right) =
+                \begin{matrix} \alpha x - \alpha z\\ \alpha y + \alpha z\end{matrix}  =
+                \alpha \cdot \begin{matrix}x-z\\y+z\end{matrix} =
+                \alpha \mathscr{T} \left( \begin{matrix}x\\y\\z\end{matrix} \right) \\
+                & = \alpha \mathscr{T}(v_1)
+            \end{split}
+            \end{equation*}
+
+        Por lo tanto las 2 propiedades se cumplen así que si que es una transformación lineal.
+
+
+    % =====================================================
+    % ============       PROPIEDADES            ===========
+    % =====================================================
+    \clearpage
+    \section{Propiedades}
+
+        \subsubsection{El $0_v$ se preserva}
+            Una Transformación Lineal debe llevar al $0_v$ de $V$ al $0_v$ de $W$
+
+            Su demostración es muy sencilla, pues
+            $\mathscr{T}(0_v)=\mathscr{T}(v_v-v_v)=\mathscr{T}(v_v)-\mathscr{T}(v_v)=0_w$
+
+        \subsubsection{Operador Lineal}
+            Decimos que $\mathscr{T}$ (alguna transformación lineal) es un
+            operador lineal en V si y solo si su dominio y su contradominio son el mismo.
+
+
+    % =====================================================
+    % ============       KERNEL E IMAGEN        ===========
+    % =====================================================
+    \clearpage
+    \section{Kernel e Imágen}
+
+        % ===================================
+        % ===========   KERNEL    ===========
+        % ===================================
+        \subsection{Kernel}
+        \subsubsection{Definición}
+        \textbf{El Kernel} de una Transformación Lineal o \textbf{Núcleo} es el conjunto 
+        de todos los vectores originales (osea $v \in V$) tales que al momento de
+        aplicarles la transformación estos son llevados al origen (osea $0_w$)
+
+        O dicho con el bello lenguaje de matemáticas:
+        \begin{equation}
+            Kernel(\mathscr{T}) = \{v \in V |\quad \mathscr{T}(v) = 0_w\}
+        \end{equation}
+
+        Recuerda que un Kernel siempre siempre sera un Subespacio Vectorial y solemos
+        llamar a su dimensión la 'Nulidad'.
+
+        Podemos decir que el Kernel es el espacio solución del Sistema Homogeneo.
+        \begin{equation*}
+            \{x \in K^m |\quad Ax = 0_{m \times 1} \}
+        \end{equation*}
+
+        % ========================
+        % =====   EJEMPLO    =====
+        % ========================
+            \clearpage
+            \subsubsection{Ejemplo}
+            Encuentra el Kernel de la siguiente Transformación Lineal:
+            $\mathscr{T} : \mathbb{R}^3 \to \mathbb{R}_2[x]$ tal que: 
+            $\mathscr{T}(a,b,c) = (a+b) + (a-c)x + (2a+b-c)x^2$
+
+            Lo que nos estan pidiendo es:
+            \begin{equation*}
+                Kernel(\mathscr{T}) = 
+                \{(a,b,c)\in \mathbb{R}^3 |\quad \mathscr{T}(a,b,c) = 0+0x+0x^2\}
+            \end{equation*}
+
+            Veamos que para hacerlo solo basta con que cumplan que:
+            \begin{equation*}
+            \begin{split}
+                a + b       & = 0 \\
+                a - c       & = 0 \\
+                2a + b + c  & = 0 \\
+            \end{split}
+            \end{equation*}
+
+            Podemos hacer Gauss - Jordan:
+            \begin{equation*}
+                \begin{pmatrix} 1&1&0 \\ 1&0&-1 \\ 2&1&-1 \\\end{pmatrix} \to
+                \begin{pmatrix} 1&1&0 \\ 1&0&-1 \\ 1&0&-1 \\\end{pmatrix} \to
+                \begin{pmatrix} 1&1&0 \\ 1&0&-1 \\ 0&0&0  \\\end{pmatrix}
+            \end{equation*}
+
+            Por lo tanto podemos ver que:
+            \begin{equation*}
+            \begin{split}
+                a + b = 0 &\to a = -b  \\
+                a - c = 0 &\to a = c   \\
+             \end{split}
+            \end{equation*}
+
+            Por lo tanto podemos ver que:
+            \begin{equation*}
+                Kernel(\mathscr{T}) = \{(a,b,c)\in R^3 |\quad a = -b, a=c\}
+            \end{equation*}
+
+            Finalmente aplicamos la transformación con estas propiedades y tenemos que:
+            \begin{equation*}
+                Kernel(\mathscr{T}) = \{(a,-a,a)\in \mathbb{R}^3 |\quad a \in \mathbb{R}\}
+            \end{equation*}
+
+            Y si te das cuenta estas ya describiendo un espacio vectorial que esta definido como:
+            \begin{equation*}
+                Kernel(\mathscr{T}) = \{\alpha(1,-1,1) |\quad \alpha\in \mathbb{R}\}
+            \end{equation*}
+
+            Sera tal vez una linea, pero no deja de ser espacio vectorial, cuyo vector base es:
+            \begin{equation*}
+                Kernel(\mathscr{T}) = <(1,-1,1)>
+            \end{equation*}
+
+
+
+
+        % ===================================
+        % ==========   IMAGEN    ============
+        % ===================================
+        \clearpage
+        \subsection{Imágen}
+        Tambien tenemos a la hermana perdida del Kernel, la llamamos la \textbf{Imágen},
+        la cual la definimos así:
+
+        \subsubsection{Definición}
+        La imágen de una Transformación Lineal es el conjunto de todos los vectores
+        nuevos (osea $w \in W$) que podemos 'crear' desde los vectores originales
+        (osea $v \in V$) usando la Transformación Lineal.
+
+        O dicho con el bello lenguaje de matemáticas:
+        \begin{equation}
+            Imagen(\mathscr{T}) = \{w \in W |\quad \exists v \in V ,\quad \mathscr{T}(v) = w\}
+        \end{equation}
+
+        Recuerda que una Imagen siempre siempre sera un Espacio Vectorial y solemos
+        llamar a su dimensión 'Rango'.
+
+        Podemos decir que el Imagen es el conjunto de terminos independientes para los cuales
+        hay solución.
+        \begin{equation*}
+            \{b \in K^m |\quad \exists x \in K^m, Ax = b \}
+        \end{equation*}
+
+
+        % ========================
+        % =====   EJEMPLO    =====
+        % ========================
+            \clearpage
+            \subsubsection{Ejemplo}
+            Encuentra la Imagen de la siguiente Transformación Lineal:
+            $\mathscr{T} : \mathbb{R}^3 \to \mathbb{R}_2[x]$ tal que: 
+            $\mathscr{T}(a,b,c) = (a+b) + (a-c)x + (2a+b-c)x^2$
+
+            Lo que nos estan pidiendo es:
+            \begin{equation*}
+                Imagen(\mathscr{T}) = 
+                \{a_0+a_1x+a_2x^2 \in R_2[x] |\quad \exists (a,b,c) \in R^3 ,\quad 
+                \mathscr{T}(a,b,c) = a_0+a_1x+a_2x^2\}
+            \end{equation*}
+
+            Es decir, lo que se nos esta pidiendo es que:
+            \begin{equation*}
+            \begin{split}
+                a + b           & = a_0 \\
+                a - c           & = a_1 \\
+                2a + b + c      & = a_2 \\
+             \end{split}
+            \end{equation*}
+
+            Y pos preguntas para que valores de $a_0, a_1, a_2$ tiene solución el 
+            sistema que planteamos allá arriba.
+
+            Es decir lo que tenemos que hacer es ver las soluciones de
+            este sistema de ecuaciones, podemos hacer Gauss - Jordan:
+            \begin{equation*}
+                \begin{pmatrix} 1&1&0 \\ 1&0&-1 \\ 2&1&-1 \\\end{pmatrix} 
+                \begin{pmatrix} a_0 \\ a_1 \\ a_2 \\\end{pmatrix}
+                \to_{Usando: Gauss-Jordan}
+                \begin{pmatrix} 1&1&0 \\ 1&0&-1 \\ 0&0&0 \\\end{pmatrix}
+                \begin{pmatrix} a_1 & \\ a_0-a_1 &\\ a_2-a_1-a_0 &\\\end{pmatrix}
+            \end{equation*}
+
+            Por lo tanto podemos ver que:
+            \begin{equation*}
+                a_2-a_1-a_0 = 0
+                \quad \to \quad
+                a_2 = a_1 + a_0
+            \end{equation*}
+
+            Y ya solo sustituyendo tenemos que:
+            \begin{equation*}
+            \begin{split}
+                Imagen(\mathscr{T}) 
+                & = \{a_0+a_1x+(a_0+a_1)x^2 \in R_2[x] |\quad a_2 = a_0 + a_1, |\quad a_0, a_1 \in \mathbb{R}\}  \\
+                & = \{a_0(1+x^2) +a_1(x+x^2) \in R_2[x] |\quad a_0, a_1 \in \mathbb{R}\}
+            \end{split}
+            \end{equation*}
+
+            Y si te das cuenta estas ya describiendo un espacio vectorial que esta definido como:
+            \begin{equation*}
+                Imagen(\mathscr{T}) = \{\alpha(1+x^2) + \beta(x+x^2) |\quad \alpha, \beta \in \mathbb{R}\}
+            \end{equation*}
+
+            Y cuyos vectores base son:
+            \begin{equation*}
+                Imagen(\mathscr{T}) = <(1+x^2) , (x+x^2)>
+            \end{equation*}
+
+        % ====================================
+        % ============   PROPIEDADES    ======
+        % ====================================
+        \subsection{Propiedades de Ambas}
+        Podemos hablar de que ambas paracen ser como hermanas perdidas,
+        veamos que propiedades tenemos:
+
+        \begin{itemize}
+            \item Llamemos Rango a $Dim(Imagen(\mathscr{T}))$
+            \item Llamemos Nulidad a $Dim(Kernel(\mathscr{T}))$
+            \item Ambas \textbf{Son SubEspacios Vectoriales}.
+            \item Estas deacuerdo que todos los vectores o bien son llevados al cero
+            vector o no, así que tiene sentido hablar de que  \textbf{La Suma de la Nulidad
+            con el Rango te da la dimensión de V}
+        \end{itemize}
+
+% =====================================================
+% ============        BIBLIOGRAPHY   ==================
+% =====================================================
+\clearpage
+\bibliographystyle{plain}
+    \begin{thebibliography}{9}
+
+    % ============ REFERENCE #1 ========
+    \bibitem{Sitio1} 
+        ProbRob
+        \\\texttt{Youtube.com}
+
+
+     
+
+\end{thebibliography}
+
+
+
+\end{document}
