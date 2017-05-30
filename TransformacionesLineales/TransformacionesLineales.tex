@@ -4,7 +4,7 @@
 
 
 % =======================================================
-% =======   ALL COMMANDS AND RULES FOR DOC   ============
+% =======         HEADER FOR DOCUMENT        ============
 % =======================================================
 \documentclass[12pt]{report}                                %Type of docuemtn and size of font
 \usepackage[margin=1.2in]{geometry}                         %Margins
@@ -35,6 +35,12 @@
 \rfoot{Oscar Rosas}                                         %Footers!
 
 \author{Oscar Andrés Rosas}                                 %Who I am
+
+% ========================================
+% ===========   COMMANDS    ==============
+% ========================================
+\DeclareMathOperator \Real {\mathbb{R}}
+\DeclareMathOperator \LinealTransformation {\mathcal{T}}
 
 
 
@@ -88,25 +94,25 @@
         Sea $V$ y $W$ dos espacios vectoriales sobre un \textbf{mismo} campo $K$. Una
         transformación lineal de $V \to W$ es una función que cumpla con esto:
 
-        $\mathscr{T}: V \to W $ tal que $\forall v_1, v_2 \in V $ y $\forall \alpha \in K$
+        $\LinealTransformation: V \to W $ tal que $\forall v_1, v_2 \in V $ y $\forall \alpha \in K$
         tenemos que se cumple que:
 
         \begin{itemize}
-            \item $\mathscr{T} (v_1 + v_2) = \mathscr{T}(v_1) + \mathscr{T}(v_2)$
-            \item $\mathscr{T} (\alpha v_1) = \alpha \mathscr{T}(v_1)$ 
+            \item $\LinealTransformation (v_1 + v_2) = \LinealTransformation(v_1) + \LinealTransformation(v_2)$
+            \item $\LinealTransformation (\alpha v_1) = \alpha \LinealTransformation(v_1)$ 
         \end{itemize}
 
         \subsubsection{Combinación Lineal}
         Podemos tambien tener que como consecuencia de lo que tenemos arriba que podemos
-        encontrar que $\mathscr{T}$ es una transformación lineal si y solo si se cumple que:
+        encontrar que $\LinealTransformation$ es una transformación lineal si y solo si se cumple que:
 
         $\forall v_1, v_2 \in V$ y $\forall \alpha, \beta \in K$ se cumple que:
         \begin{equation}
-            \mathscr{T}(\alpha v_1 + \beta v_2) = \alpha \mathscr{T}(v_1) + \beta \mathscr{T}(v_2)
+            \LinealTransformation(\alpha v_1 + \beta v_2) = \alpha \LinealTransformation(v_1) + \beta \LinealTransformation(v_2)
         \end{equation}
 
-        \subsubsection{Saber si algo es una $\mathscr{T}$}
-        Así que para probar que una $\mathscr{T}$ es o no transformación lineal basta con verificar
+        \subsubsection{Saber si algo es una $\LinealTransformation$}
+        Así que para probar que una $\LinealTransformation$ es o no transformación lineal basta con verificar
         que se cumplan las 2 propiedades originales. 
 
         % ========================
@@ -116,38 +122,38 @@
         \subsubsection{Ejemplos}
             Sea $\mathbb{R}^3 \to \mathbb{R}^2$ tal que:
             \begin{equation*}
-                \mathscr{T}\left( \begin{matrix} x\\y\\z \end{matrix} \right) =
+                \LinealTransformation\left( \begin{matrix} x\\y\\z \end{matrix} \right) =
                 \left( \begin{matrix} x-z\\y+z \end{matrix} \right)
             \end{equation*}
 
             Probemos la primera propiedad como:
             \begin{equation*}
             \begin{split}
-                \mathscr{T} (v_1 + v_2) & =
-                \mathscr{T} \left( \begin{matrix} x_1\\y_1\\z_1 \end{matrix} + \begin{matrix} x_2\\y_2\\z_2 \end{matrix} \right)
+                \LinealTransformation (v_1 + v_2) & =
+                \LinealTransformation \left( \begin{matrix} x_1\\y_1\\z_1 \end{matrix} + \begin{matrix} x_2\\y_2\\z_2 \end{matrix} \right)
                 \\
-                & = \mathscr{T} \left( \begin{matrix} x_1+x_2\\y_1+y_2\\z_1+z_2 \end{matrix} \right)
+                & = \LinealTransformation \left( \begin{matrix} x_1+x_2\\y_1+y_2\\z_1+z_2 \end{matrix} \right)
                   = \begin{matrix} (x_1+x_2)-(z_1+z_2) \\ (y_1+y_2)+(z_1+z_2) \end{matrix}
                   = \begin{matrix}(x_1-z_1)\\(y_1+z_1)\end{matrix} + \begin{matrix}(x_2-z_2)\\(y_2+z_2)\end{matrix} 
                   = 
-                  \mathscr{T} \left(\begin{matrix} x_1\\y_1\\z_1 \end{matrix} \right)
+                  \LinealTransformation \left(\begin{matrix} x_1\\y_1\\z_1 \end{matrix} \right)
                   +
-                  \mathscr{T} \left( \begin{matrix} x_2\\y_2\\z_2 \end{matrix} \right)            
+                  \LinealTransformation \left( \begin{matrix} x_2\\y_2\\z_2 \end{matrix} \right)            
                 \\
-                & = \mathscr{T}(v_1) + \mathscr{T}(v_2)
+                & = \LinealTransformation(v_1) + \LinealTransformation(v_2)
             \end{split}
             \end{equation*}
 
             Probemos la segunda propiedad:
             \begin{equation*}
             \begin{split}
-                \mathscr{T} (\alpha v_1) & =
-                \mathscr{T} \left( \alpha \cdot \begin{matrix} x\\y\\z \end{matrix} \right) \\
-                & = \mathscr{T} \left( \begin{matrix} \alpha x\\ \alpha y\\ \alpha z\end{matrix} \right) =
+                \LinealTransformation (\alpha v_1) & =
+                \LinealTransformation \left( \alpha \cdot \begin{matrix} x\\y\\z \end{matrix} \right) \\
+                & = \LinealTransformation \left( \begin{matrix} \alpha x\\ \alpha y\\ \alpha z\end{matrix} \right) =
                 \begin{matrix} \alpha x - \alpha z\\ \alpha y + \alpha z\end{matrix}  =
                 \alpha \cdot \begin{matrix}x-z\\y+z\end{matrix} =
-                \alpha \mathscr{T} \left( \begin{matrix}x\\y\\z\end{matrix} \right) \\
-                & = \alpha \mathscr{T}(v_1)
+                \alpha \LinealTransformation \left( \begin{matrix}x\\y\\z\end{matrix} \right) \\
+                & = \alpha \LinealTransformation(v_1)
             \end{split}
             \end{equation*}
 
@@ -164,23 +170,23 @@
             Una Transformación Lineal debe llevar al $0_v$ de $V$ al $0_v$ de $W$
 
             Su demostración es muy sencilla, pues
-            $\mathscr{T}(0_v)=\mathscr{T}(v_v-v_v)=\mathscr{T}(v_v)-\mathscr{T}(v_v)=0_w$
+            $\LinealTransformation(0_v)=\LinealTransformation(v_v-v_v)=\LinealTransformation(v_v)-\LinealTransformation(v_v)=0_w$
 
         \subsubsection{Operador Lineal}
-            Decimos que $\mathscr{T}$ (alguna transformación lineal) es un
+            Decimos que $\LinealTransformation$ (alguna transformación lineal) es un
             operador lineal en V si y solo si su dominio y su contradominio son el mismo.
 
 
-    % =====================================================
-    % ============       KERNEL E IMAGEN        ===========
-    % =====================================================
-    \clearpage
-    \section{Kernel e Imágen}
+% ======================================================================================
+% =============================       KERNEL E IMAGEN              =====================
+% ======================================================================================
+\chapter{Kernel e Imagen}
 
-        % ===================================
-        % ===========   KERNEL    ===========
-        % ===================================
-        \subsection{Kernel}
+    % ==================================================
+    % ===================   KERNEL    ==================
+    % ==================================================
+    \clearpage
+    \section{Kernel}
         \subsubsection{Definición}
         \textbf{El Kernel} de una Transformación Lineal o \textbf{Núcleo} es el conjunto 
         de todos los vectores originales (osea $v \in V$) tales que al momento de
@@ -188,7 +194,7 @@
 
         O dicho con el bello lenguaje de matemáticas:
         \begin{equation}
-            Kernel(\mathscr{T}) = \{v \in V |\quad \mathscr{T}(v) = 0_w\}
+            Kernel(\LinealTransformation) = \{v \in V |\quad \LinealTransformation(v) = 0_w\}
         \end{equation}
 
         Recuerda que un Kernel siempre siempre sera un Subespacio Vectorial y solemos
@@ -205,13 +211,13 @@
             \clearpage
             \subsubsection{Ejemplo}
             Encuentra el Kernel de la siguiente Transformación Lineal:
-            $\mathscr{T} : \mathbb{R}^3 \to \mathbb{R}_2[x]$ tal que: 
-            $\mathscr{T}(a,b,c) = (a+b) + (a-c)x + (2a+b-c)x^2$
+            $\LinealTransformation : \mathbb{R}^3 \to \mathbb{R}_2[x]$ tal que: 
+            $\LinealTransformation(a,b,c) = (a+b) + (a-c)x + (2a+b-c)x^2$
 
             Lo que nos estan pidiendo es:
             \begin{equation*}
-                Kernel(\mathscr{T}) = 
-                \{(a,b,c)\in \mathbb{R}^3 |\quad \mathscr{T}(a,b,c) = 0+0x+0x^2\}
+                Kernel(\LinealTransformation) = 
+                \{(a,b,c)\in \mathbb{R}^3 |\quad \LinealTransformation(a,b,c) = 0+0x+0x^2\}
             \end{equation*}
 
             Veamos que para hacerlo solo basta con que cumplan que:
@@ -240,32 +246,30 @@
 
             Por lo tanto podemos ver que:
             \begin{equation*}
-                Kernel(\mathscr{T}) = \{(a,b,c)\in R^3 |\quad a = -b, a=c\}
+                Kernel(\LinealTransformation) = \{(a,b,c)\in R^3 |\quad a = -b, a=c\}
             \end{equation*}
 
             Finalmente aplicamos la transformación con estas propiedades y tenemos que:
             \begin{equation*}
-                Kernel(\mathscr{T}) = \{(a,-a,a)\in \mathbb{R}^3 |\quad a \in \mathbb{R}\}
+                Kernel(\LinealTransformation) = \{(a,-a,a)\in \mathbb{R}^3 |\quad a \in \mathbb{R}\}
             \end{equation*}
 
             Y si te das cuenta estas ya describiendo un espacio vectorial que esta definido como:
             \begin{equation*}
-                Kernel(\mathscr{T}) = \{\alpha(1,-1,1) |\quad \alpha\in \mathbb{R}\}
+                Kernel(\LinealTransformation) = \{\alpha(1,-1,1) |\quad \alpha\in \mathbb{R}\}
             \end{equation*}
 
             Sera tal vez una linea, pero no deja de ser espacio vectorial, cuyo vector base es:
             \begin{equation*}
-                Kernel(\mathscr{T}) = <(1,-1,1)>
+                Kernel(\LinealTransformation) = <(1,-1,1)>
             \end{equation*}
 
 
-
-
-        % ===================================
-        % ==========   IMAGEN    ============
-        % ===================================
-        \clearpage
-        \subsection{Imágen}
+    % ===================================================
+    % ===================   IMAGEN    ===================
+    % ===================================================
+    \clearpage
+    \section{Imágen}
         Tambien tenemos a la hermana perdida del Kernel, la llamamos la \textbf{Imágen},
         la cual la definimos así:
 
@@ -276,7 +280,7 @@
 
         O dicho con el bello lenguaje de matemáticas:
         \begin{equation}
-            Imagen(\mathscr{T}) = \{w \in W |\quad \exists v \in V ,\quad \mathscr{T}(v) = w\}
+            Imagen(\LinealTransformation) = \{w \in W |\quad \exists v \in V ,\quad \LinealTransformation(v) = w\}
         \end{equation}
 
         Recuerda que una Imagen siempre siempre sera un Espacio Vectorial y solemos
@@ -295,14 +299,14 @@
             \clearpage
             \subsubsection{Ejemplo}
             Encuentra la Imagen de la siguiente Transformación Lineal:
-            $\mathscr{T} : \mathbb{R}^3 \to \mathbb{R}_2[x]$ tal que: 
-            $\mathscr{T}(a,b,c) = (a+b) + (a-c)x + (2a+b-c)x^2$
+            $\LinealTransformation : \mathbb{R}^3 \to \mathbb{R}_2[x]$ tal que: 
+            $\LinealTransformation(a,b,c) = (a+b) + (a-c)x + (2a+b-c)x^2$
 
             Lo que nos estan pidiendo es:
             \begin{equation*}
-                Imagen(\mathscr{T}) = 
+                Imagen(\LinealTransformation) = 
                 \{a_0+a_1x+a_2x^2 \in R_2[x] |\quad \exists (a,b,c) \in R^3 ,\quad 
-                \mathscr{T}(a,b,c) = a_0+a_1x+a_2x^2\}
+                \LinealTransformation(a,b,c) = a_0+a_1x+a_2x^2\}
             \end{equation*}
 
             Es decir, lo que se nos esta pidiendo es que:
@@ -337,7 +341,7 @@
             Y ya solo sustituyendo tenemos que:
             \begin{equation*}
             \begin{split}
-                Imagen(\mathscr{T}) 
+                Imagen(\LinealTransformation) 
                 & = \{a_0+a_1x+(a_0+a_1)x^2 \in R_2[x] |\quad a_2 = a_0 + a_1, |\quad a_0, a_1 \in \mathbb{R}\}  \\
                 & = \{a_0(1+x^2) +a_1(x+x^2) \in R_2[x] |\quad a_0, a_1 \in \mathbb{R}\}
             \end{split}
@@ -345,29 +349,200 @@
 
             Y si te das cuenta estas ya describiendo un espacio vectorial que esta definido como:
             \begin{equation*}
-                Imagen(\mathscr{T}) = \{\alpha(1+x^2) + \beta(x+x^2) |\quad \alpha, \beta \in \mathbb{R}\}
+                Imagen(\LinealTransformation) = \{\alpha(1+x^2) + \beta(x+x^2) |\quad \alpha, \beta \in \mathbb{R}\}
             \end{equation*}
 
             Y cuyos vectores base son:
             \begin{equation*}
-                Imagen(\mathscr{T}) = <(1+x^2) , (x+x^2)>
+                Imagen(\LinealTransformation) = <(1+x^2) , (x+x^2)>
             \end{equation*}
 
-        % ====================================
-        % ============   PROPIEDADES    ======
-        % ====================================
-        \subsection{Propiedades de Ambas}
+    % ===================================================
+    % ============   PROPIEDADES    =====================
+    % ===================================================
+    \clearpage
+    \section{Propiedades de Ambas}
         Podemos hablar de que ambas paracen ser como hermanas perdidas,
         veamos que propiedades tenemos:
 
         \begin{itemize}
-            \item Llamemos Rango a $Dim(Imagen(\mathscr{T}))$
-            \item Llamemos Nulidad a $Dim(Kernel(\mathscr{T}))$
+            \item Llamemos Rango a $Dim(Imagen(\LinealTransformation))$
+            \item Llamemos Nulidad a $Dim(Kernel(\LinealTransformation))$
             \item Ambas \textbf{Son SubEspacios Vectoriales}.
             \item Estas deacuerdo que todos los vectores o bien son llevados al cero
             vector o no, así que tiene sentido hablar de que  \textbf{La Suma de la Nulidad
-            con el Rango te da la dimensión de V}
+            con el Rango te da la dimensión de V}, es decir: $dim(V) = dim(Kernel)+dim(Imagen)$
         \end{itemize}
+
+
+% ======================================================================================
+% ==========================       BIYECTIVA Y SUPRAYECTIVA        =====================
+% ======================================================================================
+\chapter{Tipos de Transformaciones}
+
+    % =====================================================
+    % ========      SUPRAYECTIVA E INYECTIVAS       =======
+    % =====================================================
+    \clearpage
+    \section{Inyectiva y Supreyectiva}
+        Vamos a declarar muchas cosas, así que empecemos:
+        \begin{itemize}
+            \item Sea $\LinealTransformation : V \to W $ una transformación lineal.
+            \item Sea $S \subseteq V$ donde $S$ es un conjunto de vectores base (tal que $<S> = V$)
+            \item Además sean $v_1, v_2, \cdots \in V$ y linealmente independientes.
+        \end{itemize}
+        
+        Obviamente sabemos que $<\LinealTransformation(S)> = Imagen(\LinealTransformation)$
+
+        \subsection{Suprayectiva}
+        Recuerda que el hecho de que una función $f(x)$ sea suprayectiva si es que existe para cualquier
+        $y$ podemos encontrar a una $x$ tal que $f(x)=y$.
+        Esto tambien lo podemos ver si es que $Imagen(f)= y$
+
+        $\LinealTransformation$ es suprayectiva si y solo si $<\LinealTransformation(s)> = W$
+
+        Esto lo que nos dice es a que vectores puedo alcanzar basicamente. 
+
+
+        \subsection{Inyectiva}
+        Recuerda que el hecho de una función $f(x)$ sea inyectiva si es que para cualquiera $x_1, x_2$
+        que pase que $f(x_1) = f(x_2)$ implica que $x_1=x_2$.
+
+
+        $\LinealTransformation$ es inyectiva si y solo si $Kernel(\LinealTransformation) = \{0_v\}$
+
+        Ademas podemos saber que si $\LinealTransformation$ es inyectiva, entonces 
+        $\LinealTransformation(v_1)+\LinealTransformation(v_2)+\cdots$ son linealmente independientes.
+
+        % ========================
+        % =====   EJEMPLO    =====
+        % ========================
+            \clearpage
+            \subsubsection{Ejemplo}
+            Verificar si las siguiente transformación lineal si es biyectiva ó inyectiva:
+            $\LinealTransformation : \mathbb{R}^2 \to \mathbb{R}_2[x]$ tal que: 
+            $\LinealTransformation(\begin{matrix}a\\b\end{matrix}) = (a-b) + (a)x + (a+b)x^2$
+
+            \textbf{Inyectiva}
+
+            Para ver que lo es, lo que podemos ver es que el Kernel de la transformación lineal
+            solo tendrá al $0_v$, veamos que podemos ver que esto se cumple porque:
+            $\begin{matrix}a\\b\end{matrix} \in Kernel$
+
+            Entonces sabemos que para lograr el cero vector a tiene que ser cero (porque es lo 
+            único que multiplica a $x$) y ahora sabemos que b también pues $(a+b)x^2=0x^2$
+
+            Por lo tanto si que el Kernel solo tiene al $0_v$ y por lo tanto esta transformada si que es Inyectiva.
+
+
+            \textbf{Suprayectiva}
+
+            Para que fuera supreyectiva, una base de $\mathbb{R}^2$ tras ser transformada debería ser un capaz de
+            generar a $\mathbb{R}_2[x]$ pero propongamos a la base canonica de  $ \mathbb{R}^2$ y esta no puede
+            ser base para $\mathbb{R}_2[x]$ pues necesito mínimo 3 vectores para generar a $\mathbb{R}_2[x]$.
+
+            Por lo tanto no es Suprayectiva.
+
+
+        % ========================
+        % =====   EJEMPLO    =====
+        % ========================
+            \clearpage
+            \subsubsection{Ejemplo}
+            Verificar si las siguiente transformación lineal si es biyectiva ó inyectiva:
+            $\LinealTransformation : M_{2 \times 2}(\mathbb{R}) \to \mathbb{R}^3$ tal que: 
+            $\LinealTransformation(\begin{matrix}a&b\\c&d\end{matrix}) = \begin{pmatrix}a-b+c\\d-c\\-a+b-c\end{pmatrix}$
+
+            \textbf{Inyectiva}
+
+            Para ver que lo es, lo que podemos ver es que el Kernel de la transformación lineal
+            solo tendrá al $0_v$, veamos que podemos ver que esto se cumple porque:
+            $\begin{matrix}a\\b\end{matrix} \in Kernel$
+
+            Entonces sabemos que para lograr el cero vector a tiene que ser cero (porque es lo 
+            único que multiplica a $x$) y ahora sabemos que b también pues $(a+b)x^2=0x^2$
+
+            Por lo tanto si que el Kernel solo tiene al $0_v$ y por lo tanto esta transformada si que es Inyectiva.
+
+
+            \textbf{Suprayectiva}
+
+            Para que fuera supreyectiva, una base de $\mathbb{R}^2$ tras ser transformada debería ser un capaz de
+            generar a $\mathbb{R}_2[x]$ pero propongamos a la base canonica de  $ \mathbb{R}^2$ y esta no puede
+            ser base para $\mathbb{R}_2[x]$ pues necesito mínimo 3 vectores para generar a $\mathbb{R}_2[x]$.
+
+            Por lo tanto no es Suprayectiva.
+
+
+
+
+
+
+
+        % ====================================
+        % =========   PROPIEDADES    =========
+        % ====================================
+        \subsection{Propiedades}
+
+            Sea $\LinealTransformation_1 : V \to W $ y $\LinealTransformation_2 : W \to U $
+            transformaciones lineales.
+
+            \begin{itemize}
+                \item Si $\LinealTransformation_1$ es biyectiva,entonces
+                $\LinealTransformation_1^-1: W \to V$ también es una Transformación Lineal.
+
+                \item $\LinealTransformation_2 \circ \LinealTransformation_1: V \to U$
+                es una Transformación Lineal.
+            \end{itemize}
+
+
+
+
+    % =====================================================
+    % ============           ISOMORFISMO            =======
+    % =====================================================
+    \clearpage
+    \section{Isomorfismo}
+        Sea $\LinealTransformation : V \to W $ una transformación lineal.
+
+        Decimos que $\LinealTransformation$ es un isoformismo y que V es isomorfo a W 
+        ($V \cong W$) si $\LinealTransformation$ es biyectiva.
+
+        Decir que $V$ sea isomorfo con $W$ quiere decir que existe alguna transformación
+        lineal Biyectiva entre ambas.
+
+        Algo interesante que recordar es que (obviamente) también es que
+        $\LinealTransformation^-1 : W \to V $ es una transformación lineal
+        y también es un isomorfismo.
+
+        Podemos ademas saber que $\cong$ es una relación de equivalencia.
+        Esto quiere decir que:
+        \begin{itemize}
+            \item $V \cong V$
+            \item $(V \cong W)$, entonces $(W \cong V)$
+            \item $(V \cong W)$ y $(W \cong U)$, entonces $(V \cong U)$
+        \end{itemize}
+
+
+        % ====================================
+        % =========   PROPIEDADES    =========
+        % ====================================
+        \subsection{Propiedades}
+
+            Sea $\LinealTransformation_1 : V \to W $ una transformación lineal isomorfa.
+
+            Esto quiere decir que si yo tengo ciertos vectores, una base de $V$ 
+            $v_1, v_2, \dots$ entonces $\LinealTransformation(v_1) , \LinealTransformation(v_2),
+            \dots$ será una base de W.
+
+            Por lo que acabamos de ver, podemos estar seguro de que si 2 espacios vectoriales
+            son isomorfos, entonces la dimensión de ambos espacios vectoriales será igual.
+
+            De hecho este es un Teorema bonito: Dos espacios vectoriales que tienen la misma
+            dimensión (obvio infinito no cuenta) ssi son isomorfos.
+
+
+
 
 % =====================================================
 % ============        BIBLIOGRAPHY   ==================
