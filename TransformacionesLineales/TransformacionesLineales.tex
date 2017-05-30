@@ -423,7 +423,7 @@
             $\LinealTransformation : \mathbb{R}^2 \to \mathbb{R}_2[x]$ tal que: 
             $\LinealTransformation(\begin{matrix}a\\b\end{matrix}) = (a-b) + (a)x + (a+b)x^2$
 
-            \textbf{Inyectiva}
+            \textbf{\\Inyectiva}
 
             Para ver que lo es, lo que podemos ver es que el Kernel de la transformación lineal
             solo tendrá al $0_v$, veamos que podemos ver que esto se cumple porque:
@@ -435,7 +435,7 @@
             Por lo tanto si que el Kernel solo tiene al $0_v$ y por lo tanto esta transformada si que es Inyectiva.
 
 
-            \textbf{Suprayectiva}
+            \textbf{\\Suprayectiva}
 
             Para que fuera supreyectiva, una base de $\mathbb{R}^2$ tras ser transformada debería ser un capaz de
             generar a $\mathbb{R}_2[x]$ pero propongamos a la base canonica de  $ \mathbb{R}^2$ y esta no puede
@@ -453,35 +453,36 @@
             $\LinealTransformation : M_{2 \times 2}(\mathbb{R}) \to \mathbb{R}^3$ tal que: 
             $\LinealTransformation(\begin{matrix}a&b\\c&d\end{matrix}) = \begin{pmatrix}a-b+c\\d-c\\-a+b-c\end{pmatrix}$
 
-            \textbf{Inyectiva}
+            \textbf{\\Inyectiva}
 
-            Para ver que lo es, lo que podemos ver es que el Kernel de la transformación lineal
-            solo tendrá al $0_v$, veamos que podemos ver que esto se cumple porque:
-            $\begin{matrix}a\\b\end{matrix} \in Kernel$
+            Podemos verlo usando la contrapositiva de una proposión mas famosa, basicamente es que si
+            tienes un conjunto de de vectores base al momento de crear la transformación lineal estos son dependientes, 
+            entonces no es inyectiva, y eso lo podemos ver con la base canonica:
 
-            Entonces sabemos que para lograr el cero vector a tiene que ser cero (porque es lo 
-            único que multiplica a $x$) y ahora sabemos que b también pues $(a+b)x^2=0x^2$
+            \begin{equation*}
+                \LinealTransformation(\begin{matrix}1&0\\0&0\end{matrix}) = \begin{pmatrix}1\\0\\-1\end{pmatrix}, 
+                \LinealTransformation(\begin{matrix}0&1\\0&0\end{matrix}) = \begin{pmatrix}-1\\0\\1\end{pmatrix}, 
+                \LinealTransformation(\begin{matrix}0&0\\1&0\end{matrix}) = \begin{pmatrix}1\\-1\\-1\end{pmatrix}, 
+                \LinealTransformation(\begin{matrix}0&0\\0&1\end{matrix}) = \begin{pmatrix}0\\1\\0\end{pmatrix} 
+            \end{equation*}
 
-            Por lo tanto si que el Kernel solo tiene al $0_v$ y por lo tanto esta transformada si que es Inyectiva.
+            Ya que estos vectores no son linealmente independientes (digo son 4 vectores en un espacio de dimensión 3)
 
+            Por lo tanto no es inyectiva.
 
-            \textbf{Suprayectiva}
+            \textbf{\\Suprayectiva}
 
             Para que fuera supreyectiva, una base de $\mathbb{R}^2$ tras ser transformada debería ser un capaz de
-            generar a $\mathbb{R}_2[x]$ pero propongamos a la base canonica de  $ \mathbb{R}^2$ y esta no puede
-            ser base para $\mathbb{R}_2[x]$ pues necesito mínimo 3 vectores para generar a $\mathbb{R}_2[x]$.
+            generar a $\mathbb{R}^3$ pero propongamos a la base canonica y ya vimos que esto no lo hace.
 
-            Por lo tanto no es Suprayectiva.
-
-
-
-
+            Por lo tanto no es Suprayectiva :(
 
 
 
         % ====================================
         % =========   PROPIEDADES    =========
         % ====================================
+        \clearpage
         \subsection{Propiedades}
 
             Sea $\LinealTransformation_1 : V \to W $ y $\LinealTransformation_2 : W \to U $
@@ -523,23 +524,84 @@
             \item $(V \cong W)$ y $(W \cong U)$, entonces $(V \cong U)$
         \end{itemize}
 
+        % ========================
+        % =====   EJEMPLO    =====
+        % ========================
+            \clearpage
+            \subsubsection{Ejemplo}
+            Verificar si las siguiente transformación lineal si es un isomorfo:
+            $\LinealTransformation : \mathbb{R}^3 \to \mathbb{R}_2[x]$ tal que: 
+            \begin{equation*}
+            \LinealTransformation(\begin{matrix}a\\b\\c\end{matrix}) = (a+b)+(a+c)x+(b+c)x^2
+            \end{equation*}
 
-        % ====================================
-        % =========   PROPIEDADES    =========
-        % ====================================
-        \subsection{Propiedades}
 
-            Sea $\LinealTransformation_1 : V \to W $ una transformación lineal isomorfa.
+            \textbf{\\Inyectiva}
 
-            Esto quiere decir que si yo tengo ciertos vectores, una base de $V$ 
-            $v_1, v_2, \dots$ entonces $\LinealTransformation(v_1) , \LinealTransformation(v_2),
-            \dots$ será una base de W.
+            Podemos ver que el Kernel solo contiene el cero vector, todo lo que hay que hacer es
+            que hay que ver el que cualquier elemento del Kernel tiene que ser aquel con $a=b=c=0$
+            para verlo basta ve la matriz:
 
-            Por lo que acabamos de ver, podemos estar seguro de que si 2 espacios vectoriales
-            son isomorfos, entonces la dimensión de ambos espacios vectoriales será igual.
+            \begin{equation*}
+            \begin{pmatrix}1&1&0\\1&0&1\\0&1&1\end{pmatrix}
+                \begin{pmatrix}a\\b\\c\end{pmatrix}=
+                \begin{pmatrix}0\\0\\0\end{pmatrix}
+            \end{equation*}
 
-            De hecho este es un Teorema bonito: Dos espacios vectoriales que tienen la misma
-            dimensión (obvio infinito no cuenta) ssi son isomorfos.
+            Y vemos que su determiante no es cero (es 2 :p) por lo tanto el sistema homogeneo solo
+            tiene la solución trivial, es decir, donde todo es cero.
+
+            Por lo tanto es Inyectiva.
+
+            \textbf{\\Suprayectiva}
+
+            Lo que nos piden es ver que:
+            \begin{equation*}
+                \LinealTransformation(\begin{matrix}a\\b\\c\end{matrix}) = (a_0) +(a_1)x+(a_2)x^2
+            \end{equation*}
+
+            Es decir:
+
+            \begin{equation*}
+                \begin{pmatrix}1&1&0\\1&0&1\\0&1&1\end{pmatrix}
+                \begin{pmatrix}a\\b\\c\end{pmatrix}
+                =
+                \begin{pmatrix}a_0\\a_1\\a_2\end{pmatrix}
+            \end{equation*}
+
+            Y vemos que esto si que genera a $\mathbb{R}_2[x]$
+
+            Por lo tanto es Inyectiva.  
+
+            Por lo tanto si que es Isomorfica.   
+
+
+        % ========================
+        % =====   EJEMPLO    =====
+        % ========================
+            \clearpage
+            \subsubsection{Ejemplo}
+            Verificar si las siguiente transformación lineal si es un isomorfo:
+            $\LinealTransformation : \mathbb{R}^3 \to \mathbb{R}_2[x]$ tal que: 
+            \begin{equation*}
+                \LinealTransformation(\begin{matrix}a\\b\\c\end{matrix}) = (a+b-2c)+(a-2b+c)x+(-2a+b+c)x^2
+            \end{equation*}
+
+            \textbf{\\Inyectiva}
+
+            Podemos intentar ver que el Kernel solo contiene el cero vector, todo lo que hay que hacer es
+            que hay que ver el que cualquier elemento del Kernel tiene que ser aquel con $a=b=c=0$
+            para verlo basta ve la matriz:
+
+            $\begin{pmatrix}1&1&-2\\1&-2&1\\-2&1&1\end{pmatrix} \begin{pmatrix}a\\b\\c\end{pmatrix}=
+                \begin{pmatrix}0\\0\\0\end{pmatrix}$
+
+            Y vemos que su determiante es cero por lo tanto el sistema homogeneo NO solo
+            tiene la solución trivial, es decir, donde todo es cero.
+
+            Por lo tanto es NO Inyectiva.
+
+            Por lo tanto NO es Isomorfica.
 
 
 
