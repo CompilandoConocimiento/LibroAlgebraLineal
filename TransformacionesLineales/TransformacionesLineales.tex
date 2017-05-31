@@ -25,6 +25,7 @@
 \usepackage[inline]{enumitem}                               %We will need to enumarate
 
 \usepackage{fancyhdr}                                       %Lets make awesome headers/footers
+\usepackage{tasks}                                          %Horizontal lists
 \renewcommand{\footrulewidth}{0.5pt}                        %We will need this!
 \setlength{\headheight}{16pt}                               %We will need this!
 \setlength{\parskip}{0.5em}                                 %We will need this!
@@ -414,6 +415,23 @@
         Ademas podemos saber que si $\LinealTransformation$ es inyectiva, entonces 
         $\LinealTransformation(v_1)+\LinealTransformation(v_2)+\cdots$ son linealmente independientes.
 
+        % ====================================
+        % =========   PROPIEDADES    =========
+        % ====================================
+        \subsection{Propiedades}
+
+        Sea $\LinealTransformation_1 : V \to W $ y $\LinealTransformation_2 : W \to U $
+        transformaciones lineales.
+
+        \begin{itemize}
+            \item Si $\LinealTransformation_1$ es biyectiva,entonces
+            $\LinealTransformation_1^-1: W \to V$ también es una Transformación Lineal.
+
+            \item $\LinealTransformation_2 \circ \LinealTransformation_1: V \to U$
+            es una Transformación Lineal.
+        \end{itemize}
+
+
         % ========================
         % =====   EJEMPLO    =====
         % ========================
@@ -478,27 +496,6 @@
             Por lo tanto no es Suprayectiva :(
 
 
-
-        % ====================================
-        % =========   PROPIEDADES    =========
-        % ====================================
-        \clearpage
-        \subsection{Propiedades}
-
-            Sea $\LinealTransformation_1 : V \to W $ y $\LinealTransformation_2 : W \to U $
-            transformaciones lineales.
-
-            \begin{itemize}
-                \item Si $\LinealTransformation_1$ es biyectiva,entonces
-                $\LinealTransformation_1^-1: W \to V$ también es una Transformación Lineal.
-
-                \item $\LinealTransformation_2 \circ \LinealTransformation_1: V \to U$
-                es una Transformación Lineal.
-            \end{itemize}
-
-
-
-
     % =====================================================
     % ============           ISOMORFISMO            =======
     % =====================================================
@@ -512,17 +509,50 @@
         Decir que $V$ sea isomorfo con $W$ quiere decir que existe alguna transformación
         lineal Biyectiva entre ambas.
 
-        Algo interesante que recordar es que (obviamente) también es que
-        $\LinealTransformation^-1 : W \to V $ es una transformación lineal
-        y también es un isomorfismo.
+        % ====================================
+        % =========   PROPIEDADES    =========
+        % ====================================
+        \subsection{Propiedades}
 
-        Podemos ademas saber que $\cong$ es una relación de equivalencia.
-        Esto quiere decir que:
-        \begin{itemize}
-            \item $V \cong V$
-            \item $(V \cong W)$, entonces $(W \cong V)$
-            \item $(V \cong W)$ y $(W \cong U)$, entonces $(V \cong U)$
-        \end{itemize}
+            \textbf{\\Inverso}
+
+            Algo interesante que recordar es que (obviamente) también
+            $\LinealTransformation^-1 : W \to V $ es una transformación lineal
+            y también es un isomorfismo.
+
+            \textbf{\\Equivalencia}
+
+            Podemos ademas saber que $\cong$ es una relación de equivalencia.
+            Esto quiere decir que:
+
+            \begin{itemize}
+                \item $V \cong V$
+                \item $(V \cong W)$, entonces $(W \cong V)$
+                \item $(V \cong W)$ y $(W \cong U)$, entonces $(V \cong U)$
+            \end{itemize}
+
+            \textbf{\\Se Conservan Propiedades}
+
+            Cualquier propiedad que tuviera un conjunto de vectores en $V$ se mantiene
+            en su imagen, es decir se mantienen después de que le apliquemos la
+            transformación lineal, si eran linealmente independientes, lo segirán siendo,
+            si eran un subespacio, lo seguiran siendo y así.
+
+            \textbf{\\Simplicidad de los Espacios Equivalentes}
+
+            Supongamos que tenemos una transformación lineal entre dos espacios que ya
+            sabemos que son isomorfos, entonces cualquiera de las siguientes 3 proposiciones
+            son equivalentes, es decir, con que vamos que alguna es cierta, es obvio que las
+            demas tambien lo son y con que una sea falsa, todas las demas son falsas.
+            \emph{Nota muy importante en que solo aplica para espacios en los que sabemos que ya sabemos que son isomorfos.}
+
+            \begin{tasks}(3)
+                \task $\LinealTransformation$ es Inyectiva
+                \task $\LinealTransformation$ es Suprayectiva
+                \task $\LinealTransformation$ es Biyectiva
+            \end{tasks}
+
+
 
         % ========================
         % =====   EJEMPLO    =====
@@ -603,6 +633,36 @@
 
             Por lo tanto NO es Isomorfica.
 
+
+    % ====================================
+    % =========   PROPIEDADES    =========
+    % ====================================
+    \clearpage
+    \section{Gran Teorema de Algebra Lineal}
+
+        Dada una Matriz ($M_{n \times n} (K)$) y sea una Transformación Lineal
+        ($\LinealTransformation : K^n \to K^n$) dada por: $T(x) = Ax$, es decir
+        la transformación es solo multiplicar a cualquier vector por la Matriz ya 
+        dicha.
+
+        Entonces todas las siguientes proposiciones son equivalentes:
+        \begin{itemize}
+            \item $A$ es invertible
+            \item $det(A)$ es diferente de cero
+            \item El sistema homogeneo $A$ solo tiene una unica solución 
+            \item $\LinealTransformation$ es Inyectiva, y todo a lo que es equivalente:
+                \begin{itemize}
+                    \item Su Kernel solo tiene al cero vector
+                    \item La dimensión del Kernel es cero
+                \end{itemize}
+
+            \item $\LinealTransformation$ es Suprayectiva, y todo a lo que es equivalente.
+                \begin{itemize}
+                    \item Su Imagen tiene a todo $K^n$
+                    \item La dimensión de la Imagen es $n$
+                \end{itemize}
+            \item $\LinealTransformation$ es Biyectiva
+        \end{itemize}
 
 
 
