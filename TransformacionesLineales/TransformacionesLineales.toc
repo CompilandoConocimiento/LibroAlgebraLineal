@@ -27,3 +27,7 @@
 \contentsline {subsubsection}{Ejemplo}{17}
 \contentsline {subsubsection}{Ejemplo}{18}
 \contentsline {section}{\numberline {3.3}Gran Teorema de Algebra Lineal}{19}
+\contentsline {chapter}{\numberline {4}Matriz Asociada}{20}
+\contentsline {section}{\numberline {4.1}Matriz Asociada a Sistemas de C.}{21}
+\contentsline {section}{\numberline {4.2}Propiedades}{22}
+\contentsline {subsubsection}{Ejemplo}{23}

@@ -664,6 +664,131 @@
             \item $\LinealTransformation$ es Biyectiva
         \end{itemize}
 
+% ======================================================================================
+% ==========================       BIYECTIVA Y SUPRAYECTIVA        =====================
+% ======================================================================================
+\chapter{Matriz Asociada}
+
+    % =====================================================
+    % ============           ISOMORFISMO            =======
+    % =====================================================
+    \clearpage
+    \section{Matriz Asociada a Sistemas de C.}
+        Sea $\LinealTransformation : V \to W $ una transformación lineal.
+        
+        Decimos que la matriz asociada a la $\LinealTransformation$ respecto a las Bases 
+        $B_{1}(V)$ y a $B_{2}(W)$
+
+        Donde:
+        \begin{equation*}
+            [\LinealTransformation]_{B_{1}(V) \to B_{2}(W)} = 
+            \left(
+                [\LinealTransformation(v_1)]_{B_{2}(W)}
+                [\LinealTransformation(v_2)]_{B_{2}(W)}
+                \cdots
+                [\LinealTransformation(v_n)]_{B_{2}(W)}
+            \right)
+        \end{equation*}
+
+
+        % ====================================
+        % =========   PROPIEDADES    =========
+        % ====================================
+        \clearpage
+        \section{Propiedades}
+
+            Veamos que necesitamos primero para empezar:
+            
+            \begin{itemize}
+                \item Sea las Transformaciones Lineales 
+                    $$\LinealTransformation_1, \LinealTransformation_2, \LinealTransformation_3 : W \to V$$
+                
+                \item Sea la Transformación Lineal $$\LinealTransformation_4: V \to U$$
+                
+                \item Sean $B_1, B_2, B_3$ bases de V
+                
+                \item Sean $B_4, B_5, B_6$ bases de W
+                
+                \item Sean $B_7$ bases de U
+            \end{itemize}
+
+            Ahora si, con todo listo veamos:
+            \begin{itemize}
+                \item $$ [\LinealTransformation_1 + \LinealTransformation_2]_{B_1 \to B_4} = 
+                            [\LinealTransformation_1]_{B_1 \to B_4}
+                            +
+                            [\LinealTransformation_2]_{B_1 \to B_4}
+                        $$
+                
+                \item $$ [\alpha \LinealTransformation_1]_{B_1 \to B_4} = 
+                            \alpha [\LinealTransformation_1]_{B_1 \to B_4}
+                        $$
+
+                \item $$ [\LinealTransformation_4 \circ \LinealTransformation_1]_{B_7 \to B_1} = 
+                            [\LinealTransformation_4]_{B_7 \to B_1}
+                            [\LinealTransformation_1]_{B_1 \to B_7}
+                        $$
+
+                \item $$ [\LinealTransformation_1]_{B_2 \to B_5} = 
+                            C_{\frac{B_5}{B_4}}
+                            [\LinealTransformation_1]_{B_1 \to B_4}
+                            C_{\frac{B_1}{B_2}}
+                        $$
+
+            \end{itemize}
+
+
+        Esto es muy abstracto, así que lo mejor es mostrar un ejemplo:
+
+
+        % ========================
+        % =====   EJEMPLO    =====
+        % ========================
+            \clearpage
+            \subsubsection{Ejemplo}
+
+            Tengamos una $\LinealTransformation : \Real \to \Real^2$  que la podemos ver como:
+            $\begin{pmatrix} 2x&-y&z\\-x&y&3z\end{pmatrix}$
+
+            Tengamos dos Bases, digamos:
+            \begin{itemize}
+                \item $B_1$ La Base canónica:
+                    \begin{equation*}
+                        \begin{pmatrix} 1\\0\\0\end{pmatrix}, 
+                        \begin{pmatrix} 0\\1\\0\end{pmatrix}, 
+                        \begin{pmatrix} 0\\0\\1\end{pmatrix}
+                    \end{equation*}
+
+                \item $B_2$ La Base canónica:
+                    \begin{equation*}
+                        \begin{pmatrix} 1\\0\end{pmatrix}, 
+                        \begin{pmatrix} 0\\1\end{pmatrix}, 
+                    \end{equation*}
+            \end{itemize}
+
+
+
+            Entonces tenemos que:
+            \begin{equation*}
+            \begin{split}
+                [\LinealTransformation]_{B_{1}(\Real^3) \to B_{2}(\Real^2)} &= 
+                \left(
+                    \left[\LinealTransformation(\begin{pmatrix} 1\\0\\0\end{pmatrix}\right]_{B_{2}(\Real^2))}
+                    \left[\LinealTransformation(\begin{pmatrix} 0\\1\\0\end{pmatrix}\right]_{B_{2}(\Real^2))}
+                    \left[\LinealTransformation(\begin{pmatrix} 0\\0\\1\end{pmatrix}\right]_{B_{2}(\Real^2))}
+                \right)\\
+                &=
+                \left(
+                    \begin{pmatrix} 2 \\-1\end{pmatrix}_{B_{2}(\Real^2)}
+                    \begin{pmatrix} -1\\ 1\end{pmatrix}_{B_{2}(\Real^2)}
+                    \begin{pmatrix} 1 \\ 3\end{pmatrix}_{B_{2}(\Real^2)}
+                \right)\\
+                &=
+                \begin{pmatrix} 2&-1&1\\-1&1&3\end{pmatrix}
+            \end{split}
+            \end{equation*}
+
+
 
 
 % =====================================================
