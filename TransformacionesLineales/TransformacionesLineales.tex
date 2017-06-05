@@ -670,7 +670,7 @@
 \chapter{Matriz Asociada}
 
     % =====================================================
-    % ============           ISOMORFISMO            =======
+    % ============           MATRIZ ASOCIADA        =======
     % =====================================================
     \clearpage
     \section{Matriz Asociada a Sistemas de C.}
@@ -789,6 +789,81 @@
             \end{equation*}
 
 
+
+        % ========================
+        % =====   EJEMPLO    =====
+        % ========================
+            \clearpage
+            \subsubsection{Ejemplo}
+
+            Tengamos una $\LinealTransformation : \Real^2 \to \Real^2$  que la podemos ver como:
+            $\LinealTransformation\begin{pmatrix}x\\y\end{pmatrix} = \begin{pmatrix} x+2y\\-y\end{pmatrix}$
+
+            Tengamos dos Bases, digamos:
+            \begin{itemize}
+                \item $B_1$ Una base fea como:
+                    \begin{equation*}
+                        \begin{pmatrix} 1\\0\end{pmatrix}, 
+                        \begin{pmatrix} 1\\1\end{pmatrix}, 
+                    \end{equation*}
+
+                \item $B_2$ Otra base fea:
+                    \begin{equation*}
+                        \begin{pmatrix} 1\\1 \end{pmatrix}, 
+                        \begin{pmatrix} -1\\1\end{pmatrix}, 
+                    \end{equation*}
+
+                \item $B_3$ Ahora si la canónica:
+                    \begin{equation*}
+                        \begin{pmatrix} 1\\0 \end{pmatrix}, 
+                        \begin{pmatrix} 0\\1 \end{pmatrix}, 
+                    \end{equation*}
+            \end{itemize}
+
+            Entonces tenemos que si quisieramos encontrar $[\LinealTransformation]$
+            solo habría que factorizar las incognitas:
+
+
+            \begin{equation*}
+            \begin{split}
+                [\LinealTransformation]_{B_{3}(\Real^2) \to B_{3}(\Real^2)} &= 
+                \left(
+                    \left[\LinealTransformation(\begin{pmatrix} 1\\0\end{pmatrix}\right]_{B_{3}(\Real^2))}
+                    \left[\LinealTransformation(\begin{pmatrix} 0\\1\end{pmatrix}\right]_{B_{3}(\Real^2))}
+                \right)\\
+                &=
+                \left(
+                    \begin{pmatrix} 1\\0 \end{pmatrix}_{B_{2}(\Real^2)}
+                    \begin{pmatrix} 0\\-1\end{pmatrix}_{B_{2}(\Real^2)}
+                \right)\\
+                &=
+                \begin{bmatrix} 1 & 0 \\ 0 & -1\end{bmatrix}
+            \end{split}
+            \end{equation*}
+
+    % =====================================================
+    % ============           MATRIZ SEMEJANTE       =======
+    % =====================================================
+    \clearpage
+    \section{Matriz Semejante}
+        Sea $A, B$ y $P \in M_{n \times n} (K)$.
+
+        Decimos que A es semejante a B si existe una $P$ invertible tal que se cumpla que:
+
+        \begin{equation}
+            B = P^{-1}AP
+        \end{equation}
+
+        Es más, esta semejanza es una relación de equivalencia.
+
+
+        Podemos descubrir que A es semejante a B si y solo si A y B son matrices asociadas a
+        transformaciones lineales del estilo $\LinealTransformation : K^n \to K^n$ con la misma
+        base en el dominio que el contradominio.
+
+
+        
+        
 
 
 % =====================================================

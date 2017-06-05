@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  1 JUN 2017 09:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  5 JUN 2017 09:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1123,19 +1123,33 @@ LaTeX Info: Redefining \% on input line 747.
  [22
 
 ]
-LaTeX Info: Redefining \. on input line 797.
-LaTeX Info: Redefining \% on input line 797.
-LaTeX Info: Redefining \. on input line 797.
-LaTeX Info: Redefining \% on input line 797.
+LaTeX Info: Redefining \. on input line 796.
+LaTeX Info: Redefining \% on input line 796.
+LaTeX Info: Redefining \. on input line 796.
+LaTeX Info: Redefining \% on input line 796.
  [23
 
 ]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 804.
+LaTeX Info: Redefining \. on input line 847.
+LaTeX Info: Redefining \% on input line 847.
+LaTeX Info: Redefining \. on input line 847.
+LaTeX Info: Redefining \% on input line 847.
+ [24
+
+]
+LaTeX Info: Redefining \. on input line 872.
+LaTeX Info: Redefining \% on input line 872.
+LaTeX Info: Redefining \. on input line 872.
+LaTeX Info: Redefining \% on input line 872.
+ [25
+
+]
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 879.
 
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-) [24
+) [26
 
 
 ]
@@ -1175,10 +1189,10 @@ mf-dist/fonts/type1/public/cm-super/sfrm2074.pfb></usr/local/texlive/2016/texmf
 ist/fonts/type1/public/cm-super/sftt1200.pfb></usr/local/texlive/2016/texmf-dis
 t/fonts/type1/public/cm-super/sfxc1440.pfb></usr/local/texlive/2016/texmf-dist/
 fonts/type1/public/cm-super/sfxc1728.pfb>
-Output written on TransformacionesLineales.pdf (25 pages, 314291 bytes).
+Output written on TransformacionesLineales.pdf (27 pages, 317578 bytes).
 PDF statistics:
- 179 PDF objects out of 1000 (max. 8388607)
- 127 compressed objects within 2 object streams
+ 185 PDF objects out of 1000 (max. 8388607)
+ 131 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -31,3 +31,5 @@
 \contentsline {section}{\numberline {4.1}Matriz Asociada a Sistemas de C.}{21}
 \contentsline {section}{\numberline {4.2}Propiedades}{22}
 \contentsline {subsubsection}{Ejemplo}{23}
+\contentsline {subsubsection}{Ejemplo}{24}
+\contentsline {section}{\numberline {4.3}Matriz Semejante}{25}
