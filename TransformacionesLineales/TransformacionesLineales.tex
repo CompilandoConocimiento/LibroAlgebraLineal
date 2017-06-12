@@ -41,6 +41,7 @@
 % ===========   COMMANDS    ==============
 % ========================================
 \DeclareMathOperator \Real {\mathbb{R}}
+\DeclareMathOperator \Complex {\mathbb{C}}
 \DeclareMathOperator \LinealTransformation {\mathcal{T}}
 
 
@@ -418,6 +419,7 @@
         % ====================================
         % =========   PROPIEDADES    =========
         % ====================================
+        \clearpage
         \subsection{Propiedades}
 
         Sea $\LinealTransformation_1 : V \to W $ y $\LinealTransformation_2 : W \to U $
@@ -429,6 +431,13 @@
 
             \item $\LinealTransformation_2 \circ \LinealTransformation_1: V \to U$
             es una Transformación Lineal.
+        \end{itemize}
+
+        Podemos también saber esta interesante propiedad:\\
+        Sea $\LinealTransformation: V \to W$ tal que: $dim(V) = n$ y la $dim(W)=m$
+        \begin{itemize}
+            \item Si $n > m$, $\LinealTransformation$ no es inyectiva.
+            \item Si $n < m$, $\LinealTransformation$ no es suprayectiva.
         \end{itemize}
 
 
@@ -665,7 +674,7 @@
         \end{itemize}
 
 % ======================================================================================
-% ==========================       BIYECTIVA Y SUPRAYECTIVA        =====================
+% ==========================       MATRIZ ASOCIADA                 =====================
 % ======================================================================================
 \chapter{Matriz Asociada}
 
@@ -860,6 +869,162 @@
         Podemos descubrir que A es semejante a B si y solo si A y B son matrices asociadas a
         transformaciones lineales del estilo $\LinealTransformation : K^n \to K^n$ con la misma
         base en el dominio que el contradominio.
+
+
+
+
+
+% ======================================================================================
+% ==========================     DIAGONALIZACION                   =====================
+% ======================================================================================
+\chapter{Valores y Vectores Propios}
+
+    % =====================================================
+    % ============           MATRIZ ASOCIADA        =======
+    % =====================================================
+    \clearpage
+    \section{Valor Característico}
+
+        Veamos que pasa si $K = \Complex$ y sea $A \in M_{n \times n} (K)$.
+        Decimos que $v \in K^n$ con $v \neq 0_{n \times 1}$ es un vector propio
+        de A si existe un $\alpha \in K$ tal que :
+
+        \begin{equation}
+            Av = \alpha v
+        \end{equation}
+
+        Además decimos que $\alpha$ es un valor propio de A.
+
+
+        Sea $A \in M_{n \times n} (K)$ y sea $\beta$ un valor caracteristico que ya conocemos
+        entonces podemos definir al subespacio asociado a $\beta$, como:
+
+        \begin{equation}
+            E_{\beta} = \{v \in K^n | Av = \beta v \}
+        \end{equation}
+
+        Tambien podemos ver que para encontrar los valores caracteristicos, gracias a la definición basta
+        con que saquemos el determinante de esta expresión:
+        \begin{equation}
+            |A - \beta I_n|
+        \end{equation}
+
+        Y veamos para cuales valores de $\beta$ el determinante da 0.
+
+
+
+        % ====================================
+        % =========   PROPIEDADES    =========
+        % ====================================
+        \clearpage
+        \subsection{Propiedades}
+
+        Sea $A \in M_{n \times n} (K)$ y sea $\beta ,\beta_1, \beta_2$ un valores característicos de A.
+
+        Sea $v_1$ y $v_2$ vectores característicos asociados a $\beta_1$ y $\beta_2$ respectivamente.
+
+        Entonces tenemos que:
+
+        \begin{itemize}  
+            \item $E_{\beta}$ es un subespacio vectorial de $k^n$
+            \item Si $\beta_1 \neq \beta_2$, entonces $E_{\beta_1} 1 \cup E_{\beta_2} = \{0_v\}$
+            \item Si $\beta_1 \neq \beta_2$, entonces $v_1$ y $v_2$ son linealmente independientes.
+        \end{itemize}  
+
+
+        % ========================
+        % =====   EJEMPLO    =====
+        % ========================
+            \clearpage
+            \subsubsection{Ejemplo}
+            Encuentra si $v$ es un vector propio de A, dados:
+
+            $A = \begin{pmatrix}4&4&2\\0&2&1\\3&2&1\end{pmatrix}$ y sea 
+            $v = \begin{pmatrix}1\\\frac{1}{6}\\\frac{2}{3}\end{pmatrix}$
+
+            Y vemos que lo es, pues:
+
+            \begin{equation*}
+            \begin{split}
+                \begin{pmatrix}4&4&2\\0&2&1\\3&2&1\end{pmatrix}
+                \begin{pmatrix}1\\\frac{1}{6}\\\frac{2}{3}\end{pmatrix} =
+                \begin{pmatrix}6\\1\\4\end{pmatrix} =
+                6\begin{pmatrix}1\\\frac{1}{6}\\\frac{2}{3}\end{pmatrix}
+            \end{split}
+            \end{equation*}
+        
+
+        % ========================
+        % =====   EJEMPLO    =====
+        % ========================
+            \clearpage
+            \subsubsection{Ejemplo}
+            Encuentra el espacio generador por el valor característico 
+            $\beta = -2$ donde:
+
+            $A = \begin{pmatrix}10&-18\\6&-11\end{pmatrix}$.
+
+            Así que empecemos:
+
+            \begin{equation*}
+            \begin{split}
+                E_{\beta} &= \{v \in K^n | Av = \beta v \}  \\
+                E_{-2} &= \{v \in K^2 | Av = (-2) v \} \\
+                E_{-2} &= \{ \begin{pmatrix}x_1\\x_2\end{pmatrix} \in K^2 | Av = (-2) v \} \\
+                E_{-2} &= \{ \begin{pmatrix}x_1\\x_2\end{pmatrix} \in K^2 | Av = (-2) v \} \\
+                E_{-2} &= \{ \begin{pmatrix}x_1\\x_2\end{pmatrix} \in K^2 |
+                \begin{pmatrix}10&-18\\6&-11\end{pmatrix}v = (-2) v \} \\
+                E_{-2} &= \{ \begin{pmatrix}x_1\\x_2\end{pmatrix} \in K^2 |
+                \begin{pmatrix}10&-18\\6&-11\end{pmatrix}  \begin{pmatrix}x_1\\x_2\end{pmatrix} 
+                = (-2) \begin{pmatrix}x_1\\x_2\end{pmatrix} \} \\
+                E_{-2} &= \{ \begin{pmatrix}x_1\\x_2\end{pmatrix} \in K^2 |
+                \begin{pmatrix}10x_1&-18x_2x_1\\6x_1&-11x_2\end{pmatrix}  - \begin{pmatrix}2x_1\\2x_2\end{pmatrix} 
+                = \begin{pmatrix}0\\0\end{pmatrix} \} \\
+                E_{-2} &= \{ \begin{pmatrix}x_1\\x_2\end{pmatrix} \in K^2 |
+                \begin{pmatrix}12x_1&-18x_2\\6x_1&-0x_2\end{pmatrix}
+                = \begin{pmatrix}0\\0\end{pmatrix} \}
+            \end{split}
+            \end{equation*}
+
+
+            Ahora aplicas Gauss-Jordan, donde partimos de a :
+            $$\begin{pmatrix}12 & -18 \\6 & -9\end{pmatrix}$$
+
+            Donde ahora tenemos que llegamos a:
+            $$\begin{pmatrix}1 & -\frac{3}{2} \\ 0 & 0\end{pmatrix}$$
+
+            Por lo tanto son cualquier vector que cumpla que:
+            $x_1 -\frac{3}{2}x_2 = 0$, es decir que $x_1 = \frac{3}{2}$
+            
+            Por lo tanto podemos reescribir nuestro vector como:
+            $\begin{pmatrix} \frac{3}{2}x_2 \\ x_2\end{pmatrix}$
+
+            Que si te das cuenta los los vectores que se generan con esta base:
+            $ \{ x_2 <\begin{pmatrix}\frac{3}{2} \\ 1\end{pmatrix}> \}$
+            
+
+        % ========================
+        % =====   EJEMPLO    =====
+        % ========================
+            \clearpage
+            \subsubsection{Ejemplo}
+            Encuentra los vectores caracteristicos de A, donde:
+
+            $A = \begin{pmatrix}10&-18\\6&-11\end{pmatrix}$.
+
+            Así que empecemos:
+
+            \begin{equation*}
+            \begin{split}
+                \left|A - \beta I_n \right| &= 0 \\
+                \left|\begin{pmatrix}10&-18\\6&-11\end{pmatrix} - \beta \begin{pmatrix}1&0\\0&1\end{pmatrix}\right| &= 0 \\
+                \left|\begin{pmatrix}10 -\beta&-18\\6&-11-\beta\end{pmatrix} \right| &= 0 \\
+                (10-\beta)(-11 -\beta) -6(-18)  &= 0 \\
+                \beta^2 + \beta -2 &= 0 \\
+            \end{split}
+            \end{equation*}
+
+            Por lo tanto encontramos que $\beta_1 = -2 $ y $ \beta_2 = 1$
 
 
         
