@@ -2,47 +2,49 @@
 % ******************        TRANSFORMACIONES LINEALES     ********************************
 % ****************************************************************************************
 
-
 % =======================================================
 % =======         HEADER FOR DOCUMENT        ============
 % =======================================================
-\documentclass[12pt]{report}                                %Type of docuemtn and size of font
-\usepackage[margin=1.2in]{geometry}                         %Margins
+    \documentclass[12pt]{report}                                %Type of docuemtn and size of font
+    \usepackage[margin=1.2in]{geometry}                         %Margins
+    \usepackage{hyperref}                                       %Create MetaData for a PDF
 
-\usepackage[spanish]{babel}                                 %Please use spanish
-\usepackage[utf8]{inputenc}                                 %Please use spanish 
-\usepackage[T1]{fontenc}                                    %Please use spanish
+    \usepackage[spanish]{babel}                                 %Please use spanish
+    \usepackage[utf8]{inputenc}                                 %Please use spanish 
+    \usepackage[T1]{fontenc}                                    %Please use spanish
 
-\usepackage{amsthm, amssymb, amsfonts, mathrsfs}            %Make math beautiful
-\usepackage[fleqn]{amsmath}                                 %Please make equations left
-\decimalpoint                                               %Make math beautiful
-\setlength{\parindent}{0pt}                                 %Eliminate ugly indentation
+    \usepackage{amsthm, amssymb, amsfonts, mathrsfs}            %Make math beautiful
+    \usepackage[fleqn]{amsmath}                                 %Please make equations left
+    \decimalpoint                                               %Make math beautiful
+    \setlength{\parindent}{0pt}                                 %Eliminate ugly indentation
 
-\usepackage{graphicx}                                       %Allow to create graphics
-\usepackage{wrapfig}                                        %Allow to create images
-\graphicspath{ {Graphics/} }                                %Where are the images :D
-\usepackage{listings}                                       %We will be using code here
-\usepackage[inline]{enumitem}                               %We will need to enumarate
+    \usepackage{graphicx}                                       %Allow to create graphics
+    \usepackage{wrapfig}                                        %Allow to create images
+    \graphicspath{ {Graphics/} }                                %Where are the images :D
+    \usepackage{listings}                                       %We will be using code here
+    \usepackage[inline]{enumitem}                               %We will need to enumarate
 
-\usepackage{fancyhdr}                                       %Lets make awesome headers/footers
-\usepackage{tasks}                                          %Horizontal lists
-\renewcommand{\footrulewidth}{0.5pt}                        %We will need this!
-\setlength{\headheight}{16pt}                               %We will need this!
-\setlength{\parskip}{0.5em}                                 %We will need this!
-\pagestyle{fancy}                                           %Lets make awesome headers/footers
-\lhead{\footnotesize{\leftmark}}                            %Headers!
-\rhead{\footnotesize{\rightmark}}                           %Headers!
-\lfoot{Compilando Conocimiento}                             %Footers!
-\rfoot{Oscar Rosas}                                         %Footers!
+    \usepackage{fancyhdr}                                       %Lets make awesome headers/footers
+    \usepackage{tasks}                                          %Horizontal lists
+    \usepackage{longtable}                                      %Lets make tables awesome
 
-\author{Oscar Andrés Rosas}                                 %Who I am
+    \renewcommand{\footrulewidth}{0.5pt}                        %We will need this!
+    \setlength{\headheight}{16pt}                               %We will need this!
+    \setlength{\parskip}{0.5em}                                 %We will need this!
+    \pagestyle{fancy}                                           %Lets make awesome headers/footers
+    \lhead{\footnotesize{\leftmark}}                            %Headers!
+    \rhead{\footnotesize{\rightmark}}                           %Headers!
+    \lfoot{Compilando Conocimiento}                             %Footers!
+    \rfoot{Oscar Rosas}                                         %Footers!
 
-% ========================================
-% ===========   COMMANDS    ==============
-% ========================================
-\DeclareMathOperator \Real {\mathbb{R}}
-\DeclareMathOperator \Complex {\mathbb{C}}
-\DeclareMathOperator \LinealTransformation {\mathcal{T}}
+    \author{Oscar Andrés Rosas}                                 %Who I am
+
+    % ========================================
+    % ===========   COMMANDS    ==============
+    % ========================================
+    \DeclareMathOperator \Real {\mathbb{R}}
+    \DeclareMathOperator \Complex {\mathbb{C}}
+    \DeclareMathOperator \LinealTransformation {\mathcal{T}}
 
 
 
@@ -710,9 +712,13 @@
             
             \begin{itemize}
                 \item Sea las Transformaciones Lineales 
-                    $$\LinealTransformation_1, \LinealTransformation_2, \LinealTransformation_3 : W \to V$$
-                
-                \item Sea la Transformación Lineal $$\LinealTransformation_4: V \to U$$
+                    \begin{equation*}
+                        \LinealTransformation_1,
+                        \LinealTransformation_2,
+                        \LinealTransformation_3 : W \to V
+                    \end{equation*}
+
+                \item Sea la Transformación Lineal $\LinealTransformation_4: V \to U$
                 
                 \item Sean $B_1, B_2, B_3$ bases de V
                 
@@ -723,26 +729,30 @@
 
             Ahora si, con todo listo veamos:
             \begin{itemize}
-                \item $$ [\LinealTransformation_1 + \LinealTransformation_2]_{B_1 \to B_4} = 
+                \item \begin{equation*}
+                        [\LinealTransformation_1 + \LinealTransformation_2]_{B_1 \to B_4} = 
                             [\LinealTransformation_1]_{B_1 \to B_4}
                             +
                             [\LinealTransformation_2]_{B_1 \to B_4}
-                        $$
+                    \end{equation*}
                 
-                \item $$ [\alpha \LinealTransformation_1]_{B_1 \to B_4} = 
+                \item \begin{equation*}
+                        [\alpha \LinealTransformation_1]_{B_1 \to B_4} = 
                             \alpha [\LinealTransformation_1]_{B_1 \to B_4}
-                        $$
+                    \end{equation*}
 
-                \item $$ [\LinealTransformation_4 \circ \LinealTransformation_1]_{B_7 \to B_1} = 
+                \item \begin{equation*}
+                        [\LinealTransformation_4 \circ \LinealTransformation_1]_{B_7 \to B_1} = 
                             [\LinealTransformation_4]_{B_7 \to B_1}
                             [\LinealTransformation_1]_{B_1 \to B_7}
-                        $$
+                    \end{equation*}
 
-                \item $$ [\LinealTransformation_1]_{B_2 \to B_5} = 
+                \item\begin{equation*}
+                        [\LinealTransformation_1]_{B_2 \to B_5} = 
                             C_{\frac{B_5}{B_4}}
                             [\LinealTransformation_1]_{B_1 \to B_4}
                             C_{\frac{B_1}{B_2}}
-                        $$
+                    \end{equation*}
 
             \end{itemize}
 
