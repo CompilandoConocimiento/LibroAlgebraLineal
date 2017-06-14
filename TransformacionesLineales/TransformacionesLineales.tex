@@ -275,8 +275,6 @@
             \{x \in K^m |\quad Ax = 0_{m \times 1} \}
         \end{equation*}
 
-    \vfill
-
     % ==================================================
     % ==================    IMAGEN     =================
     % ==================================================
@@ -310,33 +308,35 @@
         Podemos hablar de que ambas paracen ser como hermanas perdidas,
         veamos que propiedades tenemos:
 
-        \begin{itemize}
-            \item Llamemos Rango a $Dim(Imagen(\LinealTransformation))$
-            \item Llamemos Nulidad a $Dim(Kernel(\LinealTransformation))$
-            \item Ambas \textbf{Son SubEspacios Vectoriales}.
-            \item Estas deacuerdo que todos los vectores o bien son llevados al cero
-            vector o no, así que tiene sentido hablar de que  \textbf{La Suma de la Nulidad
-            con el Rango te da la dimensión de V}, es decir: $dim(V) = dim(Kernel)+dim(Imagen)$
-        \end{itemize}
+
+        \subsubsection{Encontrar la Dimensión de $V$}
+            Estas deacuerdo que todos los vectores que pertenecen a $V$ o bien son llevados al cero
+            vector o a un vector cualquiera, así que tiene sentido hablar de que: 
+
+            \textbf{La Suma de la Nulidad con el Rango te da la dimensión de V}
+
+            \begin{equation}
+                dim(V) = dim(Kernel) + dim(Imagen)
+            \end{equation}
 
     % =====================================================
     % ============       EJEMPLOS               ===========
     % =====================================================
     \clearpage
-    \section{Ejemplos}
+    \section{Ejemplos de Kernel}
 
         % ========================
         % =====   EJEMPLO    =====
         % ========================
-            \subsubsection{Ejemplo}
+            \subsubsection{Ejemplo 1}
             Encuentra el Kernel de la siguiente Transformación Lineal:
-            $\LinealTransformation : \mathbb{R}^3 \to \mathbb{R}_2[x]$ tal que: 
-            $\LinealTransformation(a,b,c) = (a+b) + (a-c)x + (2a+b-c)x^2$
+            $\LinealTransformation : \Real^3 \to \Real_2[x]$ tal que: 
+            $\LinealTransformation \pVector{a&b&c} = (a+b) + (a-c)x + (2a+b-c)x^2$
+
 
             Lo que nos estan pidiendo es:
             \begin{equation*}
-                Kernel(\LinealTransformation) = 
-                \{(a,b,c)\in \mathbb{R}^3 |\quad \LinealTransformation(a,b,c) = 0+0x+0x^2\}
+                Kernel(\LT) = \{ \pVector{a&b&c} \in \Real^3 |\quad \LT\pVector{a&b&c} = 0+0x+0x^2 \}
             \end{equation*}
 
             Veamos que para hacerlo solo basta con que cumplan que:
@@ -358,14 +358,14 @@
             Por lo tanto podemos ver que:
             \begin{equation*}
             \begin{split}
-                a + b = 0 &\to a = -b  \\
-                a - c = 0 &\to a = c   \\
+                a + b = 0 \quad&\to\quad b = -a  \\
+                a - c = 0 \quad&\to\quad c = a   \\
              \end{split}
             \end{equation*}
 
             Por lo tanto podemos ver que:
             \begin{equation*}
-                Kernel(\LinealTransformation) = \{(a,b,c)\in R^3 |\quad a = -b, a=c\}
+                Kernel(\LinealTransformation) = \{(a,b,c)\in R^3 |\quad b = -a, c = a \}
             \end{equation*}
 
             Finalmente aplicamos la transformación con estas propiedades y tenemos que:
@@ -388,15 +388,57 @@
         % =====   EJEMPLO    =====
         % ========================
             \clearpage
-            \subsubsection{Ejemplo}
+            \subsubsection{Ejemplo 2}
+            Encuentra el Kernel de la siguiente Transformación Lineal:
+            $\LinealTransformation : \Real^2 \to \Real_1[x]$ tal que: 
+            $\LinealTransformation \pVector{a&b} = (a-b) + (a+b)x$
+
+            Lo que nos estan pidiendo es:
+            \begin{equation*}
+                Kernel(\LT) = \{ \pVector{a&b} \in \Real^2 |\quad \LT\pVector{a&b} = 0+0x \}
+            \end{equation*}
+
+            Veamos que para hacerlo solo basta con que cumplan que:
+            \begin{equation*}
+            \begin{split}
+                a - b       & = 0 \\
+                a + b       & = 0 \\
+            \end{split}
+            \end{equation*}
+
+            Podemos verlo como matriz y comparar su determinante:
+
+            $\left| \Vector{1&-1\\1&1} \right| = 1 + 1 = 2 \neq 0$
+
+            \textbf{Y como vemos que su determinante no es cero eso quiere
+            decir que el sistema homogeneo asociado tiene una única solución}.
+
+            La trivial, es decir solo lleva al cero vector al cero vector.
+            \\
+
+            Así: $Kernel(\LT) =  < \{ \pVector{0&0} \} > $
+
+            Esto sigue siendo un espacio vectorial, es un punto, un espacio de 0 dimensiones,
+            y por lo tanto la dimensión de este espacio vectorial es 0.
+
+    % =====================================================
+    % ============       EJEMPLOS               ===========
+    % =====================================================
+    \clearpage
+    \section{Ejemplos de Imágen}
+
+
+        % ========================
+        % =====   EJEMPLO    =====
+        % ========================
+            \subsubsection{Ejemplo 1}
             Encuentra la Imagen de la siguiente Transformación Lineal:
-            $\LinealTransformation : \mathbb{R}^3 \to \mathbb{R}_2[x]$ tal que: 
+            $\LinealTransformation : \Real^3 \to \Real_2[x]$ tal que: 
             $\LinealTransformation(a,b,c) = (a+b) + (a-c)x + (2a+b-c)x^2$
 
             Lo que nos estan pidiendo es:
             \begin{equation*}
-                Imagen(\LinealTransformation) = 
-                \{a_0+a_1x+a_2x^2 \in R_2[x] |\quad \exists (a,b,c) \in R^3 ,\quad 
+                Imagen(\LT) = \{a_0+a_1x+a_2x^2 \in R_2[x] |\quad \exists (a,b,c) \in R^3 ,\quad 
                 \LinealTransformation(a,b,c) = a_0+a_1x+a_2x^2\}
             \end{equation*}
 
@@ -447,6 +489,42 @@
             \begin{equation*}
                 Imagen(\LinealTransformation) = <(1+x^2) , (x+x^2)>
             \end{equation*}
+
+        % ========================
+        % =====   EJEMPLO    =====
+        % ========================
+            \clearpage
+            \subsubsection{Ejemplo 2}
+            Encuentra la Imágen de la siguiente Transformación Lineal:
+            $\LinealTransformation : \Real^2 \to \Real_1[x]$ tal que: 
+            $\LinealTransformation \pVector{a&b} = (a-b) + (a+b)x$
+
+            Lo que nos estan pidiendo es:
+            \begin{equation*}
+                Imagen(\LT) = \{a_0+a_1x \in R_1[x] |\quad \exists (a,b) \in R^2 ,\quad 
+                \LinealTransformation(a,b) = a_0+a_1x\}
+            \end{equation*}
+
+            Es decir, lo que se nos esta pidiendo es que:
+            \begin{equation*}
+            \begin{split}
+                a - b           & = a_0 \\
+                a + b           & = a_1 \\
+             \end{split}
+            \end{equation*}
+
+            Podemos verlo como matriz y comparar su determinante:
+
+            $\left| \Vector{1&-1\\1&1} \right| \neq 0$
+
+            \textbf{Y como vemos que su determinante no es cero eso quiere
+            decir que el sistema asociado tiene soluciones infinitas}.
+
+            Así: $Imagen(\LT) =  < \{ \pVector{1, x} \} > $
+
+            Esto sigue siendo un espacio vectorial, un espacio de 2 dimensiones,
+            y por lo tanto la dimensión de este espacio vectorial es 2.
+
 
 
 
@@ -512,6 +590,14 @@
         \begin{itemize}
             \item Si $n > m$, $\LinealTransformation$ no es inyectiva.
             \item Si $n < m$, $\LinealTransformation$ no es suprayectiva.
+        \end{itemize}
+
+        Si sabemos que $dim(V) = dim(W)$
+        Entonces los siguientes enunciados son equivalentes:
+        \begin{itemize}
+            \item $\LinealTransformation$ es inyectiva
+            \item $\LinealTransformation$ es suprayectiva
+            \item $\LinealTransformation$ es biyectiva
         \end{itemize}
 
 
