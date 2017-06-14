@@ -69,9 +69,20 @@
 % ========================================
 % ===========   COMMANDS    ==============
 % ========================================
-    \DeclareMathOperator \Real {\mathbb{R}}
-    \DeclareMathOperator \Complex {\mathbb{C}}
-    \DeclareMathOperator \LinealTransformation {\mathcal{T}}
+
+    % =====  NUMBER THEORY  ==========
+    \DeclareMathOperator \Real {\mathbb{R}}                         %Use: \Real por Notation
+    \DeclareMathOperator \Complex {\mathbb{C}}                      %Use: \Complex por Notation
+    \DeclareMathOperator \Naturals {\mathbb{N}}                     %Use: \Naturals por Notation
+    \DeclareMathOperator \LinealTransformation {\mathcal{T}}        %Use: \LinealTransformation for a cool T
+    \DeclareMathOperator \LT {\mathcal{T}}                          %Use: \LT for a cool T
+
+    \newcommand{\pVector}[1]{                                       %Use: \pVector {Matrix Notation} use parentesis
+        \ensuremath{\begin{pmatrix}#1\end{pmatrix}}                 %Example: \pVector{a\\b\\c} or \pVector{a&b&c} 
+    }
+    \newcommand{\Vector}[1]{                                        %Use: \Vector {Matrix Notation} no parentesis
+        \ensuremath{\begin{matrix}#1\end{matrix}}                   %Example: \Vector{a\\b\\c} or \Vector{a&b&c}
+    }
 
 
 
@@ -118,110 +129,135 @@
 % =============================    TRANSFORMACIONES LINEALES    ========================
 % ======================================================================================
 \chapter{Transformaciones Lineales}
-\label{sec:TransformacionesLineales}
     \clearpage
 
     % =====================================================
     % ============           DEFINICION            ========
     % =====================================================
     \section{Definición}
-        Sea $V$ y $W$ dos espacios vectoriales sobre un \textbf{mismo} campo $K$. Una
-        transformación lineal de $V \to W$ es una función que cumpla con esto:
+        Sea $V$ y $W$ dos espacios vectoriales. Una Transformación Lineal de $V$ a $W$ es
+        una función que asocia a cada vector que pertenezca al espacio $V$ a un único vector
+        que pertenece a $W$, es decir con matemáticas:
+        \begin{equation*}
+            \forall v \in V \quad \exists w \in W \quad|\quad\quad \LinealTransformation(v) = w 
+        \end{equation*}
 
-        $\LinealTransformation: V \to W $ tal que $\forall v_1, v_2 \in V $ y $\forall \alpha \in K$
-        tenemos que se cumple que:
+        Pero además para considerarlo una Transformación \textbf{Lineal} se tiene que cumplir que
+        para 2 vectores cuales quiera en el espacio $V$ y para cualquier escalar que pertenezca
+        al campo $K$ (o dicho con matemáticas formales: $\forall v_1, v_2 \in V $ y $\forall \alpha \in K$ )
+        las dos siguientes proposiciones siempre son verdaderas:
 
         \begin{itemize}
             \item $\LinealTransformation (v_1 + v_2) = \LinealTransformation(v_1) + \LinealTransformation(v_2)$
             \item $\LinealTransformation (\alpha v_1) = \alpha \LinealTransformation(v_1)$ 
         \end{itemize}
 
+    % =====================================================
+    % ============       PROPIEDADES            ===========
+    % =====================================================
+    \section{Propiedades}
+
         \subsubsection{Combinación Lineal}
-        Podemos tambien tener que como consecuencia de lo que tenemos arriba que podemos
-        encontrar que $\LinealTransformation$ es una transformación lineal si y solo si se cumple que:
+            Pero si somos lo suficientemente inteligentes o tenemos internet podemos
+            saber que la siguiente proposicion es totalmente equivalente a lo que
+            tenemos arriba.
 
-        $\forall v_1, v_2 \in V$ y $\forall \alpha, \beta \in K$ se cumple que:
-        \begin{equation}
-            \LinealTransformation(\alpha v_1 + \beta v_2) = \alpha \LinealTransformation(v_1) + \beta \LinealTransformation(v_2)
-        \end{equation}
+            $\forall v_1, v_2 \in V$ y $\forall \alpha, \beta \in K$ se cumple que:
+            \begin{equation}
+                \LT(\alpha v_1 + \beta v_2) = \alpha \LT(v_1) + \beta \LT(v_2)
+            \end{equation}
 
-        \subsubsection{Saber si algo es una $\LinealTransformation$}
-        Así que para probar que una $\LinealTransformation$ es o no transformación lineal basta con verificar
-        que se cumplan las 2 propiedades originales. 
+        \subsubsection{El Vector Cero se Preserva}
+            Una Transformación Lineal debe llevar al $0_V$ de $V$ al $0_W$ de $W$
+
+            Su demostración es muy sencilla, pues:
+            \begin{equation*}
+                \LinealTransformation(0_V)      =
+                \LinealTransformation(v_1-v_1)  =
+                \LT(v_1) - \LT(v_1)             = 0_W
+            \end{equation*}
+
+        \subsubsection{Operador Lineal}
+            Decimos que $\LinealTransformation$ (alguna transformación lineal) es un
+            operador lineal en V si y solo si su \textbf{dominio} y su
+            \textbf{contradominio} son el mismo.
+
+
+    % =====================================================
+    % ============       EJEMPLOS               ===========
+    % =====================================================
+    \clearpage
+    \section{Ejemplos}
 
         % ========================
         % =====   EJEMPLO   ======
         % ========================
-        \clearpage
-        \subsubsection{Ejemplos}
+        \subsubsection{Ejemplo 1:}
             Sea $\mathbb{R}^3 \to \mathbb{R}^2$ tal que:
             \begin{equation*}
-                \LinealTransformation\left( \begin{matrix} x\\y\\z \end{matrix} \right) =
-                \left( \begin{matrix} x-z\\y+z \end{matrix} \right)
+                \LinealTransformation \pVector{x\\y\\z}  = \pVector{x-z\\y+z}
             \end{equation*}
+
+            Probemos que esta $\LT$ es una Transformación Lineal:
 
             Probemos la primera propiedad como:
             \begin{equation*}
             \begin{split}
-                \LinealTransformation (v_1 + v_2) & =
-                \LinealTransformation \left( \begin{matrix} x_1\\y_1\\z_1 \end{matrix} + \begin{matrix} x_2\\y_2\\z_2 \end{matrix} \right)
-                \\
-                & = \LinealTransformation \left( \begin{matrix} x_1+x_2\\y_1+y_2\\z_1+z_2 \end{matrix} \right)
-                  = \begin{matrix} (x_1+x_2)-(z_1+z_2) \\ (y_1+y_2)+(z_1+z_2) \end{matrix}
-                  = \begin{matrix}(x_1-z_1)\\(y_1+z_1)\end{matrix} + \begin{matrix}(x_2-z_2)\\(y_2+z_2)\end{matrix} 
-                  = 
-                  \LinealTransformation \left(\begin{matrix} x_1\\y_1\\z_1 \end{matrix} \right)
-                  +
-                  \LinealTransformation \left( \begin{matrix} x_2\\y_2\\z_2 \end{matrix} \right)            
-                \\
-                & = \LinealTransformation(v_1) + \LinealTransformation(v_2)
+                \LinealTransformation \pVector{ v_1 + v_2 }                                             & = \\
+                &= \LinealTransformation \pVector{ \pVector{x_1\\y_1\\z_1} +\pVector{x_2\\y_2\\z_2} }
+                 = \LinealTransformation \pVector{ x_1+x_2\\y_1+y_2\\z_1+z_2 }                              \\
+                &= \pVector{ (x_1+x_2) & - & (z_1+z_2) \\ (y_1+y_2) & + & (z_1+z_2) }                       
+                 = \pVector{ x_1+x_2-z_1-z_2 \\ y_1+y_2+z_1+z_2 }                                           \\
+                &= \pVector{ (x_1-z_1)+(x_2-z_2) \\ (y_1+z_1)+(y_2+z_2) }                                   
+                 = \pVector{ x_1-z_1\\y_1+z_1 }  + \pVector{ x_2-z_2\\y_2+z_2 }                             \\
+                &= \LT \pVector{x_1\\y_1\\z_1} +\LT \pVector{x_2\\y_2\\z_2}                                 \\
+                &= \LinealTransformation(v_1) + \LinealTransformation(v_2)
             \end{split}
             \end{equation*}
 
             Probemos la segunda propiedad:
             \begin{equation*}
             \begin{split}
-                \LinealTransformation (\alpha v_1) & =
-                \LinealTransformation \left( \alpha \cdot \begin{matrix} x\\y\\z \end{matrix} \right) \\
-                & = \LinealTransformation \left( \begin{matrix} \alpha x\\ \alpha y\\ \alpha z\end{matrix} \right) =
-                \begin{matrix} \alpha x - \alpha z\\ \alpha y + \alpha z\end{matrix}  =
-                \alpha \cdot \begin{matrix}x-z\\y+z\end{matrix} =
-                \alpha \LinealTransformation \left( \begin{matrix}x\\y\\z\end{matrix} \right) \\
-                & = \alpha \LinealTransformation(v_1)
+                \LinealTransformation (\alpha v_1)                                                      & = \\
+                &= \LinealTransformation \left( \alpha \cdot \pVector{x\\y\\z} \right)                      
+                 = \LinealTransformation \pVector{\alpha x\\\alpha y\\\alpha z}                             \\
+                &= \pVector{\alpha x - \alpha z\\ \alpha y + \alpha z}                                      
+                 = \alpha \cdot \pVector{x-z\\y+z}                                                          
+                 = \alpha \cdot \LinealTransformation \pVector{x\\y\\z}                                     \\
+                &= \alpha \cdot \LinealTransformation (v_1)                                                 
             \end{split}
             \end{equation*}
 
-        Por lo tanto las 2 propiedades se cumplen así que si que es una transformación lineal.
+            Por lo tanto las 2 propiedades se cumplen así que si que es una transformación lineal.
 
+        % ========================
+        % =====   EJEMPLO   ======
+        % ========================
+        \clearpage
+        \subsubsection{Ejemplo 2:}
 
-    % =====================================================
-    % ============       PROPIEDADES            ===========
-    % =====================================================
-    \clearpage
-    \section{Propiedades}
+            Ve que falla con el siguiente intento de Transformación Lineal:
 
-        \subsubsection{El $0_v$ se preserva}
-            Una Transformación Lineal debe llevar al $0_v$ de $V$ al $0_v$ de $W$
+            Sea $\mathbb{R}_2[x] \to \mathbb{R}_3[x]$ tal que:
+            \begin{equation*}
+                \LinealTransformation \pVector{a_0+a_1x+a_2x^2} = \pVector{3+a_0x+a_1x^2+a_2x^3}
+            \end{equation*}
 
-            Su demostración es muy sencilla, pues
-            $\LinealTransformation(0_v)=\LinealTransformation(v_v-v_v)=\LinealTransformation(v_v)-\LinealTransformation(v_v)=0_w$
+            Esta muere de una manera muy estúpida, pues no lleva el cero vector al nuevo cero vector XD.
 
-        \subsubsection{Operador Lineal}
-            Decimos que $\LinealTransformation$ (alguna transformación lineal) es un
-            operador lineal en V si y solo si su dominio y su contradominio son el mismo.
 
 
 % ======================================================================================
 % =============================       KERNEL E IMAGEN              =====================
 % ======================================================================================
+\clearpage
 \chapter{Kernel e Imagen}
 
     % ==================================================
-    % ===================   KERNEL    ==================
+    % ==================    KERNEL     =================
     % ==================================================
     \clearpage
     \section{Kernel}
-        \subsubsection{Definición}
         \textbf{El Kernel} de una Transformación Lineal o \textbf{Núcleo} es el conjunto 
         de todos los vectores originales (osea $v \in V$) tales que al momento de
         aplicarles la transformación estos son llevados al origen (osea $0_w$)
@@ -232,17 +268,66 @@
         \end{equation}
 
         Recuerda que un Kernel siempre siempre sera un Subespacio Vectorial y solemos
-        llamar a su dimensión la 'Nulidad'.
+        llamar a su dimensión la \textbf{Nulidad}.
 
-        Podemos decir que el Kernel es el espacio solución del Sistema Homogeneo.
+        Podemos decir que el Kernel es el espacio solución del Sistema Homogéneo.
         \begin{equation*}
             \{x \in K^m |\quad Ax = 0_{m \times 1} \}
         \end{equation*}
 
+    \vfill
+
+    % ==================================================
+    % ==================    IMAGEN     =================
+    % ==================================================
+    \section{Imágen}
+        Tambien tenemos a la hermana perdida del Kernel, la llamamos la \textbf{Imágen},
+        la cual la definimos así:
+
+        La \textbf{Imágen} de una Transformación Lineal es el conjunto de todos los vectores
+        nuevos (osea $w \in W$) que podemos 'crear' desde los vectores originales
+        (osea $v \in V$) usando la Transformación Lineal.
+
+        O dicho con el bello lenguaje de matemáticas:
+        \begin{equation}
+            Imagen(\LinealTransformation) = \{w \in W |\quad \exists v \in V ,\quad \LinealTransformation(v) = w\}
+        \end{equation}
+
+        Recuerda que una Imagen siempre siempre sera un Espacio Vectorial y solemos
+        llamar a su dimensión \textbf{Rango}.
+
+        Podemos decir que el Imagen es el conjunto de terminos independientes para los cuales
+        hay solución.
+        \begin{equation*}
+            \{b \in K^m |\quad \exists x \in K^m, Ax = b \}
+        \end{equation*}
+
+    % ===================================================
+    % ============   PROPIEDADES    =====================
+    % ===================================================
+    \clearpage
+    \section{Propiedades de Ambas}
+        Podemos hablar de que ambas paracen ser como hermanas perdidas,
+        veamos que propiedades tenemos:
+
+        \begin{itemize}
+            \item Llamemos Rango a $Dim(Imagen(\LinealTransformation))$
+            \item Llamemos Nulidad a $Dim(Kernel(\LinealTransformation))$
+            \item Ambas \textbf{Son SubEspacios Vectoriales}.
+            \item Estas deacuerdo que todos los vectores o bien son llevados al cero
+            vector o no, así que tiene sentido hablar de que  \textbf{La Suma de la Nulidad
+            con el Rango te da la dimensión de V}, es decir: $dim(V) = dim(Kernel)+dim(Imagen)$
+        \end{itemize}
+
+    % =====================================================
+    % ============       EJEMPLOS               ===========
+    % =====================================================
+    \clearpage
+    \section{Ejemplos}
+
         % ========================
         % =====   EJEMPLO    =====
         % ========================
-            \clearpage
             \subsubsection{Ejemplo}
             Encuentra el Kernel de la siguiente Transformación Lineal:
             $\LinealTransformation : \mathbb{R}^3 \to \mathbb{R}_2[x]$ tal que: 
@@ -297,34 +382,6 @@
             \begin{equation*}
                 Kernel(\LinealTransformation) = <(1,-1,1)>
             \end{equation*}
-
-
-    % ===================================================
-    % ===================   IMAGEN    ===================
-    % ===================================================
-    \clearpage
-    \section{Imágen}
-        Tambien tenemos a la hermana perdida del Kernel, la llamamos la \textbf{Imágen},
-        la cual la definimos así:
-
-        \subsubsection{Definición}
-        La imágen de una Transformación Lineal es el conjunto de todos los vectores
-        nuevos (osea $w \in W$) que podemos 'crear' desde los vectores originales
-        (osea $v \in V$) usando la Transformación Lineal.
-
-        O dicho con el bello lenguaje de matemáticas:
-        \begin{equation}
-            Imagen(\LinealTransformation) = \{w \in W |\quad \exists v \in V ,\quad \LinealTransformation(v) = w\}
-        \end{equation}
-
-        Recuerda que una Imagen siempre siempre sera un Espacio Vectorial y solemos
-        llamar a su dimensión 'Rango'.
-
-        Podemos decir que el Imagen es el conjunto de terminos independientes para los cuales
-        hay solución.
-        \begin{equation*}
-            \{b \in K^m |\quad \exists x \in K^m, Ax = b \}
-        \end{equation*}
 
 
         % ========================
@@ -391,27 +448,12 @@
                 Imagen(\LinealTransformation) = <(1+x^2) , (x+x^2)>
             \end{equation*}
 
-    % ===================================================
-    % ============   PROPIEDADES    =====================
-    % ===================================================
-    \clearpage
-    \section{Propiedades de Ambas}
-        Podemos hablar de que ambas paracen ser como hermanas perdidas,
-        veamos que propiedades tenemos:
-
-        \begin{itemize}
-            \item Llamemos Rango a $Dim(Imagen(\LinealTransformation))$
-            \item Llamemos Nulidad a $Dim(Kernel(\LinealTransformation))$
-            \item Ambas \textbf{Son SubEspacios Vectoriales}.
-            \item Estas deacuerdo que todos los vectores o bien son llevados al cero
-            vector o no, así que tiene sentido hablar de que  \textbf{La Suma de la Nulidad
-            con el Rango te da la dimensión de V}, es decir: $dim(V) = dim(Kernel)+dim(Imagen)$
-        \end{itemize}
 
 
 % ======================================================================================
 % ==========================       BIYECTIVA Y SUPRAYECTIVA        =====================
 % ======================================================================================
+\clearpage
 \chapter{Tipos de Transformaciones}
 
     % =====================================================
@@ -1065,29 +1107,6 @@
             \end{equation*}
 
             Por lo tanto encontramos que $\beta_1 = -2 $ y $ \beta_2 = 1$
-
-
-        
-        
-
-
-% =====================================================
-% ============        BIBLIOGRAPHY   ==================
-% =====================================================
-\clearpage
-\bibliographystyle{plain}
-    \begin{thebibliography}{9}
-
-    % ============ REFERENCE #1 ========
-    \bibitem{Sitio1} 
-        ProbRob
-        \\\texttt{Youtube.com}
-
-
-     
-
-\end{thebibliography}
-
 
 
 \end{document}
