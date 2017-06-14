@@ -76,15 +76,15 @@
     \DeclareMathOperator \Naturals {\mathbb{N}}                     %Use: \Naturals por Notation
     \DeclareMathOperator \LinealTransformation {\mathcal{T}}        %Use: \LinealTransformation for a cool T
     \DeclareMathOperator \LT {\mathcal{T}}                          %Use: \LT for a cool T
+    \DeclareMathOperator \Space {\quad}                             %Use: \Space for a cool space
 
+    % =====  VECTORS  ==========
     \newcommand{\pVector}[1]{                                       %Use: \pVector {Matrix Notation} use parentesis
         \ensuremath{\begin{pmatrix}#1\end{pmatrix}}                 %Example: \pVector{a\\b\\c} or \pVector{a&b&c} 
     }
     \newcommand{\Vector}[1]{                                        %Use: \Vector {Matrix Notation} no parentesis
         \ensuremath{\begin{matrix}#1\end{matrix}}                   %Example: \Vector{a\\b\\c} or \Vector{a&b&c}
     }
-
-
 
 % =====================================================
 % ============        COVER PAGE       ================
@@ -535,110 +535,175 @@
 \chapter{Tipos de Transformaciones}
 
     % =====================================================
-    % ========      SUPRAYECTIVA E INYECTIVAS       =======
+    % =========    TIPOS DE TRANSFORMACIONES      =========
     % =====================================================
     \clearpage
-    \section{Inyectiva y Supreyectiva}
-        Vamos a declarar muchas cosas, así que empecemos:
-        \begin{itemize}
-            \item Sea $\LinealTransformation : V \to W $ una transformación lineal.
-            \item Sea $S \subseteq V$ donde $S$ es un conjunto de vectores base (tal que $<S> = V$)
-            \item Además sean $v_1, v_2, \cdots \in V$ y linealmente independientes.
-        \end{itemize}
-        
-        Obviamente sabemos que $<\LinealTransformation(S)> = Imagen(\LinealTransformation)$
 
-        \subsection{Suprayectiva}
-        Recuerda que el hecho de que una función $f(x)$ sea suprayectiva si es que existe para cualquier
-        $y$ podemos encontrar a una $x$ tal que $f(x)=y$.
-        Esto tambien lo podemos ver si es que $Imagen(f)= y$
-
-        $\LinealTransformation$ es suprayectiva si y solo si $<\LinealTransformation(s)> = W$
-
-        Esto lo que nos dice es a que vectores puedo alcanzar basicamente. 
-
-
-        \subsection{Inyectiva}
+    % ===================================
+    % ========   INYECTIVA        =======
+    % ===================================
+    \section{Transformación Inyectiva}
         Recuerda que el hecho de una función $f(x)$ sea inyectiva si es que para cualquiera $x_1, x_2$
-        que pase que $f(x_1) = f(x_2)$ implica que $x_1=x_2$.
-
+        en las que pase que $f(x_1) = f(x_2)$ , esto implica que $x_1 = x_2$.
 
         $\LinealTransformation$ es inyectiva si y solo si $Kernel(\LinealTransformation) = \{0_v\}$
 
-        Ademas podemos saber que si $\LinealTransformation$ es inyectiva, entonces 
-        $\LinealTransformation(v_1)+\LinealTransformation(v_2)+\cdots$ son linealmente independientes.
+        Es my útil recordar que si $\LT$ es una transformación inyectiva, entonces un conjunto
+        de vectores independientes en $V$, al momento de aplicarles la transformación lineal
+        nos genera un conjunto de vectores en $W$ que son linealmente independientes.
 
-        % ====================================
-        % =========   PROPIEDADES    =========
-        % ====================================
-        \clearpage
-        \subsection{Propiedades}
+    % ===================================
+    % ========   SUPRAYECTIVA     =======
+    % ===================================
+    \section{Transformación Suprayectiva}
+        Recuerda que el hecho de que una función $f(x)$ sea suprayectiva es que para cualquier
+        $y$ podemos encontrar a alguna $x$ tal que $f(x)=y$. Esto tambien lo podemos ver si es que $Imagen(f)= y$
 
-        Sea $\LinealTransformation_1 : V \to W $ y $\LinealTransformation_2 : W \to U $
-        transformaciones lineales.
+        $\LinealTransformation$ es suprayectiva si y solo si $Imagen(\LT) = W$
+
+        También otra forma de verlo es que las Transformaciones Suprayectivas son aquellas en las que si
+        tienes una base en $V$ al momento de aplicarles la transformación obtendrás una base en $W$.
+
+
+    % ===================================
+    % ========   ISOMORFISMO      =======
+    % ===================================
+    \clearpage
+    \section{Isomorfismo}
+        Sea $\LinealTransformation : V \to W $ una transformación lineal.
+
+        Decimos que dos espacios vectoriales $V$ y $W$ son isomorfos si y solo si es que existe
+        una transformación lineal ($\LT$) biyectiva (es decir, que es inyectiva y suprayectiva)
+        entre estos espacios.
+
+        Hablemos mas de esta definición.
+
+        El hecho de que dos espacios sean isomorfos nos dice que \textbf{existe al menos una transformación lineal}
+        biyectiva, pero no nos dice que cualquier $\LT$ que tomemos será biyectiva.
+
+        Decimos también que si encontramos dicha $\LT$ que es biyectiva entre dos espacios isomorfos la solemos
+        llamar un isoformismo.
+
+        \subsubsection{Equivalencia}
+
+        Podemos ademas saber que el hecho de que 2 espacios seas isomorfos
+        (digamos que lo dibujamo como $\cong$) es una relación de equivalencia.
+        Esto quiere decir que:
 
         \begin{itemize}
-            \item Si $\LinealTransformation_1$ es biyectiva,entonces
-            $\LinealTransformation_1^-1: W \to V$ también es una Transformación Lineal.
-
-            \item $\LinealTransformation_2 \circ \LinealTransformation_1: V \to U$
-            es una Transformación Lineal.
+            \item $V \cong V$
+            \item $(V \cong W)$, entonces $(W \cong V)$
+            \item $(V \cong W)$ y $(W \cong U)$, entonces $(V \cong U)$
         \end{itemize}
 
-        Podemos también saber esta interesante propiedad:\\
-        Sea $\LinealTransformation: V \to W$ tal que: $dim(V) = n$ y la $dim(W)=m$
-        \begin{itemize}
-            \item Si $n > m$, $\LinealTransformation$ no es inyectiva.
-            \item Si $n < m$, $\LinealTransformation$ no es suprayectiva.
-        \end{itemize}
 
-        Si sabemos que $dim(V) = dim(W)$
-        Entonces los siguientes enunciados son equivalentes:
-        \begin{itemize}
-            \item $\LinealTransformation$ es inyectiva
-            \item $\LinealTransformation$ es suprayectiva
-            \item $\LinealTransformation$ es biyectiva
-        \end{itemize}
+        \subsubsection{Se Conservan Propiedades}
+
+        Cualquier propiedad que tuviera un conjunto de vectores en $V$ se mantiene
+        en su imagen, es decir se mantienen después de que le apliquemos la
+        transformación lineal isomorfica, si eran linealmente independientes, lo segirán siendo,
+        si eran un subespacio, lo seguiran siendo y así.
+
+
+    % ===================================
+    % ========   PROPIEDADES      =======
+    % ===================================
+    \clearpage
+    \section{Propiedades}
+
+        \subsection{Biyectivas}
+        
+            Recuerda que decimos que una transformación lineal es biyectiva si es inyectiva y suprayectiva.
+
+            \subsubsection{Composición de Transformaciones Lineales}
+            Sea $\LT_1 : V \to W $ y $\LT_2 : W \to U $ transformaciones lineales, entonces
+            $\LT_2 \circ \LT_1: V \to U$ es una Transformación Lineal.
+
+
+            \subsubsection{Inversa de una Transformada}
+            Si $\LinealTransformation : V \to W$ es biyectiva,entonces
+            $\LinealTransformation^-1: W \to V$ también es una Transformación Lineal.
+
+
+        \subsection{Inyectiva y Suprayectiva}
+
+            \subsubsection{Encontrarlas usando Dimensión}
+
+                Sea $\LinealTransformation: V \to W$, entonces:
+
+                \begin{itemize}
+                    \item Si $dim(V) > dim(W)$, $\LT$ no es inyectiva.
+                    \item Si $dim(V) < dim(W)$, $\LT$ no es suprayectiva.
+                \end{itemize}
+
+            \subsubsection{Si sabemos que $dim(V) = dim(W)$}
+
+                Si sabemos que $dim(V) = dim(W)$
+                Entonces los siguientes enunciados son equivalentes:
+                \begin{itemize}
+                    \item $\LinealTransformation$ es inyectiva
+                    \item $\LinealTransformation$ es suprayectiva
+                    \item $\LinealTransformation$ es biyectiva
+                \end{itemize}
+
+                Es decir, si tenemos esta gran información acerca de las dimensiones
+                entonces basta con encontrar si la transformación es inyectiva o suprayectiva
+                y sabiendo eso tendremos toda la información.
+
+
+
+
+
+    % =====================================================
+    % ============       EJEMPLOS               ===========
+    % =====================================================
+    \clearpage
+    \section{Ejemplos de Inyectivas / Suprayectivas}
 
 
         % ========================
         % =====   EJEMPLO    =====
         % ========================
-            \clearpage
-            \subsubsection{Ejemplo}
-            Verificar si las siguiente transformación lineal si es biyectiva ó inyectiva:
+            \subsubsection{\large Ejemplo 1}
+            Verificar si las siguiente transformación lineal si es Inyectiva o Suprayectiva:
+
             $\LinealTransformation : \mathbb{R}^2 \to \mathbb{R}_2[x]$ tal que: 
-            $\LinealTransformation(\begin{matrix}a\\b\end{matrix}) = (a-b) + (a)x + (a+b)x^2$
+            $\LinealTransformation \pVector{a\\b} = (a-b) + (a)x + (a+b)x^2$
 
             \textbf{\\Inyectiva}
+            b
+            Lo que podemos ver es que el Kernel de la transformación lineal
+            solo tendrá al $0_v$, veamos que esto es lo que pasa comprobando que $\pVector{a\\b}$
+            tiene que ser $\pVector{0\\0}$.
 
-            Para ver que lo es, lo que podemos ver es que el Kernel de la transformación lineal
-            solo tendrá al $0_v$, veamos que podemos ver que esto se cumple porque:
-            $\begin{matrix}a\\b\end{matrix} \in Kernel$
+            Supón un vector $\pVector{a\\b} \in Kernel$
 
-            Entonces sabemos que para lograr el cero vector a tiene que ser cero (porque es lo 
+            Para que $\LT\pVector{a\\b} = \pVector{0\\0}$ entonces $a=0$ (porque es lo 
             único que multiplica a $x$) y ahora sabemos que b también pues $(a+b)x^2=0x^2$
 
-            Por lo tanto si que el Kernel solo tiene al $0_v$ y por lo tanto esta transformada si que es Inyectiva.
+            Por lo tanto si que el Kernel solo tiene al $0_v$
+            y por lo tanto esta transformada si que es Inyectiva.
 
 
             \textbf{\\Suprayectiva}
 
-            Para que fuera supreyectiva, una base de $\mathbb{R}^2$ tras ser transformada debería ser un capaz de
-            generar a $\mathbb{R}_2[x]$ pero propongamos a la base canonica de  $ \mathbb{R}^2$ y esta no puede
-            ser base para $\mathbb{R}_2[x]$ pues necesito mínimo 3 vectores para generar a $\mathbb{R}_2[x]$.
+            Para que fuera suprayectiva, una base de $\Real^2$ tras ser transformada debería ser un capaz de
+            generar a $\Real_2[x]$ pero propongamos a la base canónica de $\Real^2$ y esta no puede
+            ser base para $\Real_2[x]$ pues necesito mínimo 3 vectores para generar a $\Real_2[x]$.
 
             Por lo tanto no es Suprayectiva.
 
+            Y por esto mismo, tampoco es biyectiva.
 
         % ========================
         % =====   EJEMPLO    =====
         % ========================
             \clearpage
-            \subsubsection{Ejemplo}
-            Verificar si las siguiente transformación lineal si es biyectiva ó inyectiva:
-            $\LinealTransformation : M_{2 \times 2}(\mathbb{R}) \to \mathbb{R}^3$ tal que: 
-            $\LinealTransformation(\begin{matrix}a&b\\c&d\end{matrix}) = \begin{pmatrix}a-b+c\\d-c\\-a+b-c\end{pmatrix}$
+            \subsubsection{\large Ejemplo 2}
+            Verificar si las siguiente transformación lineal si es Inyectiva o Suprayectiva:
+
+            $\LinealTransformation : M_{2 \times 2}(\Real) \to \Real^3$ tal que 
+            $\LT \pVector{a&b\\c&d} = \pVector{a-b+c\\d-c\\-a+b-c} \begin{pmatrix}a-b+c\\d-c\\-a+b-c\end{pmatrix}$
 
             \textbf{\\Inyectiva}
 
@@ -665,68 +730,20 @@
             Por lo tanto no es Suprayectiva :(
 
 
+
+
+
     % =====================================================
-    % ============           ISOMORFISMO            =======
+    % ============       EJEMPLOS               ===========
     % =====================================================
     \clearpage
-    \section{Isomorfismo}
-        Sea $\LinealTransformation : V \to W $ una transformación lineal.
-
-        Decimos que $\LinealTransformation$ es un isoformismo y que V es isomorfo a W 
-        ($V \cong W$) si $\LinealTransformation$ es biyectiva.
-
-        Decir que $V$ sea isomorfo con $W$ quiere decir que existe alguna transformación
-        lineal Biyectiva entre ambas.
-
-        % ====================================
-        % =========   PROPIEDADES    =========
-        % ====================================
-        \subsection{Propiedades}
-
-            \textbf{\\Inverso}
-
-            Algo interesante que recordar es que (obviamente) también
-            $\LinealTransformation^-1 : W \to V $ es una transformación lineal
-            y también es un isomorfismo.
-
-            \textbf{\\Equivalencia}
-
-            Podemos ademas saber que $\cong$ es una relación de equivalencia.
-            Esto quiere decir que:
-
-            \begin{itemize}
-                \item $V \cong V$
-                \item $(V \cong W)$, entonces $(W \cong V)$
-                \item $(V \cong W)$ y $(W \cong U)$, entonces $(V \cong U)$
-            \end{itemize}
-
-            \textbf{\\Se Conservan Propiedades}
-
-            Cualquier propiedad que tuviera un conjunto de vectores en $V$ se mantiene
-            en su imagen, es decir se mantienen después de que le apliquemos la
-            transformación lineal, si eran linealmente independientes, lo segirán siendo,
-            si eran un subespacio, lo seguiran siendo y así.
-
-            \textbf{\\Simplicidad de los Espacios Equivalentes}
-
-            Supongamos que tenemos una transformación lineal entre dos espacios que ya
-            sabemos que son isomorfos, entonces cualquiera de las siguientes 3 proposiciones
-            son equivalentes, es decir, con que vamos que alguna es cierta, es obvio que las
-            demas tambien lo son y con que una sea falsa, todas las demas son falsas.
-            \emph{Nota muy importante en que solo aplica para espacios en los que sabemos que ya sabemos que son isomorfos.}
-
-            \begin{tasks}(3)
-                \task $\LinealTransformation$ es Inyectiva
-                \task $\LinealTransformation$ es Suprayectiva
-                \task $\LinealTransformation$ es Biyectiva
-            \end{tasks}
+    \section{Ejemplos de Isomorfismos}
 
 
 
         % ========================
         % =====   EJEMPLO    =====
         % ========================
-            \clearpage
             \subsubsection{Ejemplo}
             Verificar si las siguiente transformación lineal si es un isomorfo:
             $\LinealTransformation : \mathbb{R}^3 \to \mathbb{R}_2[x]$ tal que: 
@@ -803,35 +820,7 @@
             Por lo tanto NO es Isomorfica.
 
 
-    % ====================================
-    % =========   PROPIEDADES    =========
-    % ====================================
-    \clearpage
-    \section{Gran Teorema de Algebra Lineal}
 
-        Dada una Matriz ($M_{n \times n} (K)$) y sea una Transformación Lineal
-        ($\LinealTransformation : K^n \to K^n$) dada por: $T(x) = Ax$, es decir
-        la transformación es solo multiplicar a cualquier vector por la Matriz ya 
-        dicha.
-
-        Entonces todas las siguientes proposiciones son equivalentes:
-        \begin{itemize}
-            \item $A$ es invertible
-            \item $det(A)$ es diferente de cero
-            \item El sistema homogeneo $A$ solo tiene una unica solución 
-            \item $\LinealTransformation$ es Inyectiva, y todo a lo que es equivalente:
-                \begin{itemize}
-                    \item Su Kernel solo tiene al cero vector
-                    \item La dimensión del Kernel es cero
-                \end{itemize}
-
-            \item $\LinealTransformation$ es Suprayectiva, y todo a lo que es equivalente.
-                \begin{itemize}
-                    \item Su Imagen tiene a todo $K^n$
-                    \item La dimensión de la Imagen es $n$
-                \end{itemize}
-            \item $\LinealTransformation$ es Biyectiva
-        \end{itemize}
 
 % ======================================================================================
 % ==========================       MATRIZ ASOCIADA                 =====================
@@ -1037,7 +1026,6 @@
         Podemos descubrir que A es semejante a B si y solo si A y B son matrices asociadas a
         transformaciones lineales del estilo $\LinealTransformation : K^n \to K^n$ con la misma
         base en el dominio que el contradominio.
-
 
 
 
