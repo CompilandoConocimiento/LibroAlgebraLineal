@@ -552,6 +552,12 @@
         de vectores independientes en $V$, al momento de aplicarles la transformación lineal
         nos genera un conjunto de vectores en $W$ que son linealmente independientes.
 
+        También una interesante forma de saber si una transformación es inyectiva es recordar que:
+
+        Si tienes un conjunto de de vectores base de $V$, al momento de crear la transformación lineal
+        este conjunto de vectores se vuelven linealmente dependientes, entonces no es una 
+        transformación inyectiva.
+
     % ===================================
     % ========   SUPRAYECTIVA     =======
     % ===================================
@@ -622,7 +628,7 @@
 
             \subsubsection{Inversa de una Transformada}
             Si $\LinealTransformation : V \to W$ es biyectiva,entonces
-            $\LinealTransformation^-1: W \to V$ también es una Transformación Lineal.
+            $\LinealTransformation^{-1}: W \to V$ también es una Transformación Lineal.
 
 
         \subsection{Inyectiva y Suprayectiva}
@@ -649,6 +655,9 @@
                 Es decir, si tenemos esta gran información acerca de las dimensiones
                 entonces basta con encontrar si la transformación es inyectiva o suprayectiva
                 y sabiendo eso tendremos toda la información.
+
+                También es importante ver su determinante, pues es una buena forma, si su determiante
+                es diferente de cero, entonces es biyectiva, con todo lo que ya sabemos que conlleva eso.
 
 
 
@@ -703,19 +712,19 @@
             Verificar si las siguiente transformación lineal si es Inyectiva o Suprayectiva:
 
             $\LinealTransformation : M_{2 \times 2}(\Real) \to \Real^3$ tal que 
-            $\LT \pVector{a&b\\c&d} = \pVector{a-b+c\\d-c\\-a+b-c} \begin{pmatrix}a-b+c\\d-c\\-a+b-c\end{pmatrix}$
+            $\LT \pVector{a&b\\c&d} = \pVector{a-b+c\\d-c\\-a+b-c}$
 
             \textbf{\\Inyectiva}
 
-            Podemos verlo usando la contrapositiva de una proposión mas famosa, basicamente es que si
-            tienes un conjunto de de vectores base al momento de crear la transformación lineal estos son dependientes, 
-            entonces no es inyectiva, y eso lo podemos ver con la base canonica:
+            Podemos verlo usando la contrapositiva de una proposión más famosa, basicamente es que si
+            tienes un conjunto de de vectores base que al aplicarles la transformación lineal estos se
+            vuelven un conjunto dependientes, entonces no es inyectiva, y eso lo podemos ver con la base canonica:
 
             \begin{equation*}
-                \LinealTransformation(\begin{matrix}1&0\\0&0\end{matrix}) = \begin{pmatrix}1\\0\\-1\end{pmatrix}, 
-                \LinealTransformation(\begin{matrix}0&1\\0&0\end{matrix}) = \begin{pmatrix}-1\\0\\1\end{pmatrix}, 
-                \LinealTransformation(\begin{matrix}0&0\\1&0\end{matrix}) = \begin{pmatrix}1\\-1\\-1\end{pmatrix}, 
-                \LinealTransformation(\begin{matrix}0&0\\0&1\end{matrix}) = \begin{pmatrix}0\\1\\0\end{pmatrix} 
+                \LinealTransformation \pVector{1&0\\0&0} = \pVector{1\\0\\-1}, 
+                \LinealTransformation \pVector{0&1\\0&0} = \pVector{-1\\0\\1}, 
+                \LinealTransformation \pVector{0&0\\1&0} = \pVector{1\\-1\\-1}, 
+                \LinealTransformation \pVector{0&0\\0&1} = \pVector{0\\1\\0}, 
             \end{equation*}
 
             Ya que estos vectores no son linealmente independientes (digo son 4 vectores en un espacio de dimensión 3)
@@ -732,7 +741,6 @@
 
 
 
-
     % =====================================================
     % ============       EJEMPLOS               ===========
     % =====================================================
@@ -744,11 +752,11 @@
         % ========================
         % =====   EJEMPLO    =====
         % ========================
-            \subsubsection{Ejemplo}
+            \subsubsection{\large Ejemplo 1}
             Verificar si las siguiente transformación lineal si es un isomorfo:
-            $\LinealTransformation : \mathbb{R}^3 \to \mathbb{R}_2[x]$ tal que: 
+            $\LinealTransformation : \Real^3 \to \Real_2[x]$ tal que: 
             \begin{equation*}
-            \LinealTransformation(\begin{matrix}a\\b\\c\end{matrix}) = (a+b)+(a+c)x+(b+c)x^2
+            \LinealTransformation \pVector{a\\b\\c} = (a+b)+(a+c)x+(b+c)x^2
             \end{equation*}
 
 
@@ -759,12 +767,10 @@
             para verlo basta ve la matriz:
 
             \begin{equation*}
-            \begin{pmatrix}1&1&0\\1&0&1\\0&1&1\end{pmatrix}
-                \begin{pmatrix}a\\b\\c\end{pmatrix}=
-                \begin{pmatrix}0\\0\\0\end{pmatrix}
+                \pVector{1&1&0\\1&0&1\\0&1&1} pVector{a\\b\\c} = \pVector{0\\0\\0}
             \end{equation*}
 
-            Y vemos que su determiante no es cero (es 2 :p) por lo tanto el sistema homogeneo solo
+            Y vemos que su determiante no es cero (es 2 :p) por lo tanto el sistema homogéneo solo
             tiene la solución trivial, es decir, donde todo es cero.
 
             Por lo tanto es Inyectiva.
@@ -773,35 +779,36 @@
 
             Lo que nos piden es ver que:
             \begin{equation*}
-                \LinealTransformation(\begin{matrix}a\\b\\c\end{matrix}) = (a_0) +(a_1)x+(a_2)x^2
+                \LinealTransformation \pVector{a\\b\\c} = (a_0) +(a_1)x+(a_2)x^2
             \end{equation*}
 
-            Es decir:
+            Es decir, nos pider ver la solución a:
 
             \begin{equation*}
-                \begin{pmatrix}1&1&0\\1&0&1\\0&1&1\end{pmatrix}
-                \begin{pmatrix}a\\b\\c\end{pmatrix}
-                =
-                \begin{pmatrix}a_0\\a_1\\a_2\end{pmatrix}
+                \pVector{1&1&0\\1&0&1\\0&1&1} \pVector{a\\b\\c} = \pVector{a_0\\a_1\\a_2}
             \end{equation*}
 
-            Y vemos que esto si que genera a $\mathbb{R}_2[x]$
+            Y vemos que esto si que genera a $\mathbb{R}_2[x]$, pues ambos espacios tienen la misma dimensión
+            y ya probamos que es una transformación lineal.
 
             Por lo tanto es Inyectiva.  
 
-            Por lo tanto si que es Isomorfica.   
+            Por lo tanto si que es Isomorfismo.   
 
 
         % ========================
         % =====   EJEMPLO    =====
         % ========================
             \clearpage
-            \subsubsection{Ejemplo}
-            Verificar si las siguiente transformación lineal si es un isomorfo:
-            $\LinealTransformation : \mathbb{R}^3 \to \mathbb{R}_2[x]$ tal que: 
+            \subsubsection{\large Ejemplo 2}
+
+            Verificar si las siguiente transformación lineal si es un isomorfismo:
+
+            $\LinealTransformation : \Real^3 \to \Real_2[x]$ tal que: 
             \begin{equation*}
-                \LinealTransformation(\begin{matrix}a\\b\\c\end{matrix}) = (a+b-2c)+(a-2b+c)x+(-2a+b+c)x^2
+                \LinealTransformation \pVector{a\\b\\c}= (a+b-2c)+(a-2b+c)x+(-2a+b+c)x^2
             \end{equation*}
+
 
             \textbf{\\Inyectiva}
 
@@ -809,7 +816,7 @@
             que hay que ver el que cualquier elemento del Kernel tiene que ser aquel con $a=b=c=0$
             para verlo basta ve la matriz:
 
-            $\begin{pmatrix}1&1&-2\\1&-2&1\\-2&1&1\end{pmatrix} \begin{pmatrix}a\\b\\c\end{pmatrix}=
+            $\pVector{1&1&-2\\1&-2&1\\-2&1&1} \pVector \begin{pmatrix}a\\b\\c\end{pmatrix}=
                 \begin{pmatrix}0\\0\\0\end{pmatrix}$
 
             Y vemos que su determiante es cero por lo tanto el sistema homogeneo NO solo
@@ -817,7 +824,7 @@
 
             Por lo tanto es NO Inyectiva.
 
-            Por lo tanto NO es Isomorfica.
+            Por lo tanto NO es Isomorfismo.
 
 
 
