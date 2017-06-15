@@ -82,6 +82,9 @@
     \newcommand{\pVector}[1]{                                       %Use: \pVector {Matrix Notation} use parentesis
         \ensuremath{\begin{pmatrix}#1\end{pmatrix}}                 %Example: \pVector{a\\b\\c} or \pVector{a&b&c} 
     }
+    \newcommand{\lVector}[1]{                                       %Use: \lVector {Matrix Notation} use parentesis
+        \ensuremath{\begin{vmatrix}#1\end{vmatrix}}                 %Example: \lVector{a\\b\\c} or \lVector{a&b&c} 
+    }
     \newcommand{\Vector}[1]{                                        %Use: \Vector {Matrix Notation} no parentesis
         \ensuremath{\begin{matrix}#1\end{matrix}}                   %Example: \Vector{a\\b\\c} or \Vector{a&b&c}
     }
@@ -747,13 +750,12 @@
     \clearpage
     \section{Ejemplos de Isomorfismos}
 
-
-
         % ========================
         % =====   EJEMPLO    =====
         % ========================
             \subsubsection{\large Ejemplo 1}
             Verificar si las siguiente transformación lineal si es un isomorfo:
+
             $\LinealTransformation : \Real^3 \to \Real_2[x]$ tal que: 
             \begin{equation*}
             \LinealTransformation \pVector{a\\b\\c} = (a+b)+(a+c)x+(b+c)x^2
@@ -767,7 +769,7 @@
             para verlo basta ve la matriz:
 
             \begin{equation*}
-                \pVector{1&1&0\\1&0&1\\0&1&1} pVector{a\\b\\c} = \pVector{0\\0\\0}
+                \pVector{1&1&0\\1&0&1\\0&1&1} \pVector{a\\b\\c} = \pVector{0\\0\\0}
             \end{equation*}
 
             Y vemos que su determiante no es cero (es 2 :p) por lo tanto el sistema homogéneo solo
@@ -777,12 +779,7 @@
 
             \textbf{\\Suprayectiva}
 
-            Lo que nos piden es ver que:
-            \begin{equation*}
-                \LinealTransformation \pVector{a\\b\\c} = (a_0) +(a_1)x+(a_2)x^2
-            \end{equation*}
-
-            Es decir, nos pider ver la solución a:
+            Lo que nos piden es ver la solución a:
 
             \begin{equation*}
                 \pVector{1&1&0\\1&0&1\\0&1&1} \pVector{a\\b\\c} = \pVector{a_0\\a_1\\a_2}
@@ -816,8 +813,10 @@
             que hay que ver el que cualquier elemento del Kernel tiene que ser aquel con $a=b=c=0$
             para verlo basta ve la matriz:
 
-            $\pVector{1&1&-2\\1&-2&1\\-2&1&1} \pVector \begin{pmatrix}a\\b\\c\end{pmatrix}=
-                \begin{pmatrix}0\\0\\0\end{pmatrix}$
+            \begin{equation*}
+                \pVector{1&1&-2\\1&-2&1\\-2&1&1} \pVector{a\\b\\c} = \pVector{0\\0\\0}
+            \end{equation*}
+            
 
             Y vemos que su determiante es cero por lo tanto el sistema homogeneo NO solo
             tiene la solución trivial, es decir, donde todo es cero.
@@ -833,6 +832,176 @@
 % ==========================       MATRIZ ASOCIADA                 =====================
 % ======================================================================================
 \chapter{Matriz Asociada}
+
+    % =====================================================
+    % ============           MATRIZ ASOCIADA        =======
+    % =====================================================
+    \clearpage
+    \section{Encontrar $\LT$ usando una Base}
+
+        Resulta que podemos describir completamente a una transformación lineal ($\LT: V \to W$) solo
+        sabiendo que le hace a un conjunto de vectores ($B \subseteq V$) de una base ($<B> = V$).
+
+        Si lo piensas esto es bastante obvio, pues puedes describir cualquier vector como una 
+        combinación lineal de los vectores de la base, así que podemos ya saber que es lo que
+        le hace a un vector cualquiera.
+
+        De hecho usaremos esa idea para encontrar a nuestra $\LT$.
+
+
+        % ============================================
+        % ===========      EJEMPLOS        ===========
+        % ============================================
+        \clearpage
+        \subsection{Ejemplos}
+
+
+            % ========================
+            % =====   EJEMPLO    =====
+            % ========================
+            \subsubsection{\large Ejemplo 1}
+            Sea $\LinealTransformation : \mathbb{R}^3 \to \mathbb{R}_2[x]$ tal que: 
+
+            \begin{equation*}
+            \begin{split}
+                \LinealTransformation \pVector{1\\1\\0} &= 3 - x + 3x^2          \\
+                \LinealTransformation \pVector{1\\0\\1} &= -2 + 2x + x^2         \\
+                \LinealTransformation \pVector{0\\1\\1} &= 1 - x                 \\
+            \end{split}
+            \end{equation*}
+
+            Bueno, creo que esta de más decir que estos 3 vectores son una base, así que veamos como
+            describir cualquier vector en esta base:
+
+            \begin{equation*}
+            \begin{split}
+                \pVector{a\\b\\c} &=                                                                
+                \alpha_1\pVector{1\\1\\0}+\alpha_2\pVector{1\\0\\1}+\alpha_3\pVector{0\\1\\1}       
+                = \pVector{\alpha_1+\alpha_2\\\alpha_1+\alpha_3\\\alpha_2+\alpha_3} \\ 
+                &= \pVector{\alpha_1\\\alpha_2\\\alpha_3} \pVector{1&1&0\\1&0&1\\0&1&1}
+            \end{split}
+            \end{equation*}
+
+            Luego, basta con saber cuanto vale cada escalar de esta manera, usando Gauss-Jordan:
+
+            \begin{equation*}
+            \begin{split}
+                &\lVector{1&1&0\\1&0&1\\0&1&1} \lVector{a\\b\\c} \to
+                \lVector{1&1&0\\0&-1&1\\0&1&1} \lVector{a\\-a+b\\c} \to
+                \lVector{1&1&0\\0&1&-1\\0&1&1} \lVector{a\\a-b\\c} \\
+                &\lVector{1&0&1\\0&1&-1\\0&0&2} \lVector{b\\a-b\\-a+b+c} \to
+                \lVector{1&0&1\\0&1&-1\\0&0&1} \lVector{b\\a-b\\ \frac{-a+b+c}{2}} \to
+                \lVector{1&0&0\\0&1&0\\0&0&1} \lVector{\frac{a+b-c}{2}\\\frac{a-b+c}{2}\\ \frac{-a+b+c}{2}}
+            \end{split}
+            \end{equation*}
+
+            Y con esta importante información ya tenemos la información que queremos mira:
+            \begin{equation*}
+            \begin{split}
+                \alpha_1 &= \frac{a+b-c}{2} \\
+                \alpha_2 &= \frac{a-b+c}{2} \\
+                \alpha_3 &= \frac{-a+b+c}{2} \\
+            \end{split}
+            \end{equation*}
+
+
+            Ahora, queríamos todo esto, porque así ya podemos resolver esto:
+            \begin{equation*}
+            \begin{split}
+                \LT \pVector{a\\b\\c} &= 
+                \LT\pVector{
+                    \alpha_1\pVector{1\\1\\0}+
+                    \alpha_2\pVector{1\\0\\1}+
+                    \alpha_3\pVector{0\\1\\1}
+                }                                                   =
+                \alpha_1 \LT\pVector{1\\1\\0} + 
+                \alpha_2 \LT\pVector{1\\1\\0} + 
+                \alpha_3 \LT\pVector{1\\1\\0}                       \\
+            \end{split}
+            \end{equation*}
+
+            Y lo mas genial es que ya sabemos todo lo que vale eso, así que vamos a sustituir:
+
+            $\frac{a+b-c}{2} (3-x+3x^2) + \frac{a-b+c}{2}(-2+2x+x^2) + \frac{-a+b+c}{2}(1-x)$
+
+            Y si hicieramos el algebra veremos que los podemos reordenar como:
+
+            $(3b-3c)+(a-2b+c)x+(2a+b-c)x^2$
+
+
+            Y bingo, ya la tenemos :)
+
+
+    % =====================================================
+    % ============           MATRIZ ASOCIADA        =======
+    % =====================================================
+    \clearpage
+    \section{Matriz Asociada a Base Canónica}
+        La base canónica es muy bonita, de verdad, veamos primero que es lo que digo cuando digo
+        Matriz Asociada:
+
+        Sea $\LinealTransformation : V \to W $ una transformación lineal.
+
+        Y llamemos $v_1, v_2, \cdots$ a los vectores canonicos de $V$, entonces decimos que A
+        es la matriz asociada a la $\LinealTransformation$ , donde A cumple que:
+
+        \begin{equation*}
+            [\LT]  = \pVector{ [\LT(v_1)] & [\LT(v_2)] & \cdots [\LT(v_n)]}
+        \end{equation*}
+
+
+        % ============================================
+        % ===========      EJEMPLOS        ===========
+        % ============================================
+        \clearpage
+        \subsection{Ejemplos}
+
+
+            % ========================
+            % =====   EJEMPLO    =====
+            % ========================
+            \subsubsection{\large Ejemplo 1}
+                Encontremos la matriz asociada a la transformación:
+
+                $\LinealTransformation : \Real^2 \to \Real_1[x]$ tal que: 
+                $\LinealTransformation \pVector{a&b} = (a-b) + (a+b)x$
+
+                Esto creo es de lo más sencillo que podemosa hacer, mira:
+
+                \begin{equation*}
+                \begin{split}
+                    [\LT]  &= \pVector{ [\LT(v_1)] & [\LT(v_2)] & \cdots [\LT(v_n)]}        \\
+                    [\LT]  &= \pVector{ [\LT\pVector{1\\0}] & [\LT\pVector{0\\1}]  }        \\
+                    [\LT]  &= \pVector{ [1+x] & [-1+x]  }                                   \\
+                    [\LT]  &= \pVector{ \lVector{1\\x} & \lVector{-1\\x}  }                 \\
+                    [\LT]  &= \pVector{ 1 & -1 \\ 1 & 1  }                                  \\
+                \end{split}
+                \end{equation*}
+
+
+
+            \subsubsection{\large Ejemplo 2}
+                Encontremos la matriz asociada a la transformación:
+
+                $\LinealTransformation : \Real^3 \to \Real^2$ tal que: 
+                $\LinealTransformation \pVector{a\\b\\c} = \pVector{2x-y\\x+z}$
+
+                Esto creo es de lo más sencillo que podemosa hacer, mira:
+
+                \begin{equation*}
+                \begin{split}
+                    [\LT]  &= \pVector{ [\LT(v_1)] & [\LT(v_2)] & \cdots [\LT(v_n)]}                            \\
+                    [\LT]  &= \pVector{[\LT\pVector{1\\0\\0}]&[\LT\pVector{0\\1\\0}]&[\LT\pVector{0\\0\\1}]}    \\
+                    [\LT]  &= \pVector{[\pVector{2\\1}]&[\pVector{-1\\0}]&[\pVector{0\\1}]}                     \\
+                    [\LT]  &= \pVector{ 2 & -1 & 0 \\ 1 & 0 & 1  }                                              \\
+                \end{split}
+                \end{equation*}
+
+
+
+
+
+
 
     % =====================================================
     % ============           MATRIZ ASOCIADA        =======
