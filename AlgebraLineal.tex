@@ -569,16 +569,89 @@
             % ===============================
             % =========   PROPIEDADES =======
             % ===============================
+            \clearpage
             \subsection{Propiedades}
-                Sea $A \in M_{m \times n}(\mathbb{F})$ y $B \in M_{n \times p}(\mathbb{F})$
-                y $\alpha, \beta \in \mathbb{F}$ entonces tenemos que:
 
                 \begin{itemize}
-                    \item $A(B+C) = AB+AC$
 
-                    \item $\alpha(AB) = A(\alpha B)$
+                    \item Sea $A \in M_{m \times n}(\mathbb{F})$ y $B,C \in M_{n \times p}(\mathbb{F})$
+                        entonces tenemos que:
+                        $A(B+C) = AB+AC$
 
-                    \item $A(BC) = (AB)C$
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+
+                            Empecemos por ver que tienen el mismo tamaño:
+                            La matriz $(B+C) \in M_{n \times p}(\mathbb{F})$, por lo que 
+                            $A(B+C) \in M_{m \times p}(\mathbb{F})$.
+                            También tenemos que $AB, AC \in M_{m \times p}(\mathbb{F})$
+                            Por lo tanto tienen el mismo tamaño.
+
+                            Ahora veamos que un cualquier elemento arbitrario de ambas matrices es igual:
+                            \begin{equation*}
+                            \begin{split}
+                                [A(B+C)]_{i, j}    
+                                    &= \sum_{k=1}^{n} A_{i, k}(B_{k, j}+C_{k, j})  \\            
+                                    &= \sum_{k=1}^{n} (A_{i, k}B_{k, j}) + (A_{i, k}C_{k, j}) 
+                                    = \sum_{k=1}^{n} (A_{i, k}B_{k, j}) + \sum_{k=1}^{n} (A_{i, k}C_{k, j}) \\
+                                    &= [AB]_{i, j} + [AC]_{i, j} = [AB + AC]_{i, j} 
+                            \end{split}
+                            \end{equation*}
+
+                        \end{SmallIndentation}
+
+                    \item Sea $A \in M_{m \times n}(\mathbb{F})$ y $B \in M_{n \times p}(\mathbb{F})$
+                        entonces tenemos que: $\alpha(AB) = A(\alpha B)$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Creo que es más que obvio que tienen el mismo tamaño
+
+                        Ahora veamos que un cualquier elemento arbitrario de ambas matrices es igual:
+                        \begin{equation*}
+                        \begin{split}
+                            [\alpha(AB)]_{i, j}    
+                                = \alpha \sum_{k=1}^{n} A_{i, k} B_{k, j}              
+                                = \sum_{k=1}^{n} A_{i, k} (\alpha B_{k, j} )            
+                                = [A(\alpha B)]_{i, j}
+                        \end{split}
+                        \end{equation*}
+
+                    \end{SmallIndentation}
+
+                    \item Sea $A \in M_{m \times n}(\mathbb{F})$, $B \in M_{n \times p}(\mathbb{F})$
+                        y $C \in M_{p \times q}(\mathbb{F})$ entonces tenemos que:  \\
+                        $A(BC) = (AB)C$
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+
+                            Empecemos por ver que tienen el mismo tamaño:
+                            La matriz $(BC) \in M_{n \times q}(\mathbb{F})$, por lo que 
+                            $A(BC) \in M_{m \times q}(\mathbb{F})$.
+                            También tenemos que $(AB) \in M_{m \times p}(\mathbb{F})$, por lo que tenemos
+                            que $(AB)C \in M_{m \times q}(\mathbb{F})$.
+                            Por lo tanto tienen el mismo tamaño.
+
+                            Ahora veamos que un cualquier elemento arbitrario de ambas matrices es igual:
+                            \begin{equation*}
+                            \begin{split}
+                                [A(BC)]_{i, j}    
+                                    &= \sum_{k=1}^n A_{i, k} (BC)_{k, j}  
+                                     = \sum_{k=1}^n A_{i, k} \pVector{\sum_{k'=1}^p B_{k, k'} C_{k', j} }   \\
+                                    &= \sum_{k'=1}^n A_{i, k'} \pVector{\sum_{k=1}^p B_{k', k} C_{k, j} }   
+                                     = \sum_{k'=1}^n \pVector{\sum_{k=1}^p A_{i, k'} B_{k', k} C_{k, j} }   \\
+                                    &= \sum_{k=1}^p \pVector{\sum_{k'=1}^n A_{i,k'} B_{k',k} } C_{k, j}  
+                                     = \sum_{k=1}^p AB_{i, k} C_{k, j}
+                                     = [(AB)C]_{i, j}
+                            \end{split}
+                            \end{equation*}
+
+                        \end{SmallIndentation}
 
                 \end{itemize}
 
@@ -622,7 +695,7 @@
 
                 Sea $A \in M_{m \times n}(\mathbb{F})$ entonces definimos a $transpuesta(A)$ como:
                 \begin{equation}
-                    transpuesta(A) = A^T = \bVector{ A_{j, i} }_{i, j = 1}^{n, m}
+                    A^T = \bVector{ A_{j, i} }_{i, j = 1}^{n, m}
                 \end{equation}
 
                 Es decir $A^T \in M_{n \times m}(\mathbb{F})$
@@ -640,14 +713,32 @@
             % ===============================
             \clearpage
             \subsection{Propiedades}
-                Sea $A,B \in M_{m \times n}(\mathbb{F})$ y $\alpha \in \mathbb{F}$ entonces
-                tenemos que:
 
                 \begin{itemize}
 
-                    \item $(A^T)^T = A^T$
+                    \item Sea $A\in M_{m \times n}(\mathbb{F})$ entonces $(A^T)^T = A^T$
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
 
-                    \item $(A+B)^T = A^T + B^T$
+                            Empecemos por ver que tienen el mismo tamaño:
+                            La matriz $(A^T) \in M_{n \times m}(\mathbb{F})$, por lo que 
+                            $(A^T)^T \in M_{m \times n}(\mathbb{F})$.
+                            Por lo tanto tienen el mismo tamaño.
+
+                            Ahora veamos que un cualquier elemento arbitrario de ambas matrices es igual:
+                            \begin{equation*}
+                            \begin{split}
+                                [(A^T)^T]_{i, j}    
+                                    = [(A^T)]_{j, i}               
+                                = [A]_{i, j}
+                            \end{split}
+                            \end{equation*}
+
+                        \end{SmallIndentation}
+
+                    \item Sea $A,B \in M_{m \times n}(\mathbb{F})$ entonces 
+                        $(A+B)^T = A^T + B^T$
 
                         % ======== DEMOSTRACION ========
                         \begin{SmallIndentation}[1em]
@@ -661,17 +752,38 @@
                             Ahora veamos que un cualquier elemento arbitrario de ambas matrices es igual:
                             \begin{equation*}
                             \begin{split}
-                                [(A+B)^T]_{i, j}    &=                                \\
-                                                    &= [(A+B)]_{j, i}               
-                                                     = [A]_{j, i} + [B]_{j, i}      
-                                                     = [A^T]_{i, j} + [B^T]_{i, j}  \\
-                                                    &= [A^T + B^T]_{i, j}
+                                [(A+B)^T]_{i, j}    
+                                    = [(A+B)]_{j, i}               
+                                    = [A]_{j, i} + [B]_{j, i}      
+                                    = [A^T]_{i, j} + [B^T]_{i, j}
+                                = [A^T + B^T]_{i, j}
                             \end{split}
                             \end{equation*}
 
                         \end{SmallIndentation}
 
-                    \item $(\alpha A)^T = \alpha A^T$
+                    \item Sea $A \in M_{m \times n}(\mathbb{F})$ y $\alpha \in \mathbb{F}$ entonces:
+                        $(\alpha A)^T = \alpha A^T$
+                        
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+
+                            Es (creo) más que obvio que tendrán el mismo tamaño
+
+                            Ahora veamos que un cualquier elemento arbitrario de ambas matrices es igual:
+                            \begin{equation*}
+                            \begin{split}
+                                [(\alpha A)^T]_{i, j}    
+                                    = [\alpha A]_{j, i}               
+                                    = \alpha [A]_{j, i}
+                                = \alpha [A^T]_{i, j}
+                            \end{split}
+                            \end{equation*}
+
+                        \end{SmallIndentation}
+                                    
+
 
                     \item Sea $A \in M_{m \times n}(\mathbb{F})$ y $B \in M_{n \times p}(\mathbb{F})$
                         entonces tenemos que: $(AB)^T = B^T A^T$
@@ -680,9 +792,7 @@
                         \begin{SmallIndentation}[1em]
                             \textbf{Demostración}:
 
-                            Esta propiedad es muy interesante, primero veamos que ambas
-                            matrices que queremos que sean iguales tienen las mismas dimensiones:
-
+                            Veamos que ambas matrices tienen el mismo tamaño: 
                             La matriz $AB \in M_{m \times p}(\mathbb{F})$, por lo tanto la matriz
                             $(AB)^T \in M_{p \times m}(\mathbb{F})$, mientra que la matriz 
                             $B^T \in M_{p \times n}(\mathbb{F})$ y $A^T \in M_{n \times m}(\mathbb{F})$
@@ -692,21 +802,13 @@
                             Ahora veamos que un cualquier elemento arbitrario de ambas matrices es igual:
                             \begin{equation*}
                             \begin{split}
-                                [(AB)^T]_{i, j}     &=                                                  \\
-                                                    &= [(AB)]_{j, i} = \sum_{k=1}^{n} A_{j, k}B_{k, i} 
-                                                     = [A]_{j, i} + [B]_{j, i}      
-                                                     = [A^T]_{i, j} + [B^T]_{i, j}  \\
-                                                    &= [A^T + B^T]_{i, j}
+                                [(AB)^T]_{i, j}     
+                                    = [(AB)]_{j, i} = \sum_{k=1}^{n} A_{j, k}B_{k, i} 
+                                    = \sum_{k=1}^{n} B_{k, i} A_{j, k}   
+                                    = \sum_{k=1}^{n} B^T_{i, k} A^T_{k, j}            
+                                = [B^T A^T]_{i, j}
                             \end{split}
                             \end{equation*}
-
-                            Veamos que $[(AB)^T]_{i, j} = [(AB)]_{j, i} = \sum_{k=1}^{n} A_{j, k}B_{k, i}$
-                            Y veamos también que $[B^T A^T]_{i, j} = \sum_{k=1}^{n} B^T_{i, k} A^T_{k, j}$
-                            Exploremos más la última expresión y es que si te das cuenta
-                            $\sum_{k=1}^{n} B^T_{i, k} A^T_{k, j} = \sum_{k=1}^{n} B_{k, i} A_{j, k}$
-                            Y finalmente ya que $ab=ba$ tenemos que $\sum_{k=1}^{n} A_{j, k}B_{k, i}$
-                            Así que hemos demostrado que:
-                            $[(AB)^T]_{i, j} = \sum_{k=1}^{n} A_{j, k}B_{k, i} = [B^T A^T]_{i, j}$
 
                         \end{SmallIndentation}
 
@@ -717,6 +819,7 @@
             % ===============================
             % ===   MATRICES SIMETRICAS  ====
             % ===============================
+            \clearpage
             \subsection{Matrices Simétricas}
 
                 Una matriz $A \in M_{n}(\mathbb{F})$ se dice simétrica si cumple la propiedad:
