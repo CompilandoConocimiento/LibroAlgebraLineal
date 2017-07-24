@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  23 JUL 2017 16:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  23 JUL 2017 20:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1318,86 +1318,93 @@ LaTeX Info: Redefining \% on input line 822.
  [16
 
 ]
-LaTeX Info: Redefining \. on input line 842.
-LaTeX Info: Redefining \% on input line 842.
-LaTeX Info: Redefining \. on input line 842.
-LaTeX Info: Redefining \% on input line 842.
+LaTeX Info: Redefining \. on input line 883.
+LaTeX Info: Redefining \% on input line 883.
+LaTeX Info: Redefining \. on input line 883.
+LaTeX Info: Redefining \% on input line 883.
  [17
 
 ]
-LaTeX Info: Redefining \. on input line 887.
-LaTeX Info: Redefining \% on input line 887.
-LaTeX Info: Redefining \. on input line 887.
-LaTeX Info: Redefining \% on input line 887.
+LaTeX Info: Redefining \. on input line 990.
+LaTeX Info: Redefining \% on input line 990.
+LaTeX Info: Redefining \. on input line 990.
+LaTeX Info: Redefining \% on input line 990.
  [18
 
-] [19
+]
+LaTeX Info: Redefining \. on input line 1035.
+LaTeX Info: Redefining \% on input line 1035.
+LaTeX Info: Redefining \. on input line 1035.
+LaTeX Info: Redefining \% on input line 1035.
+ [19
+
+] [20
 
 ]
 Cap\'{\i }tulo 3.
-[20
+[21
 
 ]
-LaTeX Info: Redefining \. on input line 945.
-LaTeX Info: Redefining \% on input line 945.
-LaTeX Info: Redefining \. on input line 945.
-LaTeX Info: Redefining \% on input line 945.
- [21
-
-]
-LaTeX Info: Redefining \. on input line 975.
-LaTeX Info: Redefining \% on input line 975.
-LaTeX Info: Redefining \. on input line 975.
-LaTeX Info: Redefining \% on input line 975.
+LaTeX Info: Redefining \. on input line 1093.
+LaTeX Info: Redefining \% on input line 1093.
+LaTeX Info: Redefining \. on input line 1093.
+LaTeX Info: Redefining \% on input line 1093.
  [22
 
 ]
-LaTeX Info: Redefining \. on input line 1001.
-LaTeX Info: Redefining \% on input line 1001.
-LaTeX Info: Redefining \. on input line 1001.
-LaTeX Info: Redefining \% on input line 1001.
+LaTeX Info: Redefining \. on input line 1123.
+LaTeX Info: Redefining \% on input line 1123.
+LaTeX Info: Redefining \. on input line 1123.
+LaTeX Info: Redefining \% on input line 1123.
  [23
 
 ]
-LaTeX Info: Redefining \. on input line 1076.
-LaTeX Info: Redefining \% on input line 1076.
-LaTeX Info: Redefining \. on input line 1076.
-LaTeX Info: Redefining \% on input line 1076.
+LaTeX Info: Redefining \. on input line 1149.
+LaTeX Info: Redefining \% on input line 1149.
+LaTeX Info: Redefining \. on input line 1149.
+LaTeX Info: Redefining \% on input line 1149.
  [24
 
 ]
-LaTeX Info: Redefining \. on input line 1122.
-LaTeX Info: Redefining \% on input line 1122.
-LaTeX Info: Redefining \. on input line 1122.
-LaTeX Info: Redefining \% on input line 1122.
+LaTeX Info: Redefining \. on input line 1224.
+LaTeX Info: Redefining \% on input line 1224.
+LaTeX Info: Redefining \. on input line 1224.
+LaTeX Info: Redefining \% on input line 1224.
  [25
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1133.
-LaTeX Info: Redefining \. on input line 1133.
-LaTeX Info: Redefining \% on input line 1133.
-LaTeX Info: Redefining \. on input line 1133.
-LaTeX Info: Redefining \% on input line 1133.
+LaTeX Info: Redefining \. on input line 1270.
+LaTeX Info: Redefining \% on input line 1270.
+LaTeX Info: Redefining \. on input line 1270.
+LaTeX Info: Redefining \% on input line 1270.
  [26
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1133.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1281.
+LaTeX Info: Redefining \. on input line 1281.
+LaTeX Info: Redefining \% on input line 1281.
+LaTeX Info: Redefining \. on input line 1281.
+LaTeX Info: Redefining \% on input line 1281.
+ [27
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1281.
  (./AlgebraLineal.aux
 LaTeX Info: Redefining \. on input line 23.
 LaTeX Info: Redefining \% on input line 23.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1133.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1133.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1281.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1281.
 
 Package rerunfilecheck Info: File `AlgebraLineal.out' has not changed.
-(rerunfilecheck)             Checksum: 2602C9F0F1E1B945EFB9F12A1C5167A8;2650.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1133.
+(rerunfilecheck)             Checksum: 6B92C918C7B0A6A4C3BD84B69D03D843;2730.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1281.
  ) 
 Here is how much of TeX's memory you used:
- 19199 strings out of 493014
- 326070 string characters out of 6133351
+ 19206 strings out of 493014
+ 326161 string characters out of 6133351
  411658 words of memory out of 5000000
- 22396 multiletter control sequences out of 15000+600000
+ 22397 multiletter control sequences out of 15000+600000
  27466 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  61i,16n,52p,10477b,625s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1423,26 +1430,27 @@ e/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2016/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2016/tex
 mf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2016
-/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2016/t
-exmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2016/tex
-mf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2016/texmf
--dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive/2016/texmf-d
-ist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2016/texmf-dis
-t/fonts/type1/public/cm-super/sfcc1000.pfb></usr/local/texlive/2016/texmf-dist/
-fonts/type1/public/cm-super/sfcc1095.pfb></usr/local/texlive/2016/texmf-dist/fo
-nts/type1/public/cm-super/sfcc1200.pfb></usr/local/texlive/2016/texmf-dist/font
-s/type1/public/cm-super/sfcc1728.pfb></usr/local/texlive/2016/texmf-dist/fonts/
-type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2016/texmf-dist/fonts/ty
-pe1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2016/texmf-dist/fonts/type
-1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/
-public/cm-super/sfrm1440.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/pu
-blic/cm-super/sfrm2074.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/publ
-ic/cm-super/sfxc1440.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public
-/cm-super/sfxc1728.pfb>
-Output written on AlgebraLineal.pdf (27 pages, 399688 bytes).
+/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb></usr/local/texlive/2
+016/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/201
+6/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2016/
+texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2016/te
+xmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive/2016/texm
+f-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2016/texmf-
+dist/fonts/type1/public/cm-super/sfcc1000.pfb></usr/local/texlive/2016/texmf-di
+st/fonts/type1/public/cm-super/sfcc1095.pfb></usr/local/texlive/2016/texmf-dist
+/fonts/type1/public/cm-super/sfcc1200.pfb></usr/local/texlive/2016/texmf-dist/f
+onts/type1/public/cm-super/sfcc1728.pfb></usr/local/texlive/2016/texmf-dist/fon
+ts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2016/texmf-dist/fonts
+/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2016/texmf-dist/fonts/t
+ype1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2016/texmf-dist/fonts/typ
+e1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1
+/public/cm-super/sfrm2074.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/p
+ublic/cm-super/sfxc1440.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/pub
+lic/cm-super/sfxc1728.pfb>
+Output written on AlgebraLineal.pdf (28 pages, 411943 bytes).
 PDF statistics:
- 564 PDF objects out of 1000 (max. 8388607)
- 499 compressed objects within 5 object streams
- 93 named destinations out of 1000 (max. 500000)
- 297 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 587 PDF objects out of 1000 (max. 8388607)
+ 519 compressed objects within 6 object streams
+ 99 named destinations out of 1000 (max. 500000)
+ 305 words of extra memory for PDF output out of 10000 (max. 10000000)
 

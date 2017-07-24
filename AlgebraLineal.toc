@@ -24,16 +24,19 @@
 \contentsline {subsection}{\numberline {2.5.1}Definici\IeC {\'o}n}{15}{subsection.2.5.1}
 \contentsline {subsection}{\numberline {2.5.2}Propiedades}{16}{subsection.2.5.2}
 \contentsline {subsection}{\numberline {2.5.3}Matrices Sim\IeC {\'e}tricas}{17}{subsection.2.5.3}
-\contentsline {section}{\numberline {2.6}Operaciones Elementales}{18}{section.2.6}
-\contentsline {subsection}{\numberline {2.6.1}Swap: Intercambiar Filas \IeC {\'o} Columnas}{18}{subsection.2.6.1}
-\contentsline {subsubsection}{Matriz Elemental}{18}{section*.4}
-\contentsline {part}{II\hspace {1em}Sistema de Ecuaciones Lineales}{19}{part.2}
-\contentsline {chapter}{\numberline {3}Sistemas de Ecuaciones Lineales}{20}{chapter.3}
-\contentsline {section}{\numberline {3.1}Generalidades}{21}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Definici\IeC {\'o}n: Ecuaciones Lineales}{21}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Matriz Ampliada}{22}{subsection.3.1.2}
-\contentsline {subsection}{\numberline {3.1.3}Ejemplos}{23}{subsection.3.1.3}
-\contentsline {section}{\numberline {3.2}Tipos de Soluciones}{24}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Sistemas Consistentes (M\IeC {\'\i }nimo 1 Soluci\IeC {\'o}n)}{24}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Sistemas No Consistentes (No Soluci\IeC {\'o}n)}{25}{subsection.3.2.2}
-\contentsline {section}{\numberline {3.3}Sistemas Homog\IeC {\'e}neos}{26}{section.3.3}
+\contentsline {subsubsection}{Propiedades}{17}{section*.4}
+\contentsline {subsection}{\numberline {2.5.4}Matrices Antisim\IeC {\'e}tricas}{18}{subsection.2.5.4}
+\contentsline {subsubsection}{Propiedades}{18}{section*.5}
+\contentsline {section}{\numberline {2.6}Operaciones Elementales}{19}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}Swap: Intercambiar Filas \IeC {\'o} Columnas}{19}{subsection.2.6.1}
+\contentsline {subsubsection}{Matriz Elemental}{19}{section*.6}
+\contentsline {part}{II\hspace {1em}Sistema de Ecuaciones Lineales}{20}{part.2}
+\contentsline {chapter}{\numberline {3}Sistemas de Ecuaciones Lineales}{21}{chapter.3}
+\contentsline {section}{\numberline {3.1}Generalidades}{22}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Definici\IeC {\'o}n: Ecuaciones Lineales}{22}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Matriz Ampliada}{23}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Ejemplos}{24}{subsection.3.1.3}
+\contentsline {section}{\numberline {3.2}Tipos de Soluciones}{25}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Sistemas Consistentes (M\IeC {\'\i }nimo 1 Soluci\IeC {\'o}n)}{25}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Sistemas No Consistentes (No Soluci\IeC {\'o}n)}{26}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Sistemas Homog\IeC {\'e}neos}{27}{section.3.3}

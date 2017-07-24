@@ -827,7 +827,155 @@
                     A = A^T
                 \end{equation}
 
-                Podemos ver que entrada
+                % ===============================
+                % =========   PROPIEDADES =======
+                % ===============================
+                \subsubsection{Propiedades}
+
+                    \begin{itemize}
+
+                        \item Si $A \in M_{n}(\mathbb{F})$ y $A = A^T$ entonces $A$ tiene máximo 
+                            $\frac{n(n+1)}{2}$ elementos diferentes.
+
+                            % ======== DEMOSTRACION ========
+                            \begin{SmallIndentation}[1em]
+                                \textbf{Demostración}:
+
+                                Esto es mas curioso que útil, veamos que si es simétrica entonces toda
+                                entrada tiene que cumplir que $[A]_{i, j} = [A]_{j,i}$.
+
+                                Por lo tanto para las matrices de grado 1 hay 1 elemento diferente, 
+                                para las de orden 2 hay 3 elementos diferentes, para las de orden 4 hay 6
+                                elementos, y el patrón sigue, por lo tanto si te das cuenta para 
+                                una matriz de orden n tenemos que:
+
+                                Número de Elementos Diferentes($n$) es $1+2+\dots+n = \sum_{i=1}^{n} i$
+                                que según el gran Gauss tiene que ser igual a $\frac{n(n+1)}{2}$
+
+
+                            \end{SmallIndentation}
+
+                        \item Si $A \in M_{n}(\mathbb{F})$ entonces $A+A^T$ es una matriz simétrica. 
+
+                            % ======== DEMOSTRACION ========
+                            \begin{SmallIndentation}[1em]
+                                \textbf{Demostración}:
+                                \begin{equation*}
+                                \begin{split}
+                                    [A+A^T]_{i,j}   &=                              \\
+                                                    &=  [A]_{i,j} + [A^T]_{i,j}    
+                                                     =  [A]_{i,j} + [A]_{j,i}    
+                                                     =  [A^T]_{j,i} + [A]_{j,i}    
+                                                     =  [A]_{j,i} + [A^T]_{j, i}    \\
+                                                    &=  [A+A^T]_{j, i}             
+                                \end{split}
+                                \end{equation*}
+
+                            \end{SmallIndentation}
+
+
+                    \end{itemize}
+
+
+            % ===============================
+            % == MATRICES ANTI SIMETRICAS  ==
+            % ===============================
+            \clearpage
+            \subsection{Matrices Antisimétricas}
+
+                Una matriz $A \in M_{n}(\mathbb{F})$ se dice antisimétrica si cumple la propiedad:
+                \begin{equation}
+                    A = -A^T
+                \end{equation}
+
+                O siendo más formal que:
+                \begin{equation}
+                    A + A^T = 0_{n}
+                \end{equation}
+
+                % ===============================
+                % =========   PROPIEDADES =======
+                % ===============================
+                \subsubsection{Propiedades}
+
+                    \begin{itemize}
+
+                        \item Si $A \in M_{n}(\mathbb{F})$ y $A$ es antisimétrica entonces 
+                            $[A]_{i,i} = 0_{\mathbb{F}}$.
+
+                            % ======== DEMOSTRACION ========
+                            \begin{SmallIndentation}[1em]
+                                \textbf{Demostración}:
+
+                                Si tenemos que $A + A^T = 0_{n}$ entonces tenemos que para cada
+                                elemento arbitrario que $[A]_{i,j} + [A^T]_{i,j} = 0_{\mathbb{F}}$
+                                por lo tanto $[A]_{i,i} + [A]_{i,i} = 0_{\mathbb{F}}$ por lo tanto 
+                                $[A]_{i,i} = 0_{\mathbb{F}}$.
+
+                            \end{SmallIndentation}
+
+                        \item Si $A \in M_{n}(\mathbb{F})$ entonces existe un único par de matrices $B,C$
+                            tal que $A = B + C$, $B$ es simétrica y $C$ es antisimétrica. 
+                            En otras palabras, cada matriz cuadrada se puede representar de manera única
+                            como suma de una matriz simétrica y una matriz antisimétrica.
+
+                            % ======== DEMOSTRACION ========
+                            \begin{SmallIndentation}[1em]
+                                \textbf{Demostración}:
+
+                                Si $\mathbb{F} \neq \mathbb{F}_2$ entonces podremos escribir $A$ como
+                                $A = \frac{1}{2}(A + A^T) + \frac{1}{2}(A - A^T)$.
+
+                                Ahora algo genial que $\frac{1}{2}(A + A^T)=\frac{1}{2}(A + A^T)^T$ es
+                                decir, es simétrica.
+                                También $\frac{1}{2}(A - A^T)=-\frac{1}{2}(A + A^T)^T$ es decir, es
+                                antisimétrica.
+
+                                Demostrar que no existe otra combinación de $B,C$ es un poco más complejo
+                                así que confiaré en Oscar del futuro para eso.
+
+                            \end{SmallIndentation}
+
+                        \item $A \in M_{n}(\mathbb{F})$ y $A$ es simétrica y antisimétrica al mismo tiempo
+                            si y solo si $A = 0_n$
+
+                            % ======== DEMOSTRACION ========
+                            \begin{SmallIndentation}[1em]
+                                \textbf{Demostración}:
+
+                                Creo que es más que obvio que tienen el mismo tamaño
+
+                                Por otro lado sabemos que cualquier elemento de $A$ tiene que cumplir
+                                que $[A]_{i,j}=-[A]_{j,i} = [A]_{j,i}$ es decir $-[A]_{j,i} = [A]_{j,i}$
+                                es decir $0_{\mathbb{F}}=2[A]_{i,j}$ por lo tanto $[A]_{i,j}=0_\mathbb{F}$
+
+                                Y creo que es más que obvio que si $A=0_n$ entonces $A$ es simétrica y
+                                antisimétrica.
+
+                            \end{SmallIndentation}
+
+
+                        \item Si $A \in M_{n}(\mathbb{F})$ entonces $A-A^T$ es una matriz antesimétrica. 
+
+                            % ======== DEMOSTRACION ========
+                            \begin{SmallIndentation}[1em]
+                                \textbf{Demostración}:
+                                \begin{equation*}
+                                \begin{split}
+                                    [A-A^T]_{i,j}   &=                              \\
+                                                    &=  [A]_{i,j} - [A^T]_{i,j}    
+                                                     =  [A]_{i,j} - [A]_{j,i}    
+                                                     =  [A^T]_{j,i} - [A]_{j,i}    
+                                                     =  [-A+A^T]_{j, i}             \\
+                                                    &= -[A-A^T]_{j, i}
+                                \end{split}
+                                \end{equation*}
+
+                            \end{SmallIndentation}
+
+                    \end{itemize}
+
+
 
 
 
