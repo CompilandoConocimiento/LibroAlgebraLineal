@@ -129,6 +129,8 @@
         \array{#1}                                                  %WTF! IS THIS
     }                                                               %WTF! IS THIS
     \makeatother                                                    %WTF! IS THIS
+    \newcommand{\Brackets}[1]{\left[ #1 \right]}                    %Use: \Brackets {Info} 
+
 
 
 
@@ -555,7 +557,7 @@
             Sea $A \in M_{m \times n}(\mathbb{F})$ y $B \in M_{n \times p}(\mathbb{F})$ entonces 
             definimos a $AB$ como:
             \begin{equation}
-                AB = \bVector{\sum_{k=1}^{n} A_{i, k}B_{k, j} }_{i, j = 1}^{m, p}
+                AB = \Brackets{\sum_{k=1}^{n} A_{i, k}B_{k, j} }_{i, j = 1}^{m, p}
             \end{equation}
 
             O visto de otra manera $AB \in M_{m \times p}(\mathbb{F})$ y cumple que:
@@ -664,12 +666,16 @@
             \clearpage
             \subsection{Matriz $\times$ Vector: $A\vec{v}$}
                 Sea $A \in M_{m \times n}(\mathbb{F})$ entonces digamos que $A_1, A_2, \dots, A_n$ como
-                los vectores columna entonces tenemos que:
+                los vectores columna y sea $\vec{v}$ un vector donde $\vec{v} \in M_{n \times 1}$
+                entonces tenemos que:
                 \begin{equation}
-                    A\vec{v} = [\vec{v}]_1 A_1 + [\vec{v}]_2 A_2 + \dots + [\vec{v}]_n A_n
+                \begin{split}
+                    A\vec{v} &= [\vec{v}]_1 A_1 + [\vec{v}]_2 A_2 + \dots + [\vec{v}]_n A_n     \\
+                    A\vec{v} &= \Brackets{ \sum_{k=1}^{n}A_{i, k} \vec{v}_k }_{i, j = 1}^{n, 1}
+                \end{split}
                 \end{equation}
 
-                Por lo tanto $A\vec{v} \in M_{m \times n}(\mathbb{F})$
+                Por lo tanto $A\vec{v} \in M_{n \times 1}(\mathbb{F})$
 
 
 
@@ -710,7 +716,7 @@
 
                 Sea $A \in M_{m \times n}(\mathbb{F})$ entonces definimos a $transpuesta(A)$ como:
                 \begin{equation}
-                    A^T = \bVector{ A_{j, i} }_{i, j = 1}^{n, m}
+                    A^T = \Brackets{ A_{j, i} }_{i, j = 1}^{n, m}
                 \end{equation}
 
                 Es decir $A^T \in M_{n \times m}(\mathbb{F})$
@@ -992,7 +998,19 @@
 
 
 
+        % ==============================================
+        % ====        INVERSA DE UNA MATRIZ       ======
+        % ==============================================
+        \clearpage
+        \section{Inversa de una Matriz}
 
+            Sea $A \in M_{n \times n}(\mathbb{F})$ y entonces definimos a $A^{-1}$ 
+            de forma informal como aquella matriz que cumple con que $A^{-1}A = I_{n}$
+
+            O de manera formal como:
+            \begin{equation}
+                A^{-1} = \Brackets{}
+            \end{equation}
 
 
 
@@ -1132,29 +1150,48 @@
                 \end{equation}
 
 
+                % ==================================
+                % ===         EJEMPLOS        ======
+                % ==================================
+                \subsubsection{Ejemplos}
+
+                    Supongamos que tenengamos este sistema:
+                    \begin{equation*}
+                        \begin{split}
+                            &(2)x_1  &&+  (3)x_2 &&+ (-1)x_3 &&= 0    \\
+                            &(-1)x_1 &&+  (2)x_2 &&+ (-3)x_3 &&= -3   \\
+                            &(3)x_1  &&+  (5)x_2 &&+ (7)x_3  &&= 5    \\
+                        \end{split}
+                    \end{equation*}
+
+                    Entonces la Matriz Ampliada es:
+                    \begin{equation*}
+                        \begin{bmatrix}[rrr|r]
+                            2  & 3 & -1 & 0  \\
+                            -1 & 2 & -3 & -3 \\
+                            3  & 5 & 7  & 5  \\
+                        \end{bmatrix}
+                    \end{equation*}
+
+
             % ==================================
-            % ===         EJEMPLOS        ======
+            % ==  COMO MULTIPLICAR MATRICES  ===
             % ==================================
             \clearpage
-            \subsection{Ejemplos}
+            \subsection{Sistema Ecuaciones como Multiplicación de Matrices}
 
-                Supongamos que tenengamos este sistema:
-                \begin{equation*}
-                    \begin{split}
-                        &(2)x_1  &&+  (3)x_2 &&+ (-1)x_3 &&= 0    \\
-                        &(-1)x_1 &&+  (2)x_2 &&+ (-3)x_3 &&= -3   \\
-                        &(3)x_1  &&+  (5)x_2 &&+ (7)x_3  &&= 5    \\
-                    \end{split}
-                \end{equation*}
+                Puedes escribir tu sistema de ecuaciones lineales como dos matrices:
+                \begin{itemize}
+                    \item $A \in M_{m \times n}$ Es la Matriz de los coeficientes de las incognitas.
 
-                Entonces la Matriz Ampliada es:
-                \begin{equation*}
-                    \begin{bmatrix}[rrr|r]
-                        2  & 3 & -1 & 0  \\
-                        -1 & 2 & -3 & -3 \\
-                        3  & 5 & 7  & 5  \\
-                    \end{bmatrix}
-                \end{equation*}
+                    \item $b \in M_{m \times 1}$ Es la Matriz Columna (o vector $\vec{b}$) con las variables 
+                        independientes de cada ecuación.
+                \end{itemize}
+
+                Entonces podemos decir que $A \vec x = \vec b$ donde $\vec x \in M_{m \times 1}$ es un vector columna
+                que contiene todas las soluciones que buscamos a nuestro sistema de ecuaciones.
+
+                
 
 
 
