@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  25 JUL 2017 13:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  26 JUL 2017 11:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1062,35 +1062,30 @@ Package: multicol 2016/04/07 v1.8p multicolumn formatting (FMi)
 LaTeX Info: Redefining \. on input line 23.
 LaTeX Info: Redefining \% on input line 23.
 )
-\openout1 = `AlgebraLineal.aux'e {subsection}{\numberline {3.2.1}Sistemas Consistentes \ETC.
-! File ended while scanning use of \@writefile.
-<inserted text> 
-                \par 
-l.139 \begin{document}
-                      
-? 
-! Emergency stop.
-<inserted text> 
-                \par 
-l.139 \begin{document}
-                      
-End of file on the terminal!
+\openout1 = `AlgebraLineal.aux'.
 
- 
-Here is how much of TeX's memory you used:
- 18218 strings out of 493014
- 312586 string characters out of 6133351
- 392288 words of memory out of 5000000
- 21586 multiletter control sequences out of 15000+600000
- 4702 words of font info for 16 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 61i,0n,52p,10477b,384s stack positions out of 5000i,500n,10000p,200000b,80000s
-!  ==> Fatal error occurred, no output PDF file produced!
-tter control sequences out of 15000+600000
- 4702 words of font info for 16 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 61i,0n,52p,10477b,384s stack positions out of 5000i,500n,10000p,200000b,80000s
-!  ==> Fatal error occurred, no output PDF file produced!
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
 * h-part:(L,W,R)=(86.72377pt, 440.84746pt, 86.72377pt)
 * v-part:(T,H,B)=(86.72377pt, 621.52245pt, 86.72377pt)
@@ -1183,251 +1178,295 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Try loading font information for U+msb on input line 4.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01LaTeX Font Info:    Try loading font information for U+msb on input line 194.
-
-(/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 194.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 4.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
-)
-LaTeX Info: Redefining \. on input line 254.
-LaTeX Info: Redefining \% on input line 254.
-LaTeX Info: Redefining \. on input line 254.
-LaTeX Info: Redefining \% on input line 254.
+)pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
+ been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.25 ...ranspuesta de una Matriz}{17}{section.2.5}
+                                                   [1
+
+])
+\tf@toc=\write4
+\openout4 = `AlgebraLineal.toc'.
+
+LaTeX Info: Redefining \. on input line 173.
+LaTeX Info: Redefining \% on input line 173.
+LaTeX Info: Redefining \. on input line 173.
+LaTeX Info: Redefining \% on input line 173.
+ [2] [3
 
 
-LaTeX Warning: Hyper reference `sec:Index' on page 4 undefined on input line 25
-4.
-
+]
+Cap\'{\i }tulo 1.
 [4
 
+
+]
+LaTeX Info: Redefining \. on input line 254.
+LaTeX Info: Redefining \% on input line 254.
+LaTeX Info: Redefining \. on input line 254.
+LaTeX Info: Redefining \% on input line 254.
+ [5
+
 ]
 LaTeX Info: Redefining \. on input line 301.
 LaTeX Info: Redefining \% on input line 301.
 LaTeX Info: Redefining \. on input line 301.
 LaTeX Info: Redefining \% on input line 301.
-
-
-LaTeX Warning: Hyper reference `sec:Index' on page 5 undefined on input line 30
-1.
-
-[5
+ [6
 
 ]
-LaTeX Info: Redefining \. on input line 371.
-LaTeX Info: Redefining \% on input line 371.
-LaTeX Info: Redefining \. on input line 371.
-LaTeX Info: Redefining \% on input line 371.
+LaTeX Info: Redefining \. on input line 370.
+LaTeX Info: Redefining \% on input line 370.
+LaTeX Info: Redefining \. on input line 370.
+LaTeX Info: Redefining \% on input line 370.
+ [7
 
-
-LaTeX Warning: Hyper reference `sec:Index' on page 6 undefined on input line 37
-1.
-
-[6
+]
+LaTeX Info: Redefining \. on input line 395.
+LaTeX Info: Redefining \% on input line 395.
+LaTeX Info: Redefining \. on input line 395.
+LaTeX Info: Redefining \% on input line 395.
+ [8
 
 ]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 372.
+(hyperref)                removing `math shift' on input line 396.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 372.
+(hyperref)                removing `subscript' on input line 396.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 372.
+(hyperref)                removing `math shift' on input line 396.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 400.
+(hyperref)                removing `math shift' on input line 424.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `subscript' on input line 400.
+(hyperref)                removing `subscript' on input line 424.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\times' on input line 400.
+(hyperref)                removing `\times' on input line 424.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 400.
+(hyperref)                removing `math shift' on input line 424.
 
-LaTeX Info: Redefining \. on input line 437.
-LaTeX Info: Redefining \% on input line 437.
-LaTeX Info: Redefining \. on input line 437.
-LaTeX Info: Redefining \% on input line 437.
-
-LaTeX Warning: Hyper reference `sec:Index' on page 7 undefined on input line 43
-7.
-
-[7
-
-]
-Cap\'{\i }tulo 2.
-[8
-
-
-]
-LaTeX Info: Redefining \. on input line 487.
-LaTeX Info: Redefining \% on input line 487.
-LaTeX Info: Redefining \. on input line 487.
-LaTeX Info: Redefining \% on input line 487.
-
-
-LaTeX Warning: Hyper reference `sec:Index' on page 9 undefined on input line 48
-7.
-
+LaTeX Info: Redefining \. on input line 461.
+LaTeX Info: Redefining \% on input line 461.
+LaTeX Info: Redefining \. on input line 461.
+LaTeX Info: Redefining \% on input line 461.
 [9
 
 ]
-! Extra \right.
-l.546                 AB = \right[
-                                   \sum_{k=1}^{n} A_{i, k}B_{k, j}   \left]_...
+Cap\'{\i }tulo 2.
+[10
 
-? 
-! Emergency stop.
-l.546                 AB = \right[
-                                   \sum_{k=1}^{n} A_{i, k}B_{k, j}   \left]_...
-End of file on the terminal!
-
- 
-Here is how much of TeX's memory you used:
- 19094 strings out of 493014
- 324739 string characters out of 6133351
- 407559 words of memory out of 5000000
- 22350 multiletter control sequences out of 15000+600000
- 25881 words of font info for 68 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 61i,12n,52p,10477b,468s stack positions out of 5000i,500n,10000p,200000b,80000s
-!  ==> Fatal error occurred, no output PDF file produced!
-e produced!
-n input line 607.
-LaTeX Info: Redefining \. on input line 607.
-LaTeX Info: Redefining \% on input line 607.
- [15
 
 ]
-! Undefined control sequence.
-l.621                         (A^T)_{i, j} = \A
-                                               _{j, i}
-? 
-! Emergency stop.
-l.621                         (A^T)_{i, j} = \A
-                                               _{j, i}
-End of file on the terminal!
+LaTeX Info: Redefining \. on input line 524.
+LaTeX Info: Redefining \% on input line 524.
+LaTeX Info: Redefining \. on input line 524.
+LaTeX Info: Redefining \% on input line 524.
+ [11
 
- 
-Here is how much of TeX's memory you used:
- 19153 strings out of 493014
- 325501 string characters out of 6133351
- 407643 words \. on input line 765.
-LaTeX Info: Redefining \% on input line 765.
-LaTeX Info: Redefining \. on input line 765.
-LaTeX Info: Redefining \% on input line 765.
+]
+LaTeX Info: Redefining \. on input line 578.
+LaTeX Info: Redefining \% on input line 578.
+LaTeX Info: Redefining \. on input line 578.
+LaTeX Info: Redefining \% on input line 578.
+ [12
+
+]
+LaTeX Info: Redefining \. on input line 598.
+LaTeX Info: Redefining \% on input line 598.
+LaTeX Info: Redefining \. on input line 598.
+LaTeX Info: Redefining \% on input line 598.
+ [13
+
+]
+LaTeX Info: Redefining \. on input line 690.
+LaTeX Info: Redefining \% on input line 690.
+LaTeX Info: Redefining \. on input line 690.
+LaTeX Info: Redefining \% on input line 690.
+ [14
+
+]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 691.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\times' on input line 691.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 691.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 691.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 691.
+
+LaTeX Info: Redefining \. on input line 709.
+LaTeX Info: Redefining \% on input line 709.
+LaTeX Info: Redefining \. on input line 709.
+LaTeX Info: Redefining \% on input line 709.
+[15
+
+]
+LaTeX Info: Redefining \. on input line 733.
+LaTeX Info: Redefining \% on input line 733.
+LaTeX Info: Redefining \. on input line 733.
+LaTeX Info: Redefining \% on input line 733.
+ [16
+
+]
+LaTeX Info: Redefining \. on input line 759.
+LaTeX Info: Redefining \% on input line 759.
+LaTeX Info: Redefining \. on input line 759.
+LaTeX Info: Redefining \% on input line 759.
+ [17
+
+]
+LaTeX Info: Redefining \. on input line 867.
+LaTeX Info: Redefining \% on input line 867.
+LaTeX Info: Redefining \. on input line 867.
+LaTeX Info: Redefining \% on input line 867.
  [18
 
 ]
-LaTeX Info: Redefining \. on input line 811.
-LaTeX Info: Redefining \% on input line 811.
-LaTeX Info: Redefining \. on input line 811.
-LaTeX Info: Redefining \% on input line 811.
+LaTeX Info: Redefining \. on input line 928.
+LaTeX Info: Redefining \% on input line 928.
+LaTeX Info: Redefining \. on input line 928.
+LaTeX Info: Redefining \% on input line 928.
  [19
 
 ]
-
-! LaTeX Error: \begin{itemize} on input line 493 ended by \end{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.822 \end{document}
-                    
-? 
-! Emergency stop.
- ...                                              
-                                                  
-l.822 \end{document}
-                    
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
- 
-Here is how much of TeX's memory you used:
- 19181 strings out of 493014
- 326061 string characters out of 6133351
- 411643 words of memory out of 5000000
- 22398 multiletter control sequences out of 15000+600000
- 26690 words of font info for 72 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 61i,16n,52p,10477b,625s stack positions out of 5000i,500n,10000p,200000b,80000s
-!  ==> Fatal error occurred, no output PDF file produced!
-oduced!
-14
- 325283 string characters out of 6133351
- 411559 words of memory out of 5000000
- 22356 multiletter control sequences out of 15000+600000
- 27466 words of font info for 73 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 61i,16n,52p,10477b,468s stack positions out of 5000i,500n,10000p,200000b,80000s
-!  ==> Fatal error occurred, no output PDF file produced!
- 1180.
-LaTeX Info: Redefining \% on input line 1180.
- [25
+LaTeX Info: Redefining \. on input line 1028.
+LaTeX Info: Redefining \% on input line 1028.
+LaTeX Info: Redefining \. on input line 1028.
+LaTeX Info: Redefining \% on input line 1028.
+ [20
 
 ]
-LaTeX Info: Redefining \. on input line 1201.
-LaTeX Info: Redefining \% on input line 1201.
-LaTeX Info: Redefining \. on input line 1201.
-LaTeX Info: Redefining \% on input line 1201.
- [26
+LaTeX Info: Redefining \. on input line 1046.
+LaTeX Info: Redefining \% on input line 1046.
+LaTeX Info: Redefining \. on input line 1046.
+LaTeX Info: Redefining \% on input line 1046.
+ [21
 
 ]
-LaTeX Info: Redefining \. on input line 1276.
-LaTeX Info: Redefining \% on input line 1276.
-LaTeX Info: Redefining \. on input line 1276.
-LaTeX Info: Redefining \% on input line 1276.
+Overfull \hbox (2.12303pt too wide) in paragraph at lines 1099--1103
+[]\T1/cmr/m/n/10 Podemos cal-cu-lar esa en-tra-da co-mo $\OT1/cmr/m/n/10 [\OML/
+cmm/m/it/10 A[]A\OT1/cmr/m/n/10 ][] = [][][\OML/cmm/m/it/10 A[]\OT1/cmr/m/n/10 
+][][\OML/cmm/m/it/10 A\OT1/cmr/m/n/10 ][]$ \T1/cmr/m/n/10 es-to de-be-ría ser $
+\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 I[]\OT1/cmr/m/n/10 ][] =
+ []
+
+LaTeX Info: Redefining \. on input line 1127.
+LaTeX Info: Redefining \% on input line 1127.
+LaTeX Info: Redefining \. on input line 1127.
+LaTeX Info: Redefining \% on input line 1127.
+[22
+
+]
+LaTeX Info: Redefining \. on input line 1152.
+LaTeX Info: Redefining \% on input line 1152.
+LaTeX Info: Redefining \. on input line 1152.
+LaTeX Info: Redefining \% on input line 1152.
+ [23
+
+]
+LaTeX Info: Redefining \. on input line 1197.
+LaTeX Info: Redefining \% on input line 1197.
+LaTeX Info: Redefining \. on input line 1197.
+LaTeX Info: Redefining \% on input line 1197.
+ [24
+
+] [25
+
+]
+Cap\'{\i }tulo 3.
+[26
+
+]
+LaTeX Info: Redefining \. on input line 1255.
+LaTeX Info: Redefining \% on input line 1255.
+LaTeX Info: Redefining \. on input line 1255.
+LaTeX Info: Redefining \% on input line 1255.
  [27
 
 ]
-LaTeX Info: Redefining \. on input line 1322.
-LaTeX Info: Redefining \% on input line 1322.
-LaTeX Info: Redefining \. on input line 1322.
-LaTeX Info: Redefining \% on input line 1322.
+LaTeX Info: Redefining \. on input line 1309.
+LaTeX Info: Redefining \% on input line 1309.
+LaTeX Info: Redefining \. on input line 1309.
+LaTeX Info: Redefining \% on input line 1309.
  [28
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1333.
-LaTeX Info: Redefining \. on input line 1333.
-LaTeX Info: Redefining \% on input line 1333.
-LaTeX Info: Redefining \. on input line 1333.
-LaTeX Info: Redefining \% on input line 1333.
+LaTeX Info: Redefining \. on input line 1330.
+LaTeX Info: Redefining \% on input line 1330.
+LaTeX Info: Redefining \. on input line 1330.
+LaTeX Info: Redefining \% on input line 1330.
  [29
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1333.
+LaTeX Info: Redefining \. on input line 1405.
+LaTeX Info: Redefining \% on input line 1405.
+LaTeX Info: Redefining \. on input line 1405.
+LaTeX Info: Redefining \% on input line 1405.
+ [30
+
+]
+LaTeX Info: Redefining \. on input line 1451.
+LaTeX Info: Redefining \% on input line 1451.
+LaTeX Info: Redefining \. on input line 1451.
+LaTeX Info: Redefining \% on input line 1451.
+ [31
+
+]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1462.
+LaTeX Info: Redefining \. on input line 1462.
+LaTeX Info: Redefining \% on input line 1462.
+LaTeX Info: Redefining \. on input line 1462.
+LaTeX Info: Redefining \% on input line 1462.
+ [32
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1462.
  (./AlgebraLineal.aux
 LaTeX Info: Redefining \. on input line 23.
 LaTeX Info: Redefining \% on input line 23.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1333.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1333.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1462.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1462.
 
 Package rerunfilecheck Info: File `AlgebraLineal.out' has not changed.
-(rerunfilecheck)             Checksum: 3C45E9BD4B71D04F078FC30B5A154D16;2917.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1333.
+(rerunfilecheck)             Checksum: 784D1860512FD05470CBAE1AC2E0C21B;3068.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1462.
  ) 
 Here is how much of TeX's memory you used:
- 19216 strings out of 493014
- 326281 string characters out of 6133351
- 412668 words of memory out of 5000000
- 22400 multiletter control sequences out of 15000+600000
+ 19225 strings out of 493014
+ 326395 string characters out of 6133351
+ 412671 words of memory out of 5000000
+ 22402 multiletter control sequences out of 15000+600000
  27466 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  61i,16n,52p,10477b,625s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1470,10 +1509,10 @@ e1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1
 /public/cm-super/sfrm2074.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/p
 ublic/cm-super/sfxc1440.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/pub
 lic/cm-super/sfxc1728.pfb>
-Output written on AlgebraLineal.pdf (30 pages, 414209 bytes).
+Output written on AlgebraLineal.pdf (33 pages, 423737 bytes).
 PDF statistics:
- 617 PDF objects out of 1000 (max. 8388607)
- 547 compressed objects within 6 object streams
- 106 named destinations out of 1000 (max. 500000)
- 321 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 656 PDF objects out of 1000 (max. 8388607)
+ 583 compressed objects within 6 object streams
+ 113 named destinations out of 1000 (max. 500000)
+ 337 words of extra memory for PDF output out of 10000 (max. 10000000)
 
