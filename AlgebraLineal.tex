@@ -1462,9 +1462,9 @@
 
 
     % ===============================================================================
-    % ===================    ENTENDAMOS A LAS MATRICES         ======================
+    % ===================    DEFINICION Y CARACTERISTICAS         ===================
     % ===============================================================================
-    \chapter{Conozcamos las Matrices}
+    \chapter{Definición y Características}
 
         % ==============================================
         % ========          DEFINICION            ======
@@ -1472,994 +1472,107 @@
         \clearpage
         \section{Definición}
 
-            Siendo formales una Matriz es un arreglo rectangular de $m \times n$ elementos 
-            (donde $m,n \in \Naturals$), es decir es un objecto matemático de $m$ filas y
-            de $n$ columnas.
-
-            Las entradas de matrices pueden ser números u objetos más complicados.
-            
-            Sea $\mathbb{F}$ un Campo, entonces decimos que $M_{m \times n}(\mathbb{F})$
-            al conjunto de todas las matrices de tamaños $m \times n$ cuyas entradas
-            pertenecen a $\mathbb{F}$.
-            \begin{equation}
-                A = 
-                \begin{bmatrix}[ccc]
-                    a _{1, 1}   & \cdots & a_{1,n}   \\
-                    \cdots      &        & \cdots    \\
-                    a _{m, 1}   & \cdots & a_{m,n}   \\
-                \end{bmatrix}
-            \end{equation}
-
-
-            % ====================================
-            % =====   DEFINICION FORMAL     ======
-            % ====================================
-            \subsection*{Definición más Formal}
-                Una matriz de tamaño $m \times n$ con elementos del campo $\mathbb{F}$ se puede
-                definir como una función: 
-                $\{1, \dots, m\} \times \{1, \dots , n\} \to \mathbb{F}$
-
-
-
-            % ====================================
-            % =====   SIMBOLOGIA HERMOSA    ======
-            % ====================================
-            \subsection{Notación de Matrices mediante Función}
-
-                La notación más rara y al mismo tiempo más increíble es:
-                \begin{equation}
-                    A   = [f(i,j)]_{i, j = 1}^{m, n}
-                        =
-                        \begin{bmatrix}[ccc]
-                            f(1,1)  & \cdots & f(1,n)   \\
-                            \cdots  &        & \cdots   \\
-                            f(m, 1) & \cdots & f(m,n)   \\
-                        \end{bmatrix}
-                \end{equation}
-
-                Significa $A$ es una matriz de tamaño $m \times n$ tal que su entrada
-                ubicada en la fila número $i$ y en la columna $j$ es igual a la función
-                $f: \{1, \dots, m\} \times \{1, \dots, n\} \to \mathbb{F}$.
+            Siendo formales un Espacio Vectorial es una tupla $(\mathbb{V}, \mathbb{F}, +, \cdot)$ donde tenemos que:
+            \begin{Indentation}[1em]
+            \begin{itemize}
+            \small{
                 
-                Aquí $f$ es una función de dos argumentos.
+                \item
+                    \textbf{Conjunto de Vectores: $\mathbb{V}$}
+
+                    Es un grupo de vectores que no puede estar vacío ... y ya -.- 
+
+                \item
+                    \textbf{Campo: $\mathbb{F}$}
+
+                    Es un Campo que cumple con sus propiedades normales, le solemos llamar un campo escalar.
+
+                \item
+                    \textbf{"Suma de Vectores": $+: (\mathbb{V} \times  \mathbb{V}) \to \mathbb{V}$}
+
+                    Una relación $+: (\mathbb{V} \times  \mathbb{V}) \to \mathbb{V}$, es decir, es una relación
+                    que recibe dos elementos de $\mathbb{V}$ (o más específico un par ordenado de vectores) y te
+                    regresa un nuevo elemento de $\mathbb{V}$.
+
+                    Gracias a esto podemos decir que es cerrado en esta operación, es decir:
+
+                    $\forall \vec{v_1}, \vec{v_2} \in \mathbb{V},
+                        \MiniSpace (\vec{v_1} + \vec{v_2}) \in \mathbb{V}$                            
+
+                \item
+                    \textbf{"Producto Escalar": $\cdot: (\mathbb{F} \times  \mathbb{V}) \to \mathbb{V}$}
+
+                    Una relación $\cdot: (\mathbb{F} \times  \mathbb{V}) \to \mathbb{V}$, es decir, es una relación
+                    que recibe un elementos de $\mathbb{F}$ y un elemento de $\mathbb{V}$
+                    (o más específico un par ordenado) y te regresa un nuevo elemento de $\mathbb{V}$.
+
+                    Gracias a esto podemos decir que es cerrado en esta operación, es decir:
+
+                    $\forall \vec{v} \in \mathbb{V}, \MiniSpace
+                        \forall \alpha \in \mathbb{F}, \MiniSpace
+                            (\alpha \cdot \vec{v}) \in \mathbb{V}$  
+            }
+            \end{itemize}
+            \end{Indentation}
+
+
+
+            Donde esta tupla $(\mathbb{V}, \mathbb{F}, +, \cdot)$ cumple que:
+            \begin{Indentation}[1em]
+            \begin{itemize}
+            \small{
                 
-                Para hablar de un elemento cualquiera de la Matriz $A$ decimos de manera
-                informal $[A]_{i,j}$
-
-
-        % ==============================================
-        % ========          SIMBOLOGIA            ======
-        % ==============================================
-        \clearpage
-        \section{Simbología}
-
-            Solemos denotar con letras mayúsculas a las matrices y con letras miniscúlas
-            a cada uno de los elementos.
-
-            Para hablar de un elemento en específico usamos $a_{i,j}$ donde $i$ es el
-            número de fila y $j$ es el número de columnas.
-
-
-            % =============================
-            % ========   EJEMPLO     ======
-            % =============================
-            \subsubsection*{Ejemplo}
-
-                Por ejemplo, una matriz sería:
-                \begin{equation*}
-                    A =
-                    \begin{bmatrix}[ccc]
-                        a & b & c   \\
-                        d & e & f   \\
-                    \end{bmatrix}
-                \end{equation*}
-
-                y $a_{1,3}$ es el elemento $c$.
-
-
-        % ==============================================
-        % =======       DELTA DE KRONECKER        ======
-        % ==============================================
-        \section{Delta de Kronecker}
-
-            Esta es una función demasiado sencilla $\delta(i,j): \Naturals^2 \to \{0,1\}$
-            pero muy importante a lo largo de Algebra Lineal, podemos definirla como:
-            \begin{equation}
-                \delta(i,j) =
-                \begin{cases}
-                    1 \Space \text{ si } i = j \\
-                    0 \Space \text{ si } i \neq j
-                \end{cases}
-            \end{equation}
-
-
-
-        % ==============================================
-        % =======   CLASIFICACION DE MATRICES     ======
-        % ==============================================
-        \clearpage
-        \section{Clasificación y Matrices Famosas}
-
-            % ===================================
-            % ===  MATRICES RECTANGULARES   =====
-            % ===================================
-            \subsection{Matrices Rectangulares}
-
-                Son aquellas matrices de $m \times n$ si es que $m \neq n$ 
-
-                Por ejemplo: 
-                \begin{equation*}
-                    A_{m \times n} =
-                    \begin{bmatrix}[ccc]
-                        1 & 2 & 3   \\
-                        4 & 5 & 6   \\
-                    \end{bmatrix}
-                \end{equation*}
-
-            % ===================================
-            % =======  MATRICES CUADRADAS   =====
-            % ===================================
-            \subsection{Matrices Cuadradas}
-
-                Son aquellas matrices de $m \times n$ si es que $m = n$.
-                Solemos decir que el orden de estas matrices es $n$.
-
-                Por ejemplo: 
-                \begin{equation*}
-                    A_{n \times n} =
-                    \begin{bmatrix}[ccc]
-                        1 & 2 \\
-                        4 & 5 \\
-                    \end{bmatrix}
-                \end{equation*}
-
-            % ===================================
-            % =======  MATRICES DIAGONALES   ====
-            % ===================================
-            \subsection{Matrices Diagonales}
-
-                Son todas las matrices cuadradas donde cada elemento cumple que:
-                \begin{equation}
-                    [A]_{i,j} = [A]_{i,j} \cdot \delta(i,j)
-                \end{equation}
-
-                O más formalmente como cualquier matriz que cumple con que:
-                \begin{equation}
-                    [f(i,j)]_{i, j = 1}^{m, n} = [ f(i,j) \cdot \delta(i,j) ]_{i, j = 1}^{m, n}  
-                \end{equation}
-
-                Es decir es una matriz en la que a cualquier elemento lo puedes multiplicar 
-                por la Delta de Kronecker correspondiente y no se vera afectado.
-
-                Una matriz diagonal tiene el siguiente aspecto:
-                \begin{equation*}
-                    A_n =
-                    \begin{bmatrix}[cccc]
-                        a_{1,1} & 0         & \dots & 0         \\
-                        0       & a_{2,2}   & \dots & 0         \\
-                        \vdots                                  \\
-                        0       & 0         & \dots & a_{n,n}   \\
-                    \end{bmatrix}
-                \end{equation*}
-
-
-            % ===================================
-            % ===   MATRICES TRIANGULARES   =====
-            % ===================================
-            \clearpage
-            \subsection{Matrices Triangulares Superiores}
-
-                Son aquellas matrices de $A \in M_{n \times n}(\mathbb{F})$ donde se cumple que: 
-                \begin{equation}
-                    [f(i,j)]_{i, j = 1}^{n, n} =
-                    \Brackets{
-                        \begin{cases}
-                            f(i,j)  \MiniSpace& \text{ si } i \leq j \\
-                            0       \MiniSpace& \text{ si } i > j
-                        \end{cases}
-                    }_{i, j = 1}^{m, n}  
-                \end{equation}
-
-
-                Notemos que en una matriz triangular superior algunos (hasta todos) de los elementos por encima de la diagonal
-                principal o en la diagonal principal pueden ser iguales a cero.
-
-                Por ejemplo, la matriz nula $0_{n,n}$ es triangular superior. La condición que define matrices triangulares
-                superiores solo nos dice que todos los elementos por debajo de la diagonal principal deben cero iguales a cero.
-
-
-            % ===================================
-            % =======  MATRICES IDENTIDAD    ====
-            % ===================================
-            \clearpage
-            \subsection{Matriz Identidad: $I_n$}
-
-                Son todas las matrices cuadradas donde cada elemento cumple que:
-                \begin{equation}
-                    [I]_{i,j} = \delta(i,j)
-                \end{equation}
-
-                O más formalmente podemos definir a la Matriz identidad de órden $n$ como:
-                \begin{equation}
-                    [\delta(i,j)]_{i, j = 1}^{n, n}
-                \end{equation}
-
-                Se ve algo así:
-                \begin{equation*}
-                    I_n =
-                    \begin{bmatrix}[cccc]
-                        1 & 0 & \dots & 0   \\
-                        0 & 1 & \dots & 0   \\
-                        \vdots              \\
-                        0 & 0 & \dots & 1   \\
-                    \end{bmatrix}
-                \end{equation*}
-
-
-
-            % ===================================
-            % =======  MATRICES CERO         ====
-            % ===================================
-            \subsection{Matriz Cero: $0_{m \times n}$}
-
-                Son todas aquellas matrices $m \times n$ que cumplen que para cada elemento:
-                \begin{equation}
-                    [0]_{i,j} = 0_K
-                \end{equation}
-
-                O más formalmente podemos definir a la Matriz de Ceros de órden $n$ como:
-                \begin{equation}
-                    [0_{\mathbb{F}}]_{i, j = 1}^{n, n}
-                \end{equation}
-
-                Se ven algo así:
-                \begin{equation*}
-                    0_{m \times n} =
-                    \begin{bmatrix}[cccc]
-                        0 & 0 & \dots & 0   \\
-                        0 & 0 & \dots & 0   \\
-                        \vdots              \\
-                        0 & 0 & \dots & 0   \\
-                    \end{bmatrix}
-                \end{equation*}
-
-
-
-
-
-
-
-
-
-
-
-
-    % ===============================================================================
-    % ===================    OPERACIONES CON MATRICES          ======================
-    % ===============================================================================
-    \clearpage
-    \chapter{Álgebra Matricial}
-
-        % ==============================================
-        % ==========     SUMA DE MATRICES      =========
-        % ==============================================
-        \clearpage
-        \section{Suma de Matrices}
-
-            Definimos la suma de dos Matrices $A, B \in M_{m \times n}(\mathbb{F})$ como una relación 
-            \\ $+: (M_{m \times n}, M_{m \times n}) \to M_{m \times n}$
-
-            Entonces definamos la suma de dos matrices $A, B \in M_{m \times n}(\mathbb{F})$ como:
-            \begin{equation}
-                A + B = [A_{i, j} + B_{i, j}]_{i, j = 1}^{m, n}
-            \end{equation}
-
-            O visto de otra manera $A + B \in M_{m \times n}(\mathbb{F})$ y cumple que:
-            \begin{equation}
-                \forall i \in \{1, \dots, m\} ,\MiniSpace
-                    \forall j \in \{1, \dots, n\} ,\Space
-                        (A+B)_{i, j} = A_{i, j} + B_{i, j}
-            \end{equation}
-
-
-            % ================================
-            % ===      PROPIEDADES       =====
-            % ================================
-            \subsection{Propiedades de Suma}
-
-                Sea $A, B \in M_{m \times n}(\mathbb{F})$ y $\alpha, \beta \in \mathbb{F}$
-                y con la suma y producto por escalar previamente definido tenemos que:
-
-                \begin{itemize}
-
-                    \item \textbf{Cerradura Aditiva:}\\
-                        Si $A, B \in M_{m \times n}(\mathbb{F})$ entonces 
-                        $(A+B) \in M_{m \times n}(\mathbb{F})$
-
-
-                    \item \textbf{Ley Conmutativa:}\\
-                        Si $A, B \in M_{m \times n}(\mathbb{F})$ entonces $A+B = B+A$
-
-                    \item \textbf{Ley Asociativa para la Suma:}\\
-                        Si $A, B, C \in M_{m \times n}(\mathbb{F})$ entonces 
-                        $A + (B+C) = (A+B) + C$
-
-                    \item \textbf{Existencia del Neutro Aditivo:}\\
-                        Existe una matriz $\varnothing \in M_{m \times n}(\mathbb{F})$
-                        tal que $\forall A \in M_{m \times n}(\mathbb{F}), \MiniSpace A + \varnothing = A$
-
-                    \item \textbf{Existencia del Inverso Aditivo:}\\
-                        Existe una matriz $-A \in M_{m \times n}(\mathbb{F})$ para toda 
-                        $A \in M_{m \times n}(\mathbb{F})$ tal que $ A + (-A) = \varnothing$
-
-                \end{itemize}
-
-
-
-
-        % ==============================================
-        % ====  PRODUCTO DE ESCALAR POR MATRIZ    ======
-        % ==============================================
-        \clearpage
-        \section{Producto de Escalar por Matriz}
-
-            Sea $A \in M_{m \times n}(\mathbb{F})$ y $\alpha \in \mathbb{F}$ entonces 
-            definimos a $ \alpha A$ como:
-            \begin{equation}
-                A \alpha = \alpha A = [\alpha A_{i, j}]_{i, j = 1}^{m, n}
-            \end{equation}
-
-            O visto de otra manera $\alpha A \in M_{m \times n}(\mathbb{F})$ y cumple que:
-            \begin{equation}
-                \forall i \in \{1, \dots, m\} ,\MiniSpace
-                    \forall j \in \{1, \dots, n\} ,\Space
-                        (\alpha A)_{i, j} = \alpha A_{i, j}
-            \end{equation}
-
-            % ================================
-            % ===      PROPIEDADES       =====
-            % ================================
-            \subsection{Propiedades del Producto Escalar}
-
-                Sea $A, B \in M_{m \times n}(\mathbb{F})$ y $\alpha, \beta \in \mathbb{F}$
-                y con la suma y producto por escalar previamente definido tenemos que:
-
-                \begin{itemize}
-
-                    \item \textbf{Cerradura Escalar:}\\
-                        Si $A\in M_{m \times n}(\mathbb{F})$ y $\alpha \in \mathbb{F}$ entonces 
-                        $(\alpha A) \in M_{m \times n}(\mathbb{F})$
-
-                    \item \textbf{Ley Asociativa para la Multiplicación Escalar:}\\
-                        Sea $A \in M_{m \times n}(\mathbb{F})$ y $\alpha, \beta \in \mathbb{F}$
-                        entonces $\alpha(\beta A) = (\alpha \beta)A$
-
-                    \item \textbf{Ley Distributiva en la Suma y Producto Escalar:}\\
-                        Sea $A, B \in M_{m \times n}(\mathbb{F})$ y $\alpha \in \mathbb{F}$
-                        entonces $\alpha(A + B) = (\alpha A) + (\alpha B)$
-
-                    \item \textbf{Ley Distributiva en los Escalares:}\\
-                        Sea $A \in M_{m \times n}(\mathbb{F})$ y $\alpha, \beta \in \mathbb{F}$
-                        entonces $(\alpha + \beta)A = (\alpha A) + (\beta A)$
-
-                    \item \textbf{Existencia del Neutro Multiplicativo Escalar:}\\
-                        Existe un elemento $1 \in \mathbb{F}$ tal que para toda
-                            $A \in M_{m \times n}(\mathbb{F})$ tenemos que $1A = A$
-
-                \end{itemize}
-
-
-
-
-        % ==============================================
-        % ====        PRODUCTO DE MATRICES        ======
-        % ==============================================
-        \clearpage
-        \section{Producto de Matrices}
-
-            Sea $A \in M_{m \times n}(\mathbb{F})$ y $B \in M_{n \times p}(\mathbb{F})$ entonces 
-            definimos a $AB$ como:
-            \begin{equation}
-                AB = \Brackets{\sum_{k=1}^{n} A_{i, k}B_{k, j} }_{i, j = 1}^{m, p}
-            \end{equation}
-
-            O visto de otra manera $AB \in M_{m \times p}(\mathbb{F})$ y cumple que:
-            \begin{equation}
-                \forall i \in \{1, \dots, m\} ,\MiniSpace
-                    \forall j \in \{1, \dots, n\} ,\Space
-                        (AB)_{i, j} = \sum_{k=1}^{n} A_{i, k}B_{k, j}
-            \end{equation}
-
-
-            % ===============================
-            % =========   PROPIEDADES =======
-            % ===============================
-            \clearpage
-            \subsection{Propiedades}
-
-                \begin{itemize}
-
-                    \item Sea $A \in M_{m \times n}(\mathbb{F})$ y $B,C \in M_{n \times p}(\mathbb{F})$
-                        entonces tenemos que:
-                        $A(B+C) = AB+AC$
-
-                        % ======== DEMOSTRACION ========
-                        \begin{SmallIndentation}[1em]
-                            \textbf{Demostración}:
-
-                            Empecemos por ver que tienen el mismo tamaño:
-                            La matriz $(B+C) \in M_{n \times p}(\mathbb{F})$, por lo que 
-                            $A(B+C) \in M_{m \times p}(\mathbb{F})$.
-                            También tenemos que $AB, AC \in M_{m \times p}(\mathbb{F})$
-                            Por lo tanto tienen el mismo tamaño.
-
-                            Ahora veamos que un cualquier elemento arbitrario de ambas matrices es igual:
-                            \begin{equation*}
-                            \begin{split}
-                                [A(B+C)]_{i, j}    
-                                    &= \sum_{k=1}^{n} A_{i, k}(B_{k, j}+C_{k, j})  \\            
-                                    &= \sum_{k=1}^{n} (A_{i, k}B_{k, j}) + (A_{i, k}C_{k, j}) 
-                                    = \sum_{k=1}^{n} (A_{i, k}B_{k, j}) + \sum_{k=1}^{n} (A_{i, k}C_{k, j}) \\
-                                    &= [AB]_{i, j} + [AC]_{i, j} = [AB + AC]_{i, j} 
-                            \end{split}
-                            \end{equation*}
-
-                        \end{SmallIndentation}
-
-                    \item Sea $A \in M_{m \times n}(\mathbb{F})$ y $B \in M_{n \times p}(\mathbb{F})$
-                        entonces tenemos que: $\alpha(AB) = A(\alpha B)$
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Demostración}:
-
-                        Creo que es más que obvio que tienen el mismo tamaño
-
-                        Ahora veamos que un cualquier elemento arbitrario de ambas matrices es igual:
-                        \begin{equation*}
-                        \begin{split}
-                            [\alpha(AB)]_{i, j}    
-                                = \alpha \sum_{k=1}^{n} A_{i, k} B_{k, j}              
-                                = \sum_{k=1}^{n} A_{i, k} (\alpha B_{k, j} )            
-                                = [A(\alpha B)]_{i, j}
-                        \end{split}
-                        \end{equation*}
-
-                    \end{SmallIndentation}
-
-                    \item Sea $A \in M_{m \times n}(\mathbb{F})$, $B \in M_{n \times p}(\mathbb{F})$
-                        y $C \in M_{p \times q}(\mathbb{F})$ entonces tenemos que:  \\
-                        $A(BC) = (AB)C$
-
-                        % ======== DEMOSTRACION ========
-                        \begin{SmallIndentation}[1em]
-                            \textbf{Demostración}:
-
-                            Empecemos por ver que tienen el mismo tamaño:
-                            La matriz $(BC) \in M_{n \times q}(\mathbb{F})$, por lo que 
-                            $A(BC) \in M_{m \times q}(\mathbb{F})$.
-                            También tenemos que $(AB) \in M_{m \times p}(\mathbb{F})$, por lo que tenemos
-                            que $(AB)C \in M_{m \times q}(\mathbb{F})$.
-                            Por lo tanto tienen el mismo tamaño.
-
-                            Ahora veamos que un cualquier elemento arbitrario de ambas matrices es igual:
-                            \begin{equation*}
-                            \begin{split}
-                                [A(BC)]_{i, j}    
-                                    &= \sum_{k=1}^n A_{i, k} (BC)_{k, j}  
-                                     = \sum_{k=1}^n A_{i, k} \pVector{\sum_{k'=1}^p B_{k, k'} C_{k', j} }   \\
-                                    &= \sum_{k'=1}^n A_{i, k'} \pVector{\sum_{k=1}^p B_{k', k} C_{k, j} }   
-                                     = \sum_{k'=1}^n \pVector{\sum_{k=1}^p A_{i, k'} B_{k', k} C_{k, j} }   \\
-                                    &= \sum_{k=1}^p \pVector{\sum_{k'=1}^n A_{i,k'} B_{k',k} } C_{k, j}  
-                                     = \sum_{k=1}^p AB_{i, k} C_{k, j}
-                                     = [(AB)C]_{i, j}
-                            \end{split}
-                            \end{equation*}
-
-                        \end{SmallIndentation}
-
-                \end{itemize}
-
-
-
-
-            % ================================
-            % ====   MATRICES POR VECTOR  ====
-            % ================================
-            \clearpage
-            \subsection{Matriz $\times$ Vector: $A\vec{v}$}
-                Sea $A \in M_{m \times n}(\mathbb{F})$ entonces digamos que $A_1, A_2, \dots, A_n$ como
-                los vectores columna y sea $\vec{v}$ un vector donde $\vec{v} \in M_{n \times 1}$
-                entonces tenemos que:
-                \begin{equation}
-                \begin{split}
-                    A\vec{v} &= [\vec{v}]_1 A_1 + [\vec{v}]_2 A_2 + \dots + [\vec{v}]_n A_n     \\
-                    A\vec{v} &= \Brackets{ \sum_{k=1}^{n}A_{i, k} \vec{v}_k }_{i, j = 1}^{n, 1}
-                \end{split}
-                \end{equation}
-
-                Por lo tanto $A\vec{v} \in M_{n \times 1}(\mathbb{F})$
-
-
-
-        % ==============================================
-        % ====        TRAZA DE UNA MATRIZ         ======
-        % ==============================================
-        \clearpage
-        \section{Traza de una Matriz}
-
-            Sea $A \in M_{n \times n}(\mathbb{F})$ entonces definimos a $traza(A)$ como:
-            \begin{equation}
-                traza(A) = tr(A) = \sum_{k=1}^{n} A_{k, k}
-            \end{equation}
-
-
-            % ===============================
-            % =========   PROPIEDADES =======
-            % ===============================
-            \subsection{Propiedades}
-
-                \begin{itemize}
-                    \item Si $A, B \in M_{m \times n}(\mathbb{F})$ entonces $traza(AB) = traza(BA)$
-                \end{itemize}
-
-
-
-
-        % ==============================================
-        % ====   TRANSPUESTA DE UNA MATRIZ        ======
-        % ==============================================
-        \clearpage
-        \section{Transpuesta de una Matriz}
-
-            % ===============================
-            % ======   DEFINICION     =======
-            % ===============================
-            \subsection{Definición}
-
-                Sea $A \in M_{m \times n}(\mathbb{F})$ entonces definimos a $transpuesta(A)$ como:
-                \begin{equation}
-                    A^T = \Brackets{ A_{j, i} }_{i, j = 1}^{n, m}
-                \end{equation}
-
-                Es decir $A^T \in M_{n \times m}(\mathbb{F})$
-
-                O visto de otra manera $A^T \in M_{n \times m}(\mathbb{F})$ y cumple que:
-                \begin{equation}
-                    \forall i \in \{1, \dots, n\} ,\MiniSpace
-                        \forall j \in \{1, \dots, m\} ,\Space
-                            (A^T)_{i, j} = A_{j, i}
-                \end{equation}
-
-
-            % ===============================
-            % =========   PROPIEDADES =======
-            % ===============================
-            \clearpage
-            \subsection{Propiedades}
-
-                \begin{itemize}
-
-                    \item Sea $A\in M_{m \times n}(\mathbb{F})$ entonces $(A^T)^T = A^T$
-                        % ======== DEMOSTRACION ========
-                        \begin{SmallIndentation}[1em]
-                            \textbf{Demostración}:
-
-                            Empecemos por ver que tienen el mismo tamaño:
-                            La matriz $(A^T) \in M_{n \times m}(\mathbb{F})$, por lo que 
-                            $(A^T)^T \in M_{m \times n}(\mathbb{F})$.
-                            Por lo tanto tienen el mismo tamaño.
-
-                            Ahora veamos que un cualquier elemento arbitrario de ambas matrices es igual:
-                            \begin{equation*}
-                            \begin{split}
-                                [(A^T)^T]_{i, j}    
-                                    = [(A^T)]_{j, i}               
-                                = [A]_{i, j}
-                            \end{split}
-                            \end{equation*}
-
-                        \end{SmallIndentation}
-
-                    \item Sea $A,B \in M_{m \times n}(\mathbb{F})$ entonces 
-                        $(A+B)^T = A^T + B^T$
-
-                        % ======== DEMOSTRACION ========
-                        \begin{SmallIndentation}[1em]
-                            \textbf{Demostración}:
-
-                            Empecemos por ver que tienen el mismo tamaño:
-                            La matriz $(A+B)^T \in M_{n \times m}(\mathbb{F})$, y también tenemos que
-                            $(A^T+B^T) \in M_{n \times m}(\mathbb{F})$. Por lo tanto tienen el mismo
-                            tamaño.
-
-                            Ahora veamos que un cualquier elemento arbitrario de ambas matrices es igual:
-                            \begin{equation*}
-                            \begin{split}
-                                [(A+B)^T]_{i, j}    
-                                    = [(A+B)]_{j, i}               
-                                    = [A]_{j, i} + [B]_{j, i}      
-                                    = [A^T]_{i, j} + [B^T]_{i, j}
-                                = [A^T + B^T]_{i, j}
-                            \end{split}
-                            \end{equation*}
-
-                        \end{SmallIndentation}
-
-                    \item Sea $A \in M_{m \times n}(\mathbb{F})$ y $\alpha \in \mathbb{F}$ entonces:
-                        $(\alpha A)^T = \alpha A^T$
-                        
-                        % ======== DEMOSTRACION ========
-                        \begin{SmallIndentation}[1em]
-                            \textbf{Demostración}:
-
-                            Es (creo) más que obvio que tendrán el mismo tamaño
-
-                            Ahora veamos que un cualquier elemento arbitrario de ambas matrices es igual:
-                            \begin{equation*}
-                            \begin{split}
-                                [(\alpha A)^T]_{i, j}    
-                                    = [\alpha A]_{j, i}               
-                                    = \alpha [A]_{j, i}
-                                = \alpha [A^T]_{i, j}
-                            \end{split}
-                            \end{equation*}
-
-                        \end{SmallIndentation}
-                                    
-
-
-                    \item Sea $A \in M_{m \times n}(\mathbb{F})$ y $B \in M_{n \times p}(\mathbb{F})$
-                        entonces tenemos que: $(AB)^T = B^T A^T$
-
-                        % ======== DEMOSTRACION ========
-                        \begin{SmallIndentation}[1em]
-                            \textbf{Demostración}:
-
-                            Veamos que ambas matrices tienen el mismo tamaño: 
-                            La matriz $AB \in M_{m \times p}(\mathbb{F})$, por lo tanto la matriz
-                            $(AB)^T \in M_{p \times m}(\mathbb{F})$, mientra que la matriz 
-                            $B^T \in M_{p \times n}(\mathbb{F})$ y $A^T \in M_{n \times m}(\mathbb{F})$
-                            por lo tanto $B^T A^T \in M_{p \times m}(\mathbb{F})$, así que si te das
-                            cuenta ¡Tienen el mismo tamaño!
-
-                            Ahora veamos que un cualquier elemento arbitrario de ambas matrices es igual:
-                            \begin{equation*}
-                            \begin{split}
-                                [(AB)^T]_{i, j}     
-                                    = [(AB)]_{j, i} = \sum_{k=1}^{n} A_{j, k}B_{k, i} 
-                                    = \sum_{k=1}^{n} B_{k, i} A_{j, k}   
-                                    = \sum_{k=1}^{n} B^T_{i, k} A^T_{k, j}            
-                                = [B^T A^T]_{i, j}
-                            \end{split}
-                            \end{equation*}
-
-                        \end{SmallIndentation}
-
-                \end{itemize}
-
-
-                        
-            % ===============================
-            % ===   MATRICES SIMETRICAS  ====
-            % ===============================
-            \clearpage
-            \subsection{Matrices Simétricas}
-
-                Una matriz $A \in M_{n}(\mathbb{F})$ se dice simétrica si cumple la propiedad:
-                \begin{equation}
-                    A = A^T
-                \end{equation}
-
-                % ===============================
-                % =========   PROPIEDADES =======
-                % ===============================
-                \subsubsection{Propiedades}
-
-                    \begin{itemize}
-
-                        \item Si $A \in M_{n}(\mathbb{F})$ y $A = A^T$ entonces $A$ tiene máximo 
-                            $\frac{n(n+1)}{2}$ elementos diferentes.
-
-                            % ======== DEMOSTRACION ========
-                            \begin{SmallIndentation}[1em]
-                                \textbf{Demostración}:
-
-                                Esto es mas curioso que útil, veamos que si es simétrica entonces toda
-                                entrada tiene que cumplir que $[A]_{i, j} = [A]_{j,i}$.
-
-                                Por lo tanto para las matrices de grado 1 hay 1 elemento diferente, 
-                                para las de orden 2 hay 3 elementos diferentes, para las de orden 4 hay 6
-                                elementos, y el patrón sigue, por lo tanto si te das cuenta para 
-                                una matriz de orden n tenemos que:
-
-                                Número de Elementos Diferentes($n$) es $1+2+\dots+n = \sum_{i=1}^{n} i$
-                                que según el gran Gauss tiene que ser igual a $\frac{n(n+1)}{2}$
-
-
-                            \end{SmallIndentation}
-
-                        \item Si $A \in M_{n}(\mathbb{F})$ entonces $A+A^T$ es una matriz simétrica. 
-
-                            % ======== DEMOSTRACION ========
-                            \begin{SmallIndentation}[1em]
-                                \textbf{Demostración}:
-                                \begin{equation*}
-                                \begin{split}
-                                    [A+A^T]_{i,j}   &=                              \\
-                                                    &=  [A]_{i,j} + [A^T]_{i,j}    
-                                                     =  [A]_{i,j} + [A]_{j,i}    
-                                                     =  [A^T]_{j,i} + [A]_{j,i}    
-                                                     =  [A]_{j,i} + [A^T]_{j, i}    \\
-                                                    &=  [A+A^T]_{j, i}             
-                                \end{split}
-                                \end{equation*}
-
-                            \end{SmallIndentation}
-
-
-                    \end{itemize}
-
-
-            % ===============================
-            % == MATRICES ANTI SIMETRICAS  ==
-            % ===============================
-            \clearpage
-            \subsection{Matrices Antisimétricas}
-
-                Una matriz $A \in M_{n}(\mathbb{F})$ se dice antisimétrica si cumple la propiedad:
-                \begin{equation}
-                    A = -A^T
-                \end{equation}
-
-                O siendo más formal que:
-                \begin{equation}
-                    A + A^T = 0_{n}
-                \end{equation}
-
-                % ===============================
-                % =========   PROPIEDADES =======
-                % ===============================
-                \subsubsection{Propiedades}
-
-                    \begin{itemize}
-
-                        \item Si $A \in M_{n}(\mathbb{F})$ y $A$ es antisimétrica entonces 
-                            $[A]_{i,i} = 0_{\mathbb{F}}$.
-
-                            % ======== DEMOSTRACION ========
-                            \begin{SmallIndentation}[1em]
-                                \textbf{Demostración}:
-
-                                Si tenemos que $A + A^T = 0_{n}$ entonces tenemos que para cada
-                                elemento arbitrario que $[A]_{i,j} + [A^T]_{i,j} = 0_{\mathbb{F}}$
-                                por lo tanto $[A]_{i,i} + [A]_{i,i} = 0_{\mathbb{F}}$ por lo tanto 
-                                $[A]_{i,i} = 0_{\mathbb{F}}$.
-
-                            \end{SmallIndentation}
-
-                        \item Si $A \in M_{n}(\mathbb{F})$ entonces existe un único par de matrices $B,C$
-                            tal que $A = B + C$, $B$ es simétrica y $C$ es antisimétrica. 
-                            En otras palabras, cada matriz cuadrada se puede representar de manera única
-                            como suma de una matriz simétrica y una matriz antisimétrica.
-
-                            % ======== DEMOSTRACION ========
-                            \begin{SmallIndentation}[1em]
-                                \textbf{Demostración}:
-
-                                Si $\mathbb{F} \neq \mathbb{F}_2$ entonces podremos escribir $A$ como
-                                $A = \frac{1}{2}(A + A^T) + \frac{1}{2}(A - A^T)$.
-
-                                Ahora algo genial que $\frac{1}{2}(A + A^T)=\frac{1}{2}(A + A^T)^T$ es
-                                decir, es simétrica.
-                                También $\frac{1}{2}(A - A^T)=-\frac{1}{2}(A + A^T)^T$ es decir, es
-                                antisimétrica.
-
-                                Demostrar que no existe otra combinación de $B,C$ es un poco más complejo
-                                así que confiaré en Oscar del futuro para eso.
-
-                            \end{SmallIndentation}
-
-                        \item $A \in M_{n}(\mathbb{F})$ y $A$ es simétrica y antisimétrica al mismo tiempo
-                            si y solo si $A = 0_n$
-
-                            % ======== DEMOSTRACION ========
-                            \begin{SmallIndentation}[1em]
-                                \textbf{Demostración}:
-
-                                Creo que es más que obvio que tienen el mismo tamaño
-
-                                Por otro lado sabemos que cualquier elemento de $A$ tiene que cumplir
-                                que $[A]_{i,j}=-[A]_{j,i} = [A]_{j,i}$ es decir $-[A]_{j,i} = [A]_{j,i}$
-                                es decir $0_{\mathbb{F}}=2[A]_{i,j}$ por lo tanto $[A]_{i,j}=0_\mathbb{F}$
-
-                                Y creo que es más que obvio que si $A=0_n$ entonces $A$ es simétrica y
-                                antisimétrica.
-
-                            \end{SmallIndentation}
-
-
-                        \item Si $A \in M_{n}(\mathbb{F})$ entonces $A-A^T$ es una matriz antesimétrica. 
-
-                            % ======== DEMOSTRACION ========
-                            \begin{SmallIndentation}[1em]
-                                \textbf{Demostración}:
-                                \begin{equation*}
-                                \begin{split}
-                                    [A-A^T]_{i,j}   &=                              \\
-                                                    &=  [A]_{i,j} - [A^T]_{i,j}    
-                                                     =  [A]_{i,j} - [A]_{j,i}    
-                                                     =  [A^T]_{j,i} - [A]_{j,i}    
-                                                     =  [-A+A^T]_{j, i}             \\
-                                                    &= -[A-A^T]_{j, i}
-                                \end{split}
-                                \end{equation*}
-
-                            \end{SmallIndentation}
-
-                    \end{itemize}
-
-
-
-        % ==============================================
-        % ====        INVERSA DE UNA MATRIZ       ======
-        % ==============================================
-        \clearpage
-        \section{Inversa de una Matriz}
-
-            Sea $A \in M_{n \times n}(\mathbb{F})$ y entonces definimos a $A^{-1}$ 
-            de forma informal como aquella matriz que cumple con que $A^{-1}A = AA^{-1} = I_{n}$
-            nota que no para todas las matrices $M_{n \times n}(\mathbb{F})$ existe una matriz inversa.
-
-
-           \subsubsection*{El Problema de la Notación $A^{-1}$}
-
-           El problema con esta notación es que existen matrices no invertibles, para las cuales
-           la notación $A^{-1}$ no tiene sentido.
-
-           La notación $A^{-1}$ se puede usar solamente despúes de demostrar que $A$ es invertible.
-
-            % ===============================
-            % =========   PROPIEDADES =======
-            % ===============================
-            \clearpage
-            \subsection{Propiedades}
-
-                \begin{itemize}
-
-                    \item La Matriz Inversa de $A$ ($A^{-1}$) es única.
-
-                        % ======== DEMOSTRACION ========
-                        \begin{SmallIndentation}[1em]
-                            \textbf{Demostración}:
-
-                            Lo que hay que ver que si $A,B,C \in M_n(\mathbb{F})$ tales que
-                            $AB = BA = I_n$ y $AC = CA = I_n$. Entonces $B=C$.
-
-                            Usando la Ley asociativa de la Multiplicación de Matrices $(A(BC)=(AB)C)$
-                            tenemos que:
-                            $B = B(I_n) = B(AC) = (BA)C = I_nC =  C $
-
-                        \end{SmallIndentation}
-
-                    \item Es necesario aunque no suficiente que todas las columnas y filas de una
-                        matriz $A \in M_{n \times n}$ sea diferentes de cero para que $A$ sea invertible.
-
-                        % ======== DEMOSTRACION ========
-                        \begin{SmallIndentation}[1em]
-                            \textbf{Demostración}:
-
-                            Renglones Nulos:
-
-                                Sea $A \in M_{n \times n}(\mathbb{F})$.
-                                Supongamos que (por lo menos) un renglón de A es nulo, es decir:
-                                $[A]_{p,*} = 0_{1,n}$ donde $0 < p \leq n$ esto es lo mismo que decir
-                                que $\forall j \in \{1, \dots, n\} [A]_{p,j} = 0$.
-
-                                Ahora supongamos que $A$ es invertible, entonces, en particular, la entrada
-                                $(p,p)$ del producto $AA^{-1}$ debe coincidir con la entrada $(p,p)$ de la
-                                matriz identidad $I_n$.
-                                Podemos calcular esa entrada como
-                                $[AA^{-1}]_{p,p} = \sum_{k=1}^{n} [A]_{p,k} [A^{-1}]_{k,p}$
-                                esto debería ser $[I_n]_{p,p}=1$ pero ya vimos que $[A]_{p,k} = 0$, es decir
-                                $0 = 1$. Contradicción.
-
-
-                            Columnas Nulas:
-                                Sea $A \in M_{n \times n}(\mathbb{F})$.
-                                Supongamos que (por lo menos) una columna de A es nulo, es decir:
-                                $[A]_{*,p} = 0_{n,1}$ donde $0 < p \leq n$ esto es lo mismo que decir
-                                que $\forall j \in \{1, \dots, n\} [A]_{p,j} = 0$.
-
-                                Ahora supongamos que $A$ es invertible, entonces, en particular, la entrada
-                                $(p,p)$ del producto $A^{-1}A$ debe coincidir con la entrada $(p,p)$ de la
-                                matriz identidad $I_n$.
-
-                                Podemos calcular esa entrada como
-                                $[A^{-1}A]_{p,p} = \sum_{k=1}^{n} [A^{-1}]_{p,k} [A]_{k,p}$
-                                esto debería ser $[I_n]_{p,p}=1$ pero ya vimos que $[A]_{k,p} = 0$, es decir
-                                $0 = 1$. Contradicción.
-                            
-                        \end{SmallIndentation}
-
-                    \item Sea $A,B \in M_{m \times n}(\mathbb{F})$ y sean invertibles, entonces tenemos
-                        que $(AB)^{-1} = B^{-1}A^{-1}$
-
-                        % ======== DEMOSTRACION ========
-                        \begin{SmallIndentation}[1em]
-                            \textbf{Demostración}:
-
-                            Si $(AB)$ es invertible entonces tenemos que probar que:
-                            \begin{equation}
-                            \begin{split}
-                                (AB)(B^{-1}A^{-1})  &=                      \\
-                                                    &= (((AB)B^{-1})A^{-1})  
-                                                    &= ((A(BB^{-1}))A^{-1}) 
-                                                    &= ((A(I_n))A^{-1})     
-                                                    &= (AA^{-1})            \\
-                                                    &= I_n 
-                            \end{split}
-                            \end{equation}
-                            
-                        \end{SmallIndentation}
-
-                    \clearpage
-
-                    \item Una Matriz Diagonal es invertible si y solo si los elementos de la diagonal
-                        son distintos de cero.
-
-                    \item Una Matriz Diagonal es invertible si y solo si los elementos de la diagonal
-                        son distintos de cero.
-
-                    \item Sea $A \in M_{m \times n}(\mathbb{F})$ y sea invertible, entonces tenemos
-                        que $(A^{-1})^{-1} = A$
-
-                    \item Sea $A \in M_{m \times n}(\mathbb{F})$ y sea invertible, entonces tenemos
-                        que $(A^T)^{-1} = (A^{-1})^T$
-
-                \end{itemize}
-            
-
-
-
-
-
-
-        % ==============================================
-        % =====     OPERACIONES ELEMENTALES       ======
-        % ==============================================
-        \clearpage
-        \section{Operaciones Elementales}
-
-            % ==============================================
-            % ======== SWAP: INTERCAMBIAR FILAS / COL ======
-            % ==============================================
-            \subsection{Swap: Intercambiar Filas ó Columnas}
-
-                \begin{itemize}
-                    \item
-                        Decimos que vamos a intercambiar la Fila $i$ por la Fila $j$ de
-                        esta manera:\\
-                        $\overset{F_i \lequal F_j}{\longto}$
-
-                    \item
-                        Decimos que vamos a intercambiar la Columna $i$ por la Columna $j$ de
-                        esta manera:\\
-                        $\overset{C_i \lequal C_j}{\longto}$
-                \end{itemize}
-
-                % ==================================
-                % =======  MATRIZ ELEMENTAL    =====
-                % ==================================
-                \subsubsection{Matriz Elemental}
-
-                    Podemos si queremos expresar esta operación como una \Quote{Matriz Elemental}:
-                    $E_{a, b}$
-
-                    Donde $E_{a, b}$ es casi la identidad, pero estan intercambiadas la Fila
-                    $a$ por la Fila $b$.
-
-
+                \item 
+                    \textbf{Ley Aditiva Asociativa:}
+                    $\forall \vec{v_1}, \vec{v_2}, \vec{v_3} \in \mathbb{V}, \MiniSpace
+                        (\vec{v_1} + \vec{v_2}) + \vec{v_3} = \vec{v_1} + (\vec{v_2} + \vec{v_3})$
+
+                \item 
+                    \textbf{Ley Aditiva Conmutativa:}
+                    $\forall \vec{v_1}, \vec{v_2} \in \mathbb{V}, \MiniSpace
+                            \vec{v_1} + \vec{v_2} = \vec{v_1} + \vec{v_2}$
+
+
+                \item 
+                    \textbf{Elemento Indentidad Aditivo:}
+                    $\exists \vec{0} \in \mathbb{V}, \MiniSpace
+                        \forall \vec{v} \in \mathbb{V}, \MiniSpace \vec{0} + \vec{v} = \vec{v} + \vec{0} = \vec{v}$
+
+                \item 
+                    \textbf{Existen Inversos Aditivos:}
+                    $\forall \vec{v} \in \mathbb{V}, \MiniSpace
+                            \exists \vec{-v} \in \mathbb{V}, \MiniSpace
+                                \vec{v} + (\vec{-v}) = (\vec{-v}) + \vec{v} = \vec{0}$
+
+
+                \item 
+                    \textbf{Ley Aditiva Distributiva:}
+                    $\forall \alpha \in \mathbb{F} \MiniSpace
+                        \forall \vec{v_1}, \vec{v_2} \in \mathbb{V} \MiniSpace
+                            \alpha \cdot (\vec{v_1} + \vec{v_2}) = 
+                                (\alpha \cdot \vec{v_1}) + (\alpha \cdot \vec{v_2})$
+
+                \item 
+                    \textbf{Ley Multiplicativa Asociativa:}
+                    $\forall \alpha, \beta \in \mathbb{F}, \MiniSpace
+                        \forall \vec{v} \in \mathbb{V}, \MiniSpace
+                            \alpha \cdot (\beta \cdot \vec{v}) = (\alpha \beta) \cdot \vec{v}$
+
+                \item 
+                    \textbf{Ley Multiplicativa Distributiva:}
+                    $\forall \alpha, \beta \in \mathbb{F}, \MiniSpace
+                        \forall \vec{v} \in \mathbb{V}, \MiniSpace
+                            (\alpha + \beta) \cdot \vec{v} = 
+                                    (\alpha \cdot \vec{v}) + (\beta \cdot \vec{v})$
+
+                \item 
+                    \textbf{Elemento Indentidad Multiplicativo:}
+                    $\exists 1 \in \mathbb{F}, \MiniSpace
+                        \forall \vec{v} \in \mathbb{V}, \MiniSpace 1 \cdot \vec{v} = \vec{v}$
+
+            }
+            \end{itemize}
+            \end{Indentation}
 
 
 \end{document}

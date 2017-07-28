@@ -45,3 +45,6 @@
 \contentsline {subsection}{\numberline {3.2.1}Sistemas Consistentes (M\IeC {\'\i }nimo 1 Soluci\IeC {\'o}n)}{30}{subsection.3.2.1}
 \contentsline {subsection}{\numberline {3.2.2}Sistemas No Consistentes (No Soluci\IeC {\'o}n)}{31}{subsection.3.2.2}
 \contentsline {section}{\numberline {3.3}Sistemas Homog\IeC {\'e}neos}{32}{section.3.3}
+\contentsline {part}{III\hspace {1em}Espacios Vectoriales}{33}{part.3}
+\contentsline {chapter}{\numberline {4}Definici\IeC {\'o}n y Caracter\IeC {\'\i }sticas}{34}{chapter.4}
+\contentsline {section}{\numberline {4.1}Definici\IeC {\'o}n}{35}{section.4.1}
