@@ -1515,9 +1515,10 @@
             \end{itemize}
             \end{Indentation}
 
-
-
+            \vspace{30pt}
+            
             Donde esta tupla $(\mathbb{V}, \mathbb{F}, +, \cdot)$ cumple que:
+            
             \begin{Indentation}[1em]
             \begin{itemize}
             \small{
@@ -1573,6 +1574,139 @@
             }
             \end{itemize}
             \end{Indentation}
+
+
+
+        % =============================================
+        % ============     PROPIEDADES      ===========
+        % =============================================
+        \clearpage
+        \section{Consecuencias de los Axiomas}
+
+            Veamos algunas de las Propiedades de esto que acabamos de definir, son consecuencias de los 
+            axiomas.
+
+            \begin{itemize}
+                \item El $\vec{0}$ es único.
+
+                    \begin{SmallIndentation}[1em]
+                        Si te das cuenta, nunca dije que tenia que existir solo un $\vec{0}$ pues no es
+                        necesario, ya que podemos decir que si tenemos otro $\vec{0_2}$ entonces pasará que 
+                        $\exists \vec{0_2} \in \mathbb{V}, \MiniSpace
+                            \forall \vec{v} \in \mathbb{V}, \MiniSpace
+                                \vec{0_2} + \vec{v} = \vec{v} + \vec{0_2} = \vec{v}$
+
+                        Podemos decir entonces que $\vec{0} = \vec{0}+\vec{0_2}$ pero también sabemos como
+                        funciona el $\vec{0}$, así que $\vec{0} = \vec{0}+\vec{0_2} = \vec{0_2}$.
+
+                        Es decir, si algo cumple con querer ser nuestro cero vector, veremos que es de hecho
+                        el mismo elemento.
+
+                    \end{SmallIndentation}
+
+                \item El inverso aditivo de $\vec{v}$ es único.
+
+                    \begin{SmallIndentation}[1em]
+                        Podemos entonces suponer que hay dos vectores ($\vec{x}, \vec{y}$) que hacen el 
+                        trabajo de un inverso de $\vec{v}$, es decir
+                        $\vec{v} + \vec{x} = \vec{x} + \vec{v} = \vec{0}$ y que 
+                        $\vec{v} + \vec{y} = \vec{y} + \vec{v} = \vec{0}$.
+
+                        De ser así vemos entonces que podemos decir que
+                        \begin{equation*}
+                        \begin{split}
+                            \vec{x} &=                                  \\
+                                    &= \vec{x} + \vec{0} 
+                                     = \vec{x} + (\vec{v} + \vec{y}) 
+                                     = (\vec{x} + \vec{v}) + \vec{y}
+                                     = \vec{0} + \vec{y}                \\ 
+                                    &= \vec{y}
+                        \end{split}
+                        \end{equation*}
+
+                    \end{SmallIndentation}
+
+
+                \item $\forall \alpha \in \mathbb{F}, \MiniSpace \alpha \cdot \vec{0} = \vec{0}$
+
+                    \begin{SmallIndentation}[1em]
+                        Esto es algo bastante natural e intuitivo, pero aun así hay que demostrarlo, 
+                        veamos que $\alpha \cdot \vec{0}$ es un vector, vamos vamos a denotar su inverso
+                        adivito como $- (\alpha \cdot \vec{0})$
+
+                        \begin{equation*}
+                        \begin{split}
+                            \alpha \cdot \vec{0} &=                                                           \\
+                                            &= (\alpha \cdot \vec{0}) + \vec{0} 
+                                             = \alpha \cdot \vec{0} + [ (\alpha \vec{0}) - (\alpha \vec{0}) ]
+                                             = [\alpha \cdot \vec{0} +  (\alpha \vec{0})] - (\alpha \vec{0})  \\
+                                            &= [\alpha (\vec{0} + \vec{0})] - (\alpha \vec{0})                 
+                                             = \alpha \vec{0} - (\alpha \vec{0})                              \\
+                                            &= \vec{0}
+                        \end{split}
+                        \end{equation*}
+
+                    \end{SmallIndentation}
+
+            \end{itemize}
+
+
+    % ===============================================================================
+    % ===================    SUB ESPACIOS VECTORIALES             ===================
+    % ===============================================================================
+    \chapter{Subespacios Vectoriales}
+
+        % ==============================================
+        % ========          DEFINICION            ======
+        % ==============================================
+        \clearpage
+        \section{Definición}
+
+            Un Subespacio Vectorial es un Espacio Vectorial.
+
+            La única razón por la que le decimos Subespacio es porque esta contenido dentro de
+            otro Espacio Vectorial.
+
+            \subsubsection*{Definición Formal}
+                Sea $\mathbb{W}$ y $\mathbb{V}$ dos Espacios Vectoriales donde con identidas
+                operaciones $+, \cdot$ sobre un mismo campo $\mathbb{F}$ entonces decimos
+                que $\mathbb{W}$ es un Subespacio Vectorial de $\mathbb{V}$ si y solo si:
+
+                \begin{itemize}
+                    \item $\mathbb{W} \subset \mathbb{V}$
+                    \item $\mathbb{W}$ es un Espacio Vectorial por si mismo
+                \end{itemize}
+
+
+        % ==============================================
+        % ====     DEMOSTRAR QUE ES UN SUBESPACIO   ====
+        % ==============================================
+        \section{Demostrar que $\mathbb{W}$ es un Subespacio de $\mathbb{V}$}
+
+            Podemos además decir que $\mathbb{W}$ es un Subespacio de $\mathbb{V}$
+            si y solo si:
+
+            $\mathbb{W}$ contiene al vector cero del Espacio $\mathbb{V}$ y es cerrado
+            con respecto a las operaciones lineales del Espacio $\mathbb{V}$, (osea con
+            expresiones matemáticas:)
+
+            \begin{itemize}
+                \item $\vec{0} \in \mathbb{W}$
+                
+                \item $\forall \vec{v_1}, \vec{v_2} \in \mathbb{W}, \MiniSpace
+                            \vec{v_1} + \vec{v_2} \in \mathbb{W}$
+
+                \item $\forall \vec{v} \in \mathbb{W}, \MiniSpace
+                            \forall \alpha \in \mathbb{F}, \MiniSpace
+                                \alpha \vec{v} \in \mathbb{W}$
+             \end{itemize}
+
+
+
+
+
+
+
 
 
 \end{document}
