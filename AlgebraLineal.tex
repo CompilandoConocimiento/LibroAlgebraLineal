@@ -1,16 +1,17 @@
 % ****************************************************************************************
-% ************************      ALGEBRA LINEAL BASICA         ****************************
+% ************************            ALGEBRA LINEAL          ****************************
 % ****************************************************************************************
-
 
 % =======================================================
 % =======         HEADER FOR DOCUMENT        ============
 % =======================================================
     % *********   DOCUMENT ITSELF   **************
-    \documentclass[12pt]{report}                                    %Type of docuemtn and size of font
+    \documentclass[12pt, fleqn]{report}                             %Type of docuemtn and size of font and left eq
     \usepackage[margin=1.2in]{geometry}                             %Margins and Geometry pacakge
     \usepackage{ifthen}                                             %Allow simple programming
     \usepackage{hyperref}                                           %Create MetaData for a PDF and LINKS!
+    \usepackage{pdfpages}                                           %Create MetaData for a PDF and LINKS!
+    \hypersetup{pageanchor=false}                                   %Solve 'double page 1' warnings in build
     \setlength{\parindent}{0pt}                                     %Eliminate ugly indentation
     \author{Oscar Andrés Rosas}                                     %Who I am
 
@@ -20,10 +21,11 @@
     \usepackage[T1]{fontenc}                                        %Please use spanish
     \usepackage{textcmds}                                           %Allow us to use quoutes
     \usepackage{changepage}                                         %Allow us to use identate paragraphs
+    \usepackage{anyfontsize}                                        %All the sizes
 
     % *********   MATH AND HIS STYLE  *********
-    \usepackage{amsthm, amssymb, amsfonts, mathrsfs}                %Make math beautiful
-    \usepackage[fleqn]{amsmath}                                     %Please make equations left
+    \usepackage{ntheorem, amsmath, amssymb, amsfonts}               %All fucking math, I want all!
+    \usepackage{mathrsfs, mathtools, empheq}                        %All fucking math, I want all!
     \usepackage{centernot}                                          %Allow me to negate a symbol
     \decimalpoint                                                   %Use decimal point
 
@@ -33,7 +35,7 @@
     \graphicspath{ {Graphics/} }                                    %Where are the images :D
 
     % *********   LISTS AND TABLES ***********
-    \usepackage{listings}                                           %We will be using code here
+    \usepackage{listings, listingsutf8}                             %We will be using code here
     \usepackage[inline]{enumitem}                                   %We will need to enumarate
     \usepackage{tasks}                                              %Horizontal lists
     \usepackage{longtable}                                          %Lets make tables awesome
@@ -79,17 +81,41 @@
 
     % =====  GENERAL TEXT  ==========
     \newcommand \Quote {\qq}                                        %Use: \Quote to use quotes
+    \newcommand \Over {\overline}                                   %Use: \Bar to use just for short
+    \newcommand \ForceNewLine {$\Space$\\}                          %Use it in theorems for example
+    
     \newenvironment{Indentation}[1][0.75em]                         %Use: \begin{Inde...}[Num]...\end{Inde...}
     {\begin{adjustwidth}{#1}{}}                                     %If you dont put nothing i will use 0.75 em
     {\end{adjustwidth}}                                             %This indentate a paragraph
     \newenvironment{SmallIndentation}[1][0.75em]                    %Use: The same that we upper one, just 
     {\begin{adjustwidth}{#1}{}\begin{footnotesize}}                 %footnotesize size of letter by default
     {\end{footnotesize}\end{adjustwidth}}                           %that's it
-        
+
+
     % =====  GENERAL MATH  ==========
     \DeclareMathOperator \Space {\quad}                             %Use: \Space for a cool mega space
     \DeclareMathOperator \MiniSpace {\;}                            %Use: \Space for a cool mini space
     \newcommand \Such {\MiniSpace|\MiniSpace}                       %Use: \Such like in sets
+    \newcommand \Also {\MiniSpace \text{y} \MiniSpace}              %Use: \Also so it's look cool
+    \newcommand \Remember[1]{\Space\text{\scriptsize{#1}}}          %Use: \Remember so it's look cool
+
+    \newtheorem{Theorem}{Teorema}[section]                          %Use: \begin{Theorem}[Name]\label{Nombre}...
+    \newtheorem{Corollary}{Colorario}[Theorem]                      %Use: \begin{Corollary}[Name]\label{Nombre}...
+    \newtheorem{Lemma}[Theorem]{Lemma}                              %Use: \begin{Lemma}[Name]\label{Nombre}...
+    \newtheorem{Definition}{Definición}[section]                    %Use: \begin{Definition}[Name]\label{Nombre}...
+
+    \newcommand{\Set}[1]{\left\{ \MiniSpace #1 \MiniSpace \right\}} %Use: \Set {Info}
+    \newcommand{\Brackets}[1]{\left[ #1 \right]}                    %Use: \Brackets {Info} 
+    \newcommand{\Wrap}[1]{\left( #1 \right)}                        %Use: \Wrap {Info} 
+    \newcommand{\pfrac}[2]{\Wrap{\dfrac{#1}{#2}}}                   %Use: Put fractions in parentesis
+
+    \newenvironment{MultiLineEquation}[1]                           %Use: To create MultiLine equations
+        {\begin{equation}\begin{alignedat}{#1}}                     %Use: \begin{Multi..}{Num. de Columnas}
+        {\end{alignedat}\end{equation}}                             %And.. that's it!
+    \newenvironment{MultiLineEquation*}[1]                          %Use: To create MultiLine equations
+        {\begin{equation*}\begin{alignedat}{#1}}                    %Use: \begin{Multi..}{Num. de Columnas}
+        {\end{alignedat}\end{equation*}}                            %And.. that's it!
+
 
     % =====  LOGIC  ==================
     \DeclareMathOperator \doublearrow {\leftrightarrow}             %Use: \doublearrow for a double arrow
@@ -107,6 +133,7 @@
 
     % === LINEAL ALGEBRA & VECTORS ===
     \DeclareMathOperator \LinealTransformation {\mathcal{T}}        %Use: \LinealTransformation for a cool T
+    \newcommand{\Mag}[1]{\left| #1 \right|}                         %Use: \Mag {Info} 
 
     \newcommand{\pVector}[1]{                                       %Use: \pVector {Matrix Notation} use parentesis
         \ensuremath{\begin{pmatrix}#1\end{pmatrix}}                 %Example: \pVector{a\\b\\c} or \pVector{a&b&c} 
@@ -129,40 +156,140 @@
         \array{#1}                                                  %WTF! IS THIS
     }                                                               %WTF! IS THIS
     \makeatother                                                    %WTF! IS THIS
-    \newcommand{\Brackets}[1]{\left[ #1 \right]}                    %Use: \Brackets {Info} 
+
+    % TRIGONOMETRIC FUNCTIONS
+    \newcommand{\Cos}[1]{\cos\Wrap{#1}}                             %Simple wrappers
+    \newcommand{\Sin}[1]{\sin\Wrap{#1}}                             %Simple wrappers
+    \newcommand{\Tan}[1]{tan\Wrap{#1}}                              %Simple wrappers
+    
+    \newcommand{\Sec}[1]{sec\Wrap{#1}}                              %Simple wrappers
+    \newcommand{\Csc}[1]{csc\Wrap{#1}}                              %Simple wrappers
+    \newcommand{\Cot}[1]{cot\Wrap{#1}}                              %Simple wrappers
+
+    % === COMPLEX ANALYSIS ===
+    \newcommand \Cis[1]  {\Cos{#1} + i \Sin{#1}}                    %Use: \Cis for cos(x) + i sin(x)
+    \newcommand \pCis[1] {\Wrap{\Cis{#1}}}                          %Use: \pCis for the same ut parantesis
+    \newcommand \bCis[1] {\Brackets{\Cis{#1}}}                      %Use: \bCis for the same to Brackets
+
+    % ====== TRANSFORMS =====
+    \newcommand{\FourierT}[1]{\mathscr{F} \left\{ #1 \right\} }     %Use: \FourierT {Funtion}
+    \newcommand{\InvFourierT}[1]{\mathscr{F}^{-1}\left\{#1\right\}} %Use: \InvFourierT {Funtion}
+
+
+    % === CALCULUS ===
+    \newcommand \MiniDerivate[1][x] {\dfrac{d}{d #1}}               %Use: \MiniDerivate for simple use
+    \newcommand \Derivate[2]                                        %Complete Derivate -- [f(x)][x]
+        {\dfrac{d \; #1}{d #2}}                                     %Use: \Partial for simple use
+    
+    \newcommand \MiniUpperDerivate[2]                               %Mini Derivate High Orden Derivate -- [x][1]
+        {\dfrac{d^{#2}}{d#1^{#2}}}                                  %Mini Derivate High Orden Derivate
+    \newcommand \UpperDerivate[3]                                   %Complete High Orden Derivate -- [f(x)][x][1]
+        {\dfrac{d^{#3} \; #1}{d#2^{#3}}}                            %Use: \UpperDerivate for simple use
+    
+    \newcommand \MiniPartial[1][x] {\dfrac{\partial}{\partial #1}} %Use: \MiniDerivate for simple use
+    \newcommand \Partial[2]                                        %Complete Derivate -- [f(x)][x]
+        {\dfrac{\partial \; #1}{\partial #2}}                      %Use: \Partial for simple use
+    
+    \newcommand \MiniUpperPartial[2]                                %Mini Derivate High Orden Derivate -- [x][1] 
+        {\dfrac{\partial^{#2}}{\partial #1^{#2}}}                   %Mini Derivate High Orden Derivate
+    \newcommand \UpperPartial[3]                                    %Complete High Orden Derivate -- [f(x)][x][1]
+        {\dfrac{\partial^{#3} \; #1}{\partial#2^{#3}}}              %Use: \UpperDerivate for simple use
+
+    \DeclareMathOperator \Evaluate  {\Big|}                         %Use: \Evaluate por Notation
+
+    
+    % =====  GENERAL COLOR  =========
+    \definecolor{TealMD}{HTML}{009688}                              %Use: Color :D        
+    \definecolor{IndigoMD}{HTML}{3F51B5}                            %Use: Color :D
+    \definecolor{Green100MD}{HTML}{DCEDC8}                          %Use: Color :D
+    \definecolor{Blue300MD}{HTML}{64B5F6}                           %Use: Color :D
+    \definecolor{DeepPurpleMD}{HTML}{673AB7}                        %Use: Color :D
+    \definecolor{BlueGrey100MD}{HTML}{CFD8DC}                       %Use: Color :D
+    \definecolor{BlueGrey800MD}{HTML}{37474F}                       %Use: Color :D
+    \definecolor{BlueGrey200MD}{HTML}{B0BEC5}                       %Use: Color :D
+    \definecolor{Lime300MD}{HTML}{E6EE9C}                           %Use: Color :D
+
+    \newenvironment{ColorText}[1]{                                  %Use: \begin{ColorText}
+        \leavevmode\color{#1}\ignorespaces}                         %That's is!
+
+    % =====  CODE EDITOR =========
+    \lstdefinestyle{CompilandoStyle} {                              %This is Code Style
+        backgroundcolor=\color{BlueGrey800MD},                      %Background Color  
+        basicstyle=\tiny\color{white},                              %Font color
+        commentstyle=\color{BlueGrey200MD},                         %Comment color
+        stringstyle=\color{Lime300MD},                              %String color
+        keywordstyle=\color{Blue300MD},                             %keywords color
+        numberstyle=\tiny\color{TealMD},                            %Size of a number
+        frame=shadowbox,                                            %Adds a frame around the code
+        breakatwhitespace=true,                                     %Style   
+        showstringspaces=false,                                     %Hate those spaces                  
+        breaklines=true,                                            %Style                   
+        keepspaces=true,                                            %Style                   
+        numbers=left,                                               %Style                   
+        numbersep=10pt,                                             %Style 
+        xleftmargin=\parindent,                                     %Style 
+        tabsize=4,                                                  %Style
+        inputencoding=utf8/latin1                                   %Allow me to use special chars
+    }
+ 
+    \lstset{style=CompilandoStyle}                                  %Use this style
 
 
 
 
 
 % =====================================================
-% ============     	  COVER PAGE	   ================
+% ============        COVER PAGE       ================
 % =====================================================
 \begin{document}
 \begin{titlepage}
+    
+    % ============ TITLE PAGE STYLE  ================
+    \definecolor{TitlePageColor}{cmyk}{1,.60,0,.40}                 %Simple colors
+    \definecolor{ColorSubtext}{cmyk}{1,.50,0,.10}                   %Simple colors
+    \newgeometry{left=0.25\textwidth}                               %Defines an Offset
+    \pagecolor{TitlePageColor}                                      %Make it this Color to page
+    \color{white}                                                   %General things should be white
 
-	\center
-	% ============ UNIVERSITY NAME AND DATA =========
-	\textbf{\textsc{\Large Proyecto Compilando Conocimiento}}\\[1.0cm] 
-	\textsc{\Large Matemáticas Discretas}\\[1.0cm] 
+    % ===== MAKE SOME SPACE =========
+    \vspace                                                         %Give some space
+    \baselineskip                                                   %But we need this to up command
 
-	% ============ NAME OF THE DOCUMENT  ============
-	\rule{\linewidth}{0.5mm} \\[1.0cm]
-		{ \huge \bfseries Algebra Lineal}\\[1.0cm] 
-	\rule{\linewidth}{0.5mm} \\[2.0cm]
-	
-	% ====== SEMI TITLE ==========
-	{\LARGE Una Pequeña (Gran) Introducción}\\[7cm] 
-	
-	% ============  MY INFORMATION  =================
-	\begin{center} \large
-	\textbf{\textsc{Autor:}}\\
-	Rosas Hernandez Oscar Andrés
-	\end{center}
+    % ============ NAME OF THE PROJECT  ============
+    \makebox[0pt][l]{\rule{1.3\textwidth}{3pt}}                     %Make a cool line
+    
+    \href{https://compilandoconocimiento.com}                       %Link to project
+    {\textbf{\textsc{\Huge Compilando Conocimiento}}}\\[2.7cm]      %Name of project   
 
-	\vfill
+    % ============ NAME OF THE BOOK  ===============
+    \def\ProjectNameLink{https://github.com/CompilandoConocimiento} %Just to keep it in line
+    \href{\ProjectNameLink/LibroAlgebraLineal}                      %Link to Author
+    {\fontsize{65}{78}\selectfont \textbf{Álgebra Lineal}}\\[0.5cm] %Name of the book
+    \textcolor{ColorSubtext}{\textsc{\Huge Matemáticas Discretas}}  %Name of the general theme
+    
+    \vfill                                                          %Fill the space
+    
+    % ============ NAME OF THE AUTHOR  =============
+    \href{https://compilandoconocimiento.com/yo}                    %Link to Author
+    {\LARGE \textsf{Oscar Andrés Rosas Hernandez}}                  %Author
+
+    % ===== MAKE SOME SPACE =========
+    \vspace                                                         %Give some space
+    \baselineskip                                                   %But we need this to up command
+    
+    {\large \textsf{Enero 2018}}                                    %Date
 
 \end{titlepage}
+
+
+% =====================================================
+% ==========      RESTORE TO DOCUMENT      ============
+% =====================================================
+\restoregeometry                                                    %Restores the geometry
+\nopagecolor                                                        %Use to restore the color to white
+
+
+
 
 % =====================================================
 % ========                INDICE              =========
@@ -284,7 +411,7 @@
         \section{Delta de Kronecker}
 
             Esta es una función demasiado sencilla $\delta(i,j): \Naturals^2 \to \{0,1\}$
-            pero muy importante a lo largo de Algebra Lineal, podemos definirla como:
+            pero muy importante a lo largo de Álgebra Lineal, podemos definirla como:
             \begin{equation}
                 \delta(i,j) =
                 \begin{cases}
@@ -1246,7 +1373,7 @@
             % ==================================
             \clearpage
             \subsection{Matriz Ampliada}
-                La forma en la que Algebra Lineal nos ayuda a resolver nuestro sistema de ecuaciones
+                La forma en la que Álgebra Lineal nos ayuda a resolver nuestro sistema de ecuaciones
                 es mediante una matriz ampliada, que no es más que convertir nuestro sistema
                 de ecuaciones de esta manera:
 
