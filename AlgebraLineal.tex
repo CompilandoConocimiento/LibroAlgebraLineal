@@ -51,12 +51,12 @@
     \setlength{\parskip}{0.5em}                                     %Top line
     \renewcommand{\footrulewidth}{0.5pt}                            %Bottom line
 
-    \lhead{                                                         %Left Header
+    \lhead {                                                        %Left Header
         \hyperlink{chapter.\arabic{chapter}}                        %Make a link to the current chapter
         {\normalsize{\textsc{\nouppercase{\leftmark}}}}             %And fot it put the name
     }
 
-    \rhead{                                                         %Right Header
+    \rhead {                                                        %Right Header
         \hyperlink{section.\arabic{chapter}.\arabic{section}}       %Make a link to the current chapter
             {\footnotesize{\textsc{\nouppercase{\rightmark}}}}      %And fot it put the name
     }
@@ -79,35 +79,15 @@
 % ===========   COMMANDS    ==============
 % ========================================
 
-    % =====  GENERAL TEXT  ==========
-    \newcommand \Quote {\qq}                                        %Use: \Quote to use quotes
-    \newcommand \Over {\overline}                                   %Use: \Bar to use just for short
-    \newcommand \ForceNewLine {$\Space$\\}                          %Use it in theorems for example
-    
+    % =========================================
+    % =======   NEW ENVIRONMENTS   ============
+    % =========================================
     \newenvironment{Indentation}[1][0.75em]                         %Use: \begin{Inde...}[Num]...\end{Inde...}
-    {\begin{adjustwidth}{#1}{}}                                     %If you dont put nothing i will use 0.75 em
-    {\end{adjustwidth}}                                             %This indentate a paragraph
+        {\begin{adjustwidth}{#1}{}}                                 %If you dont put nothing i will use 0.75 em
+        {\end{adjustwidth}}                                         %This indentate a paragraph
     \newenvironment{SmallIndentation}[1][0.75em]                    %Use: The same that we upper one, just 
-    {\begin{adjustwidth}{#1}{}\begin{footnotesize}}                 %footnotesize size of letter by default
-    {\end{footnotesize}\end{adjustwidth}}                           %that's it
-
-
-    % =====  GENERAL MATH  ==========
-    \DeclareMathOperator \Space {\quad}                             %Use: \Space for a cool mega space
-    \DeclareMathOperator \MiniSpace {\;}                            %Use: \Space for a cool mini space
-    \newcommand \Such {\MiniSpace|\MiniSpace}                       %Use: \Such like in sets
-    \newcommand \Also {\MiniSpace \text{y} \MiniSpace}              %Use: \Also so it's look cool
-    \newcommand \Remember[1]{\Space\text{\scriptsize{#1}}}          %Use: \Remember so it's look cool
-
-    \newtheorem{Theorem}{Teorema}[section]                          %Use: \begin{Theorem}[Name]\label{Nombre}...
-    \newtheorem{Corollary}{Colorario}[Theorem]                      %Use: \begin{Corollary}[Name]\label{Nombre}...
-    \newtheorem{Lemma}[Theorem]{Lemma}                              %Use: \begin{Lemma}[Name]\label{Nombre}...
-    \newtheorem{Definition}{Definición}[section]                    %Use: \begin{Definition}[Name]\label{Nombre}...
-
-    \newcommand{\Set}[1]{\left\{ \MiniSpace #1 \MiniSpace \right\}} %Use: \Set {Info}
-    \newcommand{\Brackets}[1]{\left[ #1 \right]}                    %Use: \Brackets {Info} 
-    \newcommand{\Wrap}[1]{\left( #1 \right)}                        %Use: \Wrap {Info} 
-    \newcommand{\pfrac}[2]{\Wrap{\dfrac{#1}{#2}}}                   %Use: Put fractions in parentesis
+        {\begin{adjustwidth}{#1}{}\begin{footnotesize}}             %footnotesize size of letter by default
+        {\end{footnotesize}\end{adjustwidth}}                       %that's it
 
     \newenvironment{MultiLineEquation}[1]                           %Use: To create MultiLine equations
         {\begin{equation}\begin{alignedat}{#1}}                     %Use: \begin{Multi..}{Num. de Columnas}
@@ -115,40 +95,95 @@
     \newenvironment{MultiLineEquation*}[1]                          %Use: To create MultiLine equations
         {\begin{equation*}\begin{alignedat}{#1}}                    %Use: \begin{Multi..}{Num. de Columnas}
         {\end{alignedat}\end{equation*}}                            %And.. that's it!
+    
 
+    % =========================================
+    % == GENERAL TEXT & SYMBOLS ENVIRONMENTS ==
+    % =========================================
+    
+    % =====  TEXT  ======================
+    \newcommand \Quote {\qq}                                        %Use: \Quote to use quotes
+    \newcommand \Over {\overline}                                   %Use: \Bar to use just for short
+    \newcommand \ForceNewLine {$\Space$\\}                          %Use it in theorems for example
 
-    % =====  LOGIC  ==================
-    \DeclareMathOperator \doublearrow {\leftrightarrow}             %Use: \doublearrow for a double arrow
-    \newcommand \lequal {\MiniSpace \Leftrightarrow \MiniSpace}     %Use: \lequal for a double arrow
-    \newcommand \linfire {\MiniSpace \Rightarrow \MiniSpace}        %Use: \lequal for a double arrow
-    \newcommand \longto {\longrightarrow}                           %Use: \longto for a long arrow
+    % =====  SPACES  ====================
+    \DeclareMathOperator \Space {\quad}                             %Use: \Space for a cool mega space
+    \DeclareMathOperator \MegaSpace {\quad \quad}                   %Use: \MegaSpace for a cool mega mega space
+    \DeclareMathOperator \MiniSpace {\;}                            %Use: \Space for a cool mini space
+    
+    % =====  MATH TEXT  =================
+    \newcommand \Such {\MiniSpace | \MiniSpace}                     %Use: \Such like in sets
+    \newcommand \Also {\MiniSpace \text{y} \MiniSpace}              %Use: \Also so it's look cool
+    \newcommand \Remember[1]{\Space\text{\scriptsize{#1}}}          %Use: \Remember so it's look cool
+    
+    % =====  THEOREMS  ==================
+    \newtheorem{Theorem}{Teorema}[section]                          %Use: \begin{Theorem}[Name]\label{Nombre}...
+    \newtheorem{Corollary}{Colorario}[Theorem]                      %Use: \begin{Corollary}[Name]\label{Nombre}...
+    \newtheorem{Lemma}[Theorem]{Lemma}                              %Use: \begin{Lemma}[Name]\label{Nombre}...
+    \newtheorem{Definition}{Definición}[section]                    %Use: \begin{Definition}[Name]\label{Nombre}...
 
-    % =====  NUMBER THEORY  ==========
-    \DeclareMathOperator \Naturals  {\mathbb{N}}                     %Use: \Naturals por Notation
-    \DeclareMathOperator \Primes    {\mathbb{P}}                     %Use: \Naturals por Notation
-    \DeclareMathOperator \Integers  {\mathbb{Z}}                     %Use: \Integers por Notation
-    \DeclareMathOperator \Racionals {\mathbb{Q}}                     %Use: \Racionals por Notation
-    \DeclareMathOperator \Reals     {\mathbb{R}}                     %Use: \Reals por Notation
-    \DeclareMathOperator \Complexs  {\mathbb{C}}                     %Use: \Complex por Notation
+    % =====  LOGIC  =====================
+    \newcommand \lIff {\leftrightarrow}                             %Use: \lIff for logic iff
+    \newcommand \lEqual {\MiniSpace \Leftrightarrow \MiniSpace}     %Use: \lEqual for a logic double arrow
+    \newcommand \lInfire {\MiniSpace \Rightarrow \MiniSpace}        %Use: \lInfire for a logic infire
+    \newcommand \lLongTo {\longrightarrow}                          %Use: \lLongTo for a long arrow
 
-    % === LINEAL ALGEBRA & VECTORS ===
-    \DeclareMathOperator \LinealTransformation {\mathcal{T}}        %Use: \LinealTransformation for a cool T
+    % =====  FAMOUS SETS  ===============
+    \DeclareMathOperator \Naturals     {\mathbb{N}}                 %Use: \Naturals por Notation
+    \DeclareMathOperator \Primes       {\mathbb{P}}                 %Use: \Primes por Notation
+    \DeclareMathOperator \Integers     {\mathbb{Z}}                 %Use: \Integers por Notation
+    \DeclareMathOperator \Racionals    {\mathbb{Q}}                 %Use: \Racionals por Notation
+    \DeclareMathOperator \Reals        {\mathbb{R}}                 %Use: \Reals por Notation
+    \DeclareMathOperator \Complexs     {\mathbb{C}}                 %Use: \Complex por Notation
+    \DeclareMathOperator \GenericField {\mathbb{F}}                 %Use: \GenericField por Notation
+
+    % =====  CONTAINERS   ===============
+    \newcommand{\Set}[1]{\left\{ \; #1 \; \right\}}                 %Use: \Set {Info} for INTELLIGENT space 
+    \newcommand{\bigSet}[1]{\big\{ \; #1 \; \big\}}                 %Use: \bigSet  {Info} for space 
+    \newcommand{\BigSet}[1]{\Big\{ \; #1 \; \Big\}}                 %Use: \BigSet  {Info} for space 
+    \newcommand{\biggSet}[1]{\bigg\{ \; #1 \; \bigg\}}              %Use: \biggSet {Info} for space 
+    \newcommand{\BiggSet}[1]{\Bigg\{ \; #1 \; \Bigg\}}              %Use: \BiggSet {Info} for space 
+    
+    \newcommand{\Brackets}[1]{\left[ #1 \right]}                    %Use: \Brackets {Info} for INTELLIGENT space
+    \newcommand{\bigBrackets}[1]{\big[ \; #1 \; \big]}              %Use: \bigBrackets  {Info} for space 
+    \newcommand{\BigBrackets}[1]{\Big[ \; #1 \; \Big]}              %Use: \BigBrackets  {Info} for space 
+    \newcommand{\biggBrackets}[1]{\bigg[ \; #1 \; \bigg]}           %Use: \biggBrackets {Info} for space 
+    \newcommand{\BiggBrackets}[1]{\Bigg[ \; #1 \; \Bigg]}           %Use: \BiggBrackets {Info} for space 
+    
+    \newcommand{\Wrap}[1]{\left( #1 \right)}                        %Use: \Wrap {Info} for INTELLIGENT space
+    \newcommand{\bigWrap}[1]{\big( \; #1 \; \big)}                  %Use: \bigBrackets  {Info} for space 
+    \newcommand{\BigWrap}[1]{\Big( \; #1 \; \Big)}                  %Use: \BigBrackets  {Info} for space 
+    \newcommand{\biggWrap}[1]{\bigg( \; #1 \; \bigg)}               %Use: \biggBrackets {Info} for space 
+    \newcommand{\BiggWrap}[1]{\Bigg( \; #1 \; \Bigg)}               %Use: \BiggBrackets {Info} for space 
+
+    % =====  BETTERS MATH COMMANDS   =====
+    \newcommand{\pfrac}[2]{\Wrap{\dfrac{#1}{#2}}}                   %Use: Put fractions in parentesis
+
+    % =========================================
+    % ====   LINEAL ALGEBRA & VECTORS    ======
+    % =========================================
+
+    % ===== MAGNITUDE  ===================
+    \newcommand{\abs}[1]{\left\lvert #1 \right\lvert}               %Use: \abs{expression} for |x|
+    \newcommand{\Abs}[1]{\left\lVert #1 \right\lVert}               %Use: \Abs{expression} for ||x||
     \newcommand{\Mag}[1]{\left| #1 \right|}                         %Use: \Mag {Info} 
+    
+    \DeclareMathOperator \LinealTransformation {\mathcal{T}}        %Use: \LinealTransformation for a cool T
+    \newcommand{\bVec}[1]{\mathbf{#1}}                              %Use for bold type of vector
+    \newcommand{\lVec}[1]{\overrightarrow{#1}}                      %Use for a long arrow over a vector
+    \newcommand{\uVec}[1]{\mathbf{\hat{#1}}}                        %Use: Unitary Vector Example: $\uVec{i}
 
-    \newcommand{\pVector}[1]{                                       %Use: \pVector {Matrix Notation} use parentesis
-        \ensuremath{\begin{pmatrix}#1\end{pmatrix}}                 %Example: \pVector{a\\b\\c} or \pVector{a&b&c} 
-    }
-    \newcommand{\lVector}[1]{                                       %Use: \lVector {Matrix Notation} use a abs 
-        \ensuremath{\begin{vmatrix}#1\end{vmatrix}}                 %Example: \lVector{a\\b\\c} or \lVector{a&b&c} 
-    }
-    \newcommand{\bVector}[1]{                                       %Use: \bVector {Matrix Notation} use a brackets 
-        \ensuremath{\begin{bmatrix}#1\end{bmatrix}}                 %Example: \bVector{a\\b\\c} or \bVector{a&b&c} 
-    }
-    \newcommand{\Vector}[1]{                                        %Use: \Vector {Matrix Notation} no parentesis
-        \ensuremath{\begin{matrix}#1\end{matrix}}                   %Example: \Vector{a\\b\\c} or \Vector{a&b&c}
-    }
+    % === WRAPPERS FOR COLUMN VECTOR ===
+    \newcommand{\pVector}[1]                                        %Use: \pVector {Matrix Notation} use parentesis
+        { \ensuremath{\begin{pmatrix}#1\end{pmatrix}} }             %Example: \pVector{a\\b\\c} or \pVector{a&b&c} 
+    \newcommand{\lVector}[1]                                        %Use: \lVector {Matrix Notation} use a abs 
+        { \ensuremath{\begin{vmatrix}#1\end{vmatrix}} }             %Example: \lVector{a\\b\\c} or \lVector{a&b&c} 
+    \newcommand{\bVector}[1]                                        %Use: \bVector {Matrix Notation} use a brackets 
+        { \ensuremath{\begin{bmatrix}#1\end{bmatrix}} }             %Example: \bVector{a\\b\\c} or \bVector{a&b&c} 
+    \newcommand{\Vector}[1]                                         %Use: \Vector {Matrix Notation} no parentesis
+        { \ensuremath{\begin{matrix}#1\end{matrix}} }               %Example: \Vector{a\\b\\c} or \Vector{a&b&c}
 
-    % MATRIX
+    % === MAKE MATRIX BETTER  =========
     \makeatletter                                                   %Example: \begin{matrix}[cc|c]
     \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c] {             %WTF! IS THIS
         \hskip -\arraycolsep                                        %WTF! IS THIS
@@ -157,7 +192,11 @@
     }                                                               %WTF! IS THIS
     \makeatother                                                    %WTF! IS THIS
 
-    % TRIGONOMETRIC FUNCTIONS
+    % =========================================
+    % =======   FAMOUS FUNCTIONS   ============
+    % =========================================
+
+    % == TRIGONOMETRIC FUNCTIONS  ====
     \newcommand{\Cos}[1]{\cos\Wrap{#1}}                             %Simple wrappers
     \newcommand{\Sin}[1]{\sin\Wrap{#1}}                             %Simple wrappers
     \newcommand{\Tan}[1]{tan\Wrap{#1}}                              %Simple wrappers
@@ -166,39 +205,40 @@
     \newcommand{\Csc}[1]{csc\Wrap{#1}}                              %Simple wrappers
     \newcommand{\Cot}[1]{cot\Wrap{#1}}                              %Simple wrappers
 
-    % === COMPLEX ANALYSIS ===
+    % === COMPLEX ANALYSIS TRIG ======
     \newcommand \Cis[1]  {\Cos{#1} + i \Sin{#1}}                    %Use: \Cis for cos(x) + i sin(x)
-    \newcommand \pCis[1] {\Wrap{\Cis{#1}}}                          %Use: \pCis for the same ut parantesis
-    \newcommand \bCis[1] {\Brackets{\Cis{#1}}}                      %Use: \bCis for the same to Brackets
+    \newcommand \pCis[1] {\Wrap{\Cis{#1}}}                          %Use: \pCis for the same with parantesis
+    \newcommand \bCis[1] {\Brackets{\Cis{#1}}}                      %Use: \bCis for the same with Brackets
 
-    % ====== TRANSFORMS =====
+
+    % =========================================
+    % ===========     CALCULUS     ============
+    % =========================================
+
+    % ====== TRANSFORMS =============
     \newcommand{\FourierT}[1]{\mathscr{F} \left\{ #1 \right\} }     %Use: \FourierT {Funtion}
     \newcommand{\InvFourierT}[1]{\mathscr{F}^{-1}\left\{#1\right\}} %Use: \InvFourierT {Funtion}
 
-
-    % === CALCULUS ===
-    \newcommand \MiniDerivate[1][x] {\dfrac{d}{d #1}}               %Use: \MiniDerivate for simple use
-    \newcommand \Derivate[2]                                        %Complete Derivate -- [f(x)][x]
-        {\dfrac{d \; #1}{d #2}}                                     %Use: \Partial for simple use
+    % ====== DERIVATIVES ============
+    \newcommand \MiniDerivate[1][x] {\dfrac{d}{d #1}}               %Use: \MiniDerivate[var] for simple use [var]
+    \newcommand \Derivate[2] {\dfrac{d \; #1}{d #2}}                %Use: \Derivate [f(x)][x]
+    \newcommand \MiniUpperDerivate[2] {\dfrac{d^{#2}}{d#1^{#2}}}    %Mini Derivate High Orden Derivate -- [x][pow]
+    \newcommand \UpperDerivate[3] {\dfrac{d^{#3} \; #1}{d#2^{#3}}}  %Complete High Orden Derivate -- [f(x)][x][pow]
     
-    \newcommand \MiniUpperDerivate[2]                               %Mini Derivate High Orden Derivate -- [x][1]
-        {\dfrac{d^{#2}}{d#1^{#2}}}                                  %Mini Derivate High Orden Derivate
-    \newcommand \UpperDerivate[3]                                   %Complete High Orden Derivate -- [f(x)][x][1]
-        {\dfrac{d^{#3} \; #1}{d#2^{#3}}}                            %Use: \UpperDerivate for simple use
-    
-    \newcommand \MiniPartial[1][x] {\dfrac{\partial}{\partial #1}} %Use: \MiniDerivate for simple use
-    \newcommand \Partial[2]                                        %Complete Derivate -- [f(x)][x]
-        {\dfrac{\partial \; #1}{\partial #2}}                      %Use: \Partial for simple use
-    
-    \newcommand \MiniUpperPartial[2]                                %Mini Derivate High Orden Derivate -- [x][1] 
+    \newcommand \MiniPartial[1][x] {\dfrac{\partial}{\partial #1}}  %Use: \MiniDerivate for simple use [var]
+    \newcommand \Partial[2] {\dfrac{\partial \; #1}{\partial #2}}   %Complete Partial Derivate -- [f(x)][x]
+    \newcommand \MiniUpperPartial[2]                                %Mini Derivate High Orden Derivate -- [x][pow] 
         {\dfrac{\partial^{#2}}{\partial #1^{#2}}}                   %Mini Derivate High Orden Derivate
-    \newcommand \UpperPartial[3]                                    %Complete High Orden Derivate -- [f(x)][x][1]
+    \newcommand \UpperPartial[3]                                    %Complete High Orden Derivate -- [f(x)][x][pow]
         {\dfrac{\partial^{#3} \; #1}{\partial#2^{#3}}}              %Use: \UpperDerivate for simple use
 
     \DeclareMathOperator \Evaluate  {\Big|}                         %Use: \Evaluate por Notation
 
+    % =========================================
+    % ========    GENERAL STYLE     ===========
+    % =========================================
     
-    % =====  GENERAL COLOR  =========
+    % =====  COLORS ==================
     \definecolor{TealMD}{HTML}{009688}                              %Use: Color :D        
     \definecolor{IndigoMD}{HTML}{3F51B5}                            %Use: Color :D
     \definecolor{Green100MD}{HTML}{DCEDC8}                          %Use: Color :D
@@ -209,10 +249,10 @@
     \definecolor{BlueGrey200MD}{HTML}{B0BEC5}                       %Use: Color :D
     \definecolor{Lime300MD}{HTML}{E6EE9C}                           %Use: Color :D
 
-    \newenvironment{ColorText}[1]{                                  %Use: \begin{ColorText}
-        \leavevmode\color{#1}\ignorespaces}                         %That's is!
+    \newenvironment{ColorText}[1]                                   %Use: \begin{ColorText}
+        { \leavevmode\color{#1}\ignorespaces }                      %That's is!
 
-    % =====  CODE EDITOR =========
+    % =====  CODE EDITOR =============
     \lstdefinestyle{CompilandoStyle} {                              %This is Code Style
         backgroundcolor=\color{BlueGrey800MD},                      %Background Color  
         basicstyle=\tiny\color{white},                              %Font color
@@ -233,6 +273,7 @@
     }
  
     \lstset{style=CompilandoStyle}                                  %Use this style
+
 
 
 
@@ -314,6 +355,8 @@
     % ===============================================================================
     \chapter{Conozcamos las Matrices}
 
+
+
         % ==============================================
         % ========          DEFINICION            ======
         % ==============================================
@@ -322,103 +365,112 @@
 
             Siendo formales una Matriz es un arreglo rectangular de $m \times n$ elementos 
             (donde $m,n \in \Naturals$), es decir es un objecto matemático de $m$ filas y
-            de $n$ columnas.
-
+            de $n$ columnas. \textbf{Repito es un objeto de $m$ filas y de $n$ columnas}.
             Las entradas de matrices pueden ser números u objetos más complicados.
-            
-            Sea $\mathbb{F}$ un Campo, entonces decimos que $M_{m \times n}(\mathbb{F})$
-            al conjunto de todas las matrices de tamaños $m \times n$ cuyas entradas
-            pertenecen a $\mathbb{F}$.
-            \begin{equation}
+            \begin{equation*}
                 A = 
                 \begin{bmatrix}[ccc]
                     a _{1, 1}   & \cdots & a_{1,n}   \\
                     \cdots      &        & \cdots    \\
                     a _{m, 1}   & \cdots & a_{m,n}   \\
                 \end{bmatrix}
-            \end{equation}
+            \end{equation*}
+            
+            Sea $\GenericField$ un conjunto (ya se que en mate, tecnicamente todo el un conjunto),
+            entonces decimos que $M_{m \times n}(\GenericField)$ denota al conjunto de todas las
+            matrices de tamaños $m \times n$ cuyas entradas pertenecen a $\GenericField$.
 
 
             % ====================================
             % =====   DEFINICION FORMAL     ======
             % ====================================
+            \vspace{2em}
             \subsection*{Definición más Formal}
-                Una matriz de tamaño $m \times n$ con elementos del campo $\mathbb{F}$ se puede
-                definir como una función: 
-                $\{1, \dots, m\} \times \{1, \dots , n\} \to \mathbb{F}$
-
+                Una matriz de tamaño $m \times n$ con elementos en el conjunto $\GenericField$ se puede
+                definir también como una función que toma un par ordenado (las coordenadas) y regresa
+                un elemento de $\GenericField$: 
+                \begin{equation*}
+                    \Set{1, \dots, m} \times \Set{1, \dots , n}
+                        \Space \lLongTo \Space
+                    \GenericField
+                \end{equation*}
 
 
             % ====================================
             % =====   SIMBOLOGIA HERMOSA    ======
             % ====================================
+            \clearpage
             \subsection{Notación de Matrices mediante Función}
 
                 La notación más rara y al mismo tiempo más increíble es:
-                \begin{equation}
-                    A   = [f(i,j)]_{i, j = 1}^{m, n}
+                \begin{equation*}
+                    A   
+                        = \BigBrackets{ f(i,j) }_{i, j = 1}^{m, n}
                         =
                         \begin{bmatrix}[ccc]
                             f(1,1)  & \cdots & f(1,n)   \\
                             \cdots  &        & \cdots   \\
                             f(m, 1) & \cdots & f(m,n)   \\
                         \end{bmatrix}
-                \end{equation}
+                \end{equation*}
 
-                Significa $A$ es una matriz de tamaño $m \times n$ tal que su entrada
-                ubicada en la fila número $i$ y en la columna $j$ es igual a la función
-                $f: \{1, \dots, m\} \times \{1, \dots, n\} \to \mathbb{F}$.
-                
-                Aquí $f$ es una función de dos argumentos.
-                
-                Para hablar de un elemento cualquiera de la Matriz $A$ decimos de manera
-                informal $[A]_{i,j}$
+                Esta notación nos dice que $A$ es una matriz de tamaño $m \times n$ tal
+                que su entrada ubicada en la fila número $i$ y en la columna $j$ es igual
+                a la función $f: \{1, \dots, m\} \times \{1, \dots, n\} \to \GenericField$.
+                Aquí $f(i, j)$ es una función de dos argumentos.
 
 
         % ==============================================
         % ========          SIMBOLOGIA            ======
         % ==============================================
-        \clearpage
-        \section{Simbología}
+        \vspace{1em}
+        \section{Simbología y Notación}
 
             Solemos denotar con letras mayúsculas a las matrices y con letras miniscúlas
             a cada uno de los elementos.
 
             Para hablar de un elemento en específico usamos $a_{i,j}$ donde $i$ es el
-            número de fila y $j$ es el número de columnas.
+            número de fila y $j$ es el número de columnas, o bien podemos escribir $[A]_{i,j}$
+
+            \textbf{Recuerda que soy computólogo, así que mis índices pueden empiezar en 0}
 
 
             % =============================
             % ========   EJEMPLO     ======
             % =============================
             \subsubsection*{Ejemplo}
+                \begin{SmallIndentation}[1em]
+                    
+                    Por ejemplo, una matriz sería:
+                    \begin{equation*}
+                        A =
+                        \begin{bmatrix}[ccc]
+                            a & b & c   \\
+                            d & e & f   \\
+                        \end{bmatrix}
+                    \end{equation*}
 
-                Por ejemplo, una matriz sería:
-                \begin{equation*}
-                    A =
-                    \begin{bmatrix}[ccc]
-                        a & b & c   \\
-                        d & e & f   \\
-                    \end{bmatrix}
-                \end{equation*}
-
-                y $a_{1,3}$ es el elemento $c$.
+                    y $a_{1,3}$ ó $[A]_{1, 3}$ es el elemento $c$.
+                
+                \end{SmallIndentation}
+                
 
 
         % ==============================================
         % =======       DELTA DE KRONECKER        ======
         % ==============================================
+        \vspace{1em}
         \section{Delta de Kronecker}
 
             Esta es una función demasiado sencilla $\delta(i,j): \Naturals^2 \to \{0,1\}$
             pero muy importante a lo largo de Álgebra Lineal, podemos definirla como:
-            \begin{equation}
+            \begin{equation*}
                 \delta(i,j) =
                 \begin{cases}
-                    1 \Space \text{ si } i = j \\
+                    1 \Space \text{ si } i = j      \\
                     0 \Space \text{ si } i \neq j
                 \end{cases}
-            \end{equation}
+            \end{equation*}
 
 
 
@@ -429,37 +481,30 @@
         \section{Clasificación y Matrices Famosas}
 
             % ===================================
-            % ===  MATRICES RECTANGULARES   =====
-            % ===================================
-            \subsection{Matrices Rectangulares}
-
-                Son aquellas matrices de $m \times n$ si es que $m \neq n$ 
-
-                Por ejemplo: 
-                \begin{equation*}
-                    A_{m \times n} =
-                    \begin{bmatrix}[ccc]
-                        1 & 2 & 3   \\
-                        4 & 5 & 6   \\
-                    \end{bmatrix}
-                \end{equation*}
-
-            % ===================================
             % =======  MATRICES CUADRADAS   =====
             % ===================================
             \subsection{Matrices Cuadradas}
 
-                Son aquellas matrices de $m \times n$ si es que $m = n$.
+                Son aquellas matrices de $m \times n$ donde $m = n$.
                 Solemos decir que el orden de estas matrices es $n$.
 
                 Por ejemplo: 
                 \begin{equation*}
                     A_{n \times n} =
                     \begin{bmatrix}[ccc]
-                        1 & 2 \\
-                        4 & 5 \\
+                        1 & 2 & 3 \\
+                        4 & 5 & 6 \\
+                        7 & 8 & 9
                     \end{bmatrix}
                 \end{equation*}
+
+                Solemos decir que cualquier matriz que no sea cuadrada es
+                rectangular, es decir son aquellas matrices de $m \times n$
+                si es que $m \neq n$.
+
+                Es importante hablar de las matrices cuadradas porque hay muchas
+                características que solo funcionan si tu matriz es cuadrada.
+
 
             % ===================================
             % =======  MATRICES DIAGONALES   ====
@@ -467,17 +512,19 @@
             \subsection{Matrices Diagonales}
 
                 Son todas las matrices cuadradas donde cada elemento cumple que:
-                \begin{equation}
+                \begin{equation*}
                     [A]_{i,j} = [A]_{i,j} \cdot \delta(i,j)
-                \end{equation}
+                \end{equation*}
 
                 O más formalmente como cualquier matriz que cumple con que:
-                \begin{equation}
-                    [f(i,j)]_{i, j = 1}^{m, n} = [ f(i,j) \cdot \delta(i,j) ]_{i, j = 1}^{m, n}  
-                \end{equation}
+                \begin{equation*}
+                    \BigBrackets{f(i,j)}_{i, j = 1}^{m, n} 
+                        =
+                    \BigBrackets{f(i,j) \cdot \delta(i,j) }_{i, j = 1}^{m, n}  
+                \end{equation*}
 
-                Es decir es una matriz en la que a cualquier elemento lo puedes multiplicar 
-                por la Delta de Kronecker correspondiente y no se vera afectado.
+                \textbf{Es decir es una matriz en la que a cualquier elemento lo puedes multiplicar 
+                por la Delta de Kronecker correspondiente y no se vera afectado}.
 
                 Una matriz diagonal tiene el siguiente aspecto:
                 \begin{equation*}
@@ -485,7 +532,7 @@
                     \begin{bmatrix}[cccc]
                         a_{1,1} & 0         & \dots & 0         \\
                         0       & a_{2,2}   & \dots & 0         \\
-                        \vdots                                  \\
+                        \vdots  &           &       & \vdots    \\
                         0       & 0         & \dots & a_{n,n}   \\
                     \end{bmatrix}
                 \end{equation*}
@@ -497,23 +544,36 @@
             \clearpage
             \subsection{Matrices Triangulares Superiores}
 
-                Son aquellas matrices de $A \in M_{n \times n}(\mathbb{F})$ donde se cumple que: 
-                \begin{equation}
-                    [f(i,j)]_{i, j = 1}^{n, n} =
+                Son aquellas matrices de $A \in M_{n \times n}(\GenericField)$ donde se cumple que: 
+                \begin{equation*}
+                    \BigBrackets{f(i,j)}_{i, j = 1}^{n, n}
+                    =
                     \Brackets{
                         \begin{cases}
                             f(i,j)  \MiniSpace& \text{ si } i \leq j \\
                             0       \MiniSpace& \text{ si } i > j
                         \end{cases}
                     }_{i, j = 1}^{m, n}  
-                \end{equation}
+                \end{equation*}
 
 
-                Notemos que en una matriz triangular superior algunos (hasta todos) de los elementos por encima de la diagonal
-                principal o en la diagonal principal pueden ser iguales a cero.
+                Notemos que en una matriz triangular superior algunos (hasta todos) de los elementos
+                por encima de la diagonal principal o en la diagonal principal pueden ser iguales a cero.
 
-                Por ejemplo, la matriz nula $0_{n,n}$ es triangular superior. La condición que define matrices triangulares
-                superiores solo nos dice que todos los elementos por debajo de la diagonal principal deben cero iguales a cero.
+                Por ejemplo, la matriz nula $0_{n,n}$ es triangular superior. La condición que define
+                matrices triangulares superiores solo nos dice que todos los elementos por debajo de la
+                diagonal principal deben cero iguales a cero.
+
+                Una matriz triangular superior tiene el siguiente aspecto:
+                \begin{equation*}
+                    A_n =
+                    \begin{bmatrix}[cccc]
+                        a_{1,1} & a_{1, 2}  & \dots & a_{1, n}  \\
+                        0       & a_{2,2}   & \dots & a_{2, n}  \\
+                        \vdots  &           &       & \vdots    \\
+                        0       & 0         & \dots & a_{n,n}   \\
+                    \end{bmatrix}
+                \end{equation*}
 
 
             % ===================================
@@ -523,14 +583,14 @@
             \subsection{Matriz Identidad: $I_n$}
 
                 Son todas las matrices cuadradas donde cada elemento cumple que:
-                \begin{equation}
-                    [I]_{i,j} = \delta(i,j)
-                \end{equation}
+                \begin{equation*}
+                    [I]_{i, j} = \delta(i, j)
+                \end{equation*}
 
                 O más formalmente podemos definir a la Matriz identidad de órden $n$ como:
-                \begin{equation}
-                    [\delta(i,j)]_{i, j = 1}^{n, n}
-                \end{equation}
+                \begin{equation*}
+                    \BigBrackets{\delta(i,j)}_{i, j = 1}^{n, n}
+                \end{equation*}
 
                 Se ve algo así:
                 \begin{equation*}
@@ -548,17 +608,18 @@
             % ===================================
             % =======  MATRICES CERO         ====
             % ===================================
+            \vspace{2em}
             \subsection{Matriz Cero: $0_{m \times n}$}
 
                 Son todas aquellas matrices $m \times n$ que cumplen que para cada elemento:
-                \begin{equation}
-                    [0]_{i,j} = 0_K
-                \end{equation}
+                \begin{equation*}
+                    [0]_{i,j} = 0
+                \end{equation*}
 
                 O más formalmente podemos definir a la Matriz de Ceros de órden $n$ como:
-                \begin{equation}
-                    [0_{\mathbb{F}}]_{i, j = 1}^{n, n}
-                \end{equation}
+                \begin{equation*}
+                    \BigBrackets{0}_{i, j = 1}^{n, n}
+                \end{equation*}
 
                 Se ven algo así:
                 \begin{equation*}
@@ -570,13 +631,6 @@
                         0 & 0 & \dots & 0   \\
                     \end{bmatrix}
                 \end{equation*}
-
-
-
-
-
-
-
 
 
 
@@ -594,20 +648,26 @@
         \clearpage
         \section{Suma de Matrices}
 
-            Definimos la suma de dos Matrices $A, B \in M_{m \times n}(\mathbb{F})$ como una relación 
-            \\ $+: (M_{m \times n}, M_{m \times n}) \to M_{m \times n}$
+            Definimos la suma de dos Matrices $A, B \in M_{m \times n}(\GenericField)$
+            como una relación:
+            \begin{equation*}
+                +:  (M_{m \times n} \times M_{m \times n})
+                        \Space \lLongTo \Space
+                    M_{m \times n}
+            \end{equation*}
 
-            Entonces definamos la suma de dos matrices $A, B \in M_{m \times n}(\mathbb{F})$ como:
-            \begin{equation}
-                A + B = [A_{i, j} + B_{i, j}]_{i, j = 1}^{m, n}
-            \end{equation}
+            Entonces definimos la suma de dos matrices $A, B \in M_{m \times n}(\GenericField)$
+            como:
+            \begin{equation*}
+                A + B := \BigBrackets{ A_{i, j} + B_{i, j} }_{i, j = 1}^{m, n}
+            \end{equation*}
 
-            O visto de otra manera $A + B \in M_{m \times n}(\mathbb{F})$ y cumple que:
-            \begin{equation}
+            O visto de otra manera $A + B \in M_{m \times n}(\GenericField)$ y cumple que:
+            \begin{equation*}
                 \forall i \in \{1, \dots, m\} ,\MiniSpace
                     \forall j \in \{1, \dots, n\} ,\Space
-                        (A+B)_{i, j} = A_{i, j} + B_{i, j}
-            \end{equation}
+                        [A + B]_{i, j} = [A]_{i, j} + [B]_{i, j}
+            \end{equation*}
 
 
             % ================================
@@ -615,33 +675,31 @@
             % ================================
             \subsection{Propiedades de Suma}
 
-                Sea $A, B \in M_{m \times n}(\mathbb{F})$ y $\alpha, \beta \in \mathbb{F}$
+                Sea $A, B \in M_{m \times n}(\GenericField)$ y $\alpha, \beta \in \GenericField$
                 y con la suma y producto por escalar previamente definido tenemos que:
 
                 \begin{itemize}
 
                     \item \textbf{Cerradura Aditiva:}\\
-                        Si $A, B \in M_{m \times n}(\mathbb{F})$ entonces 
-                        $(A+B) \in M_{m \times n}(\mathbb{F})$
-
+                        Si $A, B \in M_{m \times n}(\GenericField)$ entonces 
+                        $(A+B) \in M_{m \times n}(\GenericField)$
 
                     \item \textbf{Ley Conmutativa:}\\
-                        Si $A, B \in M_{m \times n}(\mathbb{F})$ entonces $A+B = B+A$
+                        Si $A, B \in M_{m \times n}(\GenericField)$ entonces $A+B = B+A$
 
                     \item \textbf{Ley Asociativa para la Suma:}\\
-                        Si $A, B, C \in M_{m \times n}(\mathbb{F})$ entonces 
+                        Si $A, B, C \in M_{m \times n}(\GenericField)$ entonces 
                         $A + (B+C) = (A+B) + C$
 
                     \item \textbf{Existencia del Neutro Aditivo:}\\
-                        Existe una matriz $\varnothing \in M_{m \times n}(\mathbb{F})$
-                        tal que $\forall A \in M_{m \times n}(\mathbb{F}), \MiniSpace A + \varnothing = A$
+                        Existe una matriz $0_{m \times n} \in M_{m \times n}(\GenericField)$ tal que
+                        $\forall A \in M_{m \times n}(\GenericField), \; A + 0_{m \times n} = A$
 
                     \item \textbf{Existencia del Inverso Aditivo:}\\
-                        Existe una matriz $-A \in M_{m \times n}(\mathbb{F})$ para toda 
-                        $A \in M_{m \times n}(\mathbb{F})$ tal que $ A + (-A) = \varnothing$
+                        Existe una matriz $-A \in M_{m \times n}(\GenericField)$ para toda 
+                        $A \in M_{m \times n}(\GenericField)$ tal que $ A + (-A) = 0_{m \times n}$
 
                 \end{itemize}
-
 
 
 
@@ -651,17 +709,19 @@
         \clearpage
         \section{Producto de Escalar por Matriz}
 
-            Sea $A \in M_{m \times n}(\mathbb{F})$ y $\alpha \in \mathbb{F}$ entonces 
+            Sea $A \in M_{m \times n}(\GenericField)$ y $\alpha \in \GenericField$ entonces 
             definimos a $ \alpha A$ como:
-            \begin{equation}
-                A \alpha = \alpha A = [\alpha A_{i, j}]_{i, j = 1}^{m, n}
-            \end{equation}
+            \begin{equation*}
+                A \alpha 
+                    = \alpha A
+                    = \BigBrackets{ \alpha [A]_{i, j} }_{i, j = 1}^{m, n}
+            \end{equation*}
 
-            O visto de otra manera $\alpha A \in M_{m \times n}(\mathbb{F})$ y cumple que:
+            O visto de otra manera $\alpha A \in M_{m \times n}(\GenericField)$ y cumple que:
             \begin{equation}
                 \forall i \in \{1, \dots, m\} ,\MiniSpace
                     \forall j \in \{1, \dots, n\} ,\Space
-                        (\alpha A)_{i, j} = \alpha A_{i, j}
+                        [\alpha A]_{i, j} = \alpha [A]_{i, j}
             \end{equation}
 
             % ================================
@@ -669,33 +729,32 @@
             % ================================
             \subsection{Propiedades del Producto Escalar}
 
-                Sea $A, B \in M_{m \times n}(\mathbb{F})$ y $\alpha, \beta \in \mathbb{F}$
+                Sea $A, B \in M_{m \times n}(\GenericField)$ y $\alpha, \beta \in \GenericField$
                 y con la suma y producto por escalar previamente definido tenemos que:
 
                 \begin{itemize}
 
                     \item \textbf{Cerradura Escalar:}\\
-                        Si $A\in M_{m \times n}(\mathbb{F})$ y $\alpha \in \mathbb{F}$ entonces 
-                        $(\alpha A) \in M_{m \times n}(\mathbb{F})$
+                        Si $A\in M_{m \times n}(\GenericField)$ y $\alpha \in \GenericField$ entonces 
+                        $(\alpha A) \in M_{m \times n}(\GenericField)$
 
                     \item \textbf{Ley Asociativa para la Multiplicación Escalar:}\\
-                        Sea $A \in M_{m \times n}(\mathbb{F})$ y $\alpha, \beta \in \mathbb{F}$
+                        Sea $A \in M_{m \times n}(\GenericField)$ y $\alpha, \beta \in \GenericField$
                         entonces $\alpha(\beta A) = (\alpha \beta)A$
 
                     \item \textbf{Ley Distributiva en la Suma y Producto Escalar:}\\
-                        Sea $A, B \in M_{m \times n}(\mathbb{F})$ y $\alpha \in \mathbb{F}$
+                        Sea $A, B \in M_{m \times n}(\GenericField)$ y $\alpha \in \GenericField$
                         entonces $\alpha(A + B) = (\alpha A) + (\alpha B)$
 
                     \item \textbf{Ley Distributiva en los Escalares:}\\
-                        Sea $A \in M_{m \times n}(\mathbb{F})$ y $\alpha, \beta \in \mathbb{F}$
+                        Sea $A \in M_{m \times n}(\GenericField)$ y $\alpha, \beta \in \GenericField$
                         entonces $(\alpha + \beta)A = (\alpha A) + (\beta A)$
 
                     \item \textbf{Existencia del Neutro Multiplicativo Escalar:}\\
-                        Existe un elemento $1 \in \mathbb{F}$ tal que para toda
-                            $A \in M_{m \times n}(\mathbb{F})$ tenemos que $1A = A$
+                        Existe un elemento $1 \in \GenericField$ tal que para toda
+                            $A \in M_{m \times n}(\GenericField)$ tenemos que $1A = A$
 
                 \end{itemize}
-
 
 
 
@@ -705,29 +764,30 @@
         \clearpage
         \section{Producto de Matrices}
 
-            Sea $A \in M_{m \times n}(\mathbb{F})$ y $B \in M_{n \times p}(\mathbb{F})$ entonces 
-            definimos a $AB$ como:
-            \begin{equation}
-                AB = \Brackets{\sum_{k=1}^{n} A_{i, k}B_{k, j} }_{i, j = 1}^{m, p}
-            \end{equation}
+            Sea $A \in M_{m \times n}(\GenericField)$ y $B \in M_{n \times p}(\GenericField)$
+            entonces definimos a $AB \in M_{m \times p}(\GenericField)$ como:
+            \begin{equation*}
+                AB = \Brackets{ \sum_{k = 1}^n [A]_{i, k} [B]_{k, j} }_{i, j = 1}^{m, p}
+            \end{equation*}
 
-            O visto de otra manera $AB \in M_{m \times p}(\mathbb{F})$ y cumple que:
-            \begin{equation}
+            O visto de otra manera $AB \in M_{m \times p}(\GenericField)$ y cumple que:
+            \begin{equation*}
                 \forall i \in \{1, \dots, m\} ,\MiniSpace
                     \forall j \in \{1, \dots, n\} ,\Space
-                        (AB)_{i, j} = \sum_{k=1}^{n} A_{i, k}B_{k, j}
-            \end{equation}
+                        [AB]_{i, j} = \sum_{k = 1}^n [A]_{i, k} [B]_{k, j}
+            \end{equation*}
 
 
-            % ===============================
-            % =========   PROPIEDADES =======
-            % ===============================
-            \clearpage
+            % ===========================================
+            % ============   PROPIEDADES   ==============
+            % ===========================================
+            \vspace{2em}
             \subsection{Propiedades}
 
                 \begin{itemize}
 
-                    \item Sea $A \in M_{m \times n}(\mathbb{F})$ y $B,C \in M_{n \times p}(\mathbb{F})$
+                    \item
+                        Sea $A \in M_{m \times n}(\GenericField)$ y $B,C \in M_{n \times p}(\GenericField)$
                         entonces tenemos que:
                         $A(B+C) = AB+AC$
 
@@ -736,47 +796,50 @@
                             \textbf{Demostración}:
 
                             Empecemos por ver que tienen el mismo tamaño:
-                            La matriz $(B+C) \in M_{n \times p}(\mathbb{F})$, por lo que 
-                            $A(B+C) \in M_{m \times p}(\mathbb{F})$.
-                            También tenemos que $AB, AC \in M_{m \times p}(\mathbb{F})$
+                            La matriz $(B+C) \in M_{n \times p}(\GenericField)$, por lo que 
+                            $A(B+C) \in M_{m \times p}(\GenericField)$.
+                            También tenemos que $AB, AC \in M_{m \times p}(\GenericField)$
                             Por lo tanto tienen el mismo tamaño.
 
                             Ahora veamos que un cualquier elemento arbitrario de ambas matrices es igual:
+                            \begin{align*}
+                                [ A (B + C) ]_{i, j}    
+                                    &= \sum_{k = 1}^n  [A]_{i, k} ([B]_{k, j} + [C]_{k, j})                 \\
+                                    &= \sum_{k = 1}^n ([A]_{i, k} [B]_{k, j}) + ([A]_{i, k} [C]_{k, j})     \\
+                                    &= \sum_{k = 1}^n ([A]_{i, k} [B]_{k, j}) 
+                                        +
+                                       \sum_{k = 1}^n ([A]_{i, k} [C]_{k, j})                               \\
+                                    &= [AB]_{i, j} + [AC]_{i, j}                                            \\
+                                    &= [AB + AC]_{i, j}
+                            \end{align*}
+
+                        \end{SmallIndentation}
+
+                    \item
+                        Sea $A \in M_{m \times n}(\GenericField)$ y $B \in M_{n \times p}(\GenericField)$
+                        entonces tenemos que: $\alpha(AB) = A(\alpha B)$
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+
+                            Creo que es más que obvio que tienen el mismo tamaño, así que deja al lector :p.
+                            Ahora veamos que un cualquier elemento arbitrario de ambas matrices es igual:
                             \begin{equation*}
                             \begin{split}
-                                [A(B+C)]_{i, j}    
-                                    &= \sum_{k=1}^{n} A_{i, k}(B_{k, j}+C_{k, j})  \\            
-                                    &= \sum_{k=1}^{n} (A_{i, k}B_{k, j}) + (A_{i, k}C_{k, j}) 
-                                    = \sum_{k=1}^{n} (A_{i, k}B_{k, j}) + \sum_{k=1}^{n} (A_{i, k}C_{k, j}) \\
-                                    &= [AB]_{i, j} + [AC]_{i, j} = [AB + AC]_{i, j} 
+                                [\alpha(AB)]_{i, j}    
+                                    = \alpha \sum_{k = 1}^n [A]_{i, k} [B]_{k, j}              
+                                    = \sum_{k = 1}^n [A]_{i, k} ( \alpha [B]_{k, j} )            
+                                    = [A(\alpha B)]_{i, j}
                             \end{split}
                             \end{equation*}
 
                         \end{SmallIndentation}
 
-                    \item Sea $A \in M_{m \times n}(\mathbb{F})$ y $B \in M_{n \times p}(\mathbb{F})$
-                        entonces tenemos que: $\alpha(AB) = A(\alpha B)$
+                    \clearpage
 
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Demostración}:
-
-                        Creo que es más que obvio que tienen el mismo tamaño
-
-                        Ahora veamos que un cualquier elemento arbitrario de ambas matrices es igual:
-                        \begin{equation*}
-                        \begin{split}
-                            [\alpha(AB)]_{i, j}    
-                                = \alpha \sum_{k=1}^{n} A_{i, k} B_{k, j}              
-                                = \sum_{k=1}^{n} A_{i, k} (\alpha B_{k, j} )            
-                                = [A(\alpha B)]_{i, j}
-                        \end{split}
-                        \end{equation*}
-
-                    \end{SmallIndentation}
-
-                    \item Sea $A \in M_{m \times n}(\mathbb{F})$, $B \in M_{n \times p}(\mathbb{F})$
-                        y $C \in M_{p \times q}(\mathbb{F})$ entonces tenemos que:  \\
+                    \item Sea $A \in M_{m \times n}(\GenericField)$, $B \in M_{n \times p}(\GenericField)$
+                        y $C \in M_{p \times q}(\GenericField)$ entonces tenemos que:  \\
                         $A(BC) = (AB)C$
 
                         % ======== DEMOSTRACION ========
@@ -784,23 +847,23 @@
                             \textbf{Demostración}:
 
                             Empecemos por ver que tienen el mismo tamaño:
-                            La matriz $(BC) \in M_{n \times q}(\mathbb{F})$, por lo que 
-                            $A(BC) \in M_{m \times q}(\mathbb{F})$.
-                            También tenemos que $(AB) \in M_{m \times p}(\mathbb{F})$, por lo que tenemos
-                            que $(AB)C \in M_{m \times q}(\mathbb{F})$.
+                            La matriz $(BC) \in M_{n \times q}(\GenericField)$, por lo que 
+                            $A(BC) \in M_{m \times q}(\GenericField)$.
+                            También tenemos que $(AB) \in M_{m \times p}(\GenericField)$, por lo que tenemos
+                            que $(AB)C \in M_{m \times q}(\GenericField)$.
                             Por lo tanto tienen el mismo tamaño.
 
                             Ahora veamos que un cualquier elemento arbitrario de ambas matrices es igual:
                             \begin{equation*}
                             \begin{split}
                                 [A(BC)]_{i, j}    
-                                    &= \sum_{k=1}^n A_{i, k} (BC)_{k, j}  
-                                     = \sum_{k=1}^n A_{i, k} \pVector{\sum_{k'=1}^p B_{k, k'} C_{k', j} }   \\
-                                    &= \sum_{k'=1}^n A_{i, k'} \pVector{\sum_{k=1}^p B_{k', k} C_{k, j} }   
-                                     = \sum_{k'=1}^n \pVector{\sum_{k=1}^p A_{i, k'} B_{k', k} C_{k, j} }   \\
-                                    &= \sum_{k=1}^p \pVector{\sum_{k'=1}^n A_{i,k'} B_{k',k} } C_{k, j}  
-                                     = \sum_{k=1}^p AB_{i, k} C_{k, j}
-                                     = [(AB)C]_{i, j}
+                                    &= \sum_{k=1}^n [A]_{i, k} [BC]_{k, j}                                      \\
+                                    &= \sum_{k=1}^n [A]_{i, k}   \Wrap{\sum_{k'=1}^p [B]_{k, k'} [C]_{k', j} }  \\
+                                    &= \sum_{k'=1}^n [A]_{i, k'} \Wrap{\sum_{k=1}^p  [B]_{k', k} [C]_{k, j} }   \\
+                                    &= \sum_{k'=1}^n \Wrap{\sum_{k=1}^p [A]_{i, k'} [B]_{k', k} [C]_{k, j} }    \\
+                                    &= \sum_{k=1}^p \Wrap{\sum_{k'=1}^n [A]_{i,k'} [B]_{k',k} } [C]_{k, j}      \\
+                                    &= \sum_{k=1}^p [AB]_{i, k} [C]_{k, j}                                      \\
+                                    &= [(AB)C]_{i, j}
                             \end{split}
                             \end{equation*}
 
@@ -811,22 +874,21 @@
 
 
 
-            % ================================
-            % ====   MATRICES POR VECTOR  ====
-            % ================================
+            % ===========================================
+            % =========   MATRICES POR VECTOR    ========
+            % ===========================================
             \clearpage
             \subsection{Matriz $\times$ Vector: $A\vec{v}$}
-                Sea $A \in M_{m \times n}(\mathbb{F})$ entonces digamos que $A_1, A_2, \dots, A_n$ como
-                los vectores columna y sea $\vec{v}$ un vector donde $\vec{v} \in M_{n \times 1}$
+                
+                Sea $A \in M_{m \times n}(\GenericField)$ entonces digamos que $A_1, A_2, \dots, A_n$
+                como los vectores columna y sea $\vec{v}$ un vector donde $\vec{v} \in M_{n \times 1}$
                 entonces tenemos que:
-                \begin{equation}
-                \begin{split}
-                    A\vec{v} &= [\vec{v}]_1 A_1 + [\vec{v}]_2 A_2 + \dots + [\vec{v}]_n A_n     \\
-                    A\vec{v} &= \Brackets{ \sum_{k=1}^{n}A_{i, k} \vec{v}_k }_{i, j = 1}^{n, 1}
-                \end{split}
-                \end{equation}
+                \begin{align*}
+                    A\vec{v} &= [\vec{v}]_1 A_1 + [\vec{v}]_2 A_2 + \dots + [\vec{v}]_n A_n             \\
+                    A\vec{v} &= \Brackets{ \sum_{k=1}^{n} [A]_{i, k} [\vec{v}]_k }_{i, j = 1}^{n, 1}
+                \end{align*}
 
-                Por lo tanto $A\vec{v} \in M_{n \times 1}(\mathbb{F})$
+                Por lo tanto $A\vec{v} \in M_{n \times 1}(\GenericField)$
 
 
 
@@ -836,19 +898,42 @@
         \clearpage
         \section{Traza de una Matriz}
 
-            Sea $A \in M_{n \times n}(\mathbb{F})$ entonces definimos a $traza(A)$ como:
-            \begin{equation}
-                traza(A) = tr(A) = \sum_{k=1}^{n} A_{k, k}
-            \end{equation}
+            Sea $A \in M_{n \times n}(\GenericField)$, es decir una matriz cuadrada entonces
+            definimos a $traza(A)$ como:
+            \begin{equation*}
+                traza(A) 
+                    = tr(A)
+                    := \sum_{k = 1}^n [A]_{k, k}
+            \end{equation*}
 
 
-            % ===============================
-            % =========   PROPIEDADES =======
-            % ===============================
+            % =====================================
+            % =========   PROPIEDADES     =========
+            % =====================================
             \subsection{Propiedades}
 
                 \begin{itemize}
-                    \item Si $A, B \in M_{m \times n}(\mathbb{F})$ entonces $traza(AB) = traza(BA)$
+                    
+                    \item
+                        Si $A, B \in M_{n \times n}(\GenericField)$ entonces $traza(AB) = traza(BA)$
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Veamos como sale esto:
+                            \begin{align*}
+                                traza(AB)
+                                    &= \sum_{k = 1}^n [AB]_{k, k}                                \\
+                                    &= \sum_{k = 1}^n \sum_{k' = 1}^n [A]_{k, k'} [B]_{k', k}    \\
+                                    &= \sum_{k = 1}^n \sum_{k' = 1}^n [B]_{k', k} [A]_{k, k'}    \\
+                                    &= \sum_{k' = 1}^n \sum_{k = 1}^n [B]_{k', k} [A]_{k, k'}    \\
+                                    &= \sum_{k' = 1}^n [BA]_{k', k'}                             \\
+                                    &= traza(BA)
+                            \end{align*}
+                        
+                        \end{SmallIndentation}
+                            
+
                 \end{itemize}
 
 
@@ -865,51 +950,50 @@
             % ===============================
             \subsection{Definición}
 
-                Sea $A \in M_{m \times n}(\mathbb{F})$ entonces definimos a $transpuesta(A)$ como:
+                Sea $A \in M_{m \times n}(\GenericField)$ entonces definimos a $transpuesta(A)$ como:
                 \begin{equation}
-                    A^T = \Brackets{ A_{j, i} }_{i, j = 1}^{n, m}
+                    A^T = \BigBrackets{ [A]_{j, i} }_{i, j = 1}^{n, m}
                 \end{equation}
 
-                Es decir $A^T \in M_{n \times m}(\mathbb{F})$
+                Es decir $A^T \in M_{n \times m}(\GenericField)$
 
-                O visto de otra manera $A^T \in M_{n \times m}(\mathbb{F})$ y cumple que:
+                O visto de otra manera $A^T \in M_{n \times m}(\GenericField)$ y cumple que:
                 \begin{equation}
                     \forall i \in \{1, \dots, n\} ,\MiniSpace
                         \forall j \in \{1, \dots, m\} ,\Space
-                            (A^T)_{i, j} = A_{j, i}
+                            [A^T]_{i, j} = [A]_{j, i}
                 \end{equation}
+
 
 
             % ===============================
             % =========   PROPIEDADES =======
             % ===============================
-            \clearpage
+            \vspace{2em}
             \subsection{Propiedades}
 
                 \begin{itemize}
 
-                    \item Sea $A\in M_{m \times n}(\mathbb{F})$ entonces $(A^T)^T = A^T$
+                    \item Sea $A\in M_{m \times n}(\GenericField)$ entonces $(A^T)^T = A^T$
                         % ======== DEMOSTRACION ========
                         \begin{SmallIndentation}[1em]
                             \textbf{Demostración}:
 
                             Empecemos por ver que tienen el mismo tamaño:
-                            La matriz $(A^T) \in M_{n \times m}(\mathbb{F})$, por lo que 
-                            $(A^T)^T \in M_{m \times n}(\mathbb{F})$.
+                            La matriz $(A^T) \in M_{n \times m}(\GenericField)$, por lo que 
+                            $(A^T)^T \in M_{m \times n}(\GenericField)$.
                             Por lo tanto tienen el mismo tamaño.
 
                             Ahora veamos que un cualquier elemento arbitrario de ambas matrices es igual:
-                            \begin{equation*}
-                            \begin{split}
+                            \begin{align*}
                                 [(A^T)^T]_{i, j}    
-                                    = [(A^T)]_{j, i}               
-                                = [A]_{i, j}
-                            \end{split}
-                            \end{equation*}
+                                    = [A^T]_{j, i}               
+                                    = [A]_{i, j}
+                            \end{align*}
 
                         \end{SmallIndentation}
 
-                    \item Sea $A,B \in M_{m \times n}(\mathbb{F})$ entonces 
+                    \item Sea $A,B \in M_{m \times n}(\GenericField)$ entonces 
                         $(A+B)^T = A^T + B^T$
 
                         % ======== DEMOSTRACION ========
@@ -917,47 +1001,45 @@
                             \textbf{Demostración}:
 
                             Empecemos por ver que tienen el mismo tamaño:
-                            La matriz $(A+B)^T \in M_{n \times m}(\mathbb{F})$, y también tenemos que
-                            $(A^T+B^T) \in M_{n \times m}(\mathbb{F})$. Por lo tanto tienen el mismo
+                            La matriz $(A+B)^T \in M_{n \times m}(\GenericField)$, y también tenemos que
+                            $(A^T+B^T) \in M_{n \times m}(\GenericField)$. Por lo tanto tienen el mismo
                             tamaño.
 
                             Ahora veamos que un cualquier elemento arbitrario de ambas matrices es igual:
-                            \begin{equation*}
-                            \begin{split}
+                            \begin{align*}
                                 [(A+B)^T]_{i, j}    
-                                    = [(A+B)]_{j, i}               
+                                    = [A + B]_{j, i}               
                                     = [A]_{j, i} + [B]_{j, i}      
                                     = [A^T]_{i, j} + [B^T]_{i, j}
-                                = [A^T + B^T]_{i, j}
-                            \end{split}
-                            \end{equation*}
+                                    = \Brackets{A^T + B^T}_{i, j}
+                            \end{align*}
 
                         \end{SmallIndentation}
 
-                    \item Sea $A \in M_{m \times n}(\mathbb{F})$ y $\alpha \in \mathbb{F}$ entonces:
+                    \clearpage
+
+                    \item Sea $A \in M_{m \times n}(\GenericField)$ y $\alpha \in \GenericField$ entonces:
                         $(\alpha A)^T = \alpha A^T$
                         
                         % ======== DEMOSTRACION ========
                         \begin{SmallIndentation}[1em]
                             \textbf{Demostración}:
 
-                            Es (creo) más que obvio que tendrán el mismo tamaño
-
+                            Es (creo) más que obvio que tendrán el mismo tamaño.
                             Ahora veamos que un cualquier elemento arbitrario de ambas matrices es igual:
                             \begin{equation*}
                             \begin{split}
                                 [(\alpha A)^T]_{i, j}    
                                     = [\alpha A]_{j, i}               
                                     = \alpha [A]_{j, i}
-                                = \alpha [A^T]_{i, j}
+                                    = \alpha [A^T]_{i, j}
                             \end{split}
                             \end{equation*}
 
                         \end{SmallIndentation}
                                     
 
-
-                    \item Sea $A \in M_{m \times n}(\mathbb{F})$ y $B \in M_{n \times p}(\mathbb{F})$
+                    \item Sea $A \in M_{m \times n}(\GenericField)$ y $B \in M_{n \times p}(\GenericField)$
                         entonces tenemos que: $(AB)^T = B^T A^T$
 
                         % ======== DEMOSTRACION ========
@@ -965,20 +1047,21 @@
                             \textbf{Demostración}:
 
                             Veamos que ambas matrices tienen el mismo tamaño: 
-                            La matriz $AB \in M_{m \times p}(\mathbb{F})$, por lo tanto la matriz
-                            $(AB)^T \in M_{p \times m}(\mathbb{F})$, mientra que la matriz 
-                            $B^T \in M_{p \times n}(\mathbb{F})$ y $A^T \in M_{n \times m}(\mathbb{F})$
-                            por lo tanto $B^T A^T \in M_{p \times m}(\mathbb{F})$, así que si te das
-                            cuenta ¡Tienen el mismo tamaño!
+                            La matriz $AB \in M_{m \times p}(\GenericField)$, por lo tanto la matriz
+                            $(AB)^T \in M_{p \times m}(\GenericField)$, mientra que la matriz 
+                            $B^T \in M_{p \times n}(\GenericField)$ y $A^T \in M_{n \times m}(\GenericField)$
+                            por lo tanto $B^T A^T \in M_{p \times m}(\GenericField)$, así que si te das
+                            cuenta: ¡Tienen el mismo tamaño!
 
                             Ahora veamos que un cualquier elemento arbitrario de ambas matrices es igual:
                             \begin{equation*}
                             \begin{split}
                                 [(AB)^T]_{i, j}     
-                                    = [(AB)]_{j, i} = \sum_{k=1}^{n} A_{j, k}B_{k, i} 
-                                    = \sum_{k=1}^{n} B_{k, i} A_{j, k}   
-                                    = \sum_{k=1}^{n} B^T_{i, k} A^T_{k, j}            
-                                = [B^T A^T]_{i, j}
+                                    = [AB]_{j, i}
+                                    = \sum_{k = 1}^n [A]_{j, k} [B]_{k, i} 
+                                    = \sum_{k = 1}^n [B]_{k, i} [A]_{j, k}   
+                                    = \sum_{k = 1}^n [B^T]_{i, k} [A^T]_{k, j}            
+                                    = \Brackets{B^T A^T}_{i, j}
                             \end{split}
                             \end{equation*}
 
@@ -987,34 +1070,56 @@
                 \end{itemize}
 
 
+
                         
-            % ===============================
-            % ===   MATRICES SIMETRICAS  ====
-            % ===============================
+            % ======================================
+            % ===   MATRICES SIMETRICAS  ===========
+            % ======================================
             \clearpage
             \subsection{Matrices Simétricas}
 
-                Una matriz $A \in M_{n}(\mathbb{F})$ se dice simétrica si cumple la propiedad:
-                \begin{equation}
+                Una matriz $A \in M_n(\GenericField)$ se dice simétrica si cumple la propiedad:
+                \begin{equation*}
                     A = A^T
-                \end{equation}
+                \end{equation*}
 
-                % ===============================
-                % =========   PROPIEDADES =======
-                % ===============================
-                \subsubsection{Propiedades}
+
+
+            % ===============================
+            % == MATRICES ANTI SIMETRICAS  ==
+            % ===============================
+            \vspace{1em}
+            \subsection{Matrices Antisimétricas}
+
+                Una matriz $A \in M_n(\GenericField)$ se dice antisimétrica si cumple la propiedad:
+                \begin{equation*}
+                    A = -A^T
+                \end{equation*}
+
+                O siendo más formal que:
+                \begin{equation*}
+                    A + A^T = 0_n
+                \end{equation*}
+
+
+
+                % ==================================
+                % =========   PROPIEDADES    =======
+                % ==================================
+                \clearpage
+                \subsection{Propiedades de Simetría y AntiSimetría}
 
                     \begin{itemize}
 
-                        \item Si $A \in M_{n}(\mathbb{F})$ y $A = A^T$ entonces $A$ tiene máximo 
+                        \item Si $A \in M_{n}(\GenericField)$ y $A = A^T$ entonces $A$ tiene máximo 
                             $\frac{n(n+1)}{2}$ elementos diferentes.
 
                             % ======== DEMOSTRACION ========
                             \begin{SmallIndentation}[1em]
-                                \textbf{Demostración}:
+                                \textbf{Ideas de la Demostración}:
 
                                 Esto es mas curioso que útil, veamos que si es simétrica entonces toda
-                                entrada tiene que cumplir que $[A]_{i, j} = [A]_{j,i}$.
+                                entrada tiene que cumplir que $[A]_{i, j} = [A]_{j,i}$
 
                                 Por lo tanto para las matrices de grado 1 hay 1 elemento diferente, 
                                 para las de orden 2 hay 3 elementos diferentes, para las de orden 4 hay 6
@@ -1027,66 +1132,41 @@
 
                             \end{SmallIndentation}
 
-                        \item Si $A \in M_{n}(\mathbb{F})$ entonces $A+A^T$ es una matriz simétrica. 
+
+                        \item Si $A \in M_{n}(\GenericField)$ entonces $A+A^T$ es una matriz simétrica. 
 
                             % ======== DEMOSTRACION ========
                             \begin{SmallIndentation}[1em]
                                 \textbf{Demostración}:
-                                \begin{equation*}
-                                \begin{split}
-                                    [A+A^T]_{i,j}   &=                              \\
-                                                    &=  [A]_{i,j} + [A^T]_{i,j}    
-                                                     =  [A]_{i,j} + [A]_{j,i}    
-                                                     =  [A^T]_{j,i} + [A]_{j,i}    
-                                                     =  [A]_{j,i} + [A^T]_{j, i}    \\
-                                                    &=  [A+A^T]_{j, i}             
-                                \end{split}
-                                \end{equation*}
+                                \begin{align*}
+                                    [A + A^T]_{i,j}  
+                                        &=  [A]_{i,j} + [A^T]_{i,j}     \\ 
+                                        &=  [A]_{i,j} + [A]_{j,i}       \\
+                                        &=  [A^T]_{j,i} + [A]_{j,i}     \\
+                                        &=  [A]_{j,i} + [A^T]_{j, i}    \\
+                                        &=  [A + A^T]_{j, i}             
+                                \end{align*}
 
                             \end{SmallIndentation}
 
-
-                    \end{itemize}
-
-
-            % ===============================
-            % == MATRICES ANTI SIMETRICAS  ==
-            % ===============================
-            \clearpage
-            \subsection{Matrices Antisimétricas}
-
-                Una matriz $A \in M_{n}(\mathbb{F})$ se dice antisimétrica si cumple la propiedad:
-                \begin{equation}
-                    A = -A^T
-                \end{equation}
-
-                O siendo más formal que:
-                \begin{equation}
-                    A + A^T = 0_{n}
-                \end{equation}
-
-                % ===============================
-                % =========   PROPIEDADES =======
-                % ===============================
-                \subsubsection{Propiedades}
-
-                    \begin{itemize}
-
-                        \item Si $A \in M_{n}(\mathbb{F})$ y $A$ es antisimétrica entonces 
-                            $[A]_{i,i} = 0_{\mathbb{F}}$.
+                        \item Si $A \in M_{n}(\GenericField)$ entonces $A-A^T$ es una matriz antesimétrica. 
 
                             % ======== DEMOSTRACION ========
                             \begin{SmallIndentation}[1em]
                                 \textbf{Demostración}:
-
-                                Si tenemos que $A + A^T = 0_{n}$ entonces tenemos que para cada
-                                elemento arbitrario que $[A]_{i,j} + [A^T]_{i,j} = 0_{\mathbb{F}}$
-                                por lo tanto $[A]_{i,i} + [A]_{i,i} = 0_{\mathbb{F}}$ por lo tanto 
-                                $[A]_{i,i} = 0_{\mathbb{F}}$.
+                                \begin{align*}
+                                    [A-A^T]_{i,j}   
+                                        &=  [A]_{i,j} - [A^T]_{i,j}     \\ 
+                                        &=  [A]_{i,j} - [A]_{j,i}       \\
+                                        &=  [A^T]_{j,i} - [A]_{j,i}     \\
+                                        &=  [-A+A^T]_{j, i}             \\
+                                        &= -[A - A^T]_{j, i}
+                                \end{align*}
 
                             \end{SmallIndentation}
 
-                        \item Si $A \in M_{n}(\mathbb{F})$ entonces existe un único par de matrices $B,C$
+
+                        \item Si $A \in M_{n}(\GenericField)$ entonces existe un único par de matrices $B,C$
                             tal que $A = B + C$, $B$ es simétrica y $C$ es antisimétrica. 
                             En otras palabras, cada matriz cuadrada se puede representar de manera única
                             como suma de una matriz simétrica y una matriz antisimétrica.
@@ -1095,7 +1175,7 @@
                             \begin{SmallIndentation}[1em]
                                 \textbf{Demostración}:
 
-                                Si $\mathbb{F} \neq \mathbb{F}_2$ entonces podremos escribir $A$ como
+                                Si $\GenericField \neq \GenericField_2$ entonces podremos escribir $A$ como
                                 $A = \frac{1}{2}(A + A^T) + \frac{1}{2}(A - A^T)$.
 
                                 Ahora algo genial que $\frac{1}{2}(A + A^T)=\frac{1}{2}(A + A^T)^T$ es
@@ -1108,7 +1188,26 @@
 
                             \end{SmallIndentation}
 
-                        \item $A \in M_{n}(\mathbb{F})$ y $A$ es simétrica y antisimétrica al mismo tiempo
+
+                        \clearpage
+
+
+                        \item Si $A \in M_{n}(\GenericField)$ y $A$ es antisimétrica entonces 
+                            $[A]_{i,i} = 0_{\GenericField}$.
+
+                            % ======== DEMOSTRACION ========
+                            \begin{SmallIndentation}[1em]
+                                \textbf{Demostración}:
+
+                                Si tenemos que $A + A^T = 0_{n}$ entonces tenemos que para cada
+                                elemento arbitrario que $[A]_{i,j} + [A^T]_{i,j} = 0_{\GenericField}$
+                                por lo tanto $[A]_{i,i} + [A]_{i,i} = 0_{\GenericField}$ por lo tanto 
+                                $[A]_{i,i} = 0_{\GenericField}$.
+
+                            \end{SmallIndentation}
+
+
+                        \item $A \in M_{n}(\GenericField)$ y $A$ es simétrica y antisimétrica al mismo tiempo
                             si y solo si $A = 0_n$
 
                             % ======== DEMOSTRACION ========
@@ -1119,33 +1218,346 @@
 
                                 Por otro lado sabemos que cualquier elemento de $A$ tiene que cumplir
                                 que $[A]_{i,j}=-[A]_{j,i} = [A]_{j,i}$ es decir $-[A]_{j,i} = [A]_{j,i}$
-                                es decir $0_{\mathbb{F}}=2[A]_{i,j}$ por lo tanto $[A]_{i,j}=0_\mathbb{F}$
+                                es decir $0 = 2[A]_{i,j}$ por lo tanto $[A]_{i,j} = 0$
 
-                                Y creo que es más que obvio que si $A=0_n$ entonces $A$ es simétrica y
+                                Y creo que es más que obvio que si $A = 0_n$ entonces $A$ es simétrica y
                                 antisimétrica.
 
                             \end{SmallIndentation}
 
 
-                        \item Si $A \in M_{n}(\mathbb{F})$ entonces $A-A^T$ es una matriz antesimétrica. 
-
-                            % ======== DEMOSTRACION ========
-                            \begin{SmallIndentation}[1em]
-                                \textbf{Demostración}:
-                                \begin{equation*}
-                                \begin{split}
-                                    [A-A^T]_{i,j}   &=                              \\
-                                                    &=  [A]_{i,j} - [A^T]_{i,j}    
-                                                     =  [A]_{i,j} - [A]_{j,i}    
-                                                     =  [A^T]_{j,i} - [A]_{j,i}    
-                                                     =  [-A+A^T]_{j, i}             \\
-                                                    &= -[A-A^T]_{j, i}
-                                \end{split}
-                                \end{equation*}
-
-                            \end{SmallIndentation}
-
                     \end{itemize}
+
+
+
+
+
+
+
+    % ===============================================================================
+    % ===================    GAUSS-JORDAN Y LOS AMIGOS         ======================
+    % ===============================================================================
+    \clearpage
+    \chapter{Gauss-Jordan y sus Amigos}
+
+
+
+
+        % ==============================================
+        % =====     OPERACIONES ELEMENTALES       ======
+        % ==============================================
+        \clearpage
+        \section{Operaciones Elementales}
+
+
+
+
+            % =================================================
+            % =====   SWAP: INTERCAMBIAR FILAS / COL   ========
+            % =================================================
+            \subsection{Swap: Intercambiar Filas ó Columnas}
+
+                La primera operación elemental es la de hacer Swap, es decir intercambiar una
+                fila o columna en la matriz.
+                \begin{align*}
+                    &\overset{F_i \lEqual F_j}{\lLongTo}     \\
+                    &\overset{C_i \lEqual C_j}{\lLongTo}
+                \end{align*}
+
+                \begin{multicols}{2}
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Ejemplo de Cambio de Fila}:
+                            \begin{equation*}
+                                \bVector{(1)&(2)&(3)\\(4)&(5)&(6)\\7&8&9}
+                                    \overset{F_1 \lEqual F_2}{\lLongTo}
+                                \bVector{(4)&(5)&(6)\\(1)&(2)&(3)\\7&8&9}
+                            \end{equation*}
+
+                        \vfill
+                        
+                        \textbf{Ejemplo de Cambio de Columna}:
+                            \begin{equation*}
+                                \bVector{(1)&2&(3)\\(4)&5&(6)\\(7)&8&(9)}
+                                    \overset{C_1 \lEqual F_3}{\lLongTo}
+                                \bVector{(3)&2&(1)\\(6)&5&(4)\\(9)&8&(7)}
+                            \end{equation*}
+
+                    
+                    \end{SmallIndentation}
+                        
+
+                \end{multicols}
+
+
+                % ==================================
+                % =======  MATRIZ ELEMENTAL    =====
+                % ==================================
+                \vspace{1em}
+                \subsubsection{Matriz Elemental}
+
+                    Podemos si queremos expresar esta operación como una \Quote{Matriz Elemental}
+                    que la verdad es que no es muy útil pero la verdad es que es una forma de verlo
+                    muy bonito.
+
+                    Vamos a llamarla $SwapFilas_{a, b}$ a la matriz que es la matriz identidad pero
+                    con la fila $a$ y $b$ intercambiada y $SwapColumnas_{a, b}$ a la matriz que es
+                    la matriz identidad pero con la columna $a$ y $b$ intercambiada.
+
+                    Por lo tanto para lograr el efecto de intercambiar las filas y columna haremos esto:
+                    \begin{itemize}
+                        \item Matriz con Cambio de Fila = $SwapFilas_{a, b} * A$
+                        \item Matriz con Cambio de Columna = $A * SwapColumna_{a, b}$
+                    \end{itemize}
+
+                    Ahora, recuerda que cambiar una columna se parece mucho a intercambiar una fila y hacer
+                    una transpuesta. Solo recuerda que $B^T A^T = (AB)^T$.
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Ejemplo de Cambio de Fila}:
+                            \begin{equation*}
+                                \bVector{(1)&(2)&(3)\\(4)&(5)&(6)\\7&8&9}
+                                    \overset{F_1 \lEqual F_2}{\lLongTo}
+                                \bVector{(4)&(5)&(6)\\(1)&(2)&(3)\\7&8&9}
+                                    \MegaSpace
+                                    =
+                                    \MegaSpace
+                                \bVector{(0)&(1)&(0)\\(1)&(0)&(0)\\0&0&1}
+                                    *
+                                \bVector{1&2&3\\4&5&6\\7&8&9}
+                                    =
+                                \bVector{4&5&6\\1&2&3\\7&8&9}
+                            \end{equation*}
+
+                        \textbf{Ejemplo de Cambio de Columna}:
+                            \begin{equation*}
+                                \bVector{(1)&2&(3)\\(4)&5&(6)\\(7)&8&(9)}
+                                    \overset{C_1 \lEqual F_3}{\lLongTo}
+                                \bVector{(3)&2&(1)\\(6)&5&(4)\\(9)&8&(7)}
+                                    \MegaSpace
+                                    =
+                                    \MegaSpace
+                                \bVector{1&2&3\\4&5&6\\7&8&9}
+                                    *
+                                \bVector{(0)&0&(1)\\(0)&1&(0)\\(1)&0&(0)}
+                                    =
+                                \bVector{3&2&1\\6&5&4\\9&8&7}
+                            \end{equation*}
+                        
+                    \end{SmallIndentation}
+
+
+
+            % ==================================================
+            % == PIVOT: FILAS / COL MAS MULTIPLO DE OTRA  ======
+            % ==================================================
+            \subsection{Pivot: Filas ó Columnas más múltiplo de otras}
+
+                La segunda operación elemental es la de hacer Pivot, es decir a una columna sumarle
+                un multiplo de otra.
+                \begin{align*}
+                    &\overset{F_i \lEqual F_i + nF_j}{\lLongTo}     \\
+                    &\overset{C_i \lEqual C_i + nC_j}{\lLongTo}
+                \end{align*}
+
+                \begin{multicols}{2}
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Ejemplo con Fila}:
+                            \begin{equation*}
+                                \bVector{(1)&(2)&(3)\\(4)&(5)&(6)\\7&8&9}
+                                    \overset{F_1 \lEqual F_1 + 2F_2}{\lLongTo}
+                                \bVector{(9)&(12)&(15)\\(4)&(5)&(6)\\7&8&9}
+                            \end{equation*}
+
+                        \vfill
+                        
+                        \textbf{Ejemplo con Columna}:
+                            \begin{equation*}
+                                \bVector{(1)&2&(3)\\(4)&5&(6)\\(7)&8&(9)}
+                                    \overset{C_1 \lEqual C_1 + 1F_3}{\lLongTo}
+                                \bVector{(4)&2&(3)\\(10)&5&(6)\\(16)&8&(9)}
+                            \end{equation*}
+
+                    
+                    \end{SmallIndentation}
+                        
+
+                \end{multicols}
+
+
+                % ==================================
+                % =======  MATRIZ ELEMENTAL    =====
+                % ==================================
+                \vspace{1em}
+                \subsubsection{Matriz Elemental}
+
+                    Podemos si queremos expresar esta operación como una \Quote{Matriz Elemental},
+                    pero esta vez, será más raro que lo normal.
+
+                    En general $Pivot_{a, b}(k)$ es aquella matriz que nos permitirá cambiar una matriz
+                    haciendo que la fila o columna $a$ sea igual a si misma más $k$ veces la fila o columna
+                    $b$.
+
+                    Vamos a llamarla $PivotFilas_{a, b}(k)$ a la matriz que es la matriz identidad
+                    pero en el elemento $[PivotFilas]_{a, b}$ será igual a $k$, mientras que
+                    $PivotColumnas_{a, b}(k)$ es la matriz identidad pero el elemento $[PivotColumnas]_{b, a}$
+                    es igual a $k$.
+
+                    Por lo tanto para lograr el efecto deseado haremos esto:
+                    \begin{itemize}
+                        \item Matriz con Pivot de Fila    = $PivotFilas_{a, b}(k) * A$
+                        \item Matriz con Pivot en Columna = $A * PivotColumnas_{a, b}(k)$
+                    \end{itemize}
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Ejemplo de Cambio de Fila}:
+                            \begin{equation*}
+                                \bVector{(1)&(2)&(3)\\(4)&(5)&(6)\\7&8&9}
+                                    \overset{F_1 \lEqual F_1 + 2F_2}{\lLongTo}
+                                \bVector{(9)&(12)&(15)\\(4)&(5)&(6)\\7&8&9}
+                                    \MegaSpace
+                                    =
+                                    \MegaSpace
+                                \bVector{1&(2)&0\\0&1&0\\0&0&1}
+                                    *
+                                \bVector{1&2&3\\4&5&6\\7&8&9}
+                                    =
+                                \bVector{(9)&(12)&(15)\\(4)&(5)&(6)\\7&8&9}
+                            \end{equation*}
+
+                        \textbf{Ejemplo de Cambio de Columna}:
+                            \begin{equation*}
+                                \bVector{(1)&2&(3)\\(4)&5&(6)\\(7)&8&(9)}
+                                    \overset{C_1 \lEqual C_1 + 1F_3}{\lLongTo}
+                                \bVector{(4)&2&(3)\\(10)&5&(6)\\(16)&8&(9)}
+                                    \MegaSpace
+                                    =
+                                    \MegaSpace
+                                \bVector{1&2&3\\4&5&6\\7&8&9}
+                                    *
+                                \bVector{1&0&0\\0&1&0\\(1)&0&1}
+                                    =
+                                \bVector{(4)&2&(3)\\(10)&5&(6)\\(16)&8&(9)}
+                            \end{equation*}
+                        
+                    \end{SmallIndentation}
+
+
+
+            % ==================================================
+            % =======    SCALE: ESCALAR FILAS / COL     ========
+            % ==================================================
+            \subsection{Scale: Escalar Filas ó Columnas}
+
+                La tercera operación elemental es ... Ok, ok, espera, lo que pasa es que siendo
+                estricto, Scale es un caso particular de Pivot donde la fila o columna de origen
+                y de la destino es la misma, es decir a efectos practicos es lo mismo que escalar
+                una fila o columna k veces.
+                \begin{align*}
+                    &\overset{F_i \lEqual nF_i}{\lLongTo}     \\
+                    &\overset{C_i \lEqual nC_i}{\lLongTo}
+                \end{align*}
+
+                \begin{multicols}{2}
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Ejemplo con Fila}:
+                            \begin{equation*}
+                                \bVector{(1)&(2)&(3)\\4&5&6\\7&8&9}
+                                    \overset{F_1 \lEqual 3F_1}{\lLongTo}
+                                \bVector{(3)&(6)&(9)\\4&5&6\\7&8&9}
+                            \end{equation*}
+
+                        \vfill
+                        
+                        \textbf{Ejemplo con Columna}:
+                            \begin{equation*}
+                                \bVector{1&2&(3)\\4&5&(6)\\7&8&(9)}
+                                    \overset{C_3 \lEqual 2C_3}{\lLongTo}
+                                \bVector{1&2&(6)\\4&5&(12)\\7&8&(18)}
+                            \end{equation*}
+                    
+                    \end{SmallIndentation}
+
+                \end{multicols}
+
+
+                % ==================================
+                % =======  MATRIZ ELEMENTAL    =====
+                % ==================================
+                \vspace{1em}
+                \subsubsection{Matriz Elemental}
+
+                    Podemos si queremos expresar esta operación como una \Quote{Matriz Elemental},
+                    pero esta vez, será más raro que lo normal.
+
+                    Vamos a llamarla $ScaleFilas_{i}(k)$ a la matriz que es la matriz identidad
+                    pero en el elemento $[ScaleFilas]_{i, i}$ será igual a $k$, mientras que
+                    $ScaleColumns_{j}(k)$ es la matriz identidad pero el elemento $[ScaleColumns]_{j, j}$
+                    es igual a $k$.
+
+                    Por lo tanto para lograr el efecto deseado haremos esto:
+                    \begin{itemize}
+                        \item Matriz con Scale de Fila    = $ScaleFilas_{i}(k) * A$
+                        \item Matriz con Scale en Columna = $A * ScaleColumns_{j}(k)$
+                    \end{itemize}
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Ejemplo de Cambio de Fila}:
+                            \begin{equation*}
+                                \bVector{(1)&(2)&(3)\\4&5&6\\7&8&9}
+                                    \overset{F_1 \lEqual 3F_1}{\lLongTo}
+                                \bVector{(3)&(6)&(9)\\4&5&6\\7&8&9}
+                                    \MegaSpace
+                                    =
+                                    \MegaSpace
+                                \bVector{(3)&0&0\\0&1&0\\0&0&1}
+                                    *
+                                \bVector{1&2&3\\4&5&6\\7&8&9}
+                                    =
+                                \bVector{(3)&(6)&(9)\\4&5&6\\7&8&9}
+                            \end{equation*}
+
+                        \textbf{Ejemplo de Cambio de Columna}:
+                            \begin{equation*}
+                                \bVector{1&2&(3)\\4&5&(6)\\7&8&(9)}
+                                    \overset{C_3 \lEqual 2C_3}{\lLongTo}
+                                \bVector{1&2&(6)\\4&5&(12)\\7&8&(18)}
+                                    \MegaSpace
+                                    =
+                                    \MegaSpace
+                                \bVector{1&2&3\\4&5&6\\7&8&9}
+                                    *
+                                \bVector{1&0&0\\0&1&0\\0&0&(2)}
+                                    =
+                                \bVector{1&2&(6)\\4&5&(12)\\7&8&(18)}
+                            \end{equation*}
+                        
+                    \end{SmallIndentation}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1155,9 +1567,9 @@
         \clearpage
         \section{Inversa de una Matriz}
 
-            Sea $A \in M_{n \times n}(\mathbb{F})$ y entonces definimos a $A^{-1}$ 
+            Sea $A \in M_{n \times n}(\GenericField)$ y entonces definimos a $A^{-1}$ 
             de forma informal como aquella matriz que cumple con que $A^{-1}A = AA^{-1} = I_{n}$
-            nota que no para todas las matrices $M_{n \times n}(\mathbb{F})$ existe una matriz inversa.
+            nota que no para todas las matrices $M_{n \times n}(\GenericField)$ existe una matriz inversa.
 
 
            \subsubsection*{El Problema de la Notación $A^{-1}$}
@@ -1181,7 +1593,7 @@
                         \begin{SmallIndentation}[1em]
                             \textbf{Demostración}:
 
-                            Lo que hay que ver que si $A,B,C \in M_n(\mathbb{F})$ tales que
+                            Lo que hay que ver que si $A,B,C \in M_n(\GenericField)$ tales que
                             $AB = BA = I_n$ y $AC = CA = I_n$. Entonces $B=C$.
 
                             Usando la Ley asociativa de la Multiplicación de Matrices $(A(BC)=(AB)C)$
@@ -1199,7 +1611,7 @@
 
                             Renglones Nulos:
 
-                                Sea $A \in M_{n \times n}(\mathbb{F})$.
+                                Sea $A \in M_{n \times n}(\GenericField)$.
                                 Supongamos que (por lo menos) un renglón de A es nulo, es decir:
                                 $[A]_{p,*} = 0_{1,n}$ donde $0 < p \leq n$ esto es lo mismo que decir
                                 que $\forall j \in \{1, \dots, n\} [A]_{p,j} = 0$.
@@ -1214,7 +1626,7 @@
 
 
                             Columnas Nulas:
-                                Sea $A \in M_{n \times n}(\mathbb{F})$.
+                                Sea $A \in M_{n \times n}(\GenericField)$.
                                 Supongamos que (por lo menos) una columna de A es nulo, es decir:
                                 $[A]_{*,p} = 0_{n,1}$ donde $0 < p \leq n$ esto es lo mismo que decir
                                 que $\forall j \in \{1, \dots, n\} [A]_{p,j} = 0$.
@@ -1230,7 +1642,7 @@
                             
                         \end{SmallIndentation}
 
-                    \item Sea $A,B \in M_{m \times n}(\mathbb{F})$ y sean invertibles, entonces tenemos
+                    \item Sea $A,B \in M_{m \times n}(\GenericField)$ y sean invertibles, entonces tenemos
                         que $(AB)^{-1} = B^{-1}A^{-1}$
 
                         % ======== DEMOSTRACION ========
@@ -1259,10 +1671,10 @@
                     \item Una Matriz Diagonal es invertible si y solo si los elementos de la diagonal
                         son distintos de cero.
 
-                    \item Sea $A \in M_{m \times n}(\mathbb{F})$ y sea invertible, entonces tenemos
+                    \item Sea $A \in M_{m \times n}(\GenericField)$ y sea invertible, entonces tenemos
                         que $(A^{-1})^{-1} = A$
 
-                    \item Sea $A \in M_{m \times n}(\mathbb{F})$ y sea invertible, entonces tenemos
+                    \item Sea $A \in M_{m \times n}(\GenericField)$ y sea invertible, entonces tenemos
                         que $(A^T)^{-1} = (A^{-1})^T$
 
                 \end{itemize}
@@ -1273,39 +1685,13 @@
 
 
 
-        % ==============================================
-        % =====     OPERACIONES ELEMENTALES       ======
-        % ==============================================
-        \clearpage
-        \section{Operaciones Elementales}
 
-            % ==============================================
-            % ======== SWAP: INTERCAMBIAR FILAS / COL ======
-            % ==============================================
-            \subsection{Swap: Intercambiar Filas ó Columnas}
 
-                \begin{itemize}
-                    \item
-                        Decimos que vamos a intercambiar la Fila $i$ por la Fila $j$ de
-                        esta manera:\\
-                        $\overset{F_i \lequal F_j}{\longto}$
 
-                    \item
-                        Decimos que vamos a intercambiar la Columna $i$ por la Columna $j$ de
-                        esta manera:\\
-                        $\overset{C_i \lequal C_j}{\longto}$
-                \end{itemize}
 
-                % ==================================
-                % =======  MATRIZ ELEMENTAL    =====
-                % ==================================
-                \subsubsection{Matriz Elemental}
 
-                    Podemos si queremos expresar esta operación como una \Quote{Matriz Elemental}:
-                    $E_{a, b}$
 
-                    Donde $E_{a, b}$ es casi la identidad, pero estan intercambiadas la Fila
-                    $a$ por la Fila $b$.
+
 
 
 
@@ -1599,7 +1985,7 @@
         \clearpage
         \section{Definición}
 
-            Siendo formales un Espacio Vectorial es una tupla $(\mathbb{V}, \mathbb{F}, +, \cdot)$ donde tenemos que:
+            Siendo formales un Espacio Vectorial es una tupla $(\mathbb{V}, \GenericField, +, \cdot)$ donde tenemos que:
             \begin{Indentation}[1em]
             \begin{itemize}
             \small{
@@ -1610,7 +1996,7 @@
                     Es un grupo de vectores que no puede estar vacío ... y ya -.- 
 
                 \item
-                    \textbf{Campo: $\mathbb{F}$}
+                    \textbf{Campo: $\GenericField$}
 
                     Es un Campo que cumple con sus propiedades normales, le solemos llamar un campo escalar.
 
@@ -1627,16 +2013,16 @@
                         \MiniSpace (\vec{v_1} + \vec{v_2}) \in \mathbb{V}$                            
 
                 \item
-                    \textbf{"Producto Escalar": $\cdot: (\mathbb{F} \times  \mathbb{V}) \to \mathbb{V}$}
+                    \textbf{"Producto Escalar": $\cdot: (\GenericField \times  \mathbb{V}) \to \mathbb{V}$}
 
-                    Una relación $\cdot: (\mathbb{F} \times  \mathbb{V}) \to \mathbb{V}$, es decir, es una relación
-                    que recibe un elementos de $\mathbb{F}$ y un elemento de $\mathbb{V}$
+                    Una relación $\cdot: (\GenericField \times  \mathbb{V}) \to \mathbb{V}$, es decir, es una relación
+                    que recibe un elementos de $\GenericField$ y un elemento de $\mathbb{V}$
                     (o más específico un par ordenado) y te regresa un nuevo elemento de $\mathbb{V}$.
 
                     Gracias a esto podemos decir que es cerrado en esta operación, es decir:
 
                     $\forall \vec{v} \in \mathbb{V}, \MiniSpace
-                        \forall \alpha \in \mathbb{F}, \MiniSpace
+                        \forall \alpha \in \GenericField, \MiniSpace
                             (\alpha \cdot \vec{v}) \in \mathbb{V}$  
             }
             \end{itemize}
@@ -1644,7 +2030,7 @@
 
             \vspace{30pt}
             
-            Donde esta tupla $(\mathbb{V}, \mathbb{F}, +, \cdot)$ cumple que:
+            Donde esta tupla $(\mathbb{V}, \GenericField, +, \cdot)$ cumple que:
             
             \begin{Indentation}[1em]
             \begin{itemize}
@@ -1675,27 +2061,27 @@
 
                 \item 
                     \textbf{Ley Aditiva Distributiva:}
-                    $\forall \alpha \in \mathbb{F} \MiniSpace
+                    $\forall \alpha \in \GenericField \MiniSpace
                         \forall \vec{v_1}, \vec{v_2} \in \mathbb{V} \MiniSpace
                             \alpha \cdot (\vec{v_1} + \vec{v_2}) = 
                                 (\alpha \cdot \vec{v_1}) + (\alpha \cdot \vec{v_2})$
 
                 \item 
                     \textbf{Ley Multiplicativa Asociativa:}
-                    $\forall \alpha, \beta \in \mathbb{F}, \MiniSpace
+                    $\forall \alpha, \beta \in \GenericField, \MiniSpace
                         \forall \vec{v} \in \mathbb{V}, \MiniSpace
                             \alpha \cdot (\beta \cdot \vec{v}) = (\alpha \beta) \cdot \vec{v}$
 
                 \item 
                     \textbf{Ley Multiplicativa Distributiva:}
-                    $\forall \alpha, \beta \in \mathbb{F}, \MiniSpace
+                    $\forall \alpha, \beta \in \GenericField, \MiniSpace
                         \forall \vec{v} \in \mathbb{V}, \MiniSpace
                             (\alpha + \beta) \cdot \vec{v} = 
                                     (\alpha \cdot \vec{v}) + (\beta \cdot \vec{v})$
 
                 \item 
                     \textbf{Elemento Indentidad Multiplicativo:}
-                    $\exists 1 \in \mathbb{F}, \MiniSpace
+                    $\exists 1 \in \GenericField, \MiniSpace
                         \forall \vec{v} \in \mathbb{V}, \MiniSpace 1 \cdot \vec{v} = \vec{v}$
 
             }
@@ -1754,7 +2140,7 @@
                     \end{SmallIndentation}
 
 
-                \item $\forall \alpha \in \mathbb{F}, \MiniSpace \alpha \cdot \vec{0} = \vec{0}$
+                \item $\forall \alpha \in \GenericField, \MiniSpace \alpha \cdot \vec{0} = \vec{0}$
 
                     \begin{SmallIndentation}[1em]
                         Esto es algo bastante natural e intuitivo, pero aun así hay que demostrarlo, 
@@ -1796,7 +2182,7 @@
 
             \subsubsection*{Definición Formal}
                 Sea $\mathbb{W}$ y $\mathbb{V}$ dos Espacios Vectoriales donde con identidas
-                operaciones $+, \cdot$ sobre un mismo campo $\mathbb{F}$ entonces decimos
+                operaciones $+, \cdot$ sobre un mismo campo $\GenericField$ entonces decimos
                 que $\mathbb{W}$ es un Subespacio Vectorial de $\mathbb{V}$ si y solo si:
 
                 \begin{itemize}
@@ -1824,7 +2210,7 @@
                             \vec{v_1} + \vec{v_2} \in \mathbb{W}$
 
                 \item $\forall \vec{v} \in \mathbb{W}, \MiniSpace
-                            \forall \alpha \in \mathbb{F}, \MiniSpace
+                            \forall \alpha \in \GenericField, \MiniSpace
                                 \alpha \vec{v} \in \mathbb{W}$
              \end{itemize}
 
