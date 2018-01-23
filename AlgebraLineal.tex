@@ -411,11 +411,267 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
 % //////////////////////////////////////////////////////////////////////////////////////////////////////////
-% //////////////////////////////////////           MATRICES        /////////////////////////////////////////
+% /////////////////////         MATRICES  Y SISTEMAS ECUACIONES LINEALES     ///////////////////////////////
 % //////////////////////////////////////////////////////////////////////////////////////////////////////////
-\part{Matrices}
+\part{Matrices y Sistemas de Ecuaciones Lineales}
 \clearpage
+
+
+    % ===============================================================================
+    % ===================    SISTEMAS DE ECUACIONES LINEALES        =================
+    % ===============================================================================
+    \chapter{Sistemas de Ecuaciones Lineales}
+        \clearpage
+
+
+        % =====================================================
+        % ==============      GENERALIDADES     ===============
+        % =====================================================
+        \section{Generalidades}
+
+            Podemos usar las matrices y álgebra lineal para encontrar las soluciones
+            de un sistema de ecuaciones lineales dentro de cualquier campo (eso quiere
+            decir que podemos ocuparla incluso para resolver sistemas en el campo de
+            los complejos o el campo enteros módulo n).
+
+            % ==================================
+            % ===   ECUACIONES LINEALES   ======
+            % ==================================
+            \subsection{Definición: Ecuaciones Lineales}
+
+                Este es muy obvio pero mejor lo digo, TODAS las ecuaciones debe ser lineales,
+                es decir estar escritas de la forma:
+                \begin{equation*}
+                    a_1x_1 + a_2x_2 + a_3x_3 + \dots + a_nx_n = b
+                \end{equation*}
+
+                Por lo tanto podemos definir un sistema de $m \times n$ (es decir $m$ ecuaciones
+                con $n$ incognitas, repito $m$ ecuaciones, donde cada una de las ecuaciones tendrá
+                $n$ variables.) ecuaciones lineales como:
+
+                \begin{align*}
+                    m \text{ ecuaciones}
+                    \begin{cases}
+                        a_{1,1}x_1 + a_{1,2}x_2 + a_{1,3}x_3 + \dots + a_{1,n}x_n &= b_1  \\
+                        a_{2,1}x_1 + a_{2,2}x_2 + a_{2,3}x_3 + \dots + a_{2,n}x_n &= b_2  \\
+                        \cdots                                                            \\
+                        a_{m,1}x_1 + a_{m,2}x_2 + a_{m,3}x_3 + \dots + a_{m,n}x_n &= b_m  
+                    \end{cases}      
+                \end{align*}
+
+                \begin{align*}
+                    a_{1,1}x_1 + a_{1,2}x_2 + a_{1,3}x_3 + \dots + a_{1,n}x_n = b_1    \\
+                    a_{2,1}x_1 + a_{2,2}x_2 + a_{2,3}x_3 + \dots + a_{2,n}x_n = b_2    \\
+                    \cdots                                                             \\
+                    \underbrace{a_{m,1}x_1 + a_{m,2}x_2 + a_{m,3}x_3 + \dots + a_{m,n}x_n = b_m}_\text{$n$ incognitas}
+                \end{align*}
+
+                Donde:
+                \begin{itemize}
+                    \item $a_{i, j}$ es una constante, especificamente es la constante
+                        relacionada con la $j$ variable y la $i$ ecuación.
+
+                    \item $x_{i}$ es la $i$-esíma variable
+                \end{itemize}
+
+
+            % ==================================
+            % ===   MATRIZ AMPLIADA       ======
+            % ==================================
+            \clearpage
+            \subsection{Matriz Ampliada}
+                La forma en la que Álgebra Lineal nos ayuda a resolver nuestro sistema de ecuaciones
+                es mediante una matriz ampliada, que no es más que convertir nuestro sistema
+                de ecuaciones de esta manera:
+
+                Desde algo así:
+                \begin{align*}
+                    a_{1,1}x_1 + a_{1,2}x_2 + a_{1,3}x_3 + \dots + a_{1,n}x_n &= b_1    \\
+                    a_{2,1}x_1 + a_{2,2}x_2 + a_{2,3}x_3 + \dots + a_{2,n}x_n &= b_2    \\
+                    \cdots                                                              \\
+                    a_{m,1}x_1 + a_{m,2}x_2 + a_{m,3}x_3 + \dots + a_{m,n}x_n &= b_m
+                \end{align*}
+
+                Hasta algo así:
+                \begin{equation*}
+                    \begin{bmatrix}[ccccc|c]
+                        a_{1,1} & a_{1,2} & a_{1,3} & \dots  & a_{1,n} & b_1     \\
+                        a_{2,1} & a_{2,2} & a_{2,3} & \dots  & a_{2,n} & b_2     \\
+                        \cdots  & \cdots  & \cdots  & \cdots & \cdots  & \cdots  \\
+                        a_{m,1} & a_{m,2} & a_{m,3} & \dots  & a_{m,n} & b_m     \\
+                    \end{bmatrix}
+                \end{equation*}
+
+
+                % ==================================
+                % ===         EJEMPLOS        ======
+                % ==================================
+                \subsubsection{Ejemplo}
+                \begin{SmallIndentation}[1em]
+                    
+                    Supongamos que tenengamos este sistema:
+                    \begin{align*}
+                        (2)x_1  +  (3)x_2 + (-1)x_3 &= 0    \\
+                        (-1)x_1 +  (2)x_2 + (-3)x_3 &= -3   \\
+                        (3)x_1  +  (5)x_2 + (7)x_3  &= 5    
+                    \end{align*}
+
+                    Entonces la Matriz Ampliada es:
+                    \begin{equation*}
+                        \begin{bmatrix}[rrr|r]
+                            2  & 3 & -1 & 0  \\
+                            -1 & 2 & -3 & -3 \\
+                            3  & 5 & 7  & 5  \\
+                        \end{bmatrix}
+                    \end{equation*}
+
+                \end{SmallIndentation}
+
+
+            % ==================================
+            % ==  COMO MULTIPLICAR MATRICES  ===
+            % ==================================
+            \clearpage
+            \subsection{Sistema Ecuaciones como Multiplicación de Matrices}
+
+                Puedes escribir tu sistema de ecuaciones lineales como dos matrices:
+                \begin{itemize}
+                    \item $A \in M_{m \times n}$ Es la Matriz de los coeficientes de las incognitas.
+
+                    \item $b \in M_{m \times 1}$ Es la Matriz Columna (o vector $\vec{b}$) con las variables 
+                        independientes de cada ecuación.
+                \end{itemize}
+
+                Entonces podemos decir que $A \vec x = \vec b$ donde $\vec x \in M_{m \times 1}$ es un vector columna
+                que contiene todas las soluciones que buscamos a nuestro sistema de ecuaciones.
+
+                
+
+
+        % =====================================================
+        % ==========    TIPOS DE SOLUCIONES     ===============
+        % =====================================================
+        \clearpage
+        \section{Tipos de Soluciones}
+
+            Decimos que una solución a un sistema de ecuaciones es una suseción
+            de constante $s_1, s_2, \dots, s_n$ tal que si decimos que 
+            $x_1=s_1, x_2=s_2, \dots, x_n=s_n$ todas las ecuaciones se satisfacen.
+
+            Recordemos antes que nada sobre estas ecuaciones, cada una de ellas
+            representa algo en el espacio y podemos “solucionarlas” al dibujarlas en
+            el espacio:
+
+            Y podemos separar nuestras soluciones en 2 (ó 3) amplias zonas:
+
+
+            % =====================================================
+            % ========       SISTEMAS CONSISTENTES     ============
+            % =====================================================
+            \subsection{Sistemas Consistentes (Mínimo 1 Solución)}
+
+                \begin{wrapfigure}{r}{0.40\textwidth}
+                    \centering
+                    \includegraphics[width=0.40\textwidth]{SistemasConsistentes}
+                \end{wrapfigure}
+
+                Podemos tener primeramente sistemas consistentes, es decir que tienen \textbf{mínimo}
+                una solución.
+
+                Es decir que las $n$ rectas (o lo que sea que sea el análogo en n-dimensiones)
+                se interesectan MÍNIMO en un punto.
+
+                Además algo muy interesante es que todo sistema homogéneo, osea que sus coeficientes
+                independientes valgan cero es consistente. Donde la solución mas obvia es que
+                todas las variables $x_i$ valgan CERO.
+
+                % ==================================================
+                % ===   SISTEMAS CONSISTENTES  INDEPENDIENTES  =====
+                % ==================================================
+                \clearpage
+                \subsubsection{Sistemas Consistentes Independientes: Tocan en un Punto}
+
+                    Que es lo esperado y a lo que yo llamaría normal.
+                    Por lo tanto si tocan en un punto entonces solo habrá una única solución.
+
+
+                % ==================================================
+                % ===   SISTEMAS CONSISTENTES DEPENDIENTES     =====
+                % ==================================================
+                \vspace{1em}
+                \subsubsection{Sistemas Consistentes Dependientes: Son las Mismas}
+
+                    Este caso es muy especial, pues nos dice que el sistema esta
+                    dado por ecuaciones que son múltiplos de la otra o otra forma
+                    de verlo es que esta dado por vectores linealmente dependientes.
+
+                    Así que de forma numérica cuando tengamos este caso llegamos a
+                    algo que siempre es verdad, a una tautología.
+
+                    Te muestro como se ve:
+                    \begin{align*}
+                        a_1x_1    + a_2x_2    + a_3x_3    + \dots + a_nx_n    &= b    \\
+                        C_1a_1x_1 + C_1a_2x_2 + C_1a_3x_3 + \dots + C_1a_nx_n &= C_1b \\
+                        \cdots                                                        \\
+                        C_ma_1x_1 + C_ma_2x_2 + C_ma_3x_3 + \dots + C_ma_nx_n &= C_mb \\
+                    \end{align*}
+
+                    Si es intentas resolver esto llegarás a esto:
+                    \begin{align*}
+                        0x_1   + 0x_2 + 0x_3 + \dots + 0x_n &= 0    \\
+                        0x_1   + 0x_2 + 0x_3 + \dots + 0x_n &= 0    \\
+                        &\cdots                                     \\
+                        0x_1   + 0x_2 + 0x_3 + \dots + 0x_n &= 0    \\
+                    \end{align*}
+
+                    Si llega a pasar esto es que nuestro sistema tiene infinitas soluciones.
+
+
+
+
+            % ==================================
+            % === SISTEMAS NO CONSISTENTES  ====
+            % ==================================
+            \clearpage
+            \subsection{Sistemas No Consistentes (No Solución)}
+
+                \begin{figure}[h]
+                    \centering
+                    \includegraphics[width=0.40\textwidth]{SistemasNoConsistentes}
+                \end{figure}
+
+                Estos son los feos.
+                Ocurren cuando llegamos una contradicción, como este estilo:
+                \begin{align*}
+                    a_{1,1}x_1 + a_{1,2}x_2 + a_{1,3}x_3 + \dots + a_{1,n}x_n &= b_1 \\
+                    a_{2,1}x_1 + a_{2,2}x_2 + a_{2,3}x_3 + \dots + a_{2,n}x_n &= b_2 \\
+                    cdots                                                            \\
+                    0x_1       + 0x_2       + 0x_3       + \dots + 0x_n       &= b_p \\
+                    cdots                                                            \\
+                    a_{m,1}x_1 + a_{m,2}x_2 + a_{m,3}x_3 + \dots + a_{m,n}x_n &= b_m \\
+                \end{align*}
+
+                Esto nos indica que no tienen solución.
+
 
 
     % ===============================================================================
@@ -821,7 +1077,6 @@
 
 
                     \end{itemize}
-
 
 
 
@@ -1423,9 +1678,6 @@
 
 
 
-
-
-
     % ===============================================================================
     % ===================    GAUSS-JORDAN Y LOS AMIGOS         ======================
     % ===============================================================================
@@ -1882,277 +2134,6 @@
 
 
 
-
-
-
-
-
-
-% //////////////////////////////////////////////////////////////////////////////////////////////////////////
-% //////////////////////////////      SISTEMA DE ECUACIONES LINEALES        ////////////////////////////////
-% //////////////////////////////////////////////////////////////////////////////////////////////////////////
-\part{Sistema de Ecuaciones Lineales}
-
-    % ===============================================================================
-    % ===================    SISTEMAS DE ECUACIONES LINEALES        =================
-    % ===============================================================================
-    \chapter{Sistemas de Ecuaciones Lineales}
-        \clearpage
-
-
-        % =====================================================
-        % ==============      GENERALIDADES     ===============
-        % =====================================================
-        \section{Generalidades}
-
-            Podemos usar las matrices y álgebra lineal para encontrar las soluciones
-            de un sistema de ecuaciones lineales dentro de cualquier campo (eso quiere
-            decir que podemos ocuparla incluso para resolver sistemas en el campo de
-            los complejos o el campo enteros módulo n).
-
-            % ==================================
-            % ===   ECUACIONES LINEALES   ======
-            % ==================================
-            \subsection{Definición: Ecuaciones Lineales}
-
-                Este es muy obvio pero mejor lo digo, TODAS las ecuaciones debe ser lineales,
-                es decir estar escritas de la forma:
-
-                \begin{equation}
-                    a_1x_1 + a_2x_2 + a_3x_3 + \dots + a_nx_n = b
-                \end{equation}
-
-
-                Por lo tanto podemos definir un sistema de $m \times n$ (es decir $m$ ecuaciones
-                con $n$ incognitas) ecuaciones lineales como:
-
-                \begin{equation*}
-                    m \text{ ecuaciones}
-                    \begin{cases}
-                        & a_{1,1}x_1 + a_{1,2}x_2 + a_{1,3}x_3 + \dots + a_{1,n}x_n = b_1 \\
-                        & a_{2,1}x_1 + a_{2,2}x_2 + a_{2,3}x_3 + \dots + a_{2,n}x_n = b_2 \\
-                        & \cdots \\
-                        & a_{m,1}x_1 + a_{m,2}x_2 + a_{m,3}x_3 + \dots + a_{m,n}x_n = b_m \\
-                    \end{cases}      
-                \end{equation*}
-
-                \begin{equation*}
-                    \begin{split}
-                        &a_{1,1}x_1 + a_{1,2}x_2 + a_{1,3}x_3 + \dots + a_{1,n}x_n = b_1 \\
-                        &a_{2,1}x_1 + a_{2,2}x_2 + a_{2,3}x_3 + \dots + a_{2,n}x_n = b_2 \\
-                        &\cdots \\
-                        &\underbrace{a_{m,1}x_1 + a_{m,2}x_2 + a_{m,3}x_3 + \dots + a_{m,n}x_n = b_m}_\text{$n$ incognitas}
-                    \end{split}
-                \end{equation*}
-
-
-            % ==================================
-            % ===   MATRIZ AMPLIADA       ======
-            % ==================================
-            \clearpage
-            \subsection{Matriz Ampliada}
-                La forma en la que Álgebra Lineal nos ayuda a resolver nuestro sistema de ecuaciones
-                es mediante una matriz ampliada, que no es más que convertir nuestro sistema
-                de ecuaciones de esta manera:
-
-                Desde algo así:
-                \begin{equation}
-                    \begin{split}
-                        & a_{1,1}x_1 &&+ a_{1,2}x_2 &&+ a_{1,3}x_3 &&+ \dots &&+ a_{1,n}x_n &&= b_1 \\
-                        & a_{2,1}x_1 &&+ a_{2,2}x_2 &&+ a_{2,3}x_3 &&+ \dots &&+ a_{2,n}x_n &&= b_2 \\
-                        & \cdots                                                                    \\
-                        & a_{m,1}x_1 &&+ a_{m,2}x_2 &&+ a_{m,3}x_3 &&+ \dots &&+ a_{m,n}x_n &&= b_m \\
-                    \end{split}
-                \end{equation}
-
-                Hasta algo así:
-                \begin{equation}
-                    \begin{bmatrix}[ccccc|c]
-                        a_{1,1} & a_{1,2} & a_{1,3} & \dots  & a_{1,n} & b_1     \\
-                        a_{2,1} & a_{2,2} & a_{2,3} & \dots  & a_{2,n} & b_2     \\
-                        \cdots  & \cdots  & \cdots  & \cdots & \cdots  & \cdots  \\
-                        a_{m,1} & a_{m,2} & a_{m,3} & \dots  & a_{m,n} & b_m     \\
-                    \end{bmatrix}
-                \end{equation}
-
-
-                % ==================================
-                % ===         EJEMPLOS        ======
-                % ==================================
-                \subsubsection{Ejemplos}
-
-                    Supongamos que tenengamos este sistema:
-                    \begin{equation*}
-                        \begin{split}
-                            &(2)x_1  &&+  (3)x_2 &&+ (-1)x_3 &&= 0    \\
-                            &(-1)x_1 &&+  (2)x_2 &&+ (-3)x_3 &&= -3   \\
-                            &(3)x_1  &&+  (5)x_2 &&+ (7)x_3  &&= 5    \\
-                        \end{split}
-                    \end{equation*}
-
-                    Entonces la Matriz Ampliada es:
-                    \begin{equation*}
-                        \begin{bmatrix}[rrr|r]
-                            2  & 3 & -1 & 0  \\
-                            -1 & 2 & -3 & -3 \\
-                            3  & 5 & 7  & 5  \\
-                        \end{bmatrix}
-                    \end{equation*}
-
-
-            % ==================================
-            % ==  COMO MULTIPLICAR MATRICES  ===
-            % ==================================
-            \clearpage
-            \subsection{Sistema Ecuaciones como Multiplicación de Matrices}
-
-                Puedes escribir tu sistema de ecuaciones lineales como dos matrices:
-                \begin{itemize}
-                    \item $A \in M_{m \times n}$ Es la Matriz de los coeficientes de las incognitas.
-
-                    \item $b \in M_{m \times 1}$ Es la Matriz Columna (o vector $\vec{b}$) con las variables 
-                        independientes de cada ecuación.
-                \end{itemize}
-
-                Entonces podemos decir que $A \vec x = \vec b$ donde $\vec x \in M_{m \times 1}$ es un vector columna
-                que contiene todas las soluciones que buscamos a nuestro sistema de ecuaciones.
-
-                
-
-
-
-        % =====================================================
-        % ==========    TIPOS DE SOLUCIONES     ===============
-        % =====================================================
-        \clearpage
-        \section{Tipos de Soluciones}
-
-            Recordemos antes que nada sobre estas ecuaciones, cada una de ellas representa
-            algo en el espacio y podemos \Quote{solucionarlas} al dibujarlas en el espacio:
-
-            Y podemos separar nuestras soluciones en 2 (ó 3) amplias zonas:
-
-
-            % ==================================
-            % ===   SISTEMAS CONSISTENTES  =====
-            % ==================================
-            \subsection{Sistemas Consistentes (Mínimo 1 Solución)}
-
-                Podemos tener primeramente sistemas consistentes, es decir que tienen
-                \textbf{mínimo} una solución.
-
-                Aquí hay dos opciones:
-
-                \begin{itemize}
-
-                    \item
-                        \textbf{Sistemas Consistentes Independientes: Tocan en un Punto}
-
-                        % ======== EXPLICACION ========
-                        \begin{SmallIndentation}[1em]
-                            Que es lo esperado y a lo que yo llamaría normal.
-                            Por lo tanto si tocan en un punto solo hay una única solución.
-                        \end{SmallIndentation}
-
-
-                    \item
-                        \textbf{Sistemas Consistentes Dependientes: Son las Mismas}
-
-                        % ======== EXPLICACION ========
-                        \begin{SmallIndentation}[1em]
-
-                            Este caso es muy especial, pues nos dice que el sistema esta
-                            dado por ecuaciones que son múltiplos de la otra o otra forma
-                            de verlo es que esta dado por vectores linealmente dependientes.
-
-                            Así que de forma numérica cuando tengamos este caso llegamos a
-                            algo que siempre es verdad, a una tautología.
-
-                            Te muestro como se ve:
-                            \begin{equation*}
-                            \begin{split}
-                                &a_1x_1    &&+ a_2x_2    &&+ a_3x_3    &&+ \dots &&+ a_nx_n    &&= b    \\
-                                &C_1a_1x_1 &&+ C_1a_2x_2 &&+ C_1a_3x_3 &&+ \dots &&+ C_1a_nx_n &&= C_1b \\
-                                &\cdots                                                                 \\
-                                &C_ma_1x_1 &&+ C_ma_2x_2 &&+ C_ma_3x_3 &&+ \dots &&+ C_ma_nx_n &&= C_mb \\
-                            \end{split}
-                            \end{equation*}
-
-                            Si es intentas resolver esto llegarás a esto:
-                            \begin{equation*}
-                            \begin{split}
-                                0x_1   + 0x_2 + 0x_3 + \dots + 0x_n &= 0    \\
-                                0x_1   + 0x_2 + 0x_3 + \dots + 0x_n &= 0    \\
-                                &\cdots                                     \\
-                                0x_1   + 0x_2 + 0x_3 + \dots + 0x_n &= 0    \\
-                            \end{split}
-                            \end{equation*}
-
-                            Si llega a pasar esto es que nuestro sistema tiene infinitas soluciones.
-
-                        \end{SmallIndentation}
-
-                \end{itemize}
-
-
-
-            % ==================================
-            % === SISTEMAS NO CONSISTENTES  ====
-            % ==================================
-            \clearpage
-            \subsection{Sistemas No Consistentes (No Solución)}
-
-                Estos son los feos.
-                Ocurren cuando llegamos una contradicción, como este estilo:
-                \begin{equation}
-                \begin{split}
-                    & a_{1,1}x_1 &&+ a_{1,2}x_2 &&+ a_{1,3}x_3 &&+ \dots &&+ a_{1,n}x_n &&= b_1 \\
-                    & a_{2,1}x_1 &&+ a_{2,2}x_2 &&+ a_{2,3}x_3 &&+ \dots &&+ a_{2,n}x_n &&= b_2 \\
-                    &\cdots                                                                     \\
-                    & 0x_1       &&+ 0x_2       &&+ 0x_3       &&+ \dots &&+ 0x_n       &&= b_p \\
-                    &\cdots                                                                     \\
-                    & a_{m,1}x_1 &&+ a_{m,2}x_2 &&+ a_{m,3}x_3 &&+ \dots &&+ a_{m,n}x_n &&= b_m \\
-                \end{split}
-                \end{equation}
-
-                Esto nos indica que no tienen solución.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        % =====================================================
-        % ==========    SISTEMAS HOMOGENEOS     ===============
-        % =====================================================
-        \clearpage
-        \section{Sistemas Homogéneos}
-
-            Además algo muy interesante es que siempre es es consistente, es decir
-            siempre habrá mínimo una solución.
-
-            Donde la solución mas obvia (o trivial) es en la que $a_1, a_2, \dots, a_3$
-            valen CERO.
 
 
 
