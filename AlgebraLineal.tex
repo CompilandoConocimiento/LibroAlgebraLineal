@@ -139,6 +139,8 @@
     \DeclareMathOperator \Reals        {\mathbb{R}}                 %Use: \Reals por Notation
     \DeclareMathOperator \Complexs     {\mathbb{C}}                 %Use: \Complex por Notation
     \DeclareMathOperator \GenericField {\mathbb{F}}                 %Use: \GenericField por Notation
+    \DeclareMathOperator \VectorSet    {\mathbb{V}}                 %Use: \VectorSet por Notation
+    \DeclareMathOperator \SubVectorSet {\mathbb{W}}                 %Use: \SubVectorSet por Notation
 
     % =====  CONTAINERS   ===============
     \newcommand{\Set}[1]{\left\{ \; #1 \; \right\}}                 %Use: \Set {Info} for INTELLIGENT space 
@@ -1431,6 +1433,9 @@
 
 
 
+
+
+
 % //////////////////////////////////////////////////////////////////////////////////////////////////////////
 % ////////////     GAUSS JORDAN, AMIGOS   Y SISTEMAS ECUACIONES LINEALES     ///////////////////////////////
 % //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2495,17 +2500,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 % //////////////////////////////////////////////////////////////////////////////////////////////////////////
 % /////////////////////////////           ESPACIOS VECTORIALES        //////////////////////////////////////
 % //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2524,108 +2518,116 @@
         \clearpage
         \section{Definición}
 
-            Siendo formales un Espacio Vectorial es una tupla $(\mathbb{V}, \GenericField, +, \cdot)$ donde tenemos que:
-            \begin{Indentation}[1em]
-            \begin{itemize}
-            \small{
-                
-                \item
-                    \textbf{Conjunto de Vectores: $\mathbb{V}$}
+            Los espacios vectoriales es la forma en que en matemáticas se abstraen conceptos clásicos como las
+            fuerzas que operan en física o los polinomios con coeficientes en los reales , vamos a ver más a detalle
+            esta abstracción.
 
-                    Es un grupo de vectores que no puede estar vacío ... y ya -.- 
-
-                \item
-                    \textbf{Campo: $\GenericField$}
-
-                    Es un Campo que cumple con sus propiedades normales, le solemos llamar un campo escalar.
-
-                \item
-                    \textbf{"Suma de Vectores": $+: (\mathbb{V} \times  \mathbb{V}) \to \mathbb{V}$}
-
-                    Una relación $+: (\mathbb{V} \times  \mathbb{V}) \to \mathbb{V}$, es decir, es una relación
-                    que recibe dos elementos de $\mathbb{V}$ (o más específico un par ordenado de vectores) y te
-                    regresa un nuevo elemento de $\mathbb{V}$.
-
-                    Gracias a esto podemos decir que es cerrado en esta operación, es decir:
-
-                    $\forall \vec{v_1}, \vec{v_2} \in \mathbb{V},
-                        \MiniSpace (\vec{v_1} + \vec{v_2}) \in \mathbb{V}$                            
-
-                \item
-                    \textbf{"Producto Escalar": $\cdot: (\GenericField \times  \mathbb{V}) \to \mathbb{V}$}
-
-                    Una relación $\cdot: (\GenericField \times  \mathbb{V}) \to \mathbb{V}$, es decir, es una relación
-                    que recibe un elementos de $\GenericField$ y un elemento de $\mathbb{V}$
-                    (o más específico un par ordenado) y te regresa un nuevo elemento de $\mathbb{V}$.
-
-                    Gracias a esto podemos decir que es cerrado en esta operación, es decir:
-
-                    $\forall \vec{v} \in \mathbb{V}, \MiniSpace
-                        \forall \alpha \in \GenericField, \MiniSpace
-                            (\alpha \cdot \vec{v}) \in \mathbb{V}$  
-            }
-            \end{itemize}
-            \end{Indentation}
-
-            \vspace{30pt}
+            Siendo formales un Espacio Vectorial (O Espacio Lineal) es una tupla 
+            $(\VectorSet, \GenericField, +, \cdot)$, solemos llamar entonces a este espacio vectorial, 
+            el Espacio Vectorial de $\VectorSet$ sobre $\GenericField$ donde tenemos que:
             
-            Donde esta tupla $(\mathbb{V}, \GenericField, +, \cdot)$ cumple que:
-            
-            \begin{Indentation}[1em]
-            \begin{itemize}
-            \small{
+            \begin{SmallIndentation}[1em]
                 
-                \item 
-                    \textbf{Ley Aditiva Asociativa:}
-                    $\forall \vec{v_1}, \vec{v_2}, \vec{v_3} \in \mathbb{V}, \MiniSpace
-                        (\vec{v_1} + \vec{v_2}) + \vec{v_3} = \vec{v_1} + (\vec{v_2} + \vec{v_3})$
+                \begin{itemize}
+                
+                    \item
+                        \textbf{Conjunto de Vectores: $\VectorSet$}
 
-                \item 
-                    \textbf{Ley Aditiva Conmutativa:}
-                    $\forall \vec{v_1}, \vec{v_2} \in \mathbb{V}, \MiniSpace
-                            \vec{v_1} + \vec{v_2} = \vec{v_1} + \vec{v_2}$
+                        Es un grupo de vectores que no puede estar vacío ... y ya -.- 
+
+                    \item
+                        \textbf{Campo: $\GenericField$}
+
+                        Es un Campo que cumple con sus propiedades normales, le solemos llamar un campo escalar.
+
+                    \item
+                        \textbf{"Suma de Vectores": $+: (\VectorSet \times  \VectorSet) \to \VectorSet$}
+
+                        Una Función $+: (\VectorSet \times  \VectorSet) \to \VectorSet$, es decir, es una Función
+                        que recibe dos elementos de $\VectorSet$ (o más específico un par ordenado de vectores) y te
+                        regresa un nuevo elemento de $\VectorSet$.
+
+                        Gracias a esto podemos decir que es cerrado en esta operación, es decir:
+
+                        $\forall \vec{v_1}, \vec{v_2} \in \VectorSet,
+                            \MiniSpace (\vec{v_1} + \vec{v_2}) \in \VectorSet$  
 
 
-                \item 
-                    \textbf{Elemento Indentidad Aditivo:}
-                    $\exists \vec{0} \in \mathbb{V}, \MiniSpace
-                        \forall \vec{v} \in \mathbb{V}, \MiniSpace \vec{0} + \vec{v} = \vec{v} + \vec{0} = \vec{v}$
+                    \item
+                        \textbf{"Producto Escalar": $\cdot: (\GenericField \times  \VectorSet) \to \VectorSet$}
 
-                \item 
-                    \textbf{Existen Inversos Aditivos:}
-                    $\forall \vec{v} \in \mathbb{V}, \MiniSpace
-                            \exists \vec{-v} \in \mathbb{V}, \MiniSpace
-                                \vec{v} + (\vec{-v}) = (\vec{-v}) + \vec{v} = \vec{0}$
+                        Una Función $\cdot: (\GenericField \times  \VectorSet) \to \VectorSet$, es decir, es una Función
+                        que recibe un elementos de $\GenericField$ y un elemento de $\VectorSet$
+                        (o más específico un par ordenado) y te regresa un nuevo elemento de $\VectorSet$.
+
+                        Gracias a esto podemos decir que es cerrado en esta operación, es decir:
+
+                        $\forall \vec{v} \in \VectorSet, \MiniSpace
+                            \forall \alpha \in \GenericField, \MiniSpace
+                                (\alpha \cdot \vec{v}) \in \VectorSet$  
+                \end{itemize}
+            
+            \end{SmallIndentation}
 
 
-                \item 
-                    \textbf{Ley Aditiva Distributiva:}
-                    $\forall \alpha \in \GenericField \MiniSpace
-                        \forall \vec{v_1}, \vec{v_2} \in \mathbb{V} \MiniSpace
-                            \alpha \cdot (\vec{v_1} + \vec{v_2}) = 
-                                (\alpha \cdot \vec{v_1}) + (\alpha \cdot \vec{v_2})$
+            % ==============================================
+            % ====   CONDICIONES DE ESPACIO VECTORIAL   ====
+            % ==============================================
+            \subsection{Condiciones de Espacio Vectorial}
 
-                \item 
-                    \textbf{Ley Multiplicativa Asociativa:}
-                    $\forall \alpha, \beta \in \GenericField, \MiniSpace
-                        \forall \vec{v} \in \mathbb{V}, \MiniSpace
-                            \alpha \cdot (\beta \cdot \vec{v}) = (\alpha \beta) \cdot \vec{v}$
+                Donde esta tupla $(\VectorSet, \GenericField, +, \cdot)$ tiene que cumplir los siguientes 8
+                propiedades para que se peudan considerar un espacio vectorial:
 
-                \item 
-                    \textbf{Ley Multiplicativa Distributiva:}
-                    $\forall \alpha, \beta \in \GenericField, \MiniSpace
-                        \forall \vec{v} \in \mathbb{V}, \MiniSpace
-                            (\alpha + \beta) \cdot \vec{v} = 
-                                    (\alpha \cdot \vec{v}) + (\beta \cdot \vec{v})$
+                \begin{SmallIndentation}[1em]
+                    
+                    \item 
+                        \textbf{Ley Aditiva Asociativa:}
+                        $\forall \vec{v_1}, \vec{v_2}, \vec{v_3} \in \VectorSet, \MiniSpace
+                            (\vec{v_1} + \vec{v_2}) + \vec{v_3} = \vec{v_1} + (\vec{v_2} + \vec{v_3})$
 
-                \item 
-                    \textbf{Elemento Indentidad Multiplicativo:}
-                    $\exists 1 \in \GenericField, \MiniSpace
-                        \forall \vec{v} \in \mathbb{V}, \MiniSpace 1 \cdot \vec{v} = \vec{v}$
+                    \item 
+                        \textbf{Ley Aditiva Conmutativa:}
+                        $\forall \vec{v_1}, \vec{v_2} \in \VectorSet, \MiniSpace
+                                \vec{v_1} + \vec{v_2} = \vec{v_2} + \vec{v_1}$
 
-            }
-            \end{itemize}
-            \end{Indentation}
+                    \item 
+                        \textbf{Elemento Indentidad Aditivo:}
+                        $\exists \vec{0} \in \VectorSet, \MiniSpace
+                            \forall \vec{v} \in \VectorSet, \MiniSpace \vec{0} + \vec{v} = \vec{v}$
+
+                    \item 
+                        \textbf{Existen Inversos Aditivos:}
+                        $\forall \vec{v} \in \VectorSet, \MiniSpace
+                                \exists \vec{-v} \in \VectorSet, \MiniSpace
+                                    \vec{v} + (\vec{-v}) = (\vec{-v}) + \vec{v} = \vec{0}$
+
+                    \item 
+                        \textbf{Ley Aditiva Distributiva:}
+                        $\forall \alpha \in \GenericField \MiniSpace
+                            \forall \vec{v_1}, \vec{v_2} \in \VectorSet \MiniSpace
+                                \alpha \cdot (\vec{v_1} + \vec{v_2}) = 
+                                    (\alpha \cdot \vec{v_1}) + (\alpha \cdot \vec{v_2})$
+
+                    \item 
+                        \textbf{Ley Multiplicativa Asociativa:}
+                        $\forall \alpha, \beta \in \GenericField, \MiniSpace
+                            \forall \vec{v} \in \VectorSet, \MiniSpace
+                                \alpha \cdot (\beta \cdot \vec{v}) = (\alpha \beta) \cdot \vec{v}$
+
+                    \item 
+                        \textbf{Ley Multiplicativa Distributiva:}
+                        $\forall \alpha, \beta \in \GenericField, \MiniSpace
+                            \forall \vec{v} \in \VectorSet, \MiniSpace
+                                (\alpha + \beta) \cdot \vec{v} = 
+                                        (\alpha \cdot \vec{v}) + (\beta \cdot \vec{v})$
+
+                    \item 
+                        \textbf{Elemento Indentidad Multiplicativo:}
+                        $\exists 1 \in \GenericField, \MiniSpace
+                            \forall \vec{v} \in \VectorSet, \MiniSpace 1 \cdot \vec{v} = \vec{v}$
+
+                \end{SmallIndentation}
+
 
 
 
@@ -2633,7 +2635,7 @@
         % ============     PROPIEDADES      ===========
         % =============================================
         \clearpage
-        \section{Consecuencias de los Axiomas}
+        \section{Consecuencias y Propiedades}
 
             Veamos algunas de las Propiedades de esto que acabamos de definir, son consecuencias de los 
             axiomas.
@@ -2641,11 +2643,14 @@
             \begin{itemize}
                 \item El $\vec{0}$ es único.
 
+                    % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
                         Si te das cuenta, nunca dije que tenia que existir solo un $\vec{0}$ pues no es
                         necesario, ya que podemos decir que si tenemos otro $\vec{0_2}$ entonces pasará que 
-                        $\exists \vec{0_2} \in \mathbb{V}, \MiniSpace
-                            \forall \vec{v} \in \mathbb{V}, \MiniSpace
+                        $\exists \vec{0_2} \in \VectorSet, \MiniSpace
+                            \forall \vec{v} \in \VectorSet, \MiniSpace
                                 \vec{0_2} + \vec{v} = \vec{v} + \vec{0_2} = \vec{v}$
 
                         Podemos decir entonces que $\vec{0} = \vec{0}+\vec{0_2}$ pero también sabemos como
@@ -2658,49 +2663,79 @@
 
                 \item El inverso aditivo de $\vec{v}$ es único.
 
+                    % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
-                        Podemos entonces suponer que hay dos vectores ($\vec{x}, \vec{y}$) que hacen el 
+                        \textbf{Demostración}:
+
+                        Podemos entonces suponer que hay dos vectores $\vec{x}, \vec{y}$ que hacen el 
                         trabajo de un inverso de $\vec{v}$, es decir
                         $\vec{v} + \vec{x} = \vec{x} + \vec{v} = \vec{0}$ y que 
                         $\vec{v} + \vec{y} = \vec{y} + \vec{v} = \vec{0}$.
 
-                        De ser así vemos entonces que podemos decir que
-                        \begin{equation*}
-                        \begin{split}
-                            \vec{x} &=                                  \\
-                                    &= \vec{x} + \vec{0} 
-                                     = \vec{x} + (\vec{v} + \vec{y}) 
-                                     = (\vec{x} + \vec{v}) + \vec{y}
-                                     = \vec{0} + \vec{y}                \\ 
-                                    &= \vec{y}
-                        \end{split}
-                        \end{equation*}
+                        De ser así vemos entonces que podemos decir que:
+                        \begin{align*}
+                            \vec{x} 
+                                &= \vec{x} + \vec{0}                &&\Remember{Suma de cero}   \\
+                                &= \vec{x} + (\vec{v} + \vec{y})    &&\Remember{Hipotesis}      \\
+                                &= (\vec{x} + \vec{v}) + \vec{y}    &&\Remember{Asociativa}     \\
+                                &= \vec{0} + \vec{y}                &&\Remember{Suma de Cero}   \\
+                                &= \vec{y}                          &&\Remember{Hipotesis}   
+                        \end{align*}
 
                     \end{SmallIndentation}
+
+                \item \textbf{Cancelación de la Suma Vectorial}:\\
+                    Si $x, y, z \in \VectorSet$ tal que $x + z = y + z$, entonces $x = y$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Esto es algo bastante natural e intuitivo, pero aun así hay que demostrarlo, 
+                        veamos que $\alpha \cdot \vec{0}$ es un vector, vamos vamos a denotar su inverso
+                        adivito como $- (\alpha \cdot \vec{0})$
+                        \begin{align*}
+                            x
+                                &= x + 0            \\
+                                &= x + (z + -z)     \\
+                                &= (x + z) - z      \\
+                                &= (y + z) - z      \\
+                                &= y + (z - z)      \\
+                                &= y
+                        \end{align*}
+
+                    \end{SmallIndentation}
+
+
+                \clearpage
 
 
                 \item $\forall \alpha \in \GenericField, \MiniSpace \alpha \cdot \vec{0} = \vec{0}$
 
+                    % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
                         Esto es algo bastante natural e intuitivo, pero aun así hay que demostrarlo, 
                         veamos que $\alpha \cdot \vec{0}$ es un vector, vamos vamos a denotar su inverso
                         adivito como $- (\alpha \cdot \vec{0})$
-
-                        \begin{equation*}
-                        \begin{split}
-                            \alpha \cdot \vec{0} &=                                                           \\
-                                            &= (\alpha \cdot \vec{0}) + \vec{0} 
-                                             = \alpha \cdot \vec{0} + [ (\alpha \vec{0}) - (\alpha \vec{0}) ]
-                                             = [\alpha \cdot \vec{0} +  (\alpha \vec{0})] - (\alpha \vec{0})  \\
-                                            &= [\alpha (\vec{0} + \vec{0})] - (\alpha \vec{0})                 
-                                             = \alpha \vec{0} - (\alpha \vec{0})                              \\
-                                            &= \vec{0}
-                        \end{split}
-                        \end{equation*}
+                        \begin{align*}
+                            \alpha \cdot \vec{0} 
+                                &= (\alpha \cdot \vec{0}) + \vec{0}                                 \\
+                                &= \alpha \cdot \vec{0} + [ (\alpha \vec{0}) - (\alpha \vec{0}) ]   \\
+                                &= [\alpha \cdot \vec{0} +  (\alpha \vec{0})] - (\alpha \vec{0})    \\
+                                &= [\alpha (\vec{0} + \vec{0})] - (\alpha \vec{0})                  \\
+                                &= \alpha \vec{0} - (\alpha \vec{0})                                \\
+                                &= \vec{0}   
+                        \end{align*}
 
                     \end{SmallIndentation}
 
+                \item $\forall \vec{v} \in \VectorSet, \MiniSpace 0 \cdot \vec{v} = \vec{0}$
+
             \end{itemize}
+
+
 
 
     % ===============================================================================
@@ -2714,51 +2749,209 @@
         \clearpage
         \section{Definición}
 
+            Suele ser muy interasante ver si es que los subconjuntos de cierta estructura
+            algebraica tienen las mismas características, por lo tanto veamos si es que
+            podemos encontrar un subconjunto de un espacio vectorial.
+
             Un Subespacio Vectorial es un Espacio Vectorial.
 
             La única razón por la que le decimos Subespacio es porque esta contenido dentro de
             otro Espacio Vectorial.
 
-            \subsubsection*{Definición Formal}
-                Sea $\mathbb{W}$ y $\mathbb{V}$ dos Espacios Vectoriales donde con identidas
+            % ==============================================
+            % ========      DEFINICION FORMAL    ===========
+            % ==============================================
+
+            \subsubsection{Definición Formal}
+                Sea $\SubVectorSet$ y $\VectorSet$ dos Espacios Vectoriales donde con identidas
                 operaciones $+, \cdot$ sobre un mismo campo $\GenericField$ entonces decimos
-                que $\mathbb{W}$ es un Subespacio Vectorial de $\mathbb{V}$ si y solo si:
+                que $\SubVectorSet$ es un Subespacio Vectorial de $\VectorSet$ si y solo si:
 
                 \begin{itemize}
-                    \item $\mathbb{W} \subset \mathbb{V}$
-                    \item $\mathbb{W}$ es un Espacio Vectorial por si mismo
+                    \item $\SubVectorSet \subset \VectorSet$
+                    \item $\SubVectorSet$ es un Espacio Vectorial por si mismo
                 \end{itemize}
 
 
         % ==============================================
         % ====     DEMOSTRAR QUE ES UN SUBESPACIO   ====
         % ==============================================
-        \section{Demostrar que $\mathbb{W}$ es un Subespacio de $\mathbb{V}$}
+        \vspace{1em}
+        \section{Demostrar que $\SubVectorSet$ es un Subespacio de $\VectorSet$}
 
-            Podemos además decir que $\mathbb{W}$ es un Subespacio de $\mathbb{V}$
+            Afortunadamente no tenemos que demostrar todas las 8 propiedades de un espacio
+            vectorial, porque después de todo es un subconjunto de $\VectorSet$. Por lo tanto
+            solo basta probar algunas menos.
+
+            Podemos además decir que $\SubVectorSet$ es un Subespacio de $\VectorSet$
             si y solo si:
 
-            $\mathbb{W}$ contiene al vector cero del Espacio $\mathbb{V}$ y es cerrado
-            con respecto a las operaciones lineales del Espacio $\mathbb{V}$, (osea con
+            $\SubVectorSet$ contiene al vector cero del Espacio $\VectorSet$ y es cerrado
+            con respecto a las operaciones lineales del Espacio $\VectorSet$, (osea con
             expresiones matemáticas:)
 
             \begin{itemize}
-                \item $\vec{0} \in \mathbb{W}$
+                \item $\vec{0} \in \SubVectorSet$
                 
-                \item $\forall \vec{v_1}, \vec{v_2} \in \mathbb{W}, \MiniSpace
-                            \vec{v_1} + \vec{v_2} \in \mathbb{W}$
+                \item $\forall \vec{v_1}, \vec{v_2} \in \SubVectorSet, \MiniSpace
+                            \vec{v_1} + \vec{v_2} \in \SubVectorSet$
 
-                \item $\forall \vec{v} \in \mathbb{W}, \MiniSpace
+                \item $\forall \vec{v} \in \SubVectorSet, \MiniSpace
                             \forall \alpha \in \GenericField, \MiniSpace
-                                \alpha \vec{v} \in \mathbb{W}$
-             \end{itemize}
+                                \alpha \vec{v} \in \SubVectorSet$
+            \end{itemize}
+
+            A veces hay gente que le gusta poner una 4 condición, la de que
+            $\forall \vec{v} \in \SubVectorSet, \MiniSpace -\vec{v} \in \SubVectorSet$, pero la verdad
+            es que podemos probar que esta cuarta condición se puede probar usando las 3 anteriores.
+
+
+
+        % ==============================================
+        % ==========     PROPIEDADES    ================
+        % ==============================================
+        \vspace{1em}
+        \section{Propiedades de los Subespacios}
+
+            \begin{itemize}
+                
+                \item 
+                    $\Set{ \vec{0} }$ es un Subespacio Vectorial para cualquier $\VectorSet$
+
+                \item
+                    Cualquier intersección de Subespacios Vectoriales de $\VectorSet$ es también un
+                    Subespacio Vectorial de $\VectorSet$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+                        
+                        Sea $\SubVectorSet$ la intersección de 2 subespacios vectoriales $A$ y $B$ cualquiera
+                        entonces:
+
+                        \begin{itemize}
+                            \item Es obvio que $\SubVectorSet$ contiene al $\vec{0}$, porque estaba tanto
+                                es $A$ como $B$ por ser subespacios.
+
+                            \item Sea $\vec{v_1}, \vec{v_2} \in \SubVectorSet$ entonces estos 2 elementos
+                                existen en cada subespacio y como son subespacios entonces 
+                                $\vec{v_1} + \vec{v_2} \in \SubVectorSet$
+
+                            \item Sea $\vec{v} \in \SubVectorSet$ entonces $\vec{v}$ existe en ambos subespacios
+                                y como son subespacio entonces 
+                                $\forall \alpha \in \GenericField, \alpha \vec{v} \in \SubVectorSet$
+
+                        \end{itemize}
+
+                        Por lo tanto, es un subespacio vectorial.
+                    
+                    \end{SmallIndentation}
+
+                \item
+                    Cualquier unión de Subespacios Vectoriales de $\VectorSet$ es también un
+                    Subespacio Vectorial de $\VectorSet$ si y solo si uno de los subespacios
+                    es un subconjunto de otro
+                        
+
+            \end{itemize}
+
+
+
+        % ==============================================
+        % ======     SUMA DE SUBESPACIOS      ==========
+        % ==============================================
+        \clearpage
+        \section{Suma de Subespacios Vectoriales}
+
+            Si $S_1$ y $S_2$ son subespacios vectoriales (que no son vacios) de un Espacio Vectorial
+            $\VectorSet$, entonces definimos a $S_1 + S_2$ de la siguiente manera:
+
+            \begin{align}
+                S_1 + S_2 := \Set{
+                    \vec x 
+                        \Such \vec x = \vec{a} + \vec{b} 
+                        \Space \text{donde} \Space
+                        \vec{a} \in S_1 \text{ y }
+                        \vec{b} \in S_2
+                    }
+            \end{align}
+
+
+            % ==============================================
+            % ==========     PROPIEDADES    ================
+            % ==============================================
+            \vspace{1em}
+            \subsection{Propiedades}
+
+                \begin{itemize}
+                    
+                    \item 
+                        Si $\SubVectorSet_1$ y $\SubVectorSet_2$ son subespacios de un espacio vectorial de
+                        $\VectorSet$ entonces $\SubVectorSet_1 + \SubVectorSet_2$ es un Subespacio Vectorial
+
+                            % ======== DEMOSTRACION ========
+                            \begin{SmallIndentation}[1em]
+                                \textbf{Demostración}:
+                                
+                                \begin{itemize}
+                                    \item Por un lado como $\SubVectorSet_1$ y $\SubVectorSet_2$ son subespacios
+                                        entonces $\vec{0} + \vec{0}$ esta en la suma, por lo tanto el $\vec{0}$
+                                        esta.
+
+                                    \item Sea $a, b \in \SubVectorSet_1 + \SubVectorSet_2$, además podemos
+                                        proponer elementos tales que $x_1, y_1 \in \SubVectorSet_1$ y 
+                                        $x_2, y_2 \in \SubVectorSet_2$ tales que $a=x_1+x_2$ y $b=y_1+y_2$
+                                        entonces:
+                                        \begin{align*}
+                                            a + b
+                                                &= (x_1 + x_2) + (y_1 + y_2)    \\ 
+                                                &= (x_1 + y_1) + (x_2 + y_2)    \\ 
+                                                &= (x_1 + y_1) + (x_2 + y_2)    \\ 
+                                        \end{align*}
+
+                                        Es decir $a+b$ es un elemento de $\SubVectorSet_1 + \SubVectorSet_2$
+
+                                    \item $ax = a(x_1 + x_2) = ax_1 + a_x2$
+                                        es un elemento de $\SubVectorSet_1 + \SubVectorSet_2$
+
+                                \end{itemize}
+                            
+                            \end{SmallIndentation}
+
+                \end{itemize}
 
 
 
 
+            % ==============================================
+            % ======     SUMA DE SUBESPACIOS      ==========
+            % ==============================================
+            \clearpage
+            \subsection{Suma Directa de Subespacios Vectoriales}
+
+                Se dice que $\VectorSet$ es la suma directa de $\SubVectorSet_1$ y $\SubVectorSet_2$
+                expresada como $\VectorSet = \SubVectorSet_1 \oplus \SubVectorSet_2$ si y solo si:
+
+                \begin{itemize}
+                    \item $\SubVectorSet_1, \SubVectorSet_2$ son subespacios vectoriales de $\VectorSet$
+                    \item $\SubVectorSet_1 \cap \SubVectorSet_2 = \Set{\vec{0}}$
+                    \item $\VectorSet = \SubVectorSet_1 + \SubVectorSet_2$
+                \end{itemize}
 
 
+            % ==============================================
+            % ==========     PROPIEDADES    ================
+            % ==============================================
+            \vspace{1em}
+            \subsubsection{Propiedades}
 
+                \begin{itemize}
+                    
+                    \item 
+                        $\VectorSet$ es la suma directa de $\SubVectorSet_1$ y $\SubVectorSet_2$ si y solo si
+                        cada elemento $x$ de $\VectorSet$ puede ser escrito de una sola manera como 
+                        $x = a + b$ donde $a \in \SubVectorSet_1$ y $b \in \SubVectorSet_2$
 
+                \end{itemize}
 
 \end{document}
