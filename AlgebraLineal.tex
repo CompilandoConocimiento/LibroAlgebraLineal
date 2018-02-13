@@ -2743,7 +2743,84 @@
 
                 \item $\forall \vec{v} \in \VectorSet, -\alpha(\vec v) = - (\alpha \vec v) = \alpha( - \vec v)$
 
+                \item
+                    Si $\GenericField^n$ es un espacio vectorial sobre $\GenericField$, entonces
+                    $\GenericField^n$ será un espacio vectorial sobre cualquier campo que subconjunto de
+                    $\GenericField$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Ejemplo}:
+                        
+                        \begin{itemize}
+                            \item $\Reals^n_{\Reals}$ es un espacio vectorial
+                            \item $\Reals^n_{\Complexs}$ NO es un espacio vectorial
+                            \item $\Reals^n_{\Racionals}$ es un espacio vectorial
+                        \end{itemize}
+                    
+                    \end{SmallIndentation}
+                        
+
             \end{itemize}
+
+
+
+
+        % ==============================================
+        % ========          EJERCICIOS            ======
+        % ==============================================
+        \clearpage
+        \section{Ejercicios}
+
+            \begin{itemize}
+                \item 
+                    Sea $\Reals^2$ un espacio vectorial sobre $\Reals$ con:
+                    \begin{itemize}
+                        \item $(a, b) + (c, d) := (a+c, bd)$
+                        \item $k(a, b) := (ka, b)$
+                    \end{itemize}
+
+                    ¿Es un espacio vectorial?
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+                        
+                        \begin{itemize}
+                            \item La suma es cerrada
+                            \item El producto por escalar es cerrada
+                            \item Es asociativa
+                            \item Es conmutativa
+                            \item Existe un neutro aditivo, pero es especial, mira:
+
+                                Considera, a $(a_0, b_0) + (x, y) = (a_0, b_0)$
+
+                                Por lo tanto $a_0 + x = a_0$ y $b_0y = b_0$, por lo
+                                tanto tenemos que $\vec 0 := (0, 1)$.
+
+                            \item Pero pasa algo raro con los inversos:
+
+                                Considera, a $(a_0, b_0) + (x, y) = (0, 1)$
+
+                                Por lo tanto $a_0 + x = 0$ y $b_0y = 1$, por lo
+                                tanto tenemos que el inverso de $(a_0, b_0)$ es
+                                $(-a_0, \frac{1}{b})$
+
+                                Y todo sería felicidad si nos quedamos así pero...
+                                ¿Qué pasa si es que $b = 0$, entonces dividimos entre
+                                cero, por lo tanto para vectores como $(a_0, 0)$ no existe
+                                un inverso, y eso esta feo...muy feo.
+
+                                Por lo tanto no es un espacio vectorial.
+
+                        \end{itemize}
+
+                        No.
+
+                    \end{SmallIndentation}
+                        
+            \end{itemize}
+
 
 
 
@@ -2983,5 +3060,191 @@
                         $x = a + b$ donde $a \in \SubVectorSet_1$ y $b \in \SubVectorSet_2$
 
                 \end{itemize}
+
+
+        % ==============================================
+        % ========          EJERCICIOS            ======
+        % ==============================================
+        \clearpage
+        \section{Ejercicios}
+
+            \begin{itemize}
+                \item 
+                    Prueba que $\GenericField$ es la suma directa de los siguientes
+                    conjuntos:
+                    \begin{itemize}
+                        \item $\SubVectorSet_1 = \Set{(a_1, \dots, a_n) \Such a_n = 0}$
+                        \item $\SubVectorSet_2 = \Set{(a_1, \dots, a_n) \Such a_1 = a_2 = a_{n-1} = 0}$
+                    \end{itemize}
+
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+
+                        Ok, antes que nada demostremos que ambos son subespacios vectoriales:
+                        \begin{itemize}
+                            \item $\vec 0 \in \SubVectorSet_1$ pues es de la forma $(a_1, \dots, a_n)$ donde
+                                $a_n = 0$
+                            \item Es cerrado bajo la suma pues
+                                $(a_1, \dots, a_{n-1}, 0) + (b_1, \dots, b_{n-1}, 0) 
+                                    = (a_1+b_1, \dots, a_{n-1}+b_{n-1}, 0)
+                                    \in \SubVectorSet_1$
+
+                            \item Es cerrado bajo el producto pues
+                                $k(a_1, \dots, a_{n-1}, 0) = = (ka_1, \dots, ka_{n-1}, 0)
+                                    \in \SubVectorSet_1$
+                        \end{itemize}
+
+                        Por lo tanto $\SubVectorSet_1$ es un subespacio vectorial y de la misma
+                        manera $\SubVectorSet_2$ es también un subespacio vectorial.
+
+                        Ahora, ve que su intersección es $\Set{\vec 0}$, esto de puede hacer
+                        con doble contención, por un lado ambos por ser espacios vectoriales
+                        por lo tanto $\vec 0$ esta en la intersección.
+
+                        Ahora, si tenemos un elemento cuaquiera en la intersección de ambos
+                        por construcción del primero $a_n = 0$ y por construcción del segundo
+                        todos los demas son ceros, el único vector que cumple con eso es $\vec 0$.
+
+                        Magia.
+
+                        Ahora finalmente veamos que podemos escribir a un elemento arbitrario
+                        como la suma de dos elementos, cada uno de $\SubVectorSet_1$ y $\SubVectorSet_2$
+
+                        Creo que esos elementos son mas que obvios por lo que queda demostrado.
+
+                    \end{SmallIndentation}
+                        
+            \end{itemize}
+
+
+
+    % ===============================================================================
+    % ===================    COMBINACIONES LINEALES               ===================
+    % ===============================================================================
+    \chapter{Combinaciones Lineales}
+
+        % ==============================================
+        % ========          GENERADORES          =======
+        % ==============================================
+        \clearpage
+        \section{Combinacion Lineales}
+
+            % ==============================================
+            % ========      DEFINICIÓN         =============
+            % ==============================================
+            \subsection{Definición}
+
+                Dado un vector $\vec v$ es una combinación lineal un conjunto de
+                vectores $S = \Set{\vec s_1, \dots, \vec s_n}$ si y solo si
+                podemos expresar como:
+                \begin{equation*}
+                    \vec v = \sum_{i = 1}^n \vec a_i \vec s_i
+                \end{equation*}
+
+
+            % ==============================================
+            % =====    LINEALMENTE DEPENDIENTE        ======
+            % ==============================================
+            \subsection{Vectores Linealmente Dependiente}
+
+                Sea $S$ un conjunto de vectores, denotado sin perdida de generalidad
+                sea $S = \Set{\vec v_1, \dots, \vec v_n}$ $S$ es linealmente dependiente
+                si existe una combinación lineal no trivial tal que diga combinación lineal
+                sea $\vec 0$.
+
+            % ==============================================
+            % =====    LINEALMENTE INDEPENDIENTE      ======
+            % ==============================================
+            \subsection{Vectores Linealmente Independiente}
+
+                Sea $S$ un conjunto de vectores, son linealmente independientes si la
+                única combinación lineal que da el $\vec 0$ es solo la combinación lineal
+                trivial.
+
+
+
+        % ==============================================
+        % ========          GENERADORES          =======
+        % ==============================================
+        \clearpage
+        \section{Generadores}
+
+
+            % ==============================================
+            % ========      DEFINICIÓN         =============
+            % ==============================================
+            \subsection{Definición}
+
+                Dado un conjunto de vectores $S$, donde $S \neq \emptyset$ el generado
+                de $S$ se denomina $<S>$ y es el conjunto de todas las combinaciones lineales
+                de los elementos de $S$.
+
+
+
+            % ==============================================
+            % ========      PROPIEDADES        =============
+            % ==============================================
+            \subsection{Propiedades}
+
+                \begin{itemize}
+                    \item 
+                        Sea $S$ un subconjunto de vectores de un espacio vectorial $\VectorSet$ entonces
+                        decimos que $<S>$ es un subespacio vectorial.
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Sea $S$ un conjunto de vectores, denotado sin perdida de generalidad
+                            sea $S = \Set{\vec v_1, \dots, \vec v_n}$
+
+                            \begin{itemize}
+                                \item
+                                    Ahora, el cero vector esta en $<S>$ simplemente por la combinación
+                                    trivial, es decir:
+                                    \begin{equation*}
+                                        \vec 0 = \sum_{i = 1}^n 0 \vec v_i
+                                        \Space \text{ entonces } \vec 0 \in <S>
+                                    \end{equation*}
+
+                                \item
+                                    Dado dos elementos de $\vec a, \vec b$ arbitrarios, entonces tenemosq ue:
+                                    \begin{equation*}
+                                        \vec a + \vec b 
+                                            = \sum_{i = 1}^n r_i \vec v_i + \sum_{i = 1}^n s_i \vec v_i
+                                            = \sum_{i = 1}^n (r_i + s_i) \vec v_i
+                                            \Space \text{ entonces } \vec a + \vec b \in <S>
+                                    \end{equation*}
+
+                                \item
+                                    Dado dos elementos de $\vec a, \vec b$ arbitrarios, entonces tenemosq ue:
+                                    \begin{equation*}
+                                        k \vec a 
+                                            = k \sum_{i = 1}^n r_i \vec v_i
+                                            = \sum_{i = 1}^n (kr_i) \vec v_i  \in <S>
+                                            \Space \text{ entonces } \vec ka \in <S>
+                                    \end{equation*}
+
+                                Por lo tanto todo $<S>$ es un subespacio vectorial.
+
+                                Por convensión tenemos que $<\emptyset> = \vec 0$
+
+                            \end{itemize}
+                        
+                        \end{SmallIndentation}
+                            
+                \end{itemize}
+
+
+
+
+
+
+
+
+
+
 
 \end{document}
