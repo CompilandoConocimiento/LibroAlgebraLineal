@@ -3239,7 +3239,105 @@
 
 
 
+        % ==============================================
+        % ========      PROPIEDADES        =============
+        % ==============================================
+        \clearpage
+        \section{Propiedades}
 
+            \begin{itemize}
+                
+                \item 
+                    Si $\vec 0 \in S$ entonces $S$ es linealmente dependiente
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+                        
+                        Esta es muy fácil, considera el conjunto $\Set{\vec 0}$ entonces lo puedes
+                        escribir como $\vec 0 = a \vec 0$ con $a \neq 0$ entonces ya encontraste 
+                        una combinación lineal no trivial, y como demostraré en los siguientes temas
+                        veré que sin importar que le añada a un conjunto linealmente dependiente este
+                        seguirá siendo linealmente dependiente.
+                    
+                    \end{SmallIndentation}
+                        
+
+                \item 
+                    Sin importar que le añada a un conjunto linealmente dependiente este
+                    seguirá siendo linealmente dependiente.
+
+                    Es decir:
+                    Si $S_1 \subseteq S_2$ y $S_1$ es linealmente dependiente entonces
+                    $S_2$ también es linealmente dependiente
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Idea de la Demostración}:
+                        
+                        Considera que como $S_1$ sin perdida de generalidad decimos que 
+                        $S_1 = \Set{\vec v_1, \dots, \vec v_n}$ es l. d. existe una combinación lineal
+                        tal que $\vec 0 = \sum_{i =0}^n a_i \vec v_i$, donde minímo un $a_0$ no es cero.
+
+                        Decimos que $S_2 - S_1 = \Set{\vec u_1, \dots, \vec u_k}$
+
+                        Entonces decimos que:
+                        $\vec 0 = \sum_{i=0}^n a_i \vec v_i +  \sum_{i=0}^k 0 \vec u_i$
+                    
+                    \end{SmallIndentation}
+                        
+
+                \item 
+                    Sin importar que le elimine a un conjunto linealmente independiente este
+                    seguirá siendo linealmente independiente.
+
+                    Es decir:
+                    Si $S_1 \subseteq S_2$ y $S_2$ es linealmente independiente entonces
+                    $S_1$ también es linealmente independiente
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Idea Demostración}:
+                        
+                        Es lo mismo que lo de arriba, solo que trabajando con los complementos :v
+                        
+                    \end{SmallIndentation}
+                        
+
+                \item 
+                    Si $S$ es linealmente independiente entonces:
+
+                    $S \cup \Set{\vec v}$ es linealmente dependiente si y solo si $\vec v \in <S>$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+                        
+                        Esta esta buena, si $S$  es linealmente independiente si y solo si
+                        $\vec 0 = \sum_{i=0}^n a_i\vec v_i$ implica que todas las $a_i$ es cero.
+                        
+                        Ahora si $S \cup \Set{\vec v}$ es dependiente entonces podemos decir que 
+                        $\vec 0 = \sum_{i=0}^n a_i\vec v_i + k \vec v$ con $k \neq 0$.
+
+                        Por lo tanto podemos dividir todo entre $k$ y despejar y decir que:
+                        $\vec v = \sum_{i=0}^n \frac{a_i}{k} \vec v_i$ entonces ya vimos que podemos
+                        escribir a $\vec v$ como combinación lineal de elementos de $S$ entonces
+                        pertenece al generado de $S$.
+
+                        Y bueno, el regreso es lo mismo n.n
+                    
+                    \end{SmallIndentation}
+                        
+
+                \item 
+                    Si $\Set{ \vec u, \vec v}$ es linealmente dependiente si y solo si
+                    $\Set{\vec v + \vec u, \vec v - \vec u}$ es linealmente dependiente
+
+                \item
+                    Si $\Set{ \vec u, \vec v}$ es linealmente dependiente entonces
+                    tenemos que $\exists \alpha \in \GenericField \Such \vec u = \alpha \vec v$
+
+            \end{itemize}
 
 
 
