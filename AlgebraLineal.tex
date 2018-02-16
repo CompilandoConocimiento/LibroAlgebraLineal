@@ -148,6 +148,7 @@
     \DeclareMathOperator \VectorSet    {\mathbb{V}}                 %Use: \VectorSet por Notation
     \DeclareMathOperator \SubVectorSet {\mathbb{W}}                 %Use: \SubVectorSet por Notation
     \DeclareMathOperator \Polynomials  {\mathbb{P}}                 %Use: \Polynomials por Notation
+    \DeclareMathOperator \VectorSpace  {\VectorSet_{\GenericField}}                 %Use: \Polynomials por Notation
 
     % =====  CONTAINERS   ===============
     \newcommand{\Set}[1]    {\left\{ \; #1 \; \right\}}             %Use: \Set {Info} for INTELLIGENT space 
@@ -2577,6 +2578,8 @@
             
             \end{SmallIndentation}
 
+            Solemos simplificar la notación de $\VectorSet$ sobre el Campo $\GenericField$ como $\VectorSpace$.
+
 
             % ==============================================
             % ====   CONDICIONES DE ESPACIO VECTORIAL   ====
@@ -3129,7 +3132,7 @@
         % ========          GENERADORES          =======
         % ==============================================
         \clearpage
-        \section{Combinacion Lineales}
+        \section{Definición}
 
             % ==============================================
             % ========      DEFINICIÓN         =============
@@ -3141,6 +3144,8 @@
                 podemos expresar como:
                 \begin{equation*}
                     \vec v = \sum_{i = 1}^n \vec a_i \vec s_i
+                    \MegaSpace
+                    \Remember{todas las $a_i$ son constantes del campo}
                 \end{equation*}
 
 
@@ -3219,7 +3224,7 @@
                                     \end{equation*}
 
                                 \item
-                                    Dado dos elementos de $\vec a, \vec b$ arbitrarios, entonces tenemosq ue:
+                                    Dado dos elementos de $\vec a, \vec b$ arbitrarios, entonces tenemos que:
                                     \begin{equation*}
                                         k \vec a 
                                             = k \sum_{i = 1}^n r_i \vec v_i
@@ -3243,7 +3248,7 @@
         % ========      PROPIEDADES        =============
         % ==============================================
         \clearpage
-        \section{Propiedades}
+        \section{Propiedades de Dependencia Lineal}
 
             \begin{itemize}
                 
@@ -3337,9 +3342,172 @@
                     Si $\Set{ \vec u, \vec v}$ es linealmente dependiente entonces
                     tenemos que $\exists \alpha \in \GenericField \Such \vec u = \alpha \vec v$
 
+                \item $\Set{\vec v}$ donde $\vec v \in \VectorSpace$ es linealmente independiente si 
+                y solo si $\vec v \neq \vec 0$
+
             \end{itemize}
 
 
+        % ==============================================
+        % ========          BASES                =======
+        % ==============================================
+        \clearpage
+        \section{Bases}
+
+
+            % ==============================================
+            % ========      DEFINICIÓN         =============
+            % ==============================================
+            \subsection{Definición}
+
+                Dado una base $\beta$ para un espacio vectorial, $\VectorSpace$ es un conjunto
+                de vectores linealmente independiente tal que $<\beta> = \VectorSpace$.
+
+                Nota que $<\emptyset> = \Set{\vec 0}$
+                Por lo que $\emptyset$ es una base de $\Set{\vec 0}$
+
+
+
+            % ==============================================
+            % ========      BASE CANONICA      =============
+            % ==============================================
+            \vspace{1em}
+            \subsection{Base Canónica}
+
+                \begin{itemize}
+                    
+                    \item 
+                        Nota que para $\GenericField^n$ la base canónica es $\Set{e_1, \dots e_n}$
+                        donde $e_i = (0, \dots, 0,1,0, \dots, 0)$ donde $1$ es el énesímo lugar.
+
+                    \item
+                        En $M_{m \times n}(\GenericField)$, la base canónica es 
+                        $\Set{E^{1, 1}, \dots, E^{i, j}, \dots, E^{r, s}}$ donde tenemos que:
+                        \begin{equation*}
+                            \forall a_{i, j} \in E^{r, s}
+                            \begin{cases}
+                                a_{i, j} = 0 \Space \text{si $r \neq i$ y $j \neq s$}   \\
+                                a_{i, j} = 1 \Space \text{si $r=i$ y $j=s$}             \\
+                            \end{cases}   
+                        \end{equation*}
+
+                    \item
+                        En $\Polynomials^n[\GenericField]$ la base canónica es:
+                        $\Set{1, x, x^2, \dots, x^n}$
+
+                    \item
+                        En $\Polynomials[\GenericField]$ la base canónica es:
+                        $\Set{1, x, x^2, \dots}$
+
+                \end{itemize}
+
+
+            % ==============================================
+            % ========         TEOREMAS        =============
+            % ==============================================
+            \clearpage
+            \subsection{Teoremas}
+
+                \begin{itemize}
+                    
+                    \item 
+                        Dado $\VectorSpace$ y $\beta \subset \VectorSpace$  
+                        tenemos que $\beta$ es base de $\VectorSpace$ si y solo si
+                        existe una única combinación lineal de los elementos de $\beta$
+                        que da a cada elemento del espacio vectorial.
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+
+                            Primero la ida:
+
+                            Supongo que $\beta$ es base de $\VectorSpace$, sin 
+                            perdida de generalidad decimos que $\beta = \Set{\vec u_1, \dots, \vec u_n}$
+                            entonces para cualquier elemento arbitrario tenemos
+                            que $\vec v = \sum_{i=1}^n a_i \vec u_i$, ahora supón que existe
+                            otra forma de escribirlo, es decir:
+                            \begin{align*}
+                                \sum_{i=1}^n a_i \vec u_i = \sum_{i=1}^n b_i \vec u_i
+                                    \Remember{ con algun $a_i$ diferente de $b_i$}
+                            \end{align*}
+
+                            Pero si despejamos tenemos que:
+                            \begin{align*}
+                                \vec  0 
+                                    = \sum_{i=1}^n (a_i-b_i) \vec u_i
+                                    \Remember{como algun $a_i$ diferente de $b_i$} 
+                                    \neq \sum_{i=1}^n 0 \vec u_i
+                            \end{align*}
+
+                            Pero $\beta$ es base, por lo tanto es linealmente independiente
+                            por lo que eso es una contradicción, por lo que no existe mas 
+                            que una forma de escribirlo.
+
+
+                            Por otro lado tenemos:
+
+                            Supon que $\forall \vec v \in \VectorSpace \exists! 
+                            \Set{a_1, \dots, a_n} \Such \vec v = \sum_{i=1}^n a_i \vec u_i$
+
+                            Por hipotesis tenemos que $<\beta> = \VectorSpace$.
+
+                            Ahora, basta con ver que $\beta$ es linealmente independiente
+                            pero mira $\vec 0 = \sum_{i=1}^n 0 \vec u_i$
+                            esa es una combinación lineal en $\beta$, pero es unica por
+                            lo tanto es linealmente independiente.
+
+
+                        \end{SmallIndentation}
+                            
+
+                                        
+                    \item 
+                        Si $S \subseteq \VectorSpace$, y con $S$ finito y tenemos
+                        $<S> = \VectorSpace$ entonces existe una base $\beta$ del
+                        espacio vectorial tal que $\beta$ es subconjunto de $S$
+
+
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+
+                            Si $S = \emptyset$ entonces $S$ es la base
+                            el Espacio $\Set{ \vec 0 }$.
+
+
+                            Ahora, podemos decir que $\VectorSpace \neq \Set{ \vec 0 }$
+                            por lo que su base no esta vácia.
+
+                            Ahora, tomemos entonces uno a uno elementos de $S$ tal que 
+                            creeemos un conjunto que sea linealmente independiente, 
+                            llamemosle $\beta$ a ese conjunto entonces por construcción
+                            $\beta$ es linealmente independiente.
+
+                            Ahora veamos que cualquier elemento de $S$ se puede escribir
+                            como combinación lineal de $\beta$.
+
+                            Ahora, no puede haber un elemento en $S$, llamemos $\vec x$ que no pueda encontrar en
+                            el generado de $\beta$, porque esi asi fuera entonces $\beta \cup \Set{\vec x}$
+                            sería linealmente independiente, pero con construcción es el mayor subconjunto 
+                            linealmente independiente de $S$.
+
+                            Por lo tanto $S \subseteq <\beta>$, es decir, si algo esta en $S$ se puede
+                            escribir como combinación lineal de elementos de $\beta$.
+
+                            Ahora, como $<S> = \VectorSpace$ eso queire decir que cualquier vector
+                            del espacio se puede escribir como combinación lineal de $S$, donde
+                            cada elemento de $S$ se puede escribir como combinación lineal de $\beta$
+                            por lo tanto tenemos que si $\vec x \in \VectorSpace$ entonces $x \in <\beta>$
+                            por doble contención entonces: $<\beta> = \VectorSpace$
+
+
+                        \end{SmallIndentation}
+
+
+                \end{itemize}
+                    
 
 
 
