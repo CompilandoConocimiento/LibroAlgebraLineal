@@ -3224,7 +3224,7 @@
                                     \end{equation*}
 
                                 \item
-                                    Dado dos elementos de $\vec a, \vec b$ arbitrarios, entonces tenemos que:
+                                    Tenemos que:
                                     \begin{equation*}
                                         k \vec a 
                                             = k \sum_{i = 1}^n r_i \vec v_i
@@ -3234,12 +3234,13 @@
 
                                 Por lo tanto todo $<S>$ es un subespacio vectorial.
 
-                                Por convensión tenemos que $<\emptyset> = \vec 0$
-
                             \end{itemize}
                         
                         \end{SmallIndentation}
-                            
+
+                    \item
+                        Por convensión tenemos que $<\emptyset> = \vec 0$
+
                 \end{itemize}
 
 
@@ -3366,6 +3367,12 @@
                 Nota que $<\emptyset> = \Set{\vec 0}$
                 Por lo que $\emptyset$ es una base de $\Set{\vec 0}$
 
+                Decimos que un espacio vectorial $\VectorSpace$ sea de dimensión finita si es que existe
+                una base de cardinalidad finita
+
+                Llamamos a la cardinalidad de un base de un espacio vectorial su dimensión
+
+
 
 
             % ==============================================
@@ -3403,10 +3410,10 @@
 
 
             % ==============================================
-            % ========         TEOREMAS        =============
+            % ========         PROPIEDADES     =============
             % ==============================================
             \clearpage
-            \subsection{Teoremas}
+            \subsection{Propiedades}
 
                 \begin{itemize}
                     
@@ -3459,8 +3466,11 @@
 
 
                         \end{SmallIndentation}
-                            
 
+                    \item
+                        $<<A>> = <A>$
+                            
+                    \clearpage
                                         
                     \item 
                         Si $S \subseteq \VectorSpace$, y con $S$ finito y tenemos
@@ -3474,14 +3484,16 @@
                             \textbf{Demostración}:
 
                             Si $S = \emptyset$ entonces $S$ es la base
-                            el Espacio $\Set{ \vec 0 }$.
-
+                            el Espacio $\Set{ \vec 0 }$. Y este espacio cumple todo lo que necesitamos
+                            pues su base es el vacío.
 
                             Ahora, podemos decir que $\VectorSpace \neq \Set{ \vec 0 }$
                             por lo que su base no esta vácia.
 
-                            Ahora, tomemos entonces uno a uno elementos de $S$ tal que 
-                            creeemos un conjunto que sea linealmente independiente, 
+                            Ahora, tomemos entonces uno a uno elementos de $S$, por ejemplo
+                            a $\vec v$, entonces $\Set{\vec v}$ es linealmente independiente, ahora sigamos
+                            añadiendo elementos a este conjunto de tal que manera que
+                            creeemos al máximo conjunto con elementos de $S$ que sea linealmente independiente, 
                             llamemosle $\beta$ a ese conjunto entonces por construcción
                             $\beta$ es linealmente independiente.
 
@@ -3490,20 +3502,85 @@
 
                             Ahora, no puede haber un elemento en $S$, llamemos $\vec x$ que no pueda encontrar en
                             el generado de $\beta$, porque esi asi fuera entonces $\beta \cup \Set{\vec x}$
-                            sería linealmente independiente, pero con construcción es el mayor subconjunto 
+                            sería linealmente independiente, pero por construcción  $\beta$ es el mayor subconjunto 
                             linealmente independiente de $S$.
 
                             Por lo tanto $S \subseteq <\beta>$, es decir, si algo esta en $S$ se puede
                             escribir como combinación lineal de elementos de $\beta$.
 
-                            Ahora, como $<S> = \VectorSpace$ eso queire decir que cualquier vector
+                            Ahora, como $<S> = \VectorSpace$ eso quiere decir que cualquier vector
                             del espacio se puede escribir como combinación lineal de $S$, donde
                             cada elemento de $S$ se puede escribir como combinación lineal de $\beta$
                             por lo tanto tenemos que si $\vec x \in \VectorSpace$ entonces $x \in <\beta>$
                             por doble contención entonces: $<\beta> = \VectorSpace$
 
-
                         \end{SmallIndentation}
+
+
+                    \item
+                        Dado $\VectorSpace = <G>$ con $G = \Set{\vec u_1, \dots, \vec u_n}$.
+                        Ademas, dado a $L$ como subconjunto linealmente independiente de $\VectorSpace$
+                        tal que $|L| = m$, y $m \leq n$, entonces existe otro conjunto $H$ tal que
+                        $|H| = n - m$ tal que $<L \cup H> = \VectorSpace$
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Esta sale por inducción sobre m, si, quiza este algo aburrido, pero ahi va:
+
+                            \begin{itemize}
+                                \item \textbf{Caso Base:}
+
+                                    Probemos con $m = 0$, entonces $L = \emptyset$, por lo tanto piensa que
+                                    $<\emptyset \cup G> = <G> = \VectorSpace$
+
+                                \item
+                                    Ahora suponemos el teorema cierto para alguna $m$ mayor que cero
+
+                                \item
+                                    Ahora provemos para $m+1$:
+
+                                    Sea $L = \Set{\vec v_1, \dots, \vec v_m, \vec v_{m+1}}$ linealmente independiente
+                                    entonces $L' = \Set{\vec v_1, \dots, \vec v_m}$ también lo es.
+
+                                    Por hipotesis de inducción del paso 2, tenemos que existe un $H \subseteq G$
+                                    tal que $|H| = n - m$, sabemos que dicho $H$ cumple que $<H \cup L'> = \VectorSpace$
+
+                                    Sin perdida de generalidad digamos que $H = \Set{\vec u_1, \dots, \vec u_{n-m}}$
+
+                                    Ahora $\vec v_{m+1}$ pertenece a $\VectorSpace$, entonces se tiene que expresar
+                                    como combinación lineal de elementos de $H$ y de $L'$, ahora alguno de los
+                                    elementos de $H$ (digamos $\vec u_i$) tiene que ser diferente de cero, porque
+                                    sino todos fueran cero
+                                    podríamos expresar a $\vec v_{m+1}$ como combinación lineal de $L'$, por lo que 
+                                    $L$ no sería linealmente independiente, pero por construcción lo es.
+                                    Así que no. -.-
+
+                                    Ahora usemos a ese elemento que no es cero y despejemos a $\vec v_{m+1}$, entonces
+                                    podemos expresarlo como combinación lineal de $L'$ y de $H'$ donde
+                                    $H' = H - \Set{\vec u_i}$ entonces mira que $<L \cup H'> = \VectorSpace$.
+
+                                    Y queda demostrado.
+                            \end{itemize}
+                        
+                        \end{SmallIndentation}
+
+                    \clearpage
+
+                    \item
+                        Si $<S> = \VectorSpace$ entonces $|S|$ es igual o mayor que la dimensión de $\VectorSpace$,
+                        si tiene exactamente $n$ elementos con $n = dim(\VectorSpace)$ entonces es base.
+
+                    \item
+                        Todas las bases de $\VectorSpace$ tiene la misma cardinalidad
+
+                    \item
+                        Todo subconjunto $\beta$ de $\VectorSpace$ linealmente independiente
+                        con $|\beta| < n$ y $n = dim(\VectorSpace)$ entonces puede ser completada hasta que
+                        $\beta$ sea base.
+                            
+
 
 
                 \end{itemize}
