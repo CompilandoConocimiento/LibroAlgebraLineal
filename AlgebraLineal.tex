@@ -3586,10 +3586,85 @@
                         tenemos que $\SubVectorSet = \VectorSet$ 
                             
 
+                    \item
+                        Si $\SubVectorSet_1, \SubVectorSet_2, \SubVectorSet_3$ es subespacio vectorial de $\VectorSet$
+                        entonces $\SubVectorSet_1 \cup \SubVectorSet_2 \subseteq \SubVectorSet_3$ entonces
+                        $\SubVectorSet_1 + \SubVectorSet_2 \subseteq \SubVectorSet_3$
 
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Sea $\vec x \in \SubVectorSet_1 + \SubVectorSet_2$, entonces lo podemos dividir en
+                            $\vec x_1 + \vec x_2$, por lo tanto como $\vec x_1 \in \SubVectorSet_1$ también esta
+                            en $\SubVectorSet_3$, de manera analoga con $\vec x_2$, y como $\SubVectorSet_3$
+                            es en si un espacio, es cerrado bajo la suma y estan en $\SubVectorSet_3$
+                        \end{SmallIndentation}
+                            
+
+                    \item
+                        $\SubVectorSet_1 \cup \SubVectorSet_2$ es un espacio vectorial si y solo si uno
+                        es un subconjunto del otro
+
+                    \item
+                        Dado un subespacio vectorial $\SubVectorSet$ de $\VectorSet$ y $\vec v \in \VectorSet$
+                        entonces tenemos que:
+
+                        $\Set{\vec v} + \SubVectorSet$ es un subespacio si y solo si $\vec v \in \SubVectorSet$
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Por un lado supongamos que $\Set{\vec v} + \SubVectorSet$ es un subespacio por
+                            lo tanto contiene al $\vec 0$.
+
+                            Ahora, si $\vec v = \vec 0$, entonces como $\SubVectorSet$ es espacio, también lo contiene
+                            y ya acabamos.
+
+                            Por otro lado si no es el cero vector tenemos que $\vec 0 \in \Set{\vec v} + \SubVectorSet$
+                            se tiene que expresar como $\vec 0 = \vec v + \vec x$, y como los inversos son
+                            unicos en $\VectorSpace$ entonces $\vec x = - \vec v$, con $\vec x \in \SubVectorSet$, 
+                            pero como es un espacio entonces es cerrado bajo el producto y tenemos que 
+                            $- \vec v \in \SubVectorSet$ por lo tanto $(-1)- \vec v  = \vec v \in \SubVectorSet$
+
+                            Por otro lado si $\vec v \in \SubVectorSet$ entonces  $\Set{\vec v} + \SubVectorSet = \SubVectorSet$
+                            porque como $\SubVectorSet$ es cerrado bajo la suma podemos ver que 
+                            $\forall \vec x \in \SubVectorSet, \Space \vec v + \vec x \in \VectorSpace$, es decir, 
+                            $\Set{\vec v} + \SubVectorSet$ y $\SubVectorSet$ son la misma cosa -.-
+
+                        \end{SmallIndentation}
+                            
 
                 \end{itemize}
                     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
