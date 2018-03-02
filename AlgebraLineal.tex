@@ -4152,55 +4152,192 @@
 
 
         % ==============================================
-        % ========          KERNEL               =======
+        % ========        KERNEL Y RANGO    ============
         % ==============================================
         \clearpage
-        \section{Kernel}
+        \section{Kernel y Rango}
 
-            Sean $\VectorSet$ y $\SubVectorSet$ espacios vectoriales sobre $\GenericField$.
-            Y sea $\LinTrans$ una transformación lineal de $\VectorSet$ a $\SubVectorSet$
+            % ==============================================
+            % ========          KERNEL               =======
+            % ==============================================
+            \clearpage
+            \subsection{Definición del Kernel}
 
-            \textbf{El Kernel} de la Transformación Lineal $\LinTrans$ o \textbf{Núcleo} es el conjunto 
-            de todos los vectores originales (osea $\vec v \in \VectorSet$) tales que al momento de
-            aplicarles la transformación estos son llevados al origen (osea $\vec 0_{\SubVectorSet}$)
+                Sean $\VectorSet$ y $\SubVectorSet$ espacios vectoriales sobre $\GenericField$.
+                Y sea $\LinTrans$ una transformación lineal de $\VectorSet$ a $\SubVectorSet$
 
-            O dicho con el bello lenguaje de matemáticas:
-            \begin{align*}
-                Kernel(\LinTrans) 
-                    = N(\LinTrans) 
-                    = \Set{\vec x \in \VectorSet \Such \FnLinTrans{\vec x} = \vec 0_{\SubVectorSet}}               
-            \end{align*}
+                \textbf{El Kernel} de la Transformación Lineal $\LinTrans$ o \textbf{Núcleo} es el conjunto 
+                de todos los vectores originales (osea $\vec v \in \VectorSet$) tales que al momento de
+                aplicarles la transformación estos son llevados al origen (osea $\vec 0_{\SubVectorSet}$)
 
-            Recuerda que un Kernel siempre siempre sera un Subespacio Vectorial y solemos
-            llamar a su dimensión la \textbf{Nulidad}.
+                O dicho con el bello lenguaje de matemáticas:
+                \begin{align*}
+                    Kernel(\LinTrans) 
+                        = N(\LinTrans) 
+                        = \Set{\vec x \in \VectorSet \Such \FnLinTrans{\vec x} = \vec 0_{\SubVectorSet}}
+                \end{align*}
+
+                Recuerda que un Kernel siempre siempre sera un Subespacio Vectorial y solemos
+                llamar a su dimensión la \textbf{Nulidad}.
 
 
-        % ==============================================
-        % ========          RANGO        ===============
-        % ==============================================
-        \clearpage
-        \section{Rango}
+            % ==============================================
+            % ========          RANGO        ===============
+            % ==============================================
+            \subsection{Definición del Rango}
 
-            Sean $\VectorSet$ y $\SubVectorSet$ espacios vectoriales sobre $\GenericField$.
-            Y sea $\LinTrans$ una transformación lineal de $\VectorSet$ a $\SubVectorSet$
+                Sean $\VectorSet$ y $\SubVectorSet$ espacios vectoriales sobre $\GenericField$.
+                Y sea $\LinTrans$ una transformación lineal de $\VectorSet$ a $\SubVectorSet$
 
-            Tambien tenemos a la hermana perdida del Kernel, la llamamos la \textbf{Imágen},
-            la cual la definimos así:
+                Tambien tenemos a la hermana perdida del Kernel, la llamamos la \textbf{Imágen},
+                la cual la definimos así:
 
-            La \textbf{Imágen} de una Transformación Lineal  $\LinTrans$ es el conjunto de todos los vectores
-            nuevos (osea $\vec w \in \SubVectorSet$) que podemos 'crear' desde los vectores originales
-            (osea $\vec v \in \VectorSet$) usando la Transformación Lineal.
+                La \textbf{Imágen} de una Transformación Lineal  $\LinTrans$ es el conjunto de todos los vectores
+                nuevos (osea $\vec w \in \SubVectorSet$) que podemos 'crear' desde los vectores originales
+                (osea $\vec v \in \VectorSet$) usando la Transformación Lineal.
 
-            O dicho con el bello lenguaje de matemáticas:
-            \begin{align*}
-                Rango(\LinTrans) 
-                    = R(\LinTrans)
-                    = Imagen(\LinTrans)
-                    = \Set{\vec \LinTrans(\vec x) \in \SubVectorSet \Such \vec x \in \VectorSet}               
-            \end{align*}
+                O dicho con el bello lenguaje de matemáticas:
+                \begin{align*}
+                    Rango(\LinTrans) 
+                        = R(\LinTrans)
+                        = Imagen(\LinTrans)
+                        = \Set{\vec \LinTrans(\vec x) \in \SubVectorSet \Such \vec x \in \VectorSet}               
+                \end{align*}
 
-            Recuerda que una Imagen siempre siempre sera un Espacio Vectorial y solemos
-            llamar a su dimensión \textbf{Rango}.
+                Recuerda que una Imagen siempre siempre sera un Espacio Vectorial y solemos
+                llamar a su dimensión \textbf{Rango}.
+
+
+            % ==============================================
+            % ========          PROPIEDADES          =======
+            % ==============================================
+            \clearpage
+            \subsection{Propiedades}
+
+                \begin{itemize}
+                    
+                    \item $K[\LinealTransformation]$ es un espacio vectorial
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Dados $\VectorSet$ y $\SubVectorSet$ y una transformada lineal
+                            que va de $\VectorSet$ a $\SubVectorSet$.
+                            Entonces tenemos que:
+
+                            \begin{itemize}
+                                \item 
+                                    El cero esta.
+
+                                    Como $\FnLinTrans{\vec 0_{\VectorSet}} = \vec 0_{\SubVectorSet}$
+
+                                    Entonces mapea el cero a cero y más aún, ahora sabemos que el Kernel nunca
+                                    será un conjunto vacío.
+
+                                \item 
+                                    Conserva las operaciones
+
+                                    Dados $\vec a, \vec b \in K[\LinealTransformation]$ tenemos que:
+                                    \begin{align*}
+                                        \FnLinTrans{d\vec a + \vec b}
+                                            &= \FnLinTrans{d\vec a} + \FnLinTrans{\vec b}       \\
+                                            &= \FnLinTrans{d\vec a} + \vec 0_{\SubVectorSet}    \\
+                                            &= d\FnLinTrans{\vec a} + \vec 0_{\SubVectorSet}    \\
+                                            &= d\vec 0_{\SubVectorSet} + \vec 0_{\SubVectorSet} \\
+                                            &= 0_{\SubVectorSet} + \vec 0_{\SubVectorSet}       \\
+                                            &= 0_{\SubVectorSet}
+                                    \end{align*}
+
+                            \end{itemize}
+
+                        \end{SmallIndentation}
+
+                    \item $R[\LinealTransformation]$ es un espacio vectorial
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Dados $\VectorSet$ y $\SubVectorSet$ y una transformada lineal
+                            que va de $\VectorSet$ a $\SubVectorSet$.
+                            Entonces tenemos que:
+
+                            \begin{itemize}
+                                \item 
+                                    El cero esta.
+
+                                    Como $\FnLinTrans{\vec 0_{\VectorSet}} = \vec 0_{\SubVectorSet}$
+
+                                    Entonces el $\vec 0_{\SubVectorSet} \in R[\LinealTransformation]$
+                                    porque existe un vector en $\VectorSet$ al que la transformación lineal
+                                    lo manda.
+
+                                \item 
+                                    Conserva las operaciones
+
+                                    Dados $\vec a, \vec b \in R[\LinealTransformation]$, es decir
+                                    existen vectores tales que $\FnLinTrans{\vec v} = \vec a$ y
+                                    $\FnLinTrans{\vec u} = \vec b$ tenemos que:
+                                    \begin{align*}
+                                        \FnLinTrans{d\vec v + \vec u}
+                                            &= \FnLinTrans{d\vec v} + \FnLinTrans{\vec u}       \\
+                                            &= \FnLinTrans{d\vec v} + \vec b                    \\
+                                            &= d\FnLinTrans{\vec v} + \vec b                    \\
+                                            &= da + b                                           
+                                    \end{align*}
+
+                            \end{itemize}
+                        
+                        \end{SmallIndentation}
+
+
+                    \clearpage
+
+                    \item Sea $B$ una base de $\VectorSet$ entonces $R[\LinealTransformation] = <\LinTrans[B]>$ 
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            A fin de cuentas es la igualdad entre 2 conjuntos, así que vamos por doble contención
+                            para hacerlo. Sea $B = \Set{\vec v_1, \dots, \vec v_n}$, entonces:
+
+                            \begin{itemize}
+                                \item 
+                                    Por un lado, sea $\vec u \in R[\LinealTransformation]$ entonces
+                                    tenemos que existe un $\vec x \in \VectorSet$ que al $\FnLinTrans{\vec x} = \vec u$
+                                    donde tenemos que $\vec x = \sum_{i=1}^n a_i \vec v_i$, entonces:
+                                    \begin{align*}
+                                        \FnLinTrans{\vec x} 
+                                            &= \FnLinTrans{\sum_{i=1}^n a_i \vec v_i} 
+                                            &= \sum_{i=1}^n \FnLinTrans{a_i \vec v_i} 
+                                            &= \sum_{i=1}^n a_i \FnLinTrans{\vec v_i} 
+                                    \end{align*}
+
+                                        Y nota que $\sum_{i=1}^n a_i \FnLinTrans{\vec v_i} \in <\LinTrans[B]>$ 
+
+                               \item
+                                La otra contención es .... es basicamente lo mismo
+
+                            \end{itemize}
+
+                        \end{SmallIndentation}
+
+                \end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
