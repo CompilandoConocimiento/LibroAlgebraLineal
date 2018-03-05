@@ -452,6 +452,7 @@
 
     \end{SmallIndentation}
 
+    \vspace{2em}
 
     Ahora podemos probar algo parecido que si es cierto:
     Dado un espacio vectorial cualquiera, $\VectorSpace$, y $\vec u, \vec v \in \VectorSpace$ tal que
@@ -463,13 +464,14 @@
     \begin{SmallIndentation}[1em]
         \textbf{Demostración}:
         
-        Este es un colorario muy facil de ver del \hyperref[sec:10]{\underline{Ejercicio 12, haciendo click}} donde:
+        Este es un colorario muy facil de ver del \hyperref[sec:10]{\underline{Ejercicio 10, haciendo click}}
+        donde:
         \begin{itemize}
-            \item $\VectorSet = <\Set{\vec u, \vec v}>$
-            \item $\SubVectorSet_1 = <\Set{\vec u}>$
-            \item $\SubVectorSet_1 = <\Set{\vec v}>$
-            \item $B_1 = \vec u$
-            \item $B_2 = \vec v$
+            \item $\VectorSet = \Generate{\Set{\vec u, \vec v}}$
+            \item $\SubVectorSet_1 = \Generate{\Set{\vec u}}$
+            \item $\SubVectorSet_1 = \Generate{\Set{\vec v}}$
+            \item $B_1 = \Set{\vec u}$
+            \item $B_2 = \Set{\vec v}$
         \end{itemize}
     
     \end{SmallIndentation}
@@ -477,12 +479,98 @@
 
 
 % ==============================================================
+% =================          PROBLEMA 2      ==================
+% ==============================================================
+\clearpage
+\section{2 Problema}
+
+    Demuestre o refute que los siguientes conjuntos son espacios vectoriales
+    sobre $\Reals$
+
+    \begin{itemize}
+
+        \item
+            $\Reals$
+
+            Ok, creo que es logico desde ahora que si que lo es, pero vamos a comprobarlo, 
+            ahora como estamos usando la suma y el producto comun en los reales entonces
+            por definición de los mismos son cerrados, digo $\Reals$ es un campo.
+
+            Todas las $8$ propiedades son consecuencias directas de que los $\Reals$
+            son un campo.
+
+            \begin{SmallIndentation}[1em]
+
+                \begin{enumerate}
+                
+                    \item 
+                        \textbf{Ley Aditiva Asociativa:}
+                        $\forall \vec{v_1}, \vec{v_2}, \vec{v_3} \in \Reals, \MiniSpace
+                            (\vec{v_1} + \vec{v_2}) + \vec{v_3} = \vec{v_1} + (\vec{v_2} + \vec{v_3})$
+
+                    \item 
+                        \textbf{Ley Aditiva Conmutativa:}
+                        $\forall \vec{v_1}, \vec{v_2} \in \Reals, \MiniSpace
+                                \vec{v_1} + \vec{v_2} = \vec{v_2} + \vec{v_1}$
+
+                    \item 
+                        \textbf{Elemento Indentidad Aditivo:}
+                        $\exists \vec{0} \in \Reals, \MiniSpace
+                            \forall \vec{v} \in \Reals, \MiniSpace \vec{0} + \vec{v} = \vec{v}$
+
+                    \item 
+                        \textbf{Existen Inversos Aditivos:}
+                        $\forall \vec{v} \in \Reals, \MiniSpace
+                                \exists \vec{-v} \in \Reals, \MiniSpace
+                                    \vec{v} + (\vec{-v}) = (\vec{-v}) + \vec{v} = \vec{0}$
+
+                    \item 
+                        \textbf{Ley Aditiva Distributiva:}
+                        $\forall \alpha \in \GenericField \MiniSpace
+                            \forall \vec{v_1}, \vec{v_2} \in \Reals \MiniSpace
+                                \alpha \cdot (\vec{v_1} + \vec{v_2}) = 
+                                    (\alpha \cdot \vec{v_1}) + (\alpha \cdot \vec{v_2})$
+
+                    \item 
+                        \textbf{Ley Multiplicativa Asociativa:}
+                        $\forall \alpha, \beta \in \GenericField, \MiniSpace
+                            \forall \vec{v} \in \Reals, \MiniSpace
+                                \alpha \cdot (\beta \cdot \vec{v}) = (\alpha \beta) \cdot \vec{v}$
+
+                    \item 
+                        \textbf{Ley Multiplicativa Distributiva:}
+                        $\forall \alpha, \beta \in \GenericField, \MiniSpace
+                            \forall \vec{v} \in \Reals, \MiniSpace
+                                (\alpha + \beta) \cdot \vec{v} = 
+                                        (\alpha \cdot \vec{v}) + (\beta \cdot \vec{v})$
+
+                    \item 
+                        \textbf{Elemento Indentidad Multiplicativo:}
+                        $\exists 1 \in \GenericField, \MiniSpace
+                            \forall \vec{v} \in \Reals, \MiniSpace 1 \cdot \vec{v} = \vec{v}$
+
+                \end{enumerate}
+
+            \end{SmallIndentation}
+
+        \item 
+
+            $\Racionals^n$
+
+            Sea $\vec x = \pVector{1_1\\\dots\\1_n}$
+            y sea $\pi \in \Reals$, pero $\pi \vec x \not \in \Racionals^n$
+            por lo tanto no es cerrada bajo el producto escalar.
+
+
+    \end{itemize}
+
+
+
+% ==============================================================
 % =================          PROBLEMA 3       ==================
 % ==============================================================
 \clearpage
 \section{3 Problema}
-
-
 
     \begin{itemize}
 
@@ -562,6 +650,41 @@
 
     \end{itemize}
 
+
+
+
+
+% ==============================================================
+% =================          PROBLEMA 4      ==================
+% ==============================================================
+\clearpage
+\section{4 Problema}
+
+    Muestre que el conjunto $\Set{\Sin{x},\Cos{x}}$ es un conjunto linealmente
+    independiente del espacio $\mathcal{C}_\infty$
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Demostración}:
+        
+        Si ambas son linealmente independientes, entonces la unica combinación lineal
+        de ellos que nos da la función cero es la solución trivial. Vamos poco a poco
+        propongamos que:
+        \begin{align*}
+            f_0 = a \Sin{x} + b \Cos{x}
+        \end{align*}
+
+        Entonces piensa en una $x \neq 0$ o $n\pi$ con $n \in \Integers$.
+        Entonces podemos decir que $\frac{\Cos{x}}{\Sin{x}} = -\frac{b}{a}$
+
+        Ahora, sea $x = \frac{\pi}{2}$ por lo tanto $b = 0$, pero entonces
+        $a \Sin{x} = 0$, entonces tenemos que $a (1) = 0$, es decir $a = 0$.
+
+        Por lo tanto la unica combinación lineal es la trivial, por lo tnato
+        son linealmente independientes.
+    
+    \end{SmallIndentation}
+        
 
 
 % ==============================================================
@@ -654,7 +777,6 @@
 
     Demuestre o refute que los siguientes conjuntos son espacios vectoriales
     sobre $\Reals$:
-
 
         \begin{itemize}
             
@@ -838,6 +960,8 @@
 \clearpage
 \section{7 Problema}
 
+    Demuestre que cualquier conjunto de k+1 vectores en un espacio de
+    dimensión k es linealmente dependiente.
 
     \begin{itemize}
         \item
@@ -938,6 +1062,9 @@
 % ==============================================================
 \clearpage
 \section{8 Problema}
+
+    Demuestre que un conjunto de vectores S es linealmente independiente
+    syss cada subconjunto finito de S es linealmente independiente
     
     \begin{itemize}
                     
