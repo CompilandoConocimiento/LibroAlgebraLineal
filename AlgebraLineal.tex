@@ -1361,28 +1361,6 @@
 
                     \begin{itemize}
 
-                        \item Si $A \in M_{n}(\GenericField)$ y $A = A^T$ entonces $A$ tiene máximo 
-                            $\frac{n(n+1)}{2}$ elementos diferentes.
-
-                            % ======== DEMOSTRACION ========
-                            \begin{SmallIndentation}[1em]
-                                \textbf{Ideas de la Demostración}:
-
-                                Esto es mas curioso que útil, veamos que si es simétrica entonces toda
-                                entrada tiene que cumplir que $[A]_{i, j} = [A]_{j,i}$
-
-                                Por lo tanto para las matrices de grado 1 hay 1 elemento diferente, 
-                                para las de orden 2 hay 3 elementos diferentes, para las de orden 4 hay 6
-                                elementos, y el patrón sigue, por lo tanto si te das cuenta para 
-                                una matriz de orden n tenemos que:
-
-                                Número de Elementos Diferentes($n$) es $1+2+\dots+n = \sum_{i=1}^{n} i$
-                                que según el gran Gauss tiene que ser igual a $\frac{n(n+1)}{2}$
-
-
-                            \end{SmallIndentation}
-
-
                         \item Si $A \in M_{n}(\GenericField)$ entonces $A+A^T$ es una matriz simétrica. 
 
                             % ======== DEMOSTRACION ========
@@ -1415,6 +1393,47 @@
 
                             \end{SmallIndentation}
 
+                        \item Si $A \in M_{n}(\GenericField)$ es simetrica y $k \in \GenericField$ entonces 
+                            $KA$ también es simétrica.
+
+                            % ======== DEMOSTRACION ========
+                            \begin{SmallIndentation}[1em]
+                                \textbf{Demostración}:
+
+                                Esta esta sencilla, mira:
+                                \begin{align*}
+                                    [KA]_{i, j}
+                                        &= K [A]_{i, j}     
+                                            && \Remember{por la definición de producto escalar} \\
+                                        &= K [A]_{j, i}
+                                            && \Remember{Porque $A$ es simetrica}               \\
+                                        &= [KA]_{j, i}
+                                            && \Remember{Porque definición de producto escalar}
+                                \end{align*}
+
+                            \end{SmallIndentation}
+
+                        \item Si $A \in M_{n}(\GenericField)$ es simetrica y $k \in \GenericField$ entonces 
+                            $KA$ también es antisimétrica.
+
+                            % ======== DEMOSTRACION ========
+                            \begin{SmallIndentation}[1em]
+                                \textbf{Demostración}:
+
+                                Esta esta sencilla, mira:
+                                \begin{align*}
+                                    [KA]_{i, j}
+                                        &= K [A]_{i, j}     
+                                            && \Remember{por la definición de producto escalar} \\
+                                        &= (K)(-[A]_{j, i})
+                                            && \Remember{Porque $A$ es antisimétrica}           \\
+                                        &= -[KA]_{j, i}
+                                            && \Remember{Porque definición de producto escalar}
+                                \end{align*}
+
+                            \end{SmallIndentation}
+
+                        \clearpage
 
                         \item Si $A \in M_{n}(\GenericField)$ entonces existe un único par de matrices $B,C$
                             tal que $A = B + C$, $B$ es simétrica y $C$ es antisimétrica. 
@@ -1437,50 +1456,6 @@
                                 así que confiaré en Oscar del futuro para eso.
 
                             \end{SmallIndentation}
-
-
-                        \clearpage
-
-                        \item Si $A \in M_{n}(\GenericField)$ y $k \ n \GenericField$ es simétrica entonces 
-                            $KA$ también es simétrica.
-
-                            % ======== DEMOSTRACION ========
-                            \begin{SmallIndentation}[1em]
-                                \textbf{Demostración}:
-
-                                Esta esta sencilla, mira:
-                                \begin{align*}
-                                    [KA]_{i, j}
-                                        &= K [A]_{i, j}     
-                                            && \Remember{por la definición de producto escalar} \\
-                                        &= K [A]_{j, i}
-                                            && \Remember{Porque $A$ es simetrica}               \\
-                                        &= [KA]_{j, i}
-                                            && \Remember{Porque definición de producto escalar}
-                                \end{align*}
-
-                            \end{SmallIndentation}
-
-                        \item Si $A \in M_{n}(\GenericField)$ y $k \ n \GenericField$ es antisimétrica entonces 
-                            $KA$ también es antisimétrica.
-
-                            % ======== DEMOSTRACION ========
-                            \begin{SmallIndentation}[1em]
-                                \textbf{Demostración}:
-
-                                Esta esta sencilla, mira:
-                                \begin{align*}
-                                    [KA]_{i, j}
-                                        &= K [A]_{i, j}     
-                                            && \Remember{por la definición de producto escalar} \\
-                                        &= (K)(-[A]_{j, i})
-                                            && \Remember{Porque $A$ es antisimétrica}           \\
-                                        &= -[KA]_{j, i}
-                                            && \Remember{Porque definición de producto escalar}
-                                \end{align*}
-
-                            \end{SmallIndentation}
-
 
                         \item Si $A \in M_{n}(\GenericField)$ y $A$ es antisimétrica entonces 
                             $[A]_{i,i} = 0_{\GenericField}$.
@@ -1514,6 +1489,26 @@
 
                                 Y creo que es más que obvio que si $A = 0_n$ entonces $A$ es simétrica y
                                 antisimétrica.
+
+                            \end{SmallIndentation}
+
+                        \item Si $A \in M_{n}(\GenericField)$ y $A = A^T$ entonces $A$ tiene máximo 
+                            $\frac{n(n+1)}{2}$ elementos diferentes.
+
+                            % ======== DEMOSTRACION ========
+                            \begin{SmallIndentation}[1em]
+                                \textbf{Ideas de la Demostración}:
+
+                                Esto es mas curioso que útil, veamos que si es simétrica entonces toda
+                                entrada tiene que cumplir que $[A]_{i, j} = [A]_{j,i}$
+
+                                Por lo tanto para las matrices de grado 1 hay 1 elemento diferente, 
+                                para las de orden 2 hay 3 elementos diferentes, para las de orden 4 hay 6
+                                elementos, y el patrón sigue, por lo tanto si te das cuenta para 
+                                una matriz de orden n tenemos que:
+
+                                Número de Elementos Diferentes($n$) es $1+2+\dots+n = \sum_{i=1}^{n} i$
+                                que según el gran Gauss tiene que ser igual a $\frac{n(n+1)}{2}$
 
                             \end{SmallIndentation}
 
@@ -2850,10 +2845,10 @@
 
 
         % ==============================================
-        % ========          EJERCICIOS            ======
+        % ========          EJEMPLOS              ======
         % ==============================================
         \clearpage
-        \section{Ejercicios}
+        \section{Ejemplos}
 
             \begin{itemize}
                 \item 
@@ -3143,15 +3138,15 @@
 
 
         % ==============================================
-        % ========          EJERCICIOS            ======
+        % ========          EJEMPLOS              ======
         % ==============================================
         \clearpage
-        \section{Ejercicios}
+        \section{Ejemplos}
 
             \begin{itemize}
                 
                 \item 
-                    Prueba que $\GenericField$ es la suma directa de los siguientes
+                    Prueba que $\GenericField^n$ es la suma directa de los siguientes
                     conjuntos:
                     \begin{itemize}
                         \item $\SubVectorSet_1 = \Set{(a_1, \dots, a_n) \Such a_n = 0}$
@@ -3221,8 +3216,7 @@
 
                                 Tomemos $\vec x, \vec y \in X$ donde $\vec x = (x_a, x_b)$ y $\vec y = (y_a, y_b)$
                                 y como estan en $X$ tenemos que $x_a + 3x_b = 0$ y $y_a + 3y_b = 0$ entonces
-                                tenemos que $\vec y = (y_a, y_b)$ entonces vemos que 
-                                $\vec x + \vec y = (x_a + y_a, y_a + y_b)$
+                                tenemos que $\vec x + \vec y = (x_a + y_a, y_a + y_b)$
 
                                 Y ve que:
                                 \begin{align*}
@@ -3255,6 +3249,63 @@
 
                     \end{SmallIndentation}
 
+                \clearpage
+
+                \item 
+                    Prueba que $X = \Set{ f\in \Reals^{\Reals} \Such f(x) = -f(-x) \forall x \in \Reals}$, con 
+                    $\VectorSpace = \mathcal{C}_\infty$ y $\GenericField = \Reals$
+
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Solución}:
+
+                        Ok, veamos:
+                        \begin{itemize}
+                            
+                            \item Probemos que $\vec 0 \in X$
+
+                                Esta porque $g(x) = 0$, es decir una función que para cada real regresa el cero esta en $X$ pues
+                                $g(x) = 0 = - (0) = -(g(-x))$
+                                lo tanto $g \in X$
+
+                            \item
+                                Veamos que sea cerrada bajo la suma:
+
+                                Tomemos $f, g \in X$ y un real arbitrario $x$, y que $f, g$ por estar en $X$ tenemos que
+                                $f(x) = -f(-x) \forall x \in \Reals$ y $g(x) = -g(-x) \forall x \in \Reals$ 
+                                entonces tenemos que:
+                                \begin{align*}
+                                    f(x) + g(x)
+                                        &= -f(-x) + -g(-x)                  \\
+                                        &= - [f(-x) + g(-x)]                \\
+                                \end{align*}
+
+                                Nota que como acabamos de ver $f(x) + g(x)$ sigue en $X$ porque $f(x) + g(x) = - [f(-x) + g(-x)]$.
+                                Por lo tanto es cerrado bajo la suma.
+
+                            \item
+                                Veamos que sea cerrada bajo el producto por escalar:
+
+                                Tomemos $f \in X$ y $\alpha \in \Reals$ y un real arbitrario $x$ y que $f$ por estar en $X$
+                                tenemos que $f(x) = -f(-x) \forall x \in \Reals$ entonces tenemos que:
+
+                                Y ve que:
+                                \begin{align*}
+                                    \alpha f(x)
+                                        &= \alpha -f(-x)                    \\
+                                        &= - [\alpha f(-x)]                 \\
+                                \end{align*}
+
+                                Nota que como acabamos de ver $\alpha f(x)$ sigue en $X$ porque $\alpha f(x) = - [\alpha f(-x)]$.
+                                Por lo tanto es cerrado bajo el producto escalar.
+
+                        \end{itemize}
+
+                    \end{SmallIndentation}
+
+                \clearpage
+
                 \item 
                     Prueba que $X = \Set{(a, b) \in \Complexs^2 \Such a - b = 0}$, con 
                     $\VectorSpace = \Complexs^2$ y $\GenericField = \Reals$
@@ -3277,8 +3328,7 @@
 
                                 Tomemos $\vec x, \vec y \in X$ donde $\vec x = (x_a, x_b)$ y $\vec y = (y_a, y_b)$
                                 y como estan en $X$ tenemos que $x_a - x_b = 0$ y $y_a - y_b = 0$ entonces
-                                tenemos que $\vec y = (y_a, y_b)$ entonces vemos que 
-                                $\vec x + \vec y = (x_a + y_a, y_a + y_b)$
+                                tenemos que $\vec x + \vec y = (x_a + y_a, y_a + y_b)$
 
                                 Y ve que:
                                 \begin{align*}
@@ -3433,18 +3483,6 @@
                     \item
                         Por convensión tenemos que $<\emptyset> = \vec 0$
 
-                    \item
-                        Dado un espacio vectorial cualquiera, $\VectorSpace$, y $\vec u, \vec v \in \VectorSpace$
-                        entonces:\\
-                        $\Generate{\Set{\vec u, \vec v}} = \Generate{\Set{\vec u}} \oplus \Generate{\Set{\vec v}}$
-
-                        % ======== DEMOSTRACION ========
-                        \begin{SmallIndentation}[1em]
-                            \textbf{Demostración}:
-                            
-
-                        \end{SmallIndentation}
-
                 \end{itemize}
 
 
@@ -3525,9 +3563,38 @@
                         dependiente, por lo tanto solo le queda una opción, ser linealmente independiente
 
                     \end{SmallIndentation}
-                        
+
                 \clearpage
 
+                \item
+                    Si cada subconjunto finito de $S$ es linealmente independiente, entonces $S$ es independiente.
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+                        
+                        Probemos por contrapositiva, es decir, vamos mejor a probar que si $S$ no es linealmente independiente
+                        es decir, si $S$ es linealmente dependiente entonces no cada subconjunto finito de $S$ es linealmente
+                        independiente.
+
+                        Es decir, basta ver que si $S$ es linealmente dependiente, existe un subconjunto finito que es linealmente
+                        dependiente.
+
+                        $\dots$, esto va a estar feo.
+
+                        Considera $\vec x \in S$, ahora, si $\vec x = \vec 0$ ya acabamos porque $\Set{\vec 0}$ es linealmenete dependiente
+                        entonces por otro teorema anterior sin importar que le añada todo superconjunto de $S$ es linealmente dependiente
+                        incluyendo a $S$.
+
+                        Ahora, si $\vec x \neq \vec 0$ entonces $S' = \Set{\vec x}$ es linealmente independiente, ahora vamos a empezar
+                        a añadir cada uno de los elementos de $S$ a $S'$ hasta que el añadir a otro elemento nos oblige a que $S'$ 
+                        sea linealmente dependiente. Ahora, si podemos tomar todos los elementos de $S$ antes de que eso pase, entonces
+                        $S$ es Linealmente independiente, contradicción, por lo tanto tenemos acabar antes de tomar a todos los elementos
+                        de $S$, ahora, lo que nos hemos creado es un subconjunto de $S$ que es linealmente dependiente, y ya, sin importar
+                        que le agreges, seguirá siendo linealmente dependiente.
+                    
+                    \end{SmallIndentation}
+                        
                 \item 
                     Si $S$ es linealmente independiente entonces:
 
@@ -3853,23 +3920,30 @@
                         \begin{SmallIndentation}[1em]
                             \textbf{Demostración}:
                             
-                            Suponte que no, que encontramos un conjunto $S \subseteq \VectorSpace$ que tenga 
-                            $n + 1$ elementos donde $dim(\VectorSpace) = n$. 
+                            Suponte que no, que encontramos un conjunto $S \subseteq \VectorSpace$ donde $dim(\VectorSpace) = n$
+                            que tenga $n + 1$ elementos y supongamos que sea linealmente independiente. 
 
                             Suponte un subconjunto de $S$, llamada $miniS$ que tenga ahora si $n$ elementos, 
                             además como supusimos que $S$ es linealmente independiente, entonces todos sus subconjuntos
-                            en especial $miniS$ también es linealmente independiente.
+                            en especial $miniS$ también lo son, por lo tanto $miniS$ es linealmente independiente.
 
                             Ahora bien por el teorema anterior tenemos que cualquier conjunto linealmente independiente
-                            de $n$ elementos es una base, por lo tanto $miniS$ es base. 
+                            de $n$ elementos es una base, por lo tanto $miniS$ es base.
                             Entonces recuerda que podremos escribir a todos los elementos de $\VectorSpace$ como combinación
-                            lineal de $miniS$, eso incluye a todos los elementos de $S - miniS$, por lo tanto $S$ no puede ser
-                            linealmente independiente, pero dijimos que si, es decir contradicción.
+                            lineal de $miniS$, eso incluye al elemento que esta en $S$ pero no en $miniS$, es decir que esta en
+                            $S - miniS$, por lo tanto (y gracias a un teorema anterior) $S$ no puede ser linealmente independiente
+                            porque podemos escribir a uno de sus elementos como combinación lineal de otros, pero dijimos que si era
+                            linealmente independiente, es decir contradicción.
 
+                            Podemos ahora generalizar un poco el resultado y ver que hemos dicho también que sin importar que elemento
+                            añadas a un subconjunto linealmente dependiente, este será linealmente dependiente, por lo tanto de manera
+                            general tenemos que:
                             Si algun subconjunto del espacio vectorial tiene mas de $n$ elementos entonces no puede ser linealmente
-                            independiente
+                            independiente.
                         
                         \end{SmallIndentation}
+
+
                             
                             
 
@@ -3936,8 +4010,8 @@
                     \clearpage
 
                     \item
-                        Dados $\VectorSpace$ y $\vec u, \vec v \in \VectorSet$. Demuestre que si $\Set{ \vec u, \vec v}$
-                        es base de $\VectorSpace$, entonces para cada $a, b \in \GenericField - \Set{0}$, $\Set{a\vec u, b \vec v}$
+                        Dados $\VectorSpace$ y $\vec u, \vec v \in \VectorSet$. Si $\Set{ \vec u, \vec v}$
+                        es base de $\VectorSpace$, entonces para cada $a, b \in \GenericField - \Set{\vec 0}$, $\Set{a\vec u, b \vec v}$
                         también lo es.
 
                         % ======== DEMOSTRACION ========
@@ -3961,7 +4035,7 @@
 
                             Por lo tanto $\Set{a \vec u, b \vec v}$ es linealmente independiente.
 
-                            Ahora, veamos que sigue generando a $\Set{\vec u, \vec u}$.
+                            Ahora, veamos que $\Set{\vec u, \vec u}$ sigue generando a $\VectorSet$.
 
                             A ver, por un lado tenemos que $\Set{\vec u, \vec v}$ genera a $\VectorSpace$, es decir
                             $\forall \vec x \in \VectorSpace$ podemos decir que $\vec x = k_1 \vec u + k_2 \vec v$
@@ -3984,6 +4058,8 @@
                         
                         \end{SmallIndentation}
 
+                    \clearpage
+
                     \item
                         Sean $B_1, B_2$ dos bases ajenas de dos subespacios vectoriales $\SubVectorSet_1, \SubVectorSet_2$
                         de $\VectorSpace$, entonces si $B_1 \cup B_2$ es base de $\VectorSpace$ entonces 
@@ -3999,18 +4075,154 @@
                             linealmente independientes, ahora, además nos dicen que son bases ajenas, es decir
                             que no tienen elementos en común.
 
+                            Sin perdida de generalidad tenemos que $B_1 = \Set{\vec v_1, \dots, \vec v_n}$ y 
+                            $B_2 = \Set{\vec u_1, \dots, \vec u_m}$ y que $dim(\VectorSpace) = n + m$
+
                             Ahora probemos las 3 propiedades para ver que ambos subespacios son una suma directa:
                             \begin{itemize}
                                 \item 
+                                    $\SubVectorSet_1, \SubVectorSet_2$ son subespacios vectoriales de $\VectorSpace$
+
+                                    Por hipotesis tanto $\SubVectorSet_1$ como $\SubVectorSet_2$ son subespacios de 
+                                    $\VectorSpace$.
+
+                                \item
+                                    $\SubVectorSet_1 \cap \SubVectorSet_2 = \Set{\vec 0}$
+
+                                    Ok, para demostar eso, tomemos a $\vec x \in \SubVectorSet_1 \cap \SubVectorSet_2$
+                                    ahora a fin de cuentas $\vec x \in \VectorSpace$ por lo tanto como sabemos que $B_1 \cup B_2$
+                                    es base tenemos por un teorema anterior que un conjunto es linealmente independiente si y solo si solo hay
+                                    una manera de escribir a cada elemento de su generado como combinación lineal, es
+                                    decir $\vec x = \sum_{i=0}^{n} c_i \vec v_i + \sum_{i=0}^{m} c_i \vec u_i$
+
+                                    Ahora, como $\vec x \in \SubVectorSet_1$ entonces $\vec x = \sum_{i=1}^n a_i \vec v_i$
+                                    y como $\vec x \in \SubVectorSet_2$ entonces $\vec x = \sum_{i=1}^m b_i \vec u_i$
+
+                                    Ahora, si te das cuenta parece que tenemos a 3 maneras distintas de escribir a $\vec x$ como
+                                    combinación lineal de elementos de su base, pero sabemos que dicha combinación lineal debe ser unica por
+                                    hipotesis de que $B_1 \cup B_2$ es base, por lo tanto solo nos queda que $c_i = a_i = b_i = 0$
+                                    por lo tanto $\vec x = \vec 0$.
+
+                                    Por lo tanto acabamos de demostrar que si tomamos algún elemento de la intersección de dichos subespacios
+                                    este tiene que ser el $\vec 0$.
+
+                                \item
+                                    Probemos finalmente que $\SubVectorSet_1 + \SubVectorSet_2 = \VectorSet$.
+
+                                    Ahora hagamos esto por doble contención, por un lado sea
+                                    $\vec x \in \SubVectorSet_1 + \SubVectorSet_2$ entonces
+                                    $\vec x = \vec x_1 + \vec x_2$ con $\vec x_1 \in \SubVectorSet_1$ y $\vec x_2 \in \SubVectorSet_2$,
+                                    como estamos hablando de espacios vectoriales, tienen que ser cerrado bajo la suma, por lo tanto
+                                    $\vec x \in \VectorSet$.
+
+                                    Ahora tomemos a un elemento $\vec y \in \VectorSet$, entonces se puede expresar como combinación
+                                    lineal de la base que es $B_1 \cup B_2$, es decir 
+                                    $\vec y = \sum_{i=0}^{n} c_i \vec v_i + \sum_{i=0}^{m} c_i \vec u_i$
+
+                                    Ahora, podemos reacomodar esto y ver que $\vec y_1 = \sum_{i=}^{n} c_i \vec v_i$ y
+                                    $\vec y_2 = \sum_{i=1}^{m} c_i \vec u_i$.
+                                    Ahora creo que es obvio que $y_1 \in \SubVectorSet_1$ y $y_2 \in \SubVectorSet_2$
+                                    por lo tanto hemos podido escribir a un elemento arbitrario de $\VectorSet$ como 
+                                    suma de dos elementos $\vec y = \vec y_1 + \vec y_2$. Por lo tanto ambos conjuntos son iguales 
+                                    $\SubVectorSet_1 + \SubVectorSet_2 = \VectorSet$.
+
+                                    Por lo tanto la suma de dichos espacios, $\SubVectorSet_1, \SubVectorSet_2$ si es $\VectorSet$                                   
+
                             \end{itemize}
 
 
                         \end{SmallIndentation}
-                            
-                            
+                        
+                    \clearpage  
+                          
+                    \item
+                        Si $\Set{\vec u, \vec v, \vec w}$ son base de $\VectorSpace$ entonces 
+                        $\Set{\vec v + \vec u + \vec w, \vec u + \vec w, \vec w}$
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                        
+                            Esta demostración se ve buena, tomemos
+                            la ecuación:
+                            \begin{align*}
+                                \vec 0 
+                                    &= a_1 (v + \vec u + \vec w) + a_2(\vec u + \vec w) + a_3 \vec w        \\
+                                    &= (a_1)\vec v + (a_1 + a_2)\vec u  + (a_1 + a_2 + a_3)\vec w 
+                            \end{align*}
+
+                            Ahora como $\Set{\vec u, \vec v, \vec w}$ es base, es linealmente independiente
+                            por lo tanto la unica combinación lineal que nos da el $\vec 0$ es la trivial
+                            por lo tanto $\vec 0 = (a_1)\vec v + (a_1 + a_2)\vec u  + (a_1 + a_2 + a_3)\vec w$
+                            nos obliga a que $a_1 = a_1 + a_2 = a_1 + a_2 + a_3 = 0$, por lo tanto
+                            todos son cero, por lo tanto $\Set{\vec v + \vec u + \vec w, \vec u + \vec w, \vec w}$
+                            sigue siendo linealmente independiente y sabemos por hipotesis que si 
+                            $\Set{\vec u, \vec v, \vec w}$ son base, entonces la dimensión del espacio vectorial
+                            es 3, por lo tanto cualquier conjunto linealmente independiente de 3 elementos
+                            es base, en este caso $\Set{\vec v + \vec u + \vec w, \vec u + \vec w, \vec w}$
+
+                        \end{SmallIndentation}
+                         
 
                 \end{itemize}
+
+
+
+            % ==============================================
+            % ========          EJEMPLOS              ======
+            % ==============================================
+            \clearpage
+            \subsection{Ejemplos}
+
+                \begin{itemize}
                     
+                    \item 
+                        ¿El conjunto $\Set{(1, 1, 1, 1), (1, 1, 1, 0), (1, 1, 0, 0), (1, 0, 0, 0)}$ es una base
+                        para $\GenericField^4$ con $\GenericField$ siendo un campo cualquiera?.
+
+                        Si lo es, entonces encontremos la representación de $(a_1, a_2, a_3, a_4)$ como combinación
+                        lineal del primer conjunto.
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Solución}:
+
+                            Veamos si es primero base, para eso veamos que tiene cuatro elementos por lo tanto
+                            solo nos falta por ver si es linealmente independiente:
+                            \begin{align*}
+                                (0, 0, 0, 0)
+                                    &= k_1(1, 1, 1, 1) + k_2(1, 1, 1, 0) + k_3(1, 1, 0, 0) + k_4(1, 0, 0, 0)    \\
+                                    &= (k_1+k_2+k_3+k_4, k_1+k_2+k_3, k_1+k_2, k_1)                             \\
+                            \end{align*}
+
+                            Por lo tanto tenemos que $k_1 = 0$, ahora sabemos tambien que $k_1+k_2 = 0$, por lo tanto $k_2$
+                            es $0$, ahora $k_1+k_2+k_3 = 0$, por lo tanto $k_3=0 $y finalmente $k_1+k_2+k_3+k_4 = 0$, por
+                            lo tanto $k_4 = 0$
+
+                            Por lo tanto es linealmente independiente, pero como también tiene 4 elementos, podemos concluir que 
+                            es una base de $\GenericField^4$.
+
+                            Ahora podemos ver que:
+                            \begin{align*}
+                                (a_1, a_2, a_3, a_4)
+                                    &= 
+                                        + c_1 (1, 1, 1, 1)
+                                        + c_2 (1, 1, 1, 0)
+                                        + c_3 (1, 1, 0, 0)
+                                        + c_4 (1, 0, 0, 0)                                  \\
+                                    &= 
+                                        (c_1+c_2+c_3+c_4, c_1+c_2+c_3, c_1+c_2, c_1)        \\
+                                    &= 
+                                        + [a_4]       (1, 1, 1, 1)
+                                        + [a_3 - a_4] (1, 1, 1, 0)
+                                        + [a_2 - a_3] (1, 1, 0, 0)
+                                        + [a_1 - a_2] (1, 0, 0, 0)
+                            \end{align*}
+
+                        \end{SmallIndentation}
+
+                \end{itemize}
+                        
 
 
     % ===============================================================================

@@ -1,0 +1,1275 @@
+% ****************************************************************************************
+% ************************          TAREA 1           ************************************
+% ****************************************************************************************
+
+
+% =======================================================
+% =======         HEADER FOR DOCUMENT        ============
+% =======================================================
+    
+    % *********   HEADERS AND FOOTERS ********
+    \def\ProjectAuthorLink{https://github.com/SoyOscarRH}           %Just to keep it in line
+    \def\ProjectNameLink{\ProjectAuthorLink/Proyect}                %Link to Proyect
+
+    % *********   DOCUMENT ITSELF   **************
+    \documentclass[12pt, fleqn]{article}                             %Type of docuemtn and size of font and left eq
+    \usepackage[spanish]{babel}                                     %Please use spanish
+    \usepackage[utf8]{inputenc}                                     %Please use spanish - UFT
+    \usepackage[margin = 1.2in]{geometry}                           %Margins and Geometry pacakge
+    \usepackage{ifthen}                                             %Allow simple programming
+    \usepackage{hyperref}                                           %Create MetaData for a PDF and LINKS!
+    \usepackage{pdfpages}                                           %Create MetaData for a PDF and LINKS!
+    \hypersetup{pageanchor = false}                                 %Solve 'double page 1' warnings in build
+    \setlength{\parindent}{0pt}                                     %Eliminate ugly indentation
+    \author{Oscar Andrés Rosas}                                     %Who I am
+
+    % *********   LANGUAJE    *****************
+    \usepackage[T1]{fontenc}                                        %Please use spanish
+    \usepackage{textcmds}                                           %Allow us to use quoutes
+    \usepackage{changepage}                                         %Allow us to use identate paragraphs
+    \usepackage{anyfontsize}                                        %All the sizes
+
+    % *********   MATH AND HIS STYLE  *********
+    \usepackage{ntheorem, amsmath, amssymb, amsfonts}               %All fucking math, I want all!
+    \usepackage{mathrsfs, mathtools, empheq}                        %All fucking math, I want all!
+    \usepackage{cancel}                                             %Negate symbol
+    \usepackage{centernot}                                          %Allow me to negate a symbol
+    \decimalpoint                                                   %Use decimal point
+
+    % *********   GRAPHICS AND IMAGES *********
+    \usepackage{graphicx}                                           %Allow to create graphics
+    \usepackage{float}                                              %For images
+    \usepackage{wrapfig}                                            %Allow to create images
+    \graphicspath{ {Graphics/} }                                    %Where are the images :D
+
+    % *********   LISTS AND TABLES ***********
+    \usepackage{listings, listingsutf8}                             %We will be using code here
+    \usepackage[inline]{enumitem}                                   %We will need to enumarate
+    \usepackage{tasks}                                              %Horizontal lists
+    \usepackage{longtable}                                          %Lets make tables awesome
+    \usepackage{booktabs}                                           %Lets make tables awesome
+    \usepackage{tabularx}                                           %Lets make tables awesome
+    \usepackage{multirow}                                           %Lets make tables awesome
+    \usepackage{multicol}                                           %Create multicolumns
+
+    % *********   HEADERS AND FOOTERS ********
+    \usepackage{fancyhdr}                                           %Lets make awesome headers/footers
+    \pagestyle{fancy}                                               %Lets make awesome headers/footers
+    \setlength{\headheight}{16pt}                                   %Top line
+    \setlength{\parskip}{0.5em}                                     %Top line
+    \renewcommand{\footrulewidth}{0.5pt}                            %Bottom line
+
+    \lhead{                                                         %Left Header
+        \hyperlink{section.\arabic{section}}                        %Make a link to the current chapter
+        {\normalsize{\textsc{\nouppercase{\leftmark}}}}             %And fot it put the name
+    }
+
+    \rhead{                                                         %Right Header
+        \hyperlink{section.\arabic{section}.\arabic{subsection}}    %Make a link to the current chapter
+            {\footnotesize{\textsc{\nouppercase{\rightmark}}}}      %And fot it put the name
+    }
+
+    \rfoot{\textsc{\small{\hyperref[sec:Index]{Ve al Índice}}}}     %This will always be a footer  
+
+    \fancyfoot[L]{                                                  %Algoritm for a changing footer
+        \ifthenelse{\isodd{\value{page}}}                           %IF ODD PAGE:
+            {\href{https://compilandoconocimiento.com/nosotros/}    %DO THIS:
+                {\footnotesize                                      %Send the page
+                    {\textsc{Oscar Andrés Rosas}}}}                 %Send the page
+            {\href{https://compilandoconocimiento.com}              %ELSE DO THIS: 
+                {\footnotesize                                      %Send the author
+                    {\textsc{Algebra Lineal 1}}}}                   %Send the author
+    }
+    
+    
+    
+% =======================================================
+% ===================   COMMANDS    =====================
+% =======================================================
+
+    % =========================================
+    % =======   NEW ENVIRONMENTS   ============
+    % =========================================
+    \newenvironment{Indentation}[1][0.75em]                         %Use: \begin{Inde...}[Num]...\end{Inde...}
+        {\begin{adjustwidth}{#1}{}}                                 %If you dont put nothing i will use 0.75 em
+        {\end{adjustwidth}}                                         %This indentate a paragraph
+    \newenvironment{SmallIndentation}[1][0.75em]                    %Use: The same that we upper one, just 
+        {\begin{adjustwidth}{#1}{}\begin{footnotesize}}             %footnotesize size of letter by default
+        {\end{footnotesize}\end{adjustwidth}}                       %that's it
+
+    \newenvironment{MultiLineEquation}[1]                           %Use: To create MultiLine equations
+        {\begin{equation}\begin{alignedat}{#1}}                     %Use: \begin{Multi..}{Num. de Columnas}
+        {\end{alignedat}\end{equation}}                             %And.. that's it!
+    \newenvironment{MultiLineEquation*}[1]                          %Use: To create MultiLine equations
+        {\begin{equation*}\begin{alignedat}{#1}}                    %Use: \begin{Multi..}{Num. de Columnas}
+        {\end{alignedat}\end{equation*}}                            %And.. that's it!
+    
+
+    % =========================================
+    % == GENERAL TEXT & SYMBOLS ENVIRONMENTS ==
+    % =========================================
+    
+    % =====  TEXT  ======================
+    \newcommand \Quote {\qq}                                        %Use: \Quote to use quotes
+    \newcommand \Over {\overline}                                   %Use: \Bar to use just for short
+    \newcommand \ForceNewLine {$\Space$\\}                          %Use it in theorems for example
+
+    % =====  SPACES  ====================
+    \DeclareMathOperator \Space {\quad}                             %Use: \Space for a cool mega space
+    \DeclareMathOperator \MegaSpace {\quad \quad}                   %Use: \MegaSpace for a cool mega mega space
+    \DeclareMathOperator \MiniSpace {\;}                            %Use: \Space for a cool mini space
+    
+    % =====  MATH TEXT  =================
+    \newcommand \Such {\MiniSpace | \MiniSpace}                     %Use: \Such like in sets
+    \newcommand \Also {\MiniSpace \text{y} \MiniSpace}              %Use: \Also so it's look cool
+    \newcommand \Remember[1]{\Space\text{\scriptsize{#1}}}          %Use: \Remember so it's look cool
+    
+    % =====  THEOREMS  ==================
+    \newtheorem{Theorem}{Teorema}[section]                          %Use: \begin{Theorem}[Name]\label{Nombre}...
+    \newtheorem{Corollary}{Colorario}[Theorem]                      %Use: \begin{Corollary}[Name]\label{Nombre}...
+    \newtheorem{Lemma}[Theorem]{Lemma}                              %Use: \begin{Lemma}[Name]\label{Nombre}...
+    \newtheorem{Definition}{Definición}[section]                    %Use: \begin{Definition}[Name]\label{Nombre}...
+    \theoremstyle{break}                                            %THEOREMS START 1 SPACE AFTER
+
+    % =====  LOGIC  =====================
+    \newcommand \lIff    {\leftrightarrow}                          %Use: \lIff for logic iff
+    \newcommand \lEqual  {\MiniSpace \Leftrightarrow \MiniSpace}    %Use: \lEqual for a logic double arrow
+    \newcommand \lInfire {\MiniSpace \Rightarrow \MiniSpace}        %Use: \lInfire for a logic infire
+    \newcommand \lLongTo {\longrightarrow}                          %Use: \lLongTo for a long arrow
+
+    % =====  FAMOUS SETS  ===============
+    \DeclareMathOperator \Naturals     {\mathbb{N}}                 %Use: \Naturals por Notation
+    \DeclareMathOperator \Primes       {\mathbb{P}}                 %Use: \Primes por Notation
+    \DeclareMathOperator \Integers     {\mathbb{Z}}                 %Use: \Integers por Notation
+    \DeclareMathOperator \Racionals    {\mathbb{Q}}                 %Use: \Racionals por Notation
+    \DeclareMathOperator \Reals        {\mathbb{R}}                 %Use: \Reals por Notation
+    \DeclareMathOperator \Complexs     {\mathbb{C}}                 %Use: \Complex por Notation
+    \DeclareMathOperator \GenericField {\mathbb{F}}                 %Use: \GenericField por Notation
+    \DeclareMathOperator \VectorSet    {\mathbb{V}}                 %Use: \VectorSet por Notation
+    \DeclareMathOperator \SubVectorSet {\mathbb{W}}                 %Use: \SubVectorSet por Notation
+    \DeclareMathOperator \Polynomials  {\mathbb{P}}                 %Use: \Polynomials por Notation
+    \DeclareMathOperator \VectorSpace  {\VectorSet_{\GenericField}} %Use: \VectorSpace por Notation
+    \DeclareMathOperator \LinealTransformation {\mathcal{T}}        %Use: \LinealTransformation for a cool T
+    \DeclareMathOperator \LinTrans {\mathcal{T}}                    %Use: \LinTrans for a cool T
+
+
+    % =====  CONTAINERS   ===============
+    \newcommand{\Set}[1]    {\left\{ \; #1 \; \right\}}             %Use: \Set {Info} for INTELLIGENT space 
+    \newcommand{\bigSet}[1] {\big\{  \; #1 \; \big\}}               %Use: \bigSet  {Info} for space 
+    \newcommand{\BigSet}[1] {\Big\{  \; #1 \; \Big\}}               %Use: \BigSet  {Info} for space 
+    \newcommand{\biggSet}[1]{\bigg\{ \; #1 \; \bigg\}}              %Use: \biggSet {Info} for space 
+    \newcommand{\BiggSet}[1]{\Bigg\{ \; #1 \; \Bigg\}}              %Use: \BiggSet {Info} for space 
+    
+    \newcommand{\Brackets}[1]    {\left[ #1 \right]}                %Use: \Brackets {Info} for INTELLIGENT space
+    \newcommand{\bigBrackets}[1] {\big[ \; #1 \; \big]}             %Use: \bigBrackets  {Info} for space 
+    \newcommand{\BigBrackets}[1] {\Big[ \; #1 \; \Big]}             %Use: \BigBrackets  {Info} for space 
+    \newcommand{\biggBrackets}[1]{\bigg[ \; #1 \; \bigg]}           %Use: \biggBrackets {Info} for space 
+    \newcommand{\BiggBrackets}[1]{\Bigg[ \; #1 \; \Bigg]}           %Use: \BiggBrackets {Info} for space 
+    
+    \newcommand{\Wrap}[1]    {\left( #1 \right)}                    %Use: \Wrap {Info} for INTELLIGENT space
+    \newcommand{\bigWrap}[1] {\big( \; #1 \; \big)}                 %Use: \bigBrackets  {Info} for space 
+    \newcommand{\BigWrap}[1] {\Big( \; #1 \; \Big)}                 %Use: \BigBrackets  {Info} for space 
+    \newcommand{\biggWrap}[1]{\bigg( \; #1 \; \bigg)}               %Use: \biggBrackets {Info} for space 
+    \newcommand{\BiggWrap}[1]{\Bigg( \; #1 \; \Bigg)}               %Use: \BiggBrackets {Info} for space 
+    
+    \newcommand{\Generate}[1]{\left\langle #1 \right\rangle}        %Use: \Wrap {Info} for INTELLIGENT space
+
+    % =====  BETTERS MATH COMMANDS   =====
+    \newcommand{\pfrac}[2]{\Wrap{\dfrac{#1}{#2}}}                   %Use: Put fractions in parentesis
+
+    % =========================================
+    % ====   LINEAL ALGEBRA & VECTORS    ======
+    % =========================================
+
+    % ===== UNIT VECTORS  ================
+    \newcommand{\hati} {\hat{\imath}}                               %Use: \hati for unit vector    
+    \newcommand{\hatj} {\hat{\jmath}}                               %Use: \hatj for unit vector    
+    \newcommand{\hatk} {\hat{k}}                                    %Use: \hatk for unit vector
+
+    % ===== FN LINEAL TRANSFORMATION  ====
+    \newcommand{\FnLinTrans}[1]{\mathcal{T}\Wrap{#1}}               %Use: \FnLinTrans for a cool T
+    \newcommand{\VecLinTrans}[1]{\mathcal{T}\pVector{#1}}           %Use: \LinTrans for a cool T
+    \newcommand{\FnLinealTransformation}[1]{\mathcal{T}\Wrap{#1}}   %Use: \FnLinealTransformation
+
+    % ===== MAGNITUDE  ===================
+    \newcommand{\abs}[1]{\left\lvert #1 \right\lvert}               %Use: \abs{expression} for |x|
+    \newcommand{\Abs}[1]{\left\lVert #1 \right\lVert}               %Use: \Abs{expression} for ||x||
+    \newcommand{\Mag}[1]{\left| #1 \right|}                         %Use: \Mag {Info} 
+    
+    \newcommand{\bVec}[1]{\mathbf{#1}}                              %Use for bold type of vector
+    \newcommand{\lVec}[1]{\overrightarrow{#1}}                      %Use for a long arrow over a vector
+    \newcommand{\uVec}[1]{\mathbf{\hat{#1}}}                        %Use: Unitary Vector Example: $\uVec{i}
+
+    % ===== ALL FOR DOT PRODUCT  =========
+    \makeatletter                                                   %WTF! IS THIS
+    \newcommand*\dotP{\mathpalette\dotP@{.5}}                       %Use: \dotP for dot product
+    \newcommand*\dotP@[2] {\mathbin {                               %WTF! IS THIS            
+        \vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}           %WTF! IS THIS
+    }                                                               %WTF! IS THIS
+    \makeatother                                                    %WTF! IS THIS
+
+    % === WRAPPERS FOR COLUMN VECTOR ===
+    \newcommand{\pVector}[1]                                        %Use: \pVector {Matrix Notation} use parentesis
+        { \ensuremath{\begin{pmatrix}#1\end{pmatrix}} }             %Example: \pVector{a\\b\\c} or \pVector{a&b&c} 
+    \newcommand{\lVector}[1]                                        %Use: \lVector {Matrix Notation} use a abs 
+        { \ensuremath{\begin{vmatrix}#1\end{vmatrix}} }             %Example: \lVector{a\\b\\c} or \lVector{a&b&c} 
+    \newcommand{\bVector}[1]                                        %Use: \bVector {Matrix Notation} use a brackets 
+        { \ensuremath{\begin{bmatrix}#1\end{bmatrix}} }             %Example: \bVector{a\\b\\c} or \bVector{a&b&c} 
+    \newcommand{\Vector}[1]                                         %Use: \Vector {Matrix Notation} no parentesis
+        { \ensuremath{\begin{matrix}#1\end{matrix}} }               %Example: \Vector{a\\b\\c} or \Vector{a&b&c}
+
+    % === MAKE MATRIX BETTER  =========
+    \makeatletter                                                   %Example: \begin{matrix}[cc|c]
+    \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c] {             %WTF! IS THIS
+        \hskip -\arraycolsep                                        %WTF! IS THIS
+        \let\@ifnextchar\new@ifnextchar                             %WTF! IS THIS
+        \array{#1}                                                  %WTF! IS THIS
+    }                                                               %WTF! IS THIS
+    \makeatother                                                    %WTF! IS THIS
+
+    % =========================================
+    % =======   FAMOUS FUNCTIONS   ============
+    % =========================================
+
+    % == TRIGONOMETRIC FUNCTIONS  ====
+    \newcommand{\Cos}[1] {\cos\Wrap{#1}}                            %Simple wrappers
+    \newcommand{\Sin}[1] {\sin\Wrap{#1}}                            %Simple wrappers
+    \newcommand{\Tan}[1] {tan\Wrap{#1}}                             %Simple wrappers
+    
+    \newcommand{\Sec}[1] {sec\Wrap{#1}}                             %Simple wrappers
+    \newcommand{\Csc}[1] {csc\Wrap{#1}}                             %Simple wrappers
+    \newcommand{\Cot}[1] {cot\Wrap{#1}}                             %Simple wrappers
+
+    % === COMPLEX ANALYSIS TRIG ======
+    \newcommand \Cis[1]  {\Cos{#1} + i \Sin{#1}}                    %Use: \Cis for cos(x) + i sin(x)
+    \newcommand \pCis[1] {\Wrap{\Cis{#1}}}                          %Use: \pCis for the same with parantesis
+    \newcommand \bCis[1] {\Brackets{\Cis{#1}}}                      %Use: \bCis for the same with Brackets
+
+
+    % =========================================
+    % ===========     CALCULUS     ============
+    % =========================================
+
+    % ====== TRANSFORMS =============
+    \newcommand{\FourierT}[1]{\mathscr{F} \left\{ #1 \right\} }     %Use: \FourierT {Funtion}
+    \newcommand{\InvFourierT}[1]{\mathscr{F}^{-1}\left\{#1\right\}} %Use: \InvFourierT {Funtion}
+
+    % ====== DERIVATIVES ============
+    \newcommand \MiniDerivate[1][x] {\dfrac{d}{d #1}}               %Use: \MiniDerivate[var] for simple use [var]
+    \newcommand \Derivate[2] {\dfrac{d \; #1}{d #2}}                %Use: \Derivate [f(x)][x]
+    \newcommand \MiniUpperDerivate[2] {\dfrac{d^{#2}}{d#1^{#2}}}    %Mini Derivate High Orden Derivate -- [x][pow]
+    \newcommand \UpperDerivate[3] {\dfrac{d^{#3} \; #1}{d#2^{#3}}}  %Complete High Orden Derivate -- [f(x)][x][pow]
+    
+    \newcommand \MiniPartial[1][x] {\dfrac{\partial}{\partial #1}}  %Use: \MiniDerivate for simple use [var]
+    \newcommand \Partial[2] {\dfrac{\partial \; #1}{\partial #2}}   %Complete Partial Derivate -- [f(x)][x]
+    \newcommand \MiniUpperPartial[2]                                %Mini Derivate High Orden Derivate -- [x][pow] 
+        {\dfrac{\partial^{#2}}{\partial #1^{#2}}}                   %Mini Derivate High Orden Derivate
+    \newcommand \UpperPartial[3]                                    %Complete High Orden Derivate -- [f(x)][x][pow]
+        {\dfrac{\partial^{#3} \; #1}{\partial#2^{#3}}}              %Use: \UpperDerivate for simple use
+
+    \DeclareMathOperator \Evaluate  {\Big|}                         %Use: \Evaluate por Notation
+
+    % =========================================
+    % ========    GENERAL STYLE     ===========
+    % =========================================
+    
+    % =====  COLORS ==================
+    \definecolor{RedMD}{HTML}{F44336}                               %Use: Color :D        
+    \definecolor{Red100MD}{HTML}{FFCDD2}                            %Use: Color :D        
+    \definecolor{Red200MD}{HTML}{EF9A9A}                            %Use: Color :D        
+    \definecolor{Red300MD}{HTML}{E57373}                            %Use: Color :D        
+    \definecolor{Red700MD}{HTML}{D32F2F}                            %Use: Color :D 
+
+    \definecolor{PurpleMD}{HTML}{9C27B0}                            %Use: Color :D        
+    \definecolor{Purple100MD}{HTML}{E1BEE7}                         %Use: Color :D        
+    \definecolor{Purple200MD}{HTML}{EF9A9A}                         %Use: Color :D        
+    \definecolor{Purple300MD}{HTML}{BA68C8}                         %Use: Color :D        
+    \definecolor{Purple700MD}{HTML}{7B1FA2}                         %Use: Color :D 
+
+    \definecolor{IndigoMD}{HTML}{3F51B5}                            %Use: Color :D        
+    \definecolor{Indigo100MD}{HTML}{C5CAE9}                         %Use: Color :D        
+    \definecolor{Indigo200MD}{HTML}{9FA8DA}                         %Use: Color :D        
+    \definecolor{Indigo300MD}{HTML}{7986CB}                         %Use: Color :D        
+    \definecolor{Indigo700MD}{HTML}{303F9F}                         %Use: Color :D 
+
+    \definecolor{BlueMD}{HTML}{2196F3}                              %Use: Color :D        
+    \definecolor{Blue100MD}{HTML}{BBDEFB}                           %Use: Color :D        
+    \definecolor{Blue200MD}{HTML}{90CAF9}                           %Use: Color :D        
+    \definecolor{Blue300MD}{HTML}{64B5F6}                           %Use: Color :D        
+    \definecolor{Blue700MD}{HTML}{1976D2}                           %Use: Color :D        
+    \definecolor{Blue900MD}{HTML}{0D47A1}                           %Use: Color :D  
+
+    \definecolor{CyanMD}{HTML}{00BCD4}                              %Use: Color :D        
+    \definecolor{Cyan100MD}{HTML}{B2EBF2}                           %Use: Color :D        
+    \definecolor{Cyan200MD}{HTML}{80DEEA}                           %Use: Color :D        
+    \definecolor{Cyan300MD}{HTML}{4DD0E1}                           %Use: Color :D        
+    \definecolor{Cyan700MD}{HTML}{0097A7}                           %Use: Color :D        
+    \definecolor{Cyan900MD}{HTML}{006064}                           %Use: Color :D 
+
+    \definecolor{TealMD}{HTML}{009688}                              %Use: Color :D        
+    \definecolor{Teal100MD}{HTML}{B2DFDB}                           %Use: Color :D        
+    \definecolor{Teal200MD}{HTML}{80CBC4}                           %Use: Color :D        
+    \definecolor{Teal300MD}{HTML}{4DB6AC}                           %Use: Color :D        
+    \definecolor{Teal700MD}{HTML}{00796B}                           %Use: Color :D        
+    \definecolor{Teal900MD}{HTML}{004D40}                           %Use: Color :D 
+
+    \definecolor{GreenMD}{HTML}{4CAF50}                             %Use: Color :D        
+    \definecolor{Green100MD}{HTML}{C8E6C9}                          %Use: Color :D        
+    \definecolor{Green200MD}{HTML}{A5D6A7}                          %Use: Color :D        
+    \definecolor{Green300MD}{HTML}{81C784}                          %Use: Color :D        
+    \definecolor{Green700MD}{HTML}{388E3C}                          %Use: Color :D        
+    \definecolor{Green900MD}{HTML}{1B5E20}                          %Use: Color :D
+
+    \definecolor{AmberMD}{HTML}{FFC107}                             %Use: Color :D        
+    \definecolor{Amber100MD}{HTML}{FFECB3}                          %Use: Color :D        
+    \definecolor{Amber200MD}{HTML}{FFE082}                          %Use: Color :D        
+    \definecolor{Amber300MD}{HTML}{FFD54F}                          %Use: Color :D        
+    \definecolor{Amber700MD}{HTML}{FFA000}                          %Use: Color :D        
+    \definecolor{Amber900MD}{HTML}{FF6F00}                          %Use: Color :D
+
+    \definecolor{BlueGreyMD}{HTML}{607D8B}                          %Use: Color :D        
+    \definecolor{BlueGrey100MD}{HTML}{CFD8DC}                       %Use: Color :D        
+    \definecolor{BlueGrey200MD}{HTML}{B0BEC5}                       %Use: Color :D        
+    \definecolor{BlueGrey300MD}{HTML}{90A4AE}                       %Use: Color :D        
+    \definecolor{BlueGrey700MD}{HTML}{455A64}                       %Use: Color :D        
+    \definecolor{BlueGrey900MD}{HTML}{263238}                       %Use: Color :D        
+
+    \definecolor{DeepPurpleMD}{HTML}{673AB7}                        %Use: Color :D
+
+    \newcommand{\Color}[2]{\textcolor{#1}{#2}}                      %Simple color environment
+    \newenvironment{ColorText}[1]                                   %Use: \begin{ColorText}
+        { \leavevmode\color{#1}\ignorespaces }                      %That's is!
+
+    % =====  CODE EDITOR =============
+    \lstdefinestyle{CompilandoStyle} {                              %This is Code Style
+        backgroundcolor     = \color{BlueGrey900MD},                %Background Color  
+        basicstyle          = \tiny\color{white},                   %Style of text
+        commentstyle        = \color{BlueGrey200MD},                %Comment style
+        stringstyle         = \color{Green300MD},                   %String style
+        keywordstyle        = \color{Blue300MD},                    %keywords style
+        numberstyle         = \tiny\color{TealMD},                  %Size of a number
+        frame               = shadowbox,                            %Adds a frame around the code
+        breakatwhitespace   = true,                                 %Style   
+        breaklines          = true,                                 %Style   
+        showstringspaces    = false,                                %Hate those spaces                  
+        breaklines          = true,                                 %Style                   
+        keepspaces          = true,                                 %Style                   
+        numbers             = left,                                 %Style                   
+        numbersep           = 10pt,                                 %Style 
+        xleftmargin         = \parindent,                           %Style 
+        tabsize             = 4,                                    %Style
+        inputencoding       = utf8/latin1                           %Allow me to use special chars
+    }
+ 
+    \lstset{style = CompilandoStyle}                                %Use this style
+
+
+
+
+
+
+
+% =====================================================
+% ============        COVER PAGE       ================
+% =====================================================
+\begin{document}
+\begin{titlepage}
+    
+    % ============ TITLE PAGE STYLE  ================
+    \definecolor{TitlePageColor}{cmyk}{1,.60,0,.40}                 %Simple colors
+    \definecolor{ColorSubtext}{cmyk}{1,.50,0,.10}                   %Simple colors
+    \newgeometry{left=0.25\textwidth}                               %Defines an Offset
+    \pagecolor{TitlePageColor}                                      %Make it this Color to page
+    \color{white}                                                   %General things should be white
+
+    % ===== MAKE SOME SPACE =========
+    \vspace                                                         %Give some space
+    \baselineskip                                                   %But we need this to up command
+
+    % ============ NAME OF THE PROJECT  ============
+    \makebox[0pt][l]{\rule{1.3\textwidth}{3pt}}                     %Make a cool line
+    
+    \href{https://compilandoconocimiento.com}                       %Link to project
+    {\textbf{\textsc{\Huge Facultad de Ciencias - UNAM}}}\\[2.7cm]  %Name of project   
+
+    % ============ NAME OF THE BOOK  ===============
+    \href{\ProjectNameLink/LibroAlgebraLineal}                      %Link to Author
+    {\fontsize{65}{78}\selectfont \textbf{1 Tarea-Examen}\\[0.5cm]  %Name of the book
+    \textcolor{ColorSubtext}{\textsc{\Huge Algebra Lineal 1 }}}     %Name of the general theme
+    
+    \vfill                                                          %Fill the space
+    
+    % ============ NAME OF THE AUTHOR  =============
+    \href{\ProjectAuthorLink}                                       %Link to Author
+    {\LARGE \textsf{Oscar Andrés Rosas Hernandez}}                  %Author
+
+    % ===== MAKE SOME SPACE =========
+    \vspace                                                         %Give some space
+    \baselineskip                                                   %But we need this to up command
+    
+    {\large \textsf{Febrero 2018}}                                  %Date
+
+\end{titlepage}
+
+
+% =====================================================
+% ==========      RESTORE TO DOCUMENT      ============
+% =====================================================
+\restoregeometry                                                    %Restores the geometry
+\nopagecolor                                                        %Use to restore the color to white
+
+
+
+
+% =====================================================
+% ========                INDICE              =========
+% =====================================================
+\tableofcontents{}
+\label{sec:Index}
+
+\clearpage
+
+
+
+
+% ==============================================================
+% =================          PROBLEMA 1       ==================
+% ==============================================================
+\clearpage
+\section{1 Problema}
+
+    Dado un espacio vectorial cualquiera, $\VectorSpace$, y $\vec u, \vec v \in \VectorSpace$
+    entonces:\\
+    $\Generate{\Set{\vec u, \vec v}} = \Generate{\Set{\vec u}} \oplus \Generate{\Set{\vec v}}$
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Contraejemplo}:
+        
+        Considera a $\VectorSpace = \Reals^2_{\Reals}$, entonces toma a $\vec v = (1, 0)$ y $\vec u = (2, 0)$
+        entonces $<{(1, 0), (2, 0)}>$ no es una suma directa de $<\Set{(1, 0)}>$ y $<\Set{(2, 0)}>$ porque 
+        $<\Set{(1, 0)}> \cap <\Set{(2, 0)}> \neq \Set{\vec 0}$ porque por ejemplo esta en ambas $(4, 0)$
+
+    \end{SmallIndentation}
+
+
+    Ahora podemos probar algo parecido que si es cierto:
+    Dado un espacio vectorial cualquiera, $\VectorSpace$, y $\vec u, \vec v \in \VectorSpace$ tal que
+    $\Set{\vec u, \vec v}$ sea linealmente independiente, entonces:\\
+    $\Generate{\Set{\vec u, \vec v}} = \Generate{\Set{\vec u}} \oplus \Generate{\Set{\vec v}}$
+
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Demostración}:
+        
+        Este es un colorario muy facil de ver del \hyperref[sec:10]{\underline{Ejercicio 12, haciendo click}} donde:
+        \begin{itemize}
+            \item $\VectorSet = <\Set{\vec u, \vec v}>$
+            \item $\SubVectorSet_1 = <\Set{\vec u}>$
+            \item $\SubVectorSet_1 = <\Set{\vec v}>$
+            \item $B_1 = \vec u$
+            \item $B_2 = \vec v$
+        \end{itemize}
+    
+    \end{SmallIndentation}
+        
+
+
+% ==============================================================
+% =================          PROBLEMA 3       ==================
+% ==============================================================
+\clearpage
+\section{3 Problema}
+
+
+
+    \begin{itemize}
+
+        \item Sea $A,B \in M_{m \times n}(\GenericField)$ entonces 
+            $(A+B)^T = A^T + B^T$
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Demostración}:
+
+                \emph{Empecemos por ver que tienen el mismo tamaño:}
+
+                La matriz $(A+B)$ (por como la definimos a la suma) siguen estando en 
+                $M_{m \times n}(\GenericField)$, por lo tanto tenemos que la transpuesta de la 
+                matriz anteriormente dicha, es decir $(A+B)^T$ esta en $M_{n \times m}(\GenericField)$.
+
+                Ahora por otro lado tenemos que $A^T, B^T \in M_{n \times m}(\GenericField)$ por la
+                definición de transpuesta, ahora como definimos la suma tenemos que 
+                $(A^T+B^T) \in M_{n \times m}(\GenericField)$.
+                Por lo tanto tienen el mismo tamaño.
+
+                \emph{Ahora veamos que un cualquier elemento arbitrario de ambas matrices es igual:}
+                \begin{align*}
+                    [(A+B)^T]_{i, j}    
+                        = [A + B]_{j, i}               
+                        = [A]_{j, i} + [B]_{j, i}      
+                        = [A^T]_{i, j} + [B^T]_{i, j}
+                        = \Brackets{A^T + B^T}_{i, j}
+                \end{align*}
+
+            \end{SmallIndentation}
+
+        \item Sea $A \in M_{m \times n}(\GenericField)$ y $\alpha \in \GenericField$ entonces:
+            $(\alpha A)^T = \alpha A^T$
+            
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Demostración}:
+
+                Es (creo) más que obvio que tendrán el mismo tamaño, por como definimos el producto
+                por un escalar.
+
+                Ahora veamos que un cualquier elemento arbitrario de ambas matrices es igual:
+                \begin{equation*}
+                \begin{split}
+                    [(\alpha A)^T]_{i, j}    
+                        = [\alpha A]_{j, i}               
+                        = \alpha [A]_{j, i}
+                        = \alpha [A^T]_{i, j}
+                \end{split}
+                \end{equation*}
+
+            \end{SmallIndentation}
+
+        \item
+            Por los dos teoremas anteriores podemos decir que la transpuesta se parece mucho a 
+            un operador lineal, me refiero a que:
+
+            Sea $A,B \in M_{m \times n}(\GenericField)$ y $\alpha \in \GenericField$ entonces 
+            $(\alpha A + \beta B)^T = \alpha(A^T) + \beta(B^T)$
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Demostración}:
+                
+                Es sencillo, mira:
+                \begin{align*}
+                    (\alpha A + \beta B)^T
+                        &= (\alpha A)^T + (\beta B)^T
+                            && \Remember{Por teorema anterior} \\
+                        &= \alpha (A^T) + \beta (B^T)
+                            && \Remember{Por teorema anterior}
+                \end{align*}
+            
+            \end{SmallIndentation}
+                
+
+    \end{itemize}
+
+
+
+% ==============================================================
+% =================          PROBLEMA 5       ==================
+% ==============================================================
+\clearpage
+\section{5 Problema}
+
+    \begin{itemize}
+
+    \item Si $A \in M_{n}(\GenericField)$ entonces $A+A^T$ es una matriz simétrica. 
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+            \begin{align*}
+                [A + A^T]_{i,j}  
+                    &=  [A]_{i,j} + [A^T]_{i,j}     \\ 
+                    &=  [A]_{i,j} + [A]_{j,i}       \\
+                    &=  [A^T]_{j,i} + [A]_{j,i}     \\
+                    &=  [A]_{j,i} + [A^T]_{j, i}    \\
+                    &=  [A + A^T]_{j, i}             
+            \end{align*}
+
+        \end{SmallIndentation}
+
+    \item Si $A \in M_{n}(\GenericField)$ entonces $A-A^T$ es una matriz antesimétrica. 
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+            \begin{align*}
+                [A-A^T]_{i,j}   
+                    &=  [A]_{i,j} - [A^T]_{i,j}     \\ 
+                    &=  [A]_{i,j} - [A]_{j,i}       \\
+                    &=  [A^T]_{j,i} - [A]_{j,i}     \\
+                    &=  [-A+A^T]_{j, i}             \\
+                    &= -[A - A^T]_{j, i}
+            \end{align*}
+
+        \end{SmallIndentation}
+
+    \item Si $A \in M_{n}(\GenericField)$ es simetrica y $k \in \GenericField$ entonces 
+        $KA$ también es simétrica.
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+
+            Esta esta sencilla, mira:
+            \begin{align*}
+                [KA]_{i, j}
+                    &= K [A]_{i, j}     
+                        && \Remember{por la definición de producto escalar} \\
+                    &= K [A]_{j, i}
+                        && \Remember{Porque $A$ es simetrica}               \\
+                    &= [KA]_{j, i}
+                        && \Remember{Porque definición de producto escalar}
+            \end{align*}
+
+        \end{SmallIndentation}
+
+    \item Si $A \in M_{n}(\GenericField)$ es simetrica y $k \in \GenericField$ entonces 
+        $KA$ también es antisimétrica.
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+
+            Esta esta sencilla, mira:
+            \begin{align*}
+                [KA]_{i, j}
+                    &= K [A]_{i, j}     
+                        && \Remember{por la definición de producto escalar} \\
+                    &= (K)(-[A]_{j, i})
+                        && \Remember{Porque $A$ es antisimétrica}           \\
+                    &= -[KA]_{j, i}
+                        && \Remember{Porque definición de producto escalar}
+            \end{align*}
+
+        \end{SmallIndentation}
+
+    \end{itemize}
+
+% ==============================================================
+% =================          PROBLEMA 6       ==================
+% ==============================================================
+\clearpage
+\section{6 Problema}
+
+    Demuestre o refute que los siguientes conjuntos son espacios vectoriales
+    sobre $\Reals$:
+
+
+        \begin{itemize}
+            
+
+            \item 
+                Prueba que $X = \Set{(a, b) \in \Reals^2 \Such a + 3b = 0}$, con 
+                $\VectorSpace = \Reals^2$ y $\GenericField = \Reals$
+
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Solución}:
+
+                    Ok, veamos:
+                    \begin{itemize}
+                        
+                        \item Probemos que $\vec 0 \in X$
+
+                            Esta porque $(0, 0)$, es decir cuando $a = b = 0$ cumple que $0 + 3(0) = 0$, por
+                            lo tanto $\vec 0 \in X$
+
+                        \item
+                            Veamos que sea cerrada bajo la suma:
+
+                            Tomemos $\vec x, \vec y \in X$ donde $\vec x = (x_a, x_b)$ y $\vec y = (y_a, y_b)$
+                            y como estan en $X$ tenemos que $x_a + 3x_b = 0$ y $y_a + 3y_b = 0$ entonces
+                            tenemos que $\vec x + \vec y = (x_a + y_a, y_a + y_b)$
+
+                            Y ve que:
+                            \begin{align*}
+                                x_a + y_a + 3(x_b + y_b)
+                                    &= (x_a + 3x_b) + (y_a + 3y_b)      \\
+                                    &= 0 + 0                            \\
+                                    &= 0
+                            \end{align*}
+
+                            Por lo tanto $\vec x + \vec y \in X$, por lo tanto es cerrado bajo la suma
+
+                        \item
+                            Veamos que sea cerrada bajo el producto por escalar:
+
+                            Tomemos $\vec x \in X$ y $\alpha \in \Reals$ donde $\vec x = (x_a, x_b)$ y como
+                            esta en $X$ tenemos que $x_a + 3x_b = 0$ entonces tenemos que:
+                            $\alpha \vec x = (\alpha x_a + \alpha x_b)$
+
+                            Y ve que:
+                            \begin{align*}
+                                \alpha x_a + 3(\alpha x_b)
+                                    &= \alpha (x_a + 3x_b)              \\
+                                    &= \alpha (0)                       \\
+                                    &= 0
+                            \end{align*}
+
+                            Por lo tanto $\alpha \vec x \in X$, por lo tanto es cerrado bajo el producto escalar
+
+                    \end{itemize}
+
+                \end{SmallIndentation}
+
+            \clearpage
+
+            \item 
+                Prueba que $X = \Set{ f\in \Reals^{\Reals} \Such f(x) = -f(-x) \forall x \in \Reals}$, con 
+                $\VectorSpace = \mathcal{C}_\infty$ y $\GenericField = \Reals$
+
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Solución}:
+
+                    Ok, veamos:
+                    \begin{itemize}
+                        
+                        \item Probemos que $\vec 0 \in X$
+
+                            Esta porque $g(x) = 0$, es decir una función que para cada real regresa el cero esta en $X$ pues
+                            $g(x) = 0 = - (0) = -(g(-x))$
+                            lo tanto $g \in X$
+
+                        \item
+                            Veamos que sea cerrada bajo la suma:
+
+                            Tomemos $f, g \in X$ y un real arbitrario $x$, y que $f, g$ por estar en $X$ tenemos que
+                            $f(x) = -f(-x) \forall x \in \Reals$ y $g(x) = -g(-x) \forall x \in \Reals$ 
+                            entonces tenemos que:
+                            \begin{align*}
+                                f(x) + g(x)
+                                    &= -f(-x) + -g(-x)                  \\
+                                    &= - [f(-x) + g(-x)]                \\
+                            \end{align*}
+
+                            Nota que como acabamos de ver $f(x) + g(x)$ sigue en $X$ porque $f(x) + g(x) = - [f(-x) + g(-x)]$.
+                            Por lo tanto es cerrado bajo la suma.
+
+                        \item
+                            Veamos que sea cerrada bajo el producto por escalar:
+
+                            Tomemos $f \in X$ y $\alpha \in \Reals$ y un real arbitrario $x$ y que $f$ por estar en $X$
+                            tenemos que $f(x) = -f(-x) \forall x \in \Reals$ entonces tenemos que:
+
+                            Y ve que:
+                            \begin{align*}
+                                \alpha f(x)
+                                    &= \alpha -f(-x)                    \\
+                                    &= - [\alpha f(-x)]                 \\
+                            \end{align*}
+
+                            Nota que como acabamos de ver $\alpha f(x)$ sigue en $X$ porque $\alpha f(x) = - [\alpha f(-x)]$.
+                            Por lo tanto es cerrado bajo el producto escalar.
+
+                    \end{itemize}
+
+                \end{SmallIndentation}
+
+            \clearpage
+
+            \item 
+                Prueba que $X = \Set{(a, b) \in \Complexs^2 \Such a - b = 0}$, con 
+                $\VectorSpace = \Complexs^2$ y $\GenericField = \Reals$
+
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Solución}:
+
+                    Ok, veamos:
+                    \begin{itemize}
+                        
+                        \item Probemos que $\vec 0 \in X$
+
+                            Esta porque $(0, 0)$, es decir cuando $a = b = 0$ cumple que $0 - (0) = 0$, por
+                            lo tanto $\vec 0 \in X$
+
+                        \item
+                            Veamos que sea cerrada bajo la suma:
+
+                            Tomemos $\vec x, \vec y \in X$ donde $\vec x = (x_a, x_b)$ y $\vec y = (y_a, y_b)$
+                            y como estan en $X$ tenemos que $x_a - x_b = 0$ y $y_a - y_b = 0$ entonces
+                            tenemos que $\vec x + \vec y = (x_a + y_a, y_a + y_b)$
+
+                            Y ve que:
+                            \begin{align*}
+                                x_a + y_a - (x_b + y_b)
+                                    &= (x_a - x_b) + (y_a - y_b)        \\
+                                    &= 0 + 0                            \\
+                                    &= 0
+                            \end{align*}
+
+                            Por lo tanto $\vec x + \vec y \in X$, por lo tanto es cerrado bajo la suma
+
+                        \item
+                            Veamos que sea cerrada bajo el producto por escalar:
+
+                            Tomemos $\vec x \in X$ y $\alpha \in \Reals$ donde $\vec x = (x_a, x_b)$ y como
+                            esta en $X$ tenemos que $x_a - x_b = 0$ entonces tenemos que:
+                            $\alpha \vec x = (\alpha x_a + \alpha x_b)$
+
+                            Y ve que:
+                            \begin{align*}
+                                \alpha x_a - (\alpha x_b)
+                                    &= \alpha (x_a - x_b)               \\
+                                    &= \alpha (0)                       \\
+                                    &= 0
+                            \end{align*}
+
+                            Por lo tanto $\alpha \vec x \in X$, por lo tanto es cerrado bajo el producto escalar
+
+                    \end{itemize}
+
+                \end{SmallIndentation}
+
+        \end{itemize}
+
+
+
+
+
+% ==============================================================
+% =================          PROBLEMA 7       ==================
+% ==============================================================
+\clearpage
+\section{7 Problema}
+
+
+    \begin{itemize}
+        \item
+            Dado $S$ una base de $\VectorSpace$ cualquier otro conjunto linealmente
+            independiente de $n$ elementos es una base de $\VectorSpace$.
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Demostración}:
+                
+                Usemos el teorema que dice que \Quote{
+                    Dado $\VectorSpace = <G>$ donde $G = \Set{\vec u_1, \dots, \vec u_n}$ donde $G$ es base.
+                    Ademas, dado a $L$ como subconjunto linealmente independiente de $\VectorSpace$
+                    tal que $|L| = m$, y $m \leq n$, entonces existe otro conjunto $H$ tal que
+                    $|H| = n - m$ tal que $<L \cup H> = \VectorSpace$
+                }
+
+                Entonces, supongamos un conjunto $S = \Set{\vec u_1, \dots, \vec u_n}$, entonces por ese teorema
+                existe otro conjunto de $n - n$ elementos que al unirlo con $S$ puede generar a $\VectorSpace$,
+                pero un conjunto de $0$ elementos es el vacío, por lo tanto $<S> = \VectorSpace$, por lo tanto
+                por definición es base.
+            
+            \end{SmallIndentation}
+
+        \item
+            Todas las bases de $\VectorSpace$ tiene la misma cardinalidad
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Demostración}:
+                
+                Ok, este esta bueno, sea $S$ un conjunto de más de $n$ elementos.
+
+                Ahora vamos a pensar que es linealmente independiente, veamos que pasa:
+
+                Suponte un subconjunto de $S$, llamada $miniS$ que tenga ahora si $n$ elementos, 
+                además como supusimos que $S$ es linealmente independiente, entonces todos sus subconjuntos
+                en especial $miniS$ también es linealmente independiente.
+                Ahora bien por el teorema anterior tenemos que cualquier conjunto linealmente independiente
+                de $n$ elementos es una base, por lo tanto $miniS$ es base. 
+                Entonces recuerda que podremos escribir a todos los elementos de $\VectorSpace$ como combinación
+                lineal de $miniS$, eso incluye a todos los elementos de $S - miniS$, por lo tanto $S$ no puede ser
+                linealmente independiente, pero dijimos que si, es decir contradicción.
+
+                Si algun subconjunto del espacio vectorial tiene mas de $n$ elementos entonces no puede ser linealmente
+                independiente y por lo tanto no puede ser base. 
+
+                Ahora bien si $S$ tiene menos de $n$ elementos, digamos que tiene $m$ elementos, entonces
+                tampoco puede ser base pues por el teorema:
+                \Quote{
+                    Dado $\VectorSpace = <G>$ donde $G = \Set{\vec u_1, \dots, \vec u_n}$ donde $G$ es base.
+                    Ademas, dado a $L$ como subconjunto linealmente independiente de $\VectorSpace$
+                    tal que $|L| = m$, y $m \leq n$, entonces existe otro conjunto $H$ tal que
+                    $|H| = n - m$ tal que $<L \cup H> = \VectorSpace$
+                }
+                necesitamos agregarle otro conjunto de $n - m$ elementos para que pueda generar a $\VectorSpace$
+                entonces tampoco puede ser base.
+            
+            \end{SmallIndentation}
+
+        \item
+            Cualquier conjunto de n+1 vectores en un espacio de
+            dimensión n es linealmente dependiente. 
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Demostración}:
+                
+                Suponte que no, que encontramos un conjunto $S \subseteq \VectorSpace$ donde $dim(\VectorSpace) = n$
+                que tenga $n + 1$ elementos y supongamos que sea linealmente independiente. 
+
+                Suponte un subconjunto de $S$, llamada $miniS$ que tenga ahora si $n$ elementos, 
+                además como supusimos que $S$ es linealmente independiente, entonces todos sus subconjuntos
+                en especial $miniS$ también lo son, por lo tanto $miniS$ es linealmente independiente.
+
+                Ahora bien por el teorema anterior tenemos que cualquier conjunto linealmente independiente
+                de $n$ elementos es una base, por lo tanto $miniS$ es base.
+                Entonces recuerda que podremos escribir a todos los elementos de $\VectorSpace$ como combinación
+                lineal de $miniS$, eso incluye al elemento que esta en $S$ pero no en $miniS$, es decir que esta en
+                $S - miniS$, por lo tanto (y gracias a un teorema anterior) $S$ no puede ser linealmente independiente
+                porque podemos escribir a uno de sus elementos como combinación lineal de otros, pero dijimos que si era
+                linealmente independiente, es decir contradicción.
+
+                Podemos ahora generalizar un poco el resultado y ver que hemos dicho también que sin importar que elemento
+                añadas a un subconjunto linealmente dependiente, este será linealmente dependiente, por lo tanto de manera
+                general tenemos que:
+                Si algun subconjunto del espacio vectorial tiene mas de $n$ elementos entonces no puede ser linealmente
+                independiente.
+            
+            \end{SmallIndentation}
+
+    \end{itemize}
+
+
+
+% ==============================================================
+% =================          PROBLEMA 8       ==================
+% ==============================================================
+\clearpage
+\section{8 Problema}
+    
+    \begin{itemize}
+                    
+        \item 
+            Si $\vec 0 \in S$ entonces $S$ es linealmente dependiente
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Demostración}:
+                
+                Esta es muy fácil, considera el conjunto $\Set{\vec 0}$ entonces lo puedes
+                escribir como $\vec 0 = a \vec 0$ con $a \neq 0$ entonces ya encontraste 
+                una combinación lineal no trivial, y como demostraré en los siguientes temas
+                veré que sin importar que le añada a un conjunto linealmente dependiente este
+                seguirá siendo linealmente dependiente.
+            
+            \end{SmallIndentation}
+                
+
+        \item 
+            Sin importar que le añada a un conjunto linealmente dependiente este
+            seguirá siendo linealmente dependiente.
+
+            Es decir:
+            Si $S_1 \subseteq S_2$ y $S_1$ es linealmente dependiente entonces
+            $S_2$ también es linealmente dependiente
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Idea de la Demostración}:
+                
+                Considera que como $S_1$ sin perdida de generalidad decimos que 
+                $S_1 = \Set{\vec v_1, \dots, \vec v_n}$ es l. d. Entonces existe una combinación lineal
+                tal que $\vec 0 = \sum_{i=1}^n a_i \vec v_i$, donde minímo un $a_0$ no es cero.
+
+                Decimos que $S_2 - S_1 = \Set{\vec u_1, \dots, \vec u_k}$
+
+                Entonces decimos que:
+                $\vec 0 = \sum_{i=0}^n a_i \vec v_i +  \sum_{i=0}^k 0 \vec u_i$, bingo, una combinación
+                no trivial, es un conjunto linealmente dependiente.
+            
+            \end{SmallIndentation}
+                
+
+        \item 
+            Sin importar que le elimine a un conjunto linealmente independiente este
+            seguirá siendo linealmente independiente.
+
+            Es decir:
+            Si $S_1 \subseteq S_2$ y $S_2$ es linealmente independiente entonces
+            $S_1$ también es linealmente independiente
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Idea Demostración}:
+
+                Considera que como $S_2$ sin perdida de generalidad decimos que 
+                $S_2 = \Set{\vec v_1, \dots, \vec v_n}$ es l. i.
+
+                Ahora pensemos en un subconjunto propio de $S_2$ llamado $S_1$. 
+                Vamos a suponer que ese subconjunto es linealmente dependiente,
+                entonces por el teorema pasado:
+                \Quote{
+                    Si $S_1 \subseteq S_2$ y $S_1$ es linealmente dependiente entonces
+                    $S_2$ también es linealmente dependiente
+                }
+                pero espera, sabemos por hipotesis que $S_2$ es linealmente independiente
+                por lo tanto llegamos a una contradicción si suponemos que $S_1$ es linealmente
+                dependiente, por lo tanto solo le queda una opción, ser linealmente independiente
+
+            \end{SmallIndentation}
+
+        \clearpage
+
+        \item
+            Si cada subconjunto finito de $S$ es linealmente independiente, entonces $S$ es independiente.
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Demostración}:
+                
+                Probemos por contrapositiva, es decir, vamos mejor a probar que si $S$ no es linealmente independiente
+                es decir, si $S$ es linealmente dependiente entonces no cada subconjunto finito de $S$ es linealmente
+                independiente.
+
+                Es decir, basta ver que si $S$ es linealmente dependiente, existe un subconjunto finito que es linealmente
+                dependiente.
+
+                $\dots$, esto va a estar feo.
+
+                Considera $\vec x \in S$, ahora, si $\vec x = \vec 0$ ya acabamos porque $\Set{\vec 0}$ es linealmenete dependiente
+                entonces por otro teorema anterior sin importar que le añada todo superconjunto de $S$ es linealmente dependiente
+                incluyendo a $S$.
+
+                Ahora, si $\vec x \neq \vec 0$ entonces $S' = \Set{\vec x}$ es linealmente independiente, ahora vamos a empezar
+                a añadir cada uno de los elementos de $S$ a $S'$ hasta que el añadir a otro elemento nos oblige a que $S'$ 
+                sea linealmente dependiente. Ahora, si podemos tomar todos los elementos de $S$ antes de que eso pase, entonces
+                $S$ es Linealmente independiente, contradicción, por lo tanto tenemos acabar antes de tomar a todos los elementos
+                de $S$, ahora, lo que nos hemos creado es un subconjunto de $S$ que es linealmente dependiente, y ya, sin importar
+                que le agreges, seguirá siendo linealmente dependiente.
+            
+            \end{SmallIndentation}
+
+    \end{itemize}
+
+
+
+% ==============================================================
+% =================          PROBLEMA 9       ==================
+% ==============================================================
+\clearpage
+\section{9 Problema}
+
+    Dados $\VectorSpace$ y $\vec u, \vec v \in \VectorSet$. Si $\Set{ \vec u, \vec v}$
+    es base de $\VectorSpace$, entonces para cada $a, b \in \GenericField - \Set{\vec 0}$, $\Set{a\vec u, b \vec v}$
+    también lo es.
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Demostración}:
+        
+        Ok, sabemos que $\Set{ \vec u, \vec v}$ es base de $\VectorSpace$, por lo tanto, ese pequeño conjunto
+        cumple que $\Set{ \vec u, \vec v}$ es linealmente independiente y que genera a $\VectorSpace$.
+
+        Ahora veamos que pasa para algunas $a, b$ arbitrarias (pero que no sean cero) con este conjunto: 
+        $\Set{a \vec u, b \vec v}$, veamos si es linealmente dependiente, es decir existe una combinación lineal
+        no trivial que te da el cero vector.
+        Es decir si existe $k_1, k_2$ con alguno mínimo diferente de cero para los cuales la ecuación 
+        $\vec 0 = k_1 a \vec u + k_2 b \vec v$  tiene solución.
+
+        Ahora, sabemos que $\Set{\vec u, \vec u}$ es linealmente independiente por hipotesis, por lo tanto
+        podemos decir que la ecuación $\vec 0 = q_1 \vec u + q_2 \vec v$ implica que $q_1 = q_2 = 0$.
+
+        Entonces ve que por lo anterior $\vec 0 = (k_1 a) \vec u + (k_2 b) \vec v$ nos obliga a que $k_1a$ y $k_2b$ 
+        sean cero, pero es que $a, b$ no pueden ser cero por hipotesis, por lo tanto tenemos que ve que $k_1, k_2$ son cero.
+
+        Por lo tanto $\Set{a \vec u, b \vec v}$ es linealmente independiente.
+
+        Ahora, veamos que $\Set{\vec u, \vec u}$ sigue generando a $\VectorSet$.
+
+        A ver, por un lado tenemos que $\Set{\vec u, \vec v}$ genera a $\VectorSpace$, es decir
+        $\forall \vec x \in \VectorSpace$ podemos decir que $\vec x = k_1 \vec u + k_2 \vec v$
+
+        Ahora hagamos magia:
+        \begin{align*}
+            \vec x  
+                = k_1 \vec u + k_2 \vec v  
+                    &&\Remember{ por lo de arriba}                                                      \\
+                = \frac{k_1}{a} a \vec u + \frac{k_2}{b} b\vec v
+                    &&\Remember{Podemos dividir porque ni a ni b son cero}                              \\
+                = k_1' a \vec u + k_2' b\vec v
+                    &&\Remember{Mira, lo pude escribir como combinacion lineal de $a\vec u, b \vec v$}   
+        \end{align*}
+
+        Mira, como aun puedo escribir cualquier elemento de $\VectorSpace$ como combinación lineal de los
+        elementos de $\Set{a \vec u, b \vec v}$. Por lo tanto sigue generando a $\VectorSpace$.
+
+        Por lo tanto $\Set{a \vec u, b \vec v}$ es base. 
+    
+    \end{SmallIndentation}
+
+
+
+% ==============================================================
+% =================          PROBLEMA 10       =================
+% ==============================================================
+\clearpage
+\section{10 Problema}
+\label{sec:10}
+
+    Sean $B_1, B_2$ dos bases ajenas de dos subespacios vectoriales $\SubVectorSet_1, \SubVectorSet_2$
+    de $\VectorSpace$, entonces si $B_1 \cup B_2$ es base de $\VectorSpace$ entonces 
+    $\SubVectorSet_1 \oplus \SubVectorSet_2 = \VectorSpace$
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Demostración}:
+        
+        Ok, este teorema parece tener mucho sentido, veamos porque:
+        Por un lado si $B_1 \cup B_2$ es base de $\VectorSpace$ entonces vemos que 
+        $B_1 \cup B_2$ es linealmente independiente. Ahora por ser bases ellas tienen que ser 
+        linealmente independientes, ahora, además nos dicen que son bases ajenas, es decir
+        que no tienen elementos en común.
+
+        Sin perdida de generalidad tenemos que $B_1 = \Set{\vec v_1, \dots, \vec v_n}$ y 
+        $B_2 = \Set{\vec u_1, \dots, \vec u_m}$ y que $dim(\VectorSpace) = n + m$
+
+        Ahora probemos las 3 propiedades para ver que ambos subespacios son una suma directa:
+        \begin{itemize}
+            \item 
+                $\SubVectorSet_1, \SubVectorSet_2$ son subespacios vectoriales de $\VectorSpace$
+
+                Por hipotesis tanto $\SubVectorSet_1$ como $\SubVectorSet_2$ son subespacios de 
+                $\VectorSpace$.
+
+            \item
+                $\SubVectorSet_1 \cap \SubVectorSet_2 = \Set{\vec 0}$
+
+                Ok, para demostar eso, tomemos a $\vec x \in \SubVectorSet_1 \cap \SubVectorSet_2$
+                ahora a fin de cuentas $\vec x \in \VectorSpace$ por lo tanto como sabemos que $B_1 \cup B_2$
+                es base tenemos por un teorema anterior que un conjunto es linealmente independiente si y solo si solo hay
+                una manera de escribir a cada elemento de su generado como combinación lineal, es
+                decir $\vec x = \sum_{i=0}^{n} c_i \vec v_i + \sum_{i=0}^{m} c_i \vec u_i$
+
+                Ahora, como $\vec x \in \SubVectorSet_1$ entonces $\vec x = \sum_{i=1}^n a_i \vec v_i$
+                y como $\vec x \in \SubVectorSet_2$ entonces $\vec x = \sum_{i=1}^m b_i \vec u_i$
+
+                Ahora, si te das cuenta parece que tenemos a 3 maneras distintas de escribir a $\vec x$ como
+                combinación lineal de elementos de su base, pero sabemos que dicha combinación lineal debe ser unica por
+                hipotesis de que $B_1 \cup B_2$ es base, por lo tanto solo nos queda que $c_i = a_i = b_i = 0$
+                por lo tanto $\vec x = \vec 0$.
+
+                Por lo tanto acabamos de demostrar que si tomamos algún elemento de la intersección de dichos subespacios
+                este tiene que ser el $\vec 0$.
+
+            \item
+                Probemos finalmente que $\SubVectorSet_1 + \SubVectorSet_2 = \VectorSet$.
+
+                Ahora hagamos esto por doble contención, por un lado sea
+                $\vec x \in \SubVectorSet_1 + \SubVectorSet_2$ entonces
+                $\vec x = \vec x_1 + \vec x_2$ con $\vec x_1 \in \SubVectorSet_1$ y $\vec x_2 \in \SubVectorSet_2$,
+                como estamos hablando de espacios vectoriales, tienen que ser cerrado bajo la suma, por lo tanto
+                $\vec x \in \VectorSet$.
+
+                Ahora tomemos a un elemento $\vec y \in \VectorSet$, entonces se puede expresar como combinación
+                lineal de la base que es $B_1 \cup B_2$, es decir 
+                $\vec y = \sum_{i=0}^{n} c_i \vec v_i + \sum_{i=0}^{m} c_i \vec u_i$
+
+                Ahora, podemos reacomodar esto y ver que $\vec y_1 = \sum_{i=}^{n} c_i \vec v_i$ y
+                $\vec y_2 = \sum_{i=1}^{m} c_i \vec u_i$.
+                Ahora creo que es obvio que $y_1 \in \SubVectorSet_1$ y $y_2 \in \SubVectorSet_2$
+                por lo tanto hemos podido escribir a un elemento arbitrario de $\VectorSet$ como 
+                suma de dos elementos $\vec y = \vec y_1 + \vec y_2$. Por lo tanto ambos conjuntos son iguales 
+                $\SubVectorSet_1 + \SubVectorSet_2 = \VectorSet$.
+
+                Por lo tanto la suma de dichos espacios, $\SubVectorSet_1, \SubVectorSet_2$ si es $\VectorSet$                                   
+
+        \end{itemize}
+
+
+    \end{SmallIndentation}
+
+
+
+
+% ==============================================================
+% =================          PROBLEMA 11       =================
+% ==============================================================
+\clearpage
+\section{11 Problema}
+
+    Si $\Set{\vec u, \vec v, \vec w}$ son base de $\VectorSpace$ entonces 
+    $\Set{\vec v + \vec u + \vec w, \vec u + \vec w, \vec w}$
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Demostración}:
+    
+        Esta demostración se ve buena, tomemos
+        la ecuación:
+        \begin{align*}
+            \vec 0 
+                &= a_1 (v + \vec u + \vec w) + a_2(\vec u + \vec w) + a_3 \vec w        \\
+                &= (a_1)\vec v + (a_1 + a_2)\vec u  + (a_1 + a_2 + a_3)\vec w 
+        \end{align*}
+
+        Ahora como $\Set{\vec u, \vec v, \vec w}$ es base, es linealmente independiente
+        por lo tanto la unica combinación lineal que nos da el $\vec 0$ es la trivial
+        por lo tanto $\vec 0 = (a_1)\vec v + (a_1 + a_2)\vec u  + (a_1 + a_2 + a_3)\vec w$
+        nos obliga a que $a_1 = a_1 + a_2 = a_1 + a_2 + a_3 = 0$, por lo tanto
+        todos son cero, por lo tanto $\Set{\vec v + \vec u + \vec w, \vec u + \vec w, \vec w}$
+        sigue siendo linealmente independiente y sabemos por hipotesis que si 
+        $\Set{\vec u, \vec v, \vec w}$ son base, entonces la dimensión del espacio vectorial
+        es 3, por lo tanto cualquier conjunto linealmente independiente de 3 elementos
+        es base, en este caso $\Set{\vec v + \vec u + \vec w, \vec u + \vec w, \vec w}$
+
+    \end{SmallIndentation}
+                         
+
+% ==============================================================
+% =================          PROBLEMA 12       =================
+% ==============================================================
+\vspace{1em}
+\section{12 Problema}
+
+    ¿El conjunto $\Set{(1, 1, 1, 1), (1, 1, 1, 0), (1, 1, 0, 0), (1, 0, 0, 0)}$ es una base
+    para $\GenericField^4$ con $\GenericField$ siendo un campo cualquiera?.
+
+    Si lo es, entonces encontremos la representación de $(a_1, a_2, a_3, a_4)$ como combinación
+    lineal del primer conjunto.
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Solución}:
+
+        Veamos si es primero base, para eso veamos que tiene cuatro elementos por lo tanto
+        solo nos falta por ver si es linealmente independiente:
+        \begin{align*}
+            (0, 0, 0, 0)
+                &= k_1(1, 1, 1, 1) + k_2(1, 1, 1, 0) + k_3(1, 1, 0, 0) + k_4(1, 0, 0, 0)    \\
+                &= (k_1+k_2+k_3+k_4, k_1+k_2+k_3, k_1+k_2, k_1)                             \\
+        \end{align*}
+
+        Por lo tanto tenemos que $k_1 = 0$, ahora sabemos tambien que $k_1+k_2 = 0$, por lo tanto $k_2$
+        es $0$, ahora $k_1+k_2+k_3 = 0$, por lo tanto $k_3=0 $y finalmente $k_1+k_2+k_3+k_4 = 0$, por
+        lo tanto $k_4 = 0$
+
+        Por lo tanto es linealmente independiente, pero como también tiene 4 elementos, podemos concluir que 
+        es una base de $\GenericField^4$.
+
+        Ahora podemos ver que:
+        \begin{align*}
+            (a_1, a_2, a_3, a_4)
+                &= 
+                    + c_1 (1, 1, 1, 1)
+                    + c_2 (1, 1, 1, 0)
+                    + c_3 (1, 1, 0, 0)
+                    + c_4 (1, 0, 0, 0)                                  \\
+                &= 
+                    (c_1+c_2+c_3+c_4, c_1+c_2+c_3, c_1+c_2, c_1)        \\
+                &= 
+                    + [a_4]       (1, 1, 1, 1)
+                    + [a_3 - a_4] (1, 1, 1, 0)
+                    + [a_2 - a_3] (1, 1, 0, 0)
+                    + [a_1 - a_2] (1, 0, 0, 0)
+        \end{align*}
+
+    \end{SmallIndentation}
+
+
+
+
+
+\end{document}
+
