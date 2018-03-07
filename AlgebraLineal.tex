@@ -4536,6 +4536,128 @@
 
                         \end{SmallIndentation}
 
+                    \item \textbf{Teorema de la Dimensión}
+
+                        Sea $\VectorSet$ y $\SubVectorSet$ espacios vectoriales sobre el mismo campo, sea 
+                        $\LinTrans: \VectorSet \to \SubVectorSet$
+                        una transformación lineal y las dimensiónes de ambos espacios finitos, entonces
+                        tenemos que:
+                        $dim(\VectorSet) = dim(K[\LinTrans]) + dim(R[\LinTrans])$
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Fijemos la dimensión de $\VectorSet$ a ser $n$, un natural.
+
+                            Ahora, por el mero hecho de que $K[\LinTrans]$ es un subespacio de $\VectorSet$
+                            tenemos que $dim(K[\LinTrans]) \leq dim(\VectorSet)$.
+
+                            Ahora, sea $\Set{\vec v_1, \dots, \vec v_k}$ una base de $K[\LinTrans]$, ahora, como es un conjunto
+                            linealmente independiente de $\VectorSet$ podemos extenderlo hasta que sea base del mismo
+                            $\VectorSet$.
+
+                            Es decir, sea $B = \Set{\vec v_1, \dots, \vec v_k, \vec v_{k+1}, \dots, \vec v_n}$.
+
+                            Ahora veamos que pasa al aplicarle la transformación lineal a ese conjunto, es
+                            decir $\LinTrans$.
+                            Ahora, ya habiamos demostrado el generado de la transformación lineal de una base
+                            es $R[\LinTrans]$.
+                            Ahora, yo te digo, que $S = \Set{ \LinTrans(\vec v_{k+1}), \dots, \LinTrans(\vec v_n)}$
+                            es base de $R[\LinTrans]$.
+
+                            Y te lo voy a demostrar:
+                            \begin{itemize}
+                                \item 
+                                    Por un lado $S$ genera a $R[\LinTrans]$ porque sabemos que $<\LinTrans[B]>$.
+                                    Pero, 
+                                    $\Generate{\LinTrans[B]} = \Generate{\vec 0, \LinTrans(\vec v_{k+1}), \dots, \LinTrans(\vec v_n)}$
+
+                                    Pero espera, todos los primeros $k$ elementos de $B$ por definición son mapeados
+                                    al cero, pero $R[\LinTrans]$ es ya un espacio por lo cual ya tienen al cero, y no 
+                                    aporta nada.
+
+                                \item
+                                    S es linealmente independiente:
+
+                                    % ======== DEMOSTRACION ========
+                                    \begin{SmallIndentation}[1em]
+                                        \textbf{Demostración}:
+                                        \begin{align*}
+                                            \sum_{k+1}^n b_i \LinTrans(\vec v_i) = \vec 0
+                                            \FnLinTrans{\sum_{k+1}^n b_i \vec v_i} = \vec 0
+                                        \end{align*}
+
+                                        Pero $B$ es un base, por lo tanto es linealmente independiente, por
+                                        lo tanto tenemos que $\sum_{k+1}^n b_i \vec v_i = \vec 0$ implica que
+                                        todas las $b_i = 0$.
+
+                                        Además recuerda que $\Set{\vec v_1, \dots, \vec v_k}$ es base del Kernel
+                                        es decir a todos los elementos que $\LinTrans(\vec x) = \vec 0$, por 
+                                        lo tanto (y ya que $B$ es base, es decir tiene que ser linealmente independiente)
+                                        por obliga a que todas las $b_i$ sean ceros, es decir, si que era linealmente
+                                        independiente
+                                    
+                                    \end{SmallIndentation}
+
+
+                                    Ahora, ya vimos que $dim(\VectorSet) = n$, $dim(K[\LinTrans]) = k$
+                                    y $dim(R[\LinTrans]) = n - k$
+                                        
+                            \end{itemize}
+                        
+                        \end{SmallIndentation}
+                    
+
+                    \item 
+                        $\LinTrans$ es lineal entonces $\LinTrans$ es inyectiva si y solo si $K[T] = \Set{\vec 0}$
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+
+                            Por un lado supongamos a $\LinTrans$ como inyectiva.
+
+                            Ahora, sabemos que una transformación lineal manda al cero al cero, entonces
+                            mínimo el Kernel no esta vacío.
+
+                            Ahora tomemos un elemento en el Kernel $x \in K[\LinTrans]$, ahora como
+                            suponemos que $\LinTrans$ es inyectiva $\LinTrans(\vec x) = \vec 0_{\SubVectorSet} = \LinTrans(\vec 0)$
+                            entonces $\vec x = \vec 0$.
+
+                            Ahora  supongamos que $K[T] = \Set{\vec 0}$.
+
+                            Entonces tomemos en enunciado $\LinTrans(\vec x) = \LinTrans(\vec y)$
+                            entonces $\LinTrans(\vec x) - \LinTrans(\vec y) = \vec 0$
+                            entonces $\LinTrans(\vec x - \vec y) = \vec 0$ por lo tanto
+                            $\vec x - \vec y \in K[\LinTrans]$.
+
+                            Pero como $K[T] = \Set{\vec 0}$, entonces $\vec x - \vec y = \vec 0$ entonces $\vec x = \vec y$
+                            por lo tanto $\LinTrans$ es inyectiva.
+
+                        \end{SmallIndentation}
+
+
+                    \item
+                        Dado una transformación lineal $\LinTrans: \VectorSet \to \SubVectorSet$ y 
+                        con los espacios de dimensión finita entonces tenemos que:
+
+                        $\LinTrans$ es inyectiva si y solo si $\LinTrans$ es suprayectiva si y solo si
+                        $dim(\VectorSet) = dim(R[\LinTrans])$
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Ya vimos que $\LinTrans$ es inyectiva si y solo si $K[T] = \Set{\vec 0}$ si y solo si
+                            $dim(K[\LinTrans]) = 0$ si y solo si $dim(R[\LinTrans]) = 0 - dim(\VectorSet)$
+                            si y solo si $dim(\SubVectorSet) = dim(R[\LinTrans])$ si y solo si $\SubVectorSet = R[\LinTrans]$
+                            si y solo si $\LinTrans$ es suprayectiva.
+                        
+                        \end{SmallIndentation}
+                            
+                            
+
                 \end{itemize}
 
 
