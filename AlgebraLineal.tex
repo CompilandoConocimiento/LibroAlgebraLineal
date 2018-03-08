@@ -4258,21 +4258,94 @@
             \subsection{Propiedades}
 
                 \begin{itemize}
-                    \item $\FnLinTrans{\vec 0_{\VectorSet}} = \vec 0_{\SubVectorSet}$
+                    \item 
+                        $\FnLinTrans{\vec 0_{\VectorSet}} = \vec 0_{\SubVectorSet}$
 
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Demostración}:
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Esta esta muy facil:
+                            \begin{align*}
+                                \FnLinTrans{\vec 0_{\VectorSet}}
+                                    &= \FnLinTrans{\vec x - \vec x}                     \\
+                                    &= \FnLinTrans{\vec x} - \FnLinTrans{\vec x}        \\
+                                    &= \vec 0_{\SubVectorSet}
+                            \end{align*}
                         
-                        Esta esta muy facil:
-                        \begin{align*}
-                            \FnLinTrans{\vec 0_{\VectorSet}}
-                                &= \FnLinTrans{\vec x - \vec x}                     \\
-                                &= \FnLinTrans{\vec x} - \FnLinTrans{\vec x}        \\
-                                &= \vec 0_{\SubVectorSet}
-                        \end{align*}
-                    
-                    \end{SmallIndentation}
+                        \end{SmallIndentation}
+
+                    \item
+                        Dados $\VectorSet, \SubVectorSet$ sobre la misma base (y ambos de dimensión finita), entonces y
+                        sea $B = \Set{\vec v_1, \dots, \vec v_n}$ base de $\VectorSet$
+
+                        Tomando a otro conjunto $\Set{\vec w_i, \dots, \vec w_n} \subseteq \SubVectorSet$
+                        existe una ÚNICA transformación lineal $\LinTrans: \VectorSet \to \SubVectorSet$
+                        tal que $\FnLinTrans{\vec v_i} = \vec w_i$
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Vamos a crear esa dichosa $\LinTrans$, antes, sea $\vec x \in \VectorSet$, ahora
+                            como $B$ es una base podemos decir que existe una única manera de escribirlo
+                            como combinación lineal de sus elementos. Digamos $\vec x = \sum_{i=1}^n a_i \vec v_i$
+
+                            Ahora, digamos que $\LinTrans$ es una función dada por $\FnLinTrans{\vec x} = \sum_{i=1}^n a_i \vec w_i$
+                            Ahora, demostremos que es lineal.
+
+                            Eso esta fácil, porque sean $\vec u, \vec v \in \VectorSet$, entonces
+                            $\vec u = \sum_{i=1}^n b_i \vec v_i$ y $\vec v = \sum_{i=1}^n c_i \vec v_i$
+                            y sea $d \in \GenericField$, entonces decimos que:
+                            \begin{align*}
+                                \FnLinTrans{d \vec u + \vec v}
+                                    &= \FnLinTrans{d \Wrap{\sum_{i=1}^n b_i \vec v_i} + \Wrap{\sum_{i=1}^n c_i \vec v_i}}   \\ 
+                                    &= \FnLinTrans{\Wrap{\sum_{i=1}^n db_i \vec v_i} + \Wrap{\sum_{i=1}^n c_i \vec v_i}}    \\ 
+                                    &= \FnLinTrans{\Wrap{\sum_{i=1}^n (db_i + c_i) \vec v_i}}                               \\ 
+                                    &= \FnLinTrans{\Wrap{\sum_{i=1}^n (db_i + c_i) \vec v_i}}                               \\ 
+                                    &= \Wrap{\sum_{i=1}^n (db_i + c_i) \vec W_i}                                            \\ 
+                                    &= d\Wrap{\sum_{i=1}^n b_i \vec W_i} + \Wrap{\sum_{i=1}^n c_i \vec W_i}                 \\ 
+                                    &= d\FnLinTrans{\vec u} + \FnLinTrans{\vec v}    
+                            \end{align*}
+
+                            Ahora, por como definimos a $\LinTrans$ es obvio que $\LinTrans(\vec v_i) = \vec w_i$
+
+                            Ahora, supon que no es única, que tenemos otra transformación qe sea lineal y que cumpla
+                            lo que le pedimos de los conjuntos, llamemosla $R$
+
+                            Entonces:
+                            \begin{align*}
+                                R(\vec x)
+                                    &= R\Wrap{\sum_{i=1}^n a_i \vec v_i}        \\
+                                    &= \sum_{i=1}^n a_i \vec w_i                \\
+                                    &= \sum_{i=1}^n a_i \LinTrans(\vec v_i)     \\
+                                    &= \FnLinTrans{\sum_{i=1}^n a_i \vec v_i}   \\
+                                    &= \FnLinTrans{\vec x}   
+                            \end{align*}
+
+                            Por lo tanto, son la misma -.-
+                        
+                        \end{SmallIndentation}
+                            
+
+                    \item
+                        Sean $\VectorSet, \SubVectorSet$ espacios finitos, y dos transformaciones
+                        lineales $T, U$ entre los dos, ahora, si $B$ es una base de $\VectorSet$
+                        entonces sin perdida de generalidad $B =\Set{\vec v_i, \dots, \vec v_n}$
+
+                        Si $T(\vec x_i) = U(\vec x_i) \forall i \in \Set{1, \dots, n}$, es decir
+                        si manda a los elementos e la base al mismo lugar. Entonces son la misma
+                        transformación
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Es un colorario del teorema de arriba.
+                        
+                        \end{SmallIndentation}
+                            
+
                         
                 \end{itemize}
 
@@ -4372,7 +4445,6 @@
             % ==============================================
             % ========          KERNEL               =======
             % ==============================================
-            \clearpage
             \subsection{Definición del Kernel}
 
                 Sean $\VectorSet$ y $\SubVectorSet$ espacios vectoriales sobre $\GenericField$.
@@ -4661,9 +4733,72 @@
                 \end{itemize}
 
 
+        % ==============================================
+        % ======    ESPACIOS INVARIANTES         =======
+        % ==============================================
+        \clearpage
+        \section{Invariantes}
+            
+            Sean $\VectorSet$ un espacio vectorial y sea $\LinTrans: \VectorSet \to \VectorSet$
+            una transformación lineal.
+
+            Se dice que $\SubVectorSet$ es $\LinTrans$-invariante si y solo si $\SubVectorSet$ es
+            un subespacio vectorial tal que la transformación de todos sus elementos se quedan en $\SubVectorSet$
+            es decir $\forall \vec x \in \SubVectorSet, \MiniSpace \FnLinTrans{\vec x} \subseteq \SubVectorSet$.
 
 
 
+        % ==============================================
+        % ======    REPRESENTACION MATRICIAL     =======
+        % ==============================================
+        \clearpage
+        \section{Representación Matricial}
+
+            % ==============================================
+            % ===========    BASE ORDENADA     =============
+            % ==============================================
+            \subsection{Base Ordenada}
+
+                Sea $\VectorSet$ un espacio vectorial finito, una base ordenada para $\VectorSet$
+                es una base donde sus elementos tienen un orden específico, es decir una secuencia
+                finita de elementos.
+
+            % ==============================================
+            % ===========    VECTOR COORDENADA     =========
+            % ==============================================
+            \subsection{Vector Coordenada}
+
+                Sea $B = \Set{\vec x_1, \dots, \vec x_n}$ una base ordenada de $\VectorSet$, un espacio
+                vectorial finito. Para $\vec v \in \VectorSet$ existen los escalares únicos
+                tales que $\vec x = \sum_{i=1}^n a_i \vec u_i$.
+
+                Así podemos crear el vector columna coordenada:
+                \begin{align*}
+                    \pVector{a_1 \\ a_2 \\ \dots \\a_n}
+                    =
+                    \Brackets{\vec x}_{B}
+                \end{align*}
+
+
+            % ==============================================
+            % =====    REPRESENTACION MATRICIAL    =========
+            % ==============================================
+            \subsection{Representación Matricial}
+
+                Llamaremos a la matriz $A \in M_{m \times n}(\GenericField)$
+
+                Esta matriz representa a la $\LinTrans$ con respecto a la base ordenada
+                $B$ y la escribimos como:
+                \begin{align*}
+                    A = [\LinTrans]_{B \text{Base del Dominio}}^{\gamma \text{Base del Contradominio}}
+                \end{align*}
+
+                Donde la columna j-ésima de $A$ es $\Brackets{\LinTrans{\vec v_j}}_{\gamma}$
+
+
+            
+            
+            
 
 
 
