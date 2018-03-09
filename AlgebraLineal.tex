@@ -4222,7 +4222,17 @@
                         \end{SmallIndentation}
 
                 \end{itemize}
-                        
+          
+
+
+
+
+% //////////////////////////////////////////////////////////////////////////////////////////////////////////
+% /////////////////////////////           TRANSFORMACIONES LINEALES      ///////////////////////////////////
+% //////////////////////////////////////////////////////////////////////////////////////////////////////////
+\part{Transformaciones Lineales}
+\clearpage
+
 
 
     % ===============================================================================
@@ -4235,7 +4245,7 @@
         % ========          DEFINICIONES         =======
         % ==============================================
         \clearpage
-        \section{Definiciones y Características}
+        \section{Definición}
 
 
             Sean $\VectorSet$ y $\SubVectorSet$ espacios vectoriales sobre $\GenericField$.
@@ -4251,168 +4261,204 @@
 
 
 
-            % ==============================================
-            % ========          PROPIEDADES          =======
-            % ==============================================
-            \vspace{1em}
-            \subsection{Propiedades}
 
-                \begin{itemize}
-                    \item 
-                        $\FnLinTrans{\vec 0_{\VectorSet}} = \vec 0_{\SubVectorSet}$
+        % =====================================================
+        % ============       EJEMPLOS               ===========
+        % =====================================================
+        \clearpage
+        \section{Ejemplos}
 
-                        % ======== DEMOSTRACION ========
-                        \begin{SmallIndentation}[1em]
-                            \textbf{Demostración}:
-                            
-                            Esta esta muy facil:
-                            \begin{align*}
-                                \FnLinTrans{\vec 0_{\VectorSet}}
-                                    &= \FnLinTrans{\vec x - \vec x}                     \\
-                                    &= \FnLinTrans{\vec x} - \FnLinTrans{\vec x}        \\
-                                    &= \vec 0_{\SubVectorSet}
-                            \end{align*}
-                        
-                        \end{SmallIndentation}
+            % ========================
+            % =====   EJEMPLO   ======
+            % ========================
+            \subsubsection{Ejemplo 1:}
+                Sea $\mathbb{R}^3 \to \mathbb{R}^2$ tal que:
+                \begin{equation*}
+                    \VecLinTrans{x\\y\\z}  = \pVector{x-z\\y+z}
+                \end{equation*}
 
-                    \item
-                        Dados $\VectorSet, \SubVectorSet$ sobre la misma base (y ambos de dimensión finita), entonces y
-                        sea $B = \Set{\vec v_1, \dots, \vec v_n}$ base de $\VectorSet$
+                Probemos que esta $\LinTrans$ es una Transformación Lineal:
 
-                        Tomando a otro conjunto $\Set{\vec w_i, \dots, \vec w_n} \subseteq \SubVectorSet$
-                        existe una ÚNICA transformación lineal $\LinTrans: \VectorSet \to \SubVectorSet$
-                        tal que $\FnLinTrans{\vec v_i} = \vec w_i$
+                Probemos la primera propiedad como:
+                \begin{align*}
+                    \VecLinTrans{ v_1 + v_2 }                                             
+                        &= \VecLinTrans{ \pVector{x_1\\y_1\\z_1} +\pVector{x_2\\y_2\\z_2} }
+                            &&= \VecLinTrans{ x_1+x_2\\y_1+y_2\\z_1+z_2 }                               \\
+                        &= \pVector{ (x_1+x_2) & - & (z_1+z_2) \\ (y_1+y_2) & + & (z_1+z_2) }                       
+                            &&= \pVector{ x_1+x_2-z_1-z_2 \\ y_1+y_2+z_1+z_2 }                          \\
+                        &= \pVector{ (x_1-z_1)+(x_2-z_2) \\ (y_1+z_1)+(y_2+z_2) }                                   
+                            &&= \pVector{ x_1-z_1\\y_1+z_1 }  + \pVector{ x_2-z_2\\y_2+z_2 }            \\
+                        &= \VecLinTrans{x_1\\y_1\\z_1} +\VecLinTrans{x_2\\y_2\\z_2}                     \\
+                        &= \LinTrans(v_1) + \LinTrans(v_2)
+                \end{align*}
 
-                        % ======== DEMOSTRACION ========
-                        \begin{SmallIndentation}[1em]
-                            \textbf{Demostración}:
-                            
-                            Vamos a crear esa dichosa $\LinTrans$, antes, sea $\vec x \in \VectorSet$, ahora
-                            como $B$ es una base podemos decir que existe una única manera de escribirlo
-                            como combinación lineal de sus elementos. Digamos $\vec x = \sum_{i=1}^n a_i \vec v_i$
+                Probemos la segunda propiedad:
+                \begin{equation*}
+                \begin{split}
+                    \FnLinTrans{\alpha v_1}                                                      
+                        &= \FnLinTrans{\alpha \cdot \pVector{x\\y\\z} }                      
+                         = \VecLinTrans{\alpha x\\\alpha y\\\alpha z}                                   \\
+                        &= \pVector{\alpha x - \alpha z\\ \alpha y + \alpha z}                                      
+                         = \alpha \cdot \pVector{x-z\\y+z}                                                          
+                         = \alpha \cdot \LinTrans \pVector{x\\y\\z}                                     \\
+                        &= \alpha \cdot \LinTrans (v_1)                                                 
+                \end{split}
+                \end{equation*}
 
-                            Ahora, digamos que $\LinTrans$ es una función dada por $\FnLinTrans{\vec x} = \sum_{i=1}^n a_i \vec w_i$
-                            Ahora, demostremos que es lineal.
+                Por lo tanto las 2 propiedades se cumplen así que si que es una transformación lineal.
 
-                            Eso esta fácil, porque sean $\vec u, \vec v \in \VectorSet$, entonces
-                            $\vec u = \sum_{i=1}^n b_i \vec v_i$ y $\vec v = \sum_{i=1}^n c_i \vec v_i$
-                            y sea $d \in \GenericField$, entonces decimos que:
-                            \begin{align*}
-                                \FnLinTrans{d \vec u + \vec v}
-                                    &= \FnLinTrans{d \Wrap{\sum_{i=1}^n b_i \vec v_i} + \Wrap{\sum_{i=1}^n c_i \vec v_i}}   \\ 
-                                    &= \FnLinTrans{\Wrap{\sum_{i=1}^n db_i \vec v_i} + \Wrap{\sum_{i=1}^n c_i \vec v_i}}    \\ 
-                                    &= \FnLinTrans{\Wrap{\sum_{i=1}^n (db_i + c_i) \vec v_i}}                               \\ 
-                                    &= \FnLinTrans{\Wrap{\sum_{i=1}^n (db_i + c_i) \vec v_i}}                               \\ 
-                                    &= \Wrap{\sum_{i=1}^n (db_i + c_i) \vec W_i}                                            \\ 
-                                    &= d\Wrap{\sum_{i=1}^n b_i \vec W_i} + \Wrap{\sum_{i=1}^n c_i \vec W_i}                 \\ 
-                                    &= d\FnLinTrans{\vec u} + \FnLinTrans{\vec v}    
-                            \end{align*}
-
-                            Ahora, por como definimos a $\LinTrans$ es obvio que $\LinTrans(\vec v_i) = \vec w_i$
-
-                            Ahora, supon que no es única, que tenemos otra transformación qe sea lineal y que cumpla
-                            lo que le pedimos de los conjuntos, llamemosla $R$
-
-                            Entonces:
-                            \begin{align*}
-                                R(\vec x)
-                                    &= R\Wrap{\sum_{i=1}^n a_i \vec v_i}        \\
-                                    &= \sum_{i=1}^n a_i \vec w_i                \\
-                                    &= \sum_{i=1}^n a_i \LinTrans(\vec v_i)     \\
-                                    &= \FnLinTrans{\sum_{i=1}^n a_i \vec v_i}   \\
-                                    &= \FnLinTrans{\vec x}   
-                            \end{align*}
-
-                            Por lo tanto, son la misma -.-
-                        
-                        \end{SmallIndentation}
-                            
-
-                    \item
-                        Sean $\VectorSet, \SubVectorSet$ espacios finitos, y dos transformaciones
-                        lineales $T, U$ entre los dos, ahora, si $B$ es una base de $\VectorSet$
-                        entonces sin perdida de generalidad $B =\Set{\vec v_i, \dots, \vec v_n}$
-
-                        Si $T(\vec x_i) = U(\vec x_i) \forall i \in \Set{1, \dots, n}$, es decir
-                        si manda a los elementos e la base al mismo lugar. Entonces son la misma
-                        transformación
-
-                        % ======== DEMOSTRACION ========
-                        \begin{SmallIndentation}[1em]
-                            \textbf{Demostración}:
-                            
-                            Es un colorario del teorema de arriba.
-                        
-                        \end{SmallIndentation}
-                            
-
-                        
-                \end{itemize}
-
-
-
-            % =====================================================
-            % ============       EJEMPLOS               ===========
-            % =====================================================
+            % ========================
+            % =====   EJEMPLO   ======
+            % ========================
             \clearpage
-            \subsection{Ejemplos}
+            \subsubsection{Ejemplo 2:}
 
-                % ========================
-                % =====   EJEMPLO   ======
-                % ========================
-                \subsubsection{Ejemplo 1:}
-                    Sea $\mathbb{R}^3 \to \mathbb{R}^2$ tal que:
-                    \begin{equation*}
-                        \VecLinTrans{x\\y\\z}  = \pVector{x-z\\y+z}
-                    \end{equation*}
+                Ve que falla con el siguiente intento de Transformación Lineal:
 
-                    Probemos que esta $\LinTrans$ es una Transformación Lineal:
+                Sea $\mathbb{R}_2[x] \to \mathbb{R}_3[x]$ tal que:
+                \begin{equation*}
+                    \FnLinTrans{a_0+a_1x+a_2x^2} = \Wrap{3+a_0x+a_1x^2+a_2x^3}
+                \end{equation*}
 
-                    Probemos la primera propiedad como:
-                    \begin{align*}
-                        \VecLinTrans{ v_1 + v_2 }                                             
-                            &= \VecLinTrans{ \pVector{x_1\\y_1\\z_1} +\pVector{x_2\\y_2\\z_2} }
-                                &&= \VecLinTrans{ x_1+x_2\\y_1+y_2\\z_1+z_2 }                               \\
-                            &= \pVector{ (x_1+x_2) & - & (z_1+z_2) \\ (y_1+y_2) & + & (z_1+z_2) }                       
-                                &&= \pVector{ x_1+x_2-z_1-z_2 \\ y_1+y_2+z_1+z_2 }                          \\
-                            &= \pVector{ (x_1-z_1)+(x_2-z_2) \\ (y_1+z_1)+(y_2+z_2) }                                   
-                                &&= \pVector{ x_1-z_1\\y_1+z_1 }  + \pVector{ x_2-z_2\\y_2+z_2 }            \\
-                            &= \VecLinTrans{x_1\\y_1\\z_1} +\VecLinTrans{x_2\\y_2\\z_2}                     \\
-                            &= \LinTrans(v_1) + \LinTrans(v_2)
-                    \end{align*}
-
-                    Probemos la segunda propiedad:
-                    \begin{equation*}
-                    \begin{split}
-                        \FnLinTrans{\alpha v_1}                                                      
-                            &= \FnLinTrans{\alpha \cdot \pVector{x\\y\\z} }                      
-                             = \VecLinTrans{\alpha x\\\alpha y\\\alpha z}                                   \\
-                            &= \pVector{\alpha x - \alpha z\\ \alpha y + \alpha z}                                      
-                             = \alpha \cdot \pVector{x-z\\y+z}                                                          
-                             = \alpha \cdot \LinTrans \pVector{x\\y\\z}                                     \\
-                            &= \alpha \cdot \LinTrans (v_1)                                                 
-                    \end{split}
-                    \end{equation*}
-
-                    Por lo tanto las 2 propiedades se cumplen así que si que es una transformación lineal.
-
-                % ========================
-                % =====   EJEMPLO   ======
-                % ========================
-                \clearpage
-                \subsubsection{Ejemplo 2:}
-
-                    Ve que falla con el siguiente intento de Transformación Lineal:
-
-                    Sea $\mathbb{R}_2[x] \to \mathbb{R}_3[x]$ tal que:
-                    \begin{equation*}
-                        \FnLinTrans{a_0+a_1x+a_2x^2} = \Wrap{3+a_0x+a_1x^2+a_2x^3}
-                    \end{equation*}
-
-                    Esta muere de una manera muy estúpida, pues no lleva el cero vector al nuevo cero vector XD.
+                Esta muere de una manera muy estúpida, pues no lleva el cero vector al nuevo cero vector XD.
 
 
 
+        % ==============================================
+        % ========          PROPIEDADES          =======
+        % ==============================================
+        \clearpage
+        \section{Propiedades}
+
+            \begin{itemize}
+                \item 
+                    $\FnLinTrans{\vec 0_{\VectorSet}} = \vec 0_{\SubVectorSet}$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+                        
+                        Esta esta muy facil:
+                        \begin{align*}
+                            \FnLinTrans{\vec 0_{\VectorSet}}
+                                &= \FnLinTrans{\vec x - \vec x}                     \\
+                                &= \FnLinTrans{\vec x} - \FnLinTrans{\vec x}        \\
+                                &= \vec 0_{\SubVectorSet}
+                        \end{align*}
+                    
+                    \end{SmallIndentation}
+
+                \item
+                    Dados $\VectorSet, \SubVectorSet$ sobre la misma base (y ambos de dimensión finita), entonces y
+                    sea $B = \Set{\vec v_1, \dots, \vec v_n}$ base de $\VectorSet$
+
+                    Tomando a otro conjunto $\Set{\vec w_i, \dots, \vec w_n} \subseteq \SubVectorSet$
+                    existe una ÚNICA transformación lineal $\LinTrans: \VectorSet \to \SubVectorSet$
+                    tal que $\FnLinTrans{\vec v_i} = \vec w_i$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+                        
+                        Vamos a crear esa dichosa $\LinTrans$, antes, sea $\vec x \in \VectorSet$, ahora
+                        como $B$ es una base podemos decir que existe una única manera de escribirlo
+                        como combinación lineal de sus elementos. Digamos $\vec x = \sum_{i=1}^n a_i \vec v_i$
+
+                        Ahora, digamos que $\LinTrans$ es una función dada por $\FnLinTrans{\vec x} = \sum_{i=1}^n a_i \vec w_i$
+                        Ahora, demostremos que es lineal.
+
+                        Eso esta fácil, porque sean $\vec u, \vec v \in \VectorSet$, entonces
+                        $\vec u = \sum_{i=1}^n b_i \vec v_i$ y $\vec v = \sum_{i=1}^n c_i \vec v_i$
+                        y sea $d \in \GenericField$, entonces decimos que:
+                        \begin{align*}
+                            \FnLinTrans{d \vec u + \vec v}
+                                &= \FnLinTrans{d \Wrap{\sum_{i=1}^n b_i \vec v_i} + \Wrap{\sum_{i=1}^n c_i \vec v_i}}   \\ 
+                                &= \FnLinTrans{\Wrap{\sum_{i=1}^n db_i \vec v_i} + \Wrap{\sum_{i=1}^n c_i \vec v_i}}    \\ 
+                                &= \FnLinTrans{\Wrap{\sum_{i=1}^n (db_i + c_i) \vec v_i}}                               \\ 
+                                &= \FnLinTrans{\Wrap{\sum_{i=1}^n (db_i + c_i) \vec v_i}}                               \\ 
+                                &= \Wrap{\sum_{i=1}^n (db_i + c_i) \vec W_i}                                            \\ 
+                                &= d\Wrap{\sum_{i=1}^n b_i \vec W_i} + \Wrap{\sum_{i=1}^n c_i \vec W_i}                 \\ 
+                                &= d\FnLinTrans{\vec u} + \FnLinTrans{\vec v}    
+                        \end{align*}
+
+                        Ahora, por como definimos a $\LinTrans$ es obvio que $\LinTrans(\vec v_i) = \vec w_i$
+
+                        Ahora, supon que no es única, que tenemos otra transformación qe sea lineal y que cumpla
+                        lo que le pedimos de los conjuntos, llamemosla $R$
+
+                        Entonces:
+                        \begin{align*}
+                            R(\vec x)
+                                &= R\Wrap{\sum_{i=1}^n a_i \vec v_i}        \\
+                                &= \sum_{i=1}^n a_i \vec w_i                \\
+                                &= \sum_{i=1}^n a_i \LinTrans(\vec v_i)     \\
+                                &= \FnLinTrans{\sum_{i=1}^n a_i \vec v_i}   \\
+                                &= \FnLinTrans{\vec x}   
+                        \end{align*}
+
+                        Por lo tanto, son la misma -.-
+                    
+                    \end{SmallIndentation}
+                        
+
+                \item
+                    Sean $\VectorSet, \SubVectorSet$ espacios finitos, y dos transformaciones
+                    lineales $T, U$ entre los dos, ahora, si $B$ es una base de $\VectorSet$
+                    entonces sin perdida de generalidad $B =\Set{\vec v_i, \dots, \vec v_n}$
+
+                    Si $T(\vec x_i) = U(\vec x_i) \forall i \in \Set{1, \dots, n}$, es decir
+                    si manda a los elementos e la base al mismo lugar. Entonces son la misma
+                    transformación
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+                        
+                        Es un colorario del teorema de arriba.
+                    
+                    \end{SmallIndentation}
+
+
+                \item
+                    Las suma y el producto por escalares de transformaciones lineales tambien
+                    son transformaciones lineales.
+
+                    Es decir, sean $T, U: \VectorSet \to \SubVectorSet$ transformaciones
+                    lineales y $a \in \GenericField$ entonces $aT + U$ es también una transformación
+                    lineal
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+                        
+                        Esta va a quedar con una sencilla ecuación:
+                        \begin{align*}
+                            (aT + U)(d\vec x + \vec y)
+                                &= (aT)(d\vec x + \vec y) + U(d\vec x + \vec y)
+                                    && \Remember{$(f+g)(x)=f(x)+g(x)$}                      \\
+                                &= a(T)(d\vec x + \vec y) + U(d\vec x + \vec y)
+                                    && \Remember{$(kf)(x)=[k][f(x)]$}                       \\
+                                &= a(T)(d\vec x) + a(T)(\vec y) + U(d\vec x) + U(\vec y)
+                                    && \Remember{Como son lineales}                         \\
+                                &= a(T)(d\vec x) + U(d\vec x) + a(T)(\vec y) + U(\vec y)
+                                    && \Remember{Reacomodamos}                              \\
+                                &= d[a(T)(\vec x) + U(\vec x)] + [a(T)(\vec y) + U(\vec y)]
+                                    && \Remember{Reacomodamos}                              \\
+                                &= d(aT + U)(\vec x) + (aT + U)(\vec y)
+                                    && \Remember{Magia}
+                        \end{align*}
+
+                    \item
+                        El conjunto de todas las posibles transformaciones lineales de $\VectorSet$
+                        a $\SubVectorSet$ es un espacio vectorial en si mismo, con los vectores
+                        siendo funciones    
+                    
+                    \end{SmallIndentation}
+                        
+                        
+
+                    
+            \end{itemize}
 
 
 
@@ -4434,6 +4480,22 @@
                 \item Para $\vec x = \vec x_1 + \vec x_2$ donde $x_1 \in \SubVectorSet$ y 
                     $x_2 \in \SubVectorSet_2$ tenemos que $\FnLinTrans{\vec x} = \vec x_1$
             \end{itemize}
+
+
+        % ==============================================
+        % ======    ESPACIOS INVARIANTES         =======
+        % ==============================================
+        \vspace{1em}
+        \section{Invariantes}
+            
+            Sean $\VectorSet$ un espacio vectorial y sea $\LinTrans: \VectorSet \to \VectorSet$
+            una transformación lineal.
+
+            Se dice que $\SubVectorSet$ es $\LinTrans$-invariante si y solo si $\SubVectorSet$ es
+            un subespacio vectorial tal que la transformación de todos sus elementos se quedan en $\SubVectorSet$
+            es decir $\forall \vec x \in \SubVectorSet, \MiniSpace \FnLinTrans{\vec x} \subseteq \SubVectorSet$.
+
+
 
 
         % ==============================================
@@ -4733,26 +4795,18 @@
                 \end{itemize}
 
 
-        % ==============================================
-        % ======    ESPACIOS INVARIANTES         =======
-        % ==============================================
-        \clearpage
-        \section{Invariantes}
-            
-            Sean $\VectorSet$ un espacio vectorial y sea $\LinTrans: \VectorSet \to \VectorSet$
-            una transformación lineal.
 
-            Se dice que $\SubVectorSet$ es $\LinTrans$-invariante si y solo si $\SubVectorSet$ es
-            un subespacio vectorial tal que la transformación de todos sus elementos se quedan en $\SubVectorSet$
-            es decir $\forall \vec x \in \SubVectorSet, \MiniSpace \FnLinTrans{\vec x} \subseteq \SubVectorSet$.
-
+    % ===============================================================================
+    % ========      TRANSFORMACIONES LINEALES Y MATRICES          ===================
+    % ===============================================================================
+    \chapter{Transformaciones y Matrices}
 
 
         % ==============================================
-        % ======    REPRESENTACION MATRICIAL     =======
+        % ======     COSAS QUE DEBES SABER       =======
         % ==============================================
         \clearpage
-        \section{Representación Matricial}
+        \section{Cosas que debes Saber}
 
             % ==============================================
             % ===========    BASE ORDENADA     =============
@@ -4780,23 +4834,106 @@
                 \end{align*}
 
 
-            % ==============================================
-            % =====    REPRESENTACION MATRICIAL    =========
-            % ==============================================
-            \subsection{Representación Matricial}
+        % ==============================================
+        % =====    REPRESENTACION MATRICIAL    =========
+        % ==============================================
+        \clearpage
+        \section{Representación Matricial}
 
-                Llamaremos a la matriz $A \in M_{m \times n}(\GenericField)$
+            % ==============================================
+            % =======        DEFINICION         ============
+            % ==============================================
+            \subsection{Definición}
 
-                Esta matriz representa a la $\LinTrans$ con respecto a la base ordenada
-                $B$ y la escribimos como:
+                Sea $\LinTrans: \VectorSet \to \SubVectorSet$, una transformación lineal
+                entre dos espacios sobre el mismo campo.
+                Ahora, sean $B = \Set{\vec v_1, \dots, \vec v_n}$ y $\gamma = \Set{\vec u_1, \dots, \vec u_k}$
+                bases de estos dos espacios respectivamente. 
+                Llamaremos a la matriz que pertenece a $M_{m \times n}(\GenericField)$ una
+                representación de esta transformación sobre dichas bases, denotada como: 
+
                 \begin{align*}
-                    A = [\LinTrans]_{B \text{Base del Dominio}}^{\gamma \text{Base del Contradominio}}
+                    A = \bigBrackets{\LinTrans}_{B \text{Base del Dominio}}^{\gamma \text{Base del Contradominio}}
                 \end{align*}
 
-                Donde la columna j-ésima de $A$ es $\Brackets{\LinTrans{\vec v_j}}_{\gamma}$
+                Donde la columna j-ésima de la matriz es $\Brackets{\FnLinTrans{\vec v_j}}_{\gamma}$
+
+                Ahora como información importante recuerda que:
+                \begin{itemize}
+                    \item 
+                        El número de columnas de es el número de vectores en la base, es decir
+                        la $dim(Dom)$
+                    \item 
+                        El número de filas de es el número de vectores en $\gamma$
+                \end{itemize}
 
 
-            
+            % ==============================================
+            % =======        PROPIEDADES        ============
+            % ==============================================
+            \subsection{Propiedades}
+
+                \begin{itemize}
+                    \item 
+                        Creo que es más que obvio que si $T, U$ son transformaciones
+                        lineales, entonces:
+                        $\bigBrackets{T + U}_B^\gamma = \bigBrackets{T}_B^\gamma + \bigBrackets{U}_B^\gamma$
+                        y $\bigBrackets{aT}_B^\gamma = a\bigBrackets{T}_B^\gamma$
+                \end{itemize}
+
+
+            % ==============================================
+            % =======        EJEMPLOS           ============
+            % ==============================================
+            \clearpage
+            \subsection{Ejemplos}
+
+                Sea $\LinTrans: \Reals^2 \to \Reals^2$ dada por $\FnLinTrans{(a_1, a_2)} = (a_1 +3a_2, 0, 2a_1-4a_2)$
+                con $B$ y $\gamma$ las bases canonicas correspondientes, entonces
+                podemos armar la represetanción matricial columna a columna:
+
+                \begin{itemize}
+                    \item Para el primer vector de la base de $B$
+                        \begin{align*}
+                            \LinTrans(e_1) 
+                                &= \LinTrans\pVector{1\\0}          
+                                = \pVector{1\\0\\2}            
+                        \end{align*}
+
+                        Ahora, solo porque $\gamma$ es la base canonica, esto suena medio estupido, pero
+                        lo podemos ver como:
+                        \begin{align*}
+                            \pVector{1\\0\\2} 
+                                = (1)\pVector{1\\0\\0} + (0)\pVector{0\\1\\0} + (2)\pVector{1\\0\\2}
+                        \end{align*}
+
+                        Entonces el primer vector es $\pVector{1\\0\\2}$
+
+                    \item Para el segundo vector de la base de $B$
+                        \begin{align*}
+                            \LinTrans(e_2) 
+                                &= \LinTrans\pVector{0\\1}          
+                                = \pVector{3\\0\\-4}            
+                        \end{align*}
+
+                        Ahora, solo porque $\gamma$ es la base canonica, esto suena medio estupido, pero
+                        lo podemos ver como:
+                        \begin{align*}
+                            \pVector{3\\0\\-4} 
+                                = (3)\pVector{1\\0\\0} + (0)\pVector{0\\1\\0} + (-4)\pVector{1\\0\\2}
+                        \end{align*}
+
+                        Entonces el primer vector es $\pVector{3\\0\\-4}$
+
+                \end{itemize}
+
+                Ahora se ve claramente que la matriz que buscamos es:
+                \begin{align*}
+                    \bigBrackets{\LinTrans}_{B}^{\gamma}
+                        &= \pVector{1 && 3 \\ 0 && 0 \\ 2 && -4}
+                \end{align*}
+
+
             
             
 
