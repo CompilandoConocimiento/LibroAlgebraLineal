@@ -4482,21 +4482,6 @@
             \end{itemize}
 
 
-        % ==============================================
-        % ======    ESPACIOS INVARIANTES         =======
-        % ==============================================
-        \vspace{1em}
-        \section{Invariantes}
-            
-            Sean $\VectorSet$ un espacio vectorial y sea $\LinTrans: \VectorSet \to \VectorSet$
-            una transformación lineal.
-
-            Se dice que $\SubVectorSet$ es $\LinTrans$-invariante si y solo si $\SubVectorSet$ es
-            un subespacio vectorial tal que la transformación de todos sus elementos se quedan en $\SubVectorSet$
-            es decir $\forall \vec x \in \SubVectorSet, \MiniSpace \FnLinTrans{\vec x} \subseteq \SubVectorSet$.
-
-
-
 
         % ==============================================
         % ========        KERNEL Y RANGO    ============
@@ -4794,6 +4779,75 @@
 
                 \end{itemize}
 
+
+
+        % ==============================================
+        % ======    ESPACIOS INVARIANTES         =======
+        % ==============================================
+        \clearpage
+        \section{Invariantes}
+            
+            Sean $\VectorSet$ un espacio vectorial y sea $\LinTrans: \VectorSet \to \VectorSet$
+            una transformación lineal.
+
+            Se dice que $\SubVectorSet$ es $\LinTrans$-invariante si y solo si $\SubVectorSet$ es
+            un subespacio vectorial tal que la transformación de todos sus elementos se quedan en $\SubVectorSet$
+            es decir $\forall \vec x \in \SubVectorSet, \MiniSpace \FnLinTrans{\vec x} \subseteq \SubVectorSet$.
+
+
+
+            % ==============================================
+            % ========        PROPIEDADES       ============
+            % ==============================================
+            \vspace{1em}
+            \subsection{Propiedades}
+
+                \begin{itemize}
+                    \item Sea $\LinTrans: \VectorSet \to \VectorSet$ una transformación lineal, entonces
+                        $\Set{\vec 0}$ es un invariante
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Tomemos $\LinTrans[\Set{\vec 0}]$, como $\LinTrans$ es lineal $\LinTrans(\vec 0) = \vec 0$
+                            entonces $\LinTrans[\Set{\vec 0}] = \Set{\vec 0}$ que curiosamente cumple que
+                            $\LinTrans[\Set{\vec 0}] \subseteq \Set{\vec 0}$ 
+                        
+                        \end{SmallIndentation}
+
+                    \item Sea $\LinTrans: \VectorSet \to \VectorSet$ una transformación lineal, entonces
+                        $R[\LinTrans]$ es un invariante
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Recuerda que $R[\LinTrans]$ es un subespacio, eso ya lo demostre, ahora tomemos 
+                            a $\vec x \in R[\LinTrans]$, ahora como esta transformación lineal va de $\VectorSet$
+                            a $\VectorSet$ entonces $\vec x \in \VectorSet$ entonces como $\LinTrans$
+                            es una función $\LinTrans(\vec x)$ esta definida y más aún 
+                            $\forall \vec x \in R[\LinTrans], \LinTrans(\vec x) \in R[\LinTrans]$
+                        
+                        \end{SmallIndentation}
+
+                    \item Sea $\LinTrans: \VectorSet \to \VectorSet$ una transformación lineal, entonces
+                        $K[\LinTrans]$ es un invariante
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Recuerda que $K[\LinTrans]$ es un subespacio, eso ya lo demostre, ahora tomemos 
+                            a $\vec x \in K[\LinTrans]$, por definición $\LinTrans(x) = \vec 0$
+                            pero pero $K[\LinTrans]$ es un subespacio, por lo tanto si tiene al cero.
+                            
+                            Por lo tanto
+                            $\forall \vec x \in k[\LinTrans], \vec 0 \in K[\LinTrans]$
+                        
+                        \end{SmallIndentation}
+                            
+                \end{itemize}
 
 
     % ===============================================================================
