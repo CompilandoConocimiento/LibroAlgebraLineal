@@ -1086,6 +1086,10 @@
 
                         \end{SmallIndentation}
 
+                    \item
+                        Existen divisores para una matriz de ceros, es decir $M_{m \times n}(\GenericField)$
+                        no es un dominio entero, es decir no aplica la ley de cancelación.
+
                 \end{itemize}
 
 
@@ -4990,7 +4994,114 @@
 
             
             
+        % ==============================================
+        % ==    COMPOSICIÓN DE TRANSFORMACIONES    =====
+        % ==============================================
+        \clearpage
+        \section{Composición de Transformaciones}
 
+            % ==============================================
+            % =======        DEFINICION         ============
+            % ==============================================
+            \subsection{Definición}
+
+                Sean $\VectorSet, \SubVectorSet, \mathbb{Z}$ espacios vectoriales sobre el mismo campo
+                $\GenericField$ y $\LinTrans: \VectorSet \to \SubVectorSet$ y $U: \SubVectorSet \to \mathbb{Z}$
+                lineales.
+
+                Definimos entonces a:
+                \begin{equation*}
+                    U \circ T
+                        = U(T(\vec x))  \forall \vec x \in \VectorSet
+                \end{equation*}
+
+
+            % ==============================================
+            % =======        PROPIEDADES        ============
+            % ==============================================
+            \subsection{Propiedades}
+
+                \begin{itemize}
+                    \item 
+                        $U \circ \LinTrans$ es una transformación lineal.
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Sean $\vec x, \vec y \in \VectorSet$ y $a \in \GenericField$ entonces
+                            \begin{align*}
+                                U \circ \LinTrans(a\vec x + \vec y)
+                                    &= U(\LinTrans(a\vec x + \vec y))                   \\
+                                    &= U(\LinTrans(a\vec x) + \LinTrans(\vec y))        \\
+                                    &= aU(\LinTrans(\vec x)) + U(\LinTrans(\vec y))     \\
+                                    &= a (U \circ T)(\vec x) + (U \circ T)(\vec x)
+                            \end{align*}
+                        
+                        \end{SmallIndentation}
+
+                    \item 
+                        Existe una transformación lineal que sirve como identidad, es decir:
+
+                        $\LinTrans \circ Id_n = Id_n \circ \LinTrans = \LinTrans$
+
+                    \item 
+                        $\LinTrans \circ (U_1 + U_2) = \LinTrans \circ U_1 + \LinTrans \circ U_2$
+
+                    \item 
+                        $(U_1 + U_2) \circ \LinTrans = U_1 \circ \LinTrans + U_2 \circ \LinTrans$
+
+                    \item 
+                        $(\LinTrans \circ U_1) \circ U_2 = \LinTrans \circ (U_1 \circ U_2)$
+
+
+                    \item 
+                        $\forall a \in \GenericField \Space (a U_1) \circ U_2 = U_1 \circ (aU_2) = a(U_1 \circ U_2)$
+
+                    \clearpage
+
+                    \item
+                        Sean $\VectorSet, \SubVectorSet, \mathbb{Z}$ espacios vectoriales sobre el mismo campo
+                        $\GenericField$ y $\LinTrans: \VectorSet \to \SubVectorSet$ y $U: \SubVectorSet \to \mathbb{Z}$
+                        lineales.
+
+                        Y sean $\beta, \gamma, \delta$ bases ordenadas para los 3 espacios correspondientemente, entonces:
+                        \begin{equation*}
+                            \bigBrackets{U \circ T}_\beta^\delta 
+                                = \bigBrackets{U}_\gamma^\delta \bigBrackets{T}_\beta^\gamma
+                        \end{equation*}
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Idea de la Demostración}:
+                            
+                            Sea $\beta = \Set{\vec v_1, \dots, \vec v_n}, \gamma = \Set{\vec u_1, \dots, \vec u_m}
+                            \delta = \Set{\vec z_1, \dots, \vec z_p}$.
+
+                            Tomando $j \in \Set{1, \dots, n}$ tenemos:
+                            \begin{align*}
+                                (U \circ T)(\vec x_j)
+                                    &= U \Wrap{T\Wrap{\vec x_j}}                                        \\ 
+                                    &= U \Wrap{\sum_{k = 1}^m B_{k, j} \vec u_k}                        \\ 
+                                    &= \sum_{k = 1}^m B_{k, j} U(\vec u_k)                              \\ 
+                                    &= \sum_{k = 1}^m B_{k, j} \Wrap{\sum_{i=1}^p A_{i, k} \vec z_i}    \\ 
+                                    &= \sum_{i=1}^p \sum_{k = 1}^m A_{i, k} B_{k, j}  \vec z_i
+                            \end{align*}
+
+                            Entonces los elementos de la columna van a ser:
+                            \begin{align*}
+                                \forall i \in \Set{ 1, \dots, p } C_i = \sum_{k = 1}^m A_{i, k} B_{k, j}
+                            \end{align*}
+
+                            Que es justo la entrada a entrada de $\bigBrackets{U}_\beta^\gamma \bigBrackets{T}_\gamma^\delta$
+
+
+                        
+                        \end{SmallIndentation}
+                            
+
+
+                \end{itemize}
 
 
 
