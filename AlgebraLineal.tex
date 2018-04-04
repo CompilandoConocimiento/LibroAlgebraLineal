@@ -995,10 +995,24 @@
             \end{equation*}
 
 
+            % ==============================================
+            % ====        PRODUCTO DE MATRICES        ======
+            % ==============================================
+            \vspace{1em}
+            \subsection{Exponente de Matrices}
+
+                Sea $A \in M_{n \times n}(\GenericField)$ entonces podemos de una manera recursiva definir a
+                el exponente de una matriz $A$ como:
+                \begin{align*}
+                    A^0       &= Id_n                        \\
+                    A^{n + 1} &= (A^n) A = A (A^n)      
+                \end{align*}
+
+
             % ===========================================
             % ============   PROPIEDADES   ==============
             % ===========================================
-            \vspace{2em}
+            \clearpage
             \subsection{Propiedades}
 
                 \begin{itemize}
@@ -1006,7 +1020,7 @@
                     \item
                         Sea $A \in M_{m \times n}(\GenericField)$ y $B,C \in M_{n \times p}(\GenericField)$
                         entonces tenemos que:
-                        $A(B+C) = AB+AC$
+                        $A(B + C) = AB + AC$
 
                         % ======== DEMOSTRACION ========
                         \begin{SmallIndentation}[1em]
@@ -1030,11 +1044,14 @@
                                     &= [AB + AC]_{i, j}
                             \end{align*}
 
+                            Creo que es más que obvio que eso también funciona por la derecha, es decir
+                            $(D + E)A = DA + EA$
+
                         \end{SmallIndentation}
 
                     \item
                         Sea $A \in M_{m \times n}(\GenericField)$ y $B \in M_{n \times p}(\GenericField)$
-                        entonces tenemos que: $\alpha(AB) = A(\alpha B)$
+                        entonces tenemos que: $\alpha(AB) = A(\alpha B) = (A\alpha A) B$
 
                         % ======== DEMOSTRACION ========
                         \begin{SmallIndentation}[1em]
@@ -1089,6 +1106,18 @@
                     \item
                         Existen divisores para una matriz de ceros, es decir $M_{m \times n}(\GenericField)$
                         no es un dominio entero, es decir no aplica la ley de cancelación.
+
+                    \item
+                        Sea $A \in M_{m \times n}(\GenericField)$ y $B \in M_{n \times p}(\GenericField)$
+                        y sea $[X]_j$ la j-ésima columna de la matriz $X$ entonces tenemos que:
+                        \begin{equation}
+                            [AB]_j = A[B]_j
+                        \end{equation}
+
+                    \item
+                        Sea $A, B, C$ matrices tales que $A(BC)$ esta bien definido, entonces
+                        tenemos que $A(BC) = (AB)C$ también lo esta y todas dan como resultado
+                        la misma matriz
 
                 \end{itemize}
 
@@ -4929,14 +4958,63 @@
             % ==============================================
             % =======        PROPIEDADES        ============
             % ==============================================
+            \clearpage
             \subsection{Propiedades}
 
                 \begin{itemize}
+                    
                     \item 
                         Creo que es más que obvio que si $T, U$ son transformaciones
                         lineales, entonces:
                         $\bigBrackets{T + U}_B^\gamma = \bigBrackets{T}_B^\gamma + \bigBrackets{U}_B^\gamma$
                         y $\bigBrackets{aT}_B^\gamma = a\bigBrackets{T}_B^\gamma$
+
+                    \item
+                        Dados $\VectorSet, \SubVectorSet$ espacios vectoriales sobre el mismo campo
+                        de dimensión finita, con bases ordenadas
+                        $\beta, \gamma$ y $\LinTrans: \VectorSet \to \SubVectorSet$ una transformación lineal
+
+                        Entonces para cada elemento $\vec v \in \VectorSet$
+                        tenemos que:
+                        \begin{align*}
+                            \bigBrackets{\FnLinTrans{\vec v}}_\gamma =
+                                \bigBrackets{\LinTrans}_\beta^\gamma 
+                                \bigBrackets{\vec v}_\beta 
+                        \end{align*}
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Primero necesitamos una función $f: \GenericField \to \VectorSet$
+                            Y $f: \GenericField \to \SubVectorSet$ lineales y $\vec v \in \VectorSet$
+                            dadas por las siguientes reglas de correspondencia:
+                            \begin{itemize}
+                                \item $f(a) = a \vec v$
+                                \item $f(a) = a (\FnLinTrans{\vec v})$
+                            \end{itemize}
+
+                            Nota también que $\LinTrans \circ f = g$
+
+                            Entonces es claro que $\Set{1}$ una base ordenada de $\GenericField$
+                            Ahora veamos que:
+                            \begin{align*}
+                                \bigBrackets{\FnLinTrans{\vec v}}_\gamma 
+                                    &= \bigBrackets{1 \FnLinTrans{\vec v}}_\gamma       \\
+                                    &= \bigBrackets{g(1)}_\gamma                        \\
+                                    &= \bigBrackets{g}_\beta^\gamma                     \\
+                                    &= \bigBrackets{\LinTrans \circ f}_\beta^\gamma     \\
+                                    &= \bigBrackets{\LinTrans}_\beta^\gamma
+                                        \bigBrackets{f}_\beta^\gamma                    \\
+                                    &= \bigBrackets{\LinTrans}_\beta^\gamma
+                                        \bigBrackets{f(1)}_\beta                        \\
+                                    &= \bigBrackets{\LinTrans}_\beta^\gamma
+                                        \bigBrackets{\vec v}_\beta 
+                            \end{align*}
+                        
+                        \end{SmallIndentation}
+                            
+
                 \end{itemize}
 
 
@@ -5012,7 +5090,7 @@
                 Definimos entonces a:
                 \begin{equation*}
                     U \circ T
-                        = U(T(\vec x))  \forall \vec x \in \VectorSet
+                        = U(T(\vec x)) \MegaSpace \forall \vec x \in \VectorSet
                 \end{equation*}
 
 
@@ -5105,17 +5183,211 @@
 
 
 
+        % ==============================================
+        % ============      INVERSAS      ==============
+        % ==============================================
+        \clearpage
+        \section{Inversas}
+
+            % ==============================================
+            % =======        DEFINICION         ============
+            % ==============================================
+            \subsection{Definición}
+
+                Dado $\VectorSet, \SubVectorSet$ y $\LinTrans: \VectorSet \to \SubVectorSet$ un
+                transformación lineal.
+
+                Una función $U: \SubVectorSet \to \VectorSet$ entonces
+                se dice que es la inversa de $\LinTrans$ si y solo si
+                $\LinTrans \circ U = Id_{\SubVectorSet}$ y $U \circ \LinTrans = Id_{\VectorSet}$
+
+                Si $\LinTrans$ tiene inversa entonces $\LinTrans$ es invertible, su inversa
+                es única y se denota por $\LinTrans^{-1}$.
+
+
+            
+            % ==============================================
+            % =======        PROPIEDADES        ============
+            % ==============================================
+            \vspace{1em}
+            \subsection{Propiedades} 
+
+            \begin{itemize}
+
+                \item
+                     Si $\LinTrans: \VectorSet \to \SubVectorSet$ y $U: \SubVectorSet \to \VectorSet$
+                    y sabiendo que $\LinTrans \circ U = Id_{\SubVectorSet}$ y 
+                    $U \circ \LinTrans = Id_{\VectorSet}$
+                    entonces $U$ debe ser lineal
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+                        
+                        Ahora nota que como $\LinTrans$ es lineal, así como $Id_{\SubVectorSet}$ y
+                        $Id_{\VectorSet}$ entonces tenemos que $U$ tiene que ser lineal.
+                    
+                    \end{SmallIndentation}
+                        
+
+                \item 
+                    Si $\LinTrans: \VectorSet \to \SubVectorSet$ y $U: \SubVectorSet \to \VectorSet$
+                    y sabiendo que $\LinTrans \circ U = Id_{\SubVectorSet}$ y 
+                    $U \circ \LinTrans = Id_{\VectorSet}$, entonces:
+                    \begin{align*}
+                        (\LinTrans \circ U)^{-1} = U^{-1} \circ \LinTrans^{-1}
+                    \end{align*}
+
+                    
+
+                \item
+                    Si $\LinTrans: \VectorSet \to \SubVectorSet$ y $U: \SubVectorSet \to \VectorSet$
+                    y sabiendo que $\LinTrans \circ U = Id_{\SubVectorSet}$ y 
+                    $U \circ \LinTrans = Id_{\VectorSet}$, entonces
+                    $\LinTrans$ es invertible si y solo si $dim(R[\LinTrans]) = dim(\VectorSet)$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+                        
+                        Recuerda el teorema de la dimensión entonces digamos sea $n = dim(\VectorSet)$
+
+
+                        Es decir, lo que tenemos que ver es que el Kernel no tiene a nada más que al
+                        cero, esto es sencillo porque como tenemos que llegar a que 
+                        $U \circ \LinTrans = Id_{\VectorSet}$, ahora como la identidad solo manda
+                        el cero al cero, entonces no tengo otro elemento que enviar, por lo tanto
+                        el Kernel solo tiene al cero.
+
+                        Por lo tanto, por el teorema de la dimensión, es biyectiva.
+
+                    \end{SmallIndentation}
+                        
+
+                    
+            \end{itemize}
+
+
+
+        % ==============================================
+        % =============       ENCAJE      ==============
+        % ==============================================
+        \clearpage
+        \section{Encaje}
+
+            % ==============================================
+            % =======        DEFINICION         ============
+            % ==============================================
+            \subsection{Definición}
+
+                Sea $A \in M_{m \times n}(\GenericField)$.
+                Entonces definimos a $L_A: \GenericField^n \to \GenericField^m$:
+                \begin{align*}
+                    L_A(\vec x) = A(\vec x) \Space \forall \vec x \in \GenericField^n 
+                \end{align*}
 
 
 
 
 
+            % ==============================================
+            % =======        PROPIEDADES        ============
+            % ==============================================
+            \vspace{1em}
+            \subsection{Propiedades}
 
+                \begin{itemize}
+                    
+                    \item 
+                        Sea $A \in M_{m \times n}(\GenericField)$ entonces $L_A$
+                        es una transformación lineal
 
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Esta es muy sencilla, tomamos a $\vec x, \vec y \in \GenericField^n$
+                            y $\forall \alpha \in \GenericField$, entonces tenemos que:
+                            \begin{align*}
+                                L_A(\alpha \vec x + \vec y)
+                                    &= A(\alpha \vec x + \vec y)        \\
+                                    &= \alpha A(\vec x) + A(\vec y)     \\
+                                    &= \alpha L_A(\vec x) + L_A(\vec y)
+                            \end{align*}
+                        
+                        \end{SmallIndentation}
+                            
 
+                    \item
+                        Sea $A \in M_{m \times n}(\GenericField)$ con $\beta, \gamma$
+                        bases ordenadas basadas en  entonces 
+                        $\BigBrackets{L_A}_\beta^\gamma = A$
 
+                    \item
+                        $L_A = L_B$ si y solo si $A = B$
 
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Esta es demasiado estúpida:
+                            \begin{align*}
+                                L_A = L_B
+                                \lEqual \BigBrackets{L_A}_\beta^\gamma 
+                                = A =
+                                \lEqual \BigBrackets{L_B}_\beta^\gamma 
+                                = B
+                            \end{align*}
+                        
+                        \end{SmallIndentation}
+                            
 
+                    \item
+                        $L_A+B = L_A + L_B$
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Sea $\vec x \in \GenericField^n$, entonces tenemos que:
+                            \begin{align*}
+                                L_{A + B}(\vec x)
+                                    &= (A + B)(\vec x)              \\
+                                    &= (A)(\vec x) + (B)(\vec x)    \\
+                                    &= L_A(\vec x) + L_B(\vec x) 
+                            \end{align*}
+                        
+                        \end{SmallIndentation}
+                            
+
+                    \item
+                        $L_{\alpha A} = \alpha (L_A)$
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Esta también es sencilla:
+                            \begin{align*}
+                                L_{\alpha A}(\vec x)
+                                    &= \alpha A(\vec x)         \\
+                                    &= \alpha L_A(\vec x)
+                            \end{align*}
+                        
+                        \end{SmallIndentation}
+
+                    \item
+                        Si $F \in M_{n \times p}(\GenericField)$ entonces tenemos
+                        que $L_{AF} = L_A(L_F)$
+
+                    \item
+                        Si $\LinTrans: \GenericField^n \to \GenericField^m$ una transformación
+                        lineal entonces existe una única matriz  $C \in M_{m \times n}(\GenericField)$
+                        y $\LinTrans = L_{\LinTrans}$.
+
+                        De hecho $C = \bigBrackets{\LinTrans}_\beta^\gamma$
+
+                \end{itemize}
 
 
 
