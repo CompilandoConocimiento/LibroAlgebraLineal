@@ -4271,7 +4271,7 @@
     % ===============================================================================
     % ===================      TRANSFORMACIONES LINEALES          ===================
     % ===============================================================================
-    \chapter{Transformaciones Lineales}
+    \chapter{Introducción a Transformaciones Lineales}
 
 
         % ==============================================
@@ -4382,12 +4382,14 @@
                     \end{SmallIndentation}
 
                 \item
-                    Dados $\VectorSet, \SubVectorSet$ sobre la misma base (y ambos de dimensión finita), entonces y
+                    Dados $\VectorSet, \SubVectorSet$ sobre el mismo campo (y ambos de dimensión finita), entonces y
                     sea $B = \Set{\vec v_1, \dots, \vec v_n}$ base de $\VectorSet$
 
-                    Tomando a otro conjunto $\Set{\vec w_i, \dots, \vec w_n} \subseteq \SubVectorSet$
+                    Tomando a otro conjunto $\gamma = \Set{\vec w_i, \dots, \vec w_n} \subseteq \SubVectorSet$
                     existe una ÚNICA transformación lineal $\LinTrans: \VectorSet \to \SubVectorSet$
                     tal que $\FnLinTrans{\vec v_i} = \vec w_i$
+
+                    Es decir existe una unica transformación lineal tal que $\LinTrans[B] = \gamma$
 
                     % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
@@ -4886,7 +4888,7 @@
     % ===============================================================================
     % ========      TRANSFORMACIONES LINEALES Y MATRICES          ===================
     % ===============================================================================
-    \chapter{Transformaciones y Matrices}
+    \chapter{Transformaciones y las Matrices}
 
 
         % ==============================================
@@ -5068,8 +5070,6 @@
                     \bigBrackets{\LinTrans}_{B}^{\gamma}
                         &= \pVector{1 && 3 \\ 0 && 0 \\ 2 && -4}
                 \end{align*}
-
-
             
             
         % ==============================================
@@ -5180,92 +5180,6 @@
 
 
                 \end{itemize}
-
-
-
-        % ==============================================
-        % ============      INVERSAS      ==============
-        % ==============================================
-        \clearpage
-        \section{Inversas}
-
-            % ==============================================
-            % =======        DEFINICION         ============
-            % ==============================================
-            \subsection{Definición}
-
-                Dado $\VectorSet, \SubVectorSet$ y $\LinTrans: \VectorSet \to \SubVectorSet$ un
-                transformación lineal.
-
-                Una función $U: \SubVectorSet \to \VectorSet$ entonces
-                se dice que es la inversa de $\LinTrans$ si y solo si
-                $\LinTrans \circ U = Id_{\SubVectorSet}$ y $U \circ \LinTrans = Id_{\VectorSet}$
-
-                Si $\LinTrans$ tiene inversa entonces $\LinTrans$ es invertible, su inversa
-                es única y se denota por $\LinTrans^{-1}$.
-
-
-            
-            % ==============================================
-            % =======        PROPIEDADES        ============
-            % ==============================================
-            \vspace{1em}
-            \subsection{Propiedades} 
-
-            \begin{itemize}
-
-                \item
-                     Si $\LinTrans: \VectorSet \to \SubVectorSet$ y $U: \SubVectorSet \to \VectorSet$
-                    y sabiendo que $\LinTrans \circ U = Id_{\SubVectorSet}$ y 
-                    $U \circ \LinTrans = Id_{\VectorSet}$
-                    entonces $U$ debe ser lineal
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Demostración}:
-                        
-                        Ahora nota que como $\LinTrans$ es lineal, así como $Id_{\SubVectorSet}$ y
-                        $Id_{\VectorSet}$ entonces tenemos que $U$ tiene que ser lineal.
-                    
-                    \end{SmallIndentation}
-                        
-
-                \item 
-                    Si $\LinTrans: \VectorSet \to \SubVectorSet$ y $U: \SubVectorSet \to \VectorSet$
-                    y sabiendo que $\LinTrans \circ U = Id_{\SubVectorSet}$ y 
-                    $U \circ \LinTrans = Id_{\VectorSet}$, entonces:
-                    \begin{align*}
-                        (\LinTrans \circ U)^{-1} = U^{-1} \circ \LinTrans^{-1}
-                    \end{align*}
-
-                    
-
-                \item
-                    Si $\LinTrans: \VectorSet \to \SubVectorSet$ y $U: \SubVectorSet \to \VectorSet$
-                    y sabiendo que $\LinTrans \circ U = Id_{\SubVectorSet}$ y 
-                    $U \circ \LinTrans = Id_{\VectorSet}$, entonces
-                    $\LinTrans$ es invertible si y solo si $dim(R[\LinTrans]) = dim(\VectorSet)$
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Demostración}:
-                        
-                        Recuerda el teorema de la dimensión entonces digamos sea $n = dim(\VectorSet)$
-
-
-                        Es decir, lo que tenemos que ver es que el Kernel no tiene a nada más que al
-                        cero, esto es sencillo porque como tenemos que llegar a que 
-                        $U \circ \LinTrans = Id_{\VectorSet}$, ahora como la identidad solo manda
-                        el cero al cero, entonces no tengo otro elemento que enviar, por lo tanto
-                        el Kernel solo tiene al cero.
-
-                        Por lo tanto, por el teorema de la dimensión, es biyectiva.
-
-                    \end{SmallIndentation}
-                        
-
-                    
-            \end{itemize}
 
 
 
@@ -5392,6 +5306,156 @@
 
 
 
+        % ==============================================
+        % ============      INVERSAS      ==============
+        % ==============================================
+        \clearpage
+        \section{Inversa}
 
+            % ==============================================
+            % =======        DEFINICION         ============
+            % ==============================================
+            \subsection{Definición}
+
+                Dado $\VectorSet, \SubVectorSet$ y $\LinTrans: \VectorSet \to \SubVectorSet$ un
+                transformación lineal.
+
+                Una función $U: \SubVectorSet \to \VectorSet$ entonces
+                se dice que es la inversa de $\LinTrans$ si y solo si
+                $\LinTrans \circ U = Id_{\SubVectorSet}$ y $U \circ \LinTrans = Id_{\VectorSet}$
+
+                Si $\LinTrans$ tiene inversa entonces $\LinTrans$ es invertible, su inversa
+                es única y se denota por $\LinTrans^{-1}$.
+
+
+            
+            % ==============================================
+            % =======        PROPIEDADES        ============
+            % ==============================================
+            \vspace{1em}
+            \subsection{Propiedades} 
+
+                \begin{itemize}
+
+                    \item
+                        Si $\LinTrans: \VectorSet \to \SubVectorSet$ entonces $T^{-1}$ debe ser lineal
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+
+                            Sabiendo que $\LinTrans \circ U = Id_{\SubVectorSet}$ y 
+                            $U \circ \LinTrans = Id_{\VectorSet}$
+                            
+                            Nota que como $\LinTrans$ es lineal, así como $Id_{\SubVectorSet}$ y
+                            $Id_{\VectorSet}$ entonces tenemos que $U$ tiene que ser lineal.
+                        
+                        \end{SmallIndentation}
+                            
+
+                    \item 
+                        $(\LinTrans \circ U)^{-1} = U^{-1} \circ \LinTrans^{-1}$
+
+                    \item
+                        $\LinTrans$ es invertible si y solo si $\bigBrackets{\LinTrans}_\beta^\gamma$ es invertible
+
+                    \item
+                        $L_A$ es invertible si y solo si $L_{A^{-1}}$ 
+                            y además $(L_{A})^{-1} = L_{A^{-1}}$
+
+                    \item
+                        Si $\LinTrans: \VectorSet \to \SubVectorSet$ y $U: \SubVectorSet \to \VectorSet$
+                        y sabiendo que $\LinTrans \circ U = Id_{\SubVectorSet}$ y 
+                        $U \circ \LinTrans = Id_{\VectorSet}$, entonces
+                        $\LinTrans$ es invertible si y solo si $dim(R[\LinTrans]) = dim(\VectorSet)$
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Recuerda el teorema de la dimensión entonces digamos sea $n = dim(\VectorSet)$
+
+
+                            Es decir, lo que tenemos que ver es que el Kernel no tiene a nada más que al
+                            cero, esto es sencillo porque como tenemos que llegar a que 
+                            $U \circ \LinTrans = Id_{\VectorSet}$, ahora como la identidad solo manda
+                            el cero al cero, entonces no tengo otro elemento que enviar, por lo tanto
+                            el Kernel solo tiene al cero.
+
+                            Por lo tanto, por el teorema de la dimensión, es biyectiva.
+
+                        \end{SmallIndentation}
+                            
+
+                        
+                \end{itemize}
+
+
+
+        % ==============================================
+        % ===========     ISOMORFISMOS    ==============
+        % ==============================================
+        \clearpage
+        \section{Isomorfismos}
+
+            % ==============================================
+            % =======        DEFINICION         ============
+            % ==============================================
+            \subsection{Definición}
+
+                Dado $\VectorSet, \SubVectorSet$ 
+
+                Decimos que $\VectorSet$ es un isomorfismo de $\SubVectorSet$ si y solo si
+                existe una transformada lineal invertible entre ellos
+
+                Solemos decir entonces que $\VectorSet \cong_{\GenericField} \SubVectorSet$
+
+                A dicha transformación le llamamos isoformismo
+
+
+            % ==============================================
+            % =======        PROPIEDADES        ============
+            % ==============================================
+            \vspace{1em}
+            \subsection{Propiedades} 
+
+                \begin{itemize}
+
+                    \item
+                        Hablando de espacios finitos decimos que
+                        $\VectorSet \cong_{\GenericField} \SubVectorSet$ si y solo si 
+                        $dim(\VectorSet) = dim(\SubVectorSet)$
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Idea Demostración}:
+
+                            Por un lado es sencillo, si suponemos que $\VectorSet cong_{\GenericField} \SubVectorSet$
+                            entonces se que existe una función invertible entre los dos espacios, dicha
+                            función si es invertible entonces es biyectiva, entonces tenemos que
+                            es una función inyectiva y una función suprayectiva, entonces
+                            $dim(\VectorSet) = dim(\SubVectorSet)$
+
+                            Por el otro lado es casi lo mismo
+                        
+                        \end{SmallIndentation}
+
+                    \item
+                        Dado $\VectorSpace$, sucede que $\VectorSet \cong \GenericField^n$ si y solo si
+                        $dim(\VectorSpace) = n$ 
+
+                    \item
+                        Dados $\VectorSet, \SubVectorSet$ finitos donde $dim(\VectorSet) = n$
+                        $dim(\SubVectorSet) = m$ con bases ordenadas $\beta, \gamma$ entonces tomando
+                        a $\phi : \mathscr{L}(\VectorSet, \SubVectorSet) \to M_{m \times n}(\GenericField)$
+                        dada por $\phi(T) = \BigBrackets{T}_\beta^\gamma$ es un isoformismo
+
+                    \item
+                        Dados $\VectorSet, \SubVectorSet$ finitos donde $dim(\VectorSet) = n$
+                        $dim(\SubVectorSet) = m$. Entonces la dimensión del espacio de las transformaciones
+                        lineales entre $\VectorSet$ a $\SubVectorSet$ es $mn$
+                            
+                \end{itemize}
+            
 
 \end{document}
