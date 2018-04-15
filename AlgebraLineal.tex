@@ -151,6 +151,7 @@
     \DeclareMathOperator \VectorSpace  {\VectorSet_{\GenericField}} %Use: \VectorSpace por Notation
     \DeclareMathOperator \LinealTransformation {\mathcal{T}}        %Use: \LinealTransformation for a cool T
     \DeclareMathOperator \LinTrans {\mathcal{T}}                    %Use: \LinTrans for a cool T
+    \DeclareMathOperator \Laplace {\mathcal{L}}                     %Use: \LinTrans for a cool T
 
 
     % =====  CONTAINERS   ===============
@@ -1547,1070 +1548,6 @@
 
 
                     \end{itemize}
-
-
-
-
-
-
-% //////////////////////////////////////////////////////////////////////////////////////////////////////////
-% ////////////     GAUSS JORDAN, AMIGOS   Y SISTEMAS ECUACIONES LINEALES     ///////////////////////////////
-% //////////////////////////////////////////////////////////////////////////////////////////////////////////
-\part{Ecuaciones Lineales, Gauss-Jordan y sus Amigos}
-\clearpage
-
-
-
-    % ===============================================================================
-    % ===================    SISTEMAS DE ECUACIONES LINEALES        =================
-    % ===============================================================================
-    \chapter{Sistemas de Ecuaciones Lineales}
-        \clearpage
-
-
-        % =====================================================
-        % ==============      GENERALIDADES     ===============
-        % =====================================================
-        \section{Generalidades}
-
-            Podemos usar las matrices y álgebra lineal para encontrar las soluciones
-            de un sistema de ecuaciones lineales dentro de cualquier campo (eso quiere
-            decir que podemos ocuparla incluso para resolver sistemas en el campo de
-            los complejos o el campo enteros módulo n).
-
-            % ==================================
-            % ===   ECUACIONES LINEALES   ======
-            % ==================================
-            \subsection{Definición: Ecuaciones Lineales}
-
-                Este es muy obvio pero mejor lo digo, TODAS las ecuaciones debe ser lineales,
-                es decir estar escritas de la forma:
-                \begin{equation*}
-                    a_1x_1 + a_2x_2 + a_3x_3 + \dots + a_nx_n = b
-                \end{equation*}
-
-                Por lo tanto podemos definir un sistema de $m \times n$ (es decir $m$ ecuaciones
-                con $n$ incognitas, repito $m$ ecuaciones, donde cada una de las ecuaciones tendrá
-                $n$ variables.) ecuaciones lineales como:
-
-                \begin{align*}
-                    m \text{ ecuaciones}
-                    \begin{cases}
-                        a_{1,1}x_1 + a_{1,2}x_2 + a_{1,3}x_3 + \dots + a_{1,n}x_n &= b_1  \\
-                        a_{2,1}x_1 + a_{2,2}x_2 + a_{2,3}x_3 + \dots + a_{2,n}x_n &= b_2  \\
-                        \cdots                                                            \\
-                        a_{m,1}x_1 + a_{m,2}x_2 + a_{m,3}x_3 + \dots + a_{m,n}x_n &= b_m  
-                    \end{cases}      
-                \end{align*}
-
-                \begin{align*}
-                    a_{1,1}x_1 + a_{1,2}x_2 + a_{1,3}x_3 + \dots + a_{1,n}x_n = b_1    \\
-                    a_{2,1}x_1 + a_{2,2}x_2 + a_{2,3}x_3 + \dots + a_{2,n}x_n = b_2    \\
-                    \cdots                                                             \\
-                    \underbrace{a_{m,1}x_1 + a_{m,2}x_2 + a_{m,3}x_3 + \dots + a_{m,n}x_n = b_m}_\text{$n$ incognitas}
-                \end{align*}
-
-                Donde tenemos que:
-                \begin{itemize}
-                    \item $a_{i, j}$ es una constante, especificamente es la constante
-                        relacionada con la $j$ variable y la $i$ ecuación.
-
-                    \item $x_{i}$ es la $i$-esíma variable
-                \end{itemize}
-
-
-            % ==================================
-            % ===   MATRIZ AMPLIADA       ======
-            % ==================================
-            \clearpage
-            \subsection{Matriz Ampliada}
-                La forma en la que Álgebra Lineal nos ayuda a resolver nuestro sistema de ecuaciones
-                es mediante una matriz ampliada, que no es más que convertir nuestro sistema
-                de ecuaciones de esta manera:
-
-                Desde algo así:
-                \begin{align*}
-                    a_{1,1}x_1 + a_{1,2}x_2 + a_{1,3}x_3 + \dots + a_{1,n}x_n &= b_1    \\
-                    a_{2,1}x_1 + a_{2,2}x_2 + a_{2,3}x_3 + \dots + a_{2,n}x_n &= b_2    \\
-                    \cdots                                                              \\
-                    a_{m,1}x_1 + a_{m,2}x_2 + a_{m,3}x_3 + \dots + a_{m,n}x_n &= b_m
-                \end{align*}
-
-                Hasta algo así:
-                \begin{equation*}
-                    \begin{bmatrix}[ccccc|c]
-                        a_{1,1} & a_{1,2} & a_{1,3} & \dots  & a_{1,n} & b_1     \\
-                        a_{2,1} & a_{2,2} & a_{2,3} & \dots  & a_{2,n} & b_2     \\
-                        \cdots  & \cdots  & \cdots  & \cdots & \cdots  & \cdots  \\
-                        a_{m,1} & a_{m,2} & a_{m,3} & \dots  & a_{m,n} & b_m     \\
-                    \end{bmatrix}
-                \end{equation*}
-
-
-                % ==================================
-                % ===         EJEMPLOS        ======
-                % ==================================
-                \subsubsection{Ejemplo}
-                \begin{SmallIndentation}[1em]
-                    
-                    Supongamos que tenengamos este sistema:
-                    \begin{align*}
-                        (2)x_1  +  (3)x_2 + (-1)x_3 &= 0    \\
-                        (-1)x_1 +  (2)x_2 + (-3)x_3 &= -3   \\
-                        (3)x_1  +  (5)x_2 + (7)x_3  &= 5    
-                    \end{align*}
-
-                    Entonces la Matriz Ampliada es:
-                    \begin{equation*}
-                        \begin{bmatrix}[rrr|r]
-                            2  & 3 & -1 & 0  \\
-                            -1 & 2 & -3 & -3 \\
-                            3  & 5 & 7  & 5  \\
-                        \end{bmatrix}
-                    \end{equation*}
-
-                \end{SmallIndentation}
-
-
-            % ==================================
-            % ==  COMO MULTIPLICAR MATRICES  ===
-            % ==================================
-            \clearpage
-            \subsection{Sistema Ecuaciones como Multiplicación de Matrices}
-
-                Puedes escribir tu sistema de ecuaciones lineales como dos matrices:
-                \begin{itemize}
-                    \item $A \in M_{m \times n}$ Es la Matriz de los coeficientes de las incognitas.
-
-                    \item $b \in M_{m \times 1}$ Es la Matriz Columna (o vector $\vec{b}$) con las variables 
-                        independientes de cada ecuación.
-                \end{itemize}
-
-                Entonces podemos decir que $A \vec x = \vec b$ donde $\vec x \in M_{m \times 1}$ es un vector columna
-                que contiene todas las soluciones que buscamos a nuestro sistema de ecuaciones.
-
-
-
-
-        % =====================================================
-        % ========       SISTEMAS NO CONSISTENTES      ========
-        % =====================================================
-        \clearpage
-        \section{Sistemas Inconsistentes}
-
-            Estos son los feos.
-            Ocurren cuando llegamos una contradicción, como este estilo:
-            \begin{align*}
-                a_{1,1}x_1 + a_{1,2}x_2 + a_{1,3}x_3 + \dots + a_{1,n}x_n &= b_1 \\
-                a_{2,1}x_1 + a_{2,2}x_2 + a_{2,3}x_3 + \dots + a_{2,n}x_n &= b_2 \\
-               \cdots                                                            \\
-                0x_1       + 0x_2       + 0x_3       + \dots + 0x_n       &= b_p \\
-               \cdots                                                            \\
-                a_{m,1}x_1 + a_{m,2}x_2 + a_{m,3}x_3 + \dots + a_{m,n}x_n &= b_m \\
-            \end{align*}
-
-            Esto nos indica que no tienen solución.
-
-            \begin{figure}[h]
-                \centering
-                \includegraphics[width=0.60\textwidth]{SistemasNoConsistentes}
-            \end{figure}
-
-
-
-
-                
-        % =====================================================
-        % ========       SISTEMAS CONSISTENTES     ============
-        % =====================================================
-        \clearpage
-        \section{Sistemas Consistentes}
-
-            Podemos tener primeramente sistemas consistentes, es decir que tienen \textbf{mínimo}
-            una solución.
-
-            Es decir que las $n$ rectas (o lo que sea que sea el análogo en n-dimensiones)
-            se interesectan MÍNIMO en un punto.
-
-            Además algo muy interesante es que todo sistema homogéneo, osea que sus coeficientes
-            independientes valgan cero es consistente. Donde la solución mas obvia es que
-            todas las variables $x_i$ valgan CERO.
-
-            \begin{figure}[h]
-                \centering
-                \includegraphics[width=0.60\textwidth]{SistemasConsistentes}
-            \end{figure}
-
-            
-            % =====================================================
-            % =======    VARIABLES PRINCIPALES Y LIBRES    ========
-            % =====================================================
-            \clearpage
-            \subsection{Variables Principales y Libres}
-
-                Si una matriz aumentada de un sistema de ecuaciones
-                se lleva a su forma escalonada reducida por filas
-                entonces decimos que:
-
-                \begin{itemize}
-                    \item \textbf{Variables Principales:}
-                        Son aquellas variables que estan relacionadas
-                        con un pivote
-                    \item \textbf{Variables Libres:}
-                        Son aquellas variables que estan relacionadas
-                        con filas llenas de ceros.
-                \end{itemize}
-
-
-                % ======== EJEMPLO ========
-                \begin{SmallIndentation}[3em]
-                    \textbf{Ejemplo}:
-                    Considera esta matriz escalonada reducida por filas:
-                    \begin{align*}
-                        \begin{bmatrix}[c c c c c c]
-                            1&0&0&0&0&0                                     \\
-                            0&1&0&\frac{1}{4}&\frac{-3}{4}&\frac{-3}{4}     \\
-                            0&0&1&\frac{3}{4}&\frac{-1}{4}&\frac{1}{4}      \\
-                            0&0&0&0&0&0
-                        \end{bmatrix}
-                    \end{align*}
-
-                    Entonces podemos ver que llegamos a estas ecuaciones:
-                    \begin{align*}
-                        x_1 &= 0                                                \\
-                        x_2 + \frac{1}{4}x_4 - \frac{3}{4}x_5 &= -\frac{3}{4}   \\
-                        x_3 + \frac{3}{4}x_4 - \frac{1}{4}x_5 &= \frac{1}{4}
-                    \end{align*}
-
-                    Por lo tanto vamos a llegar a que:
-                    \begin{align*}
-                        x_1 &= 0                                            \\
-                        x_2 &= -\frac{1}{4}r + \frac{3}{4}s - \frac{3}{4}   \\
-                        x_3 &= -\frac{3}{4}r + \frac{1}{4}s + \frac{1}{4}   \\
-                        x_4 &= r                                            \\
-                        x_5 &= s
-                    \end{align*}  
-
-                    Es decir llegamos a que el sistema tiene una solución
-                    muy bonita para cada $r, s$, \textbf{por eso las llamamos
-                    variables libres}
-                
-                \end{SmallIndentation}
-                    
-
-
-            % ==================================================
-            % ===   SISTEMAS CONSISTENTES  INDEPENDIENTES  =====
-            % ==================================================
-            \clearpage
-            \subsection{Sistemas Consistentes Independientes}
-
-                Que es lo esperado y a lo que yo llamaría normal.
-                Por lo tanto si tocan en un punto entonces solo habrá una única solución.
-
-                Esto pasa si es que no hay variables libres en el sistema.
-
-
-            % ==================================================
-            % ===   SISTEMAS CONSISTENTES DEPENDIENTES     =====
-            % ==================================================
-            \vspace{2em}
-            \subsection{Sistemas Consistentes Dependientes}
-
-                Este caso es muy especial, pues nos dice que el sistema esta
-                dado por ecuaciones que son múltiplos de la otra o otra forma
-                de verlo es que esta dado por vectores linealmente dependientes.
-
-                Podemos despejar las variables principales en términos de las variables
-                libres para obtener las soluciones, así que, debido a la presencia
-                de variables libres el sistema tiene infinitas soluciones.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    % ===============================================================================
-    % ===================    GAUSS-JORDAN Y LOS AMIGOS         ======================
-    % ===============================================================================
-    \clearpage
-    \chapter{Gauss-Jordan y sus Amigos}
-
-
-
-        % ==============================================
-        % =====     OPERACIONES ELEMENTALES       ======
-        % ==============================================
-        \clearpage
-        \section{Operaciones Elementales}
-
-
-            % =================================================
-            % =====   SWAP: INTERCAMBIAR FILAS / COL   ========
-            % =================================================
-            \subsection{Swap: Intercambiar Filas ó Columnas}
-
-                La primera operación elemental es la de hacer Swap, es decir intercambiar una
-                fila o columna en la matriz.
-                \begin{align*}
-                    &\overset{F_i \lEqual F_j}{\lLongTo}     \\
-                    &\overset{C_i \lEqual C_j}{\lLongTo}
-                \end{align*}
-
-                \begin{multicols}{2}
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Ejemplo de Cambio de Fila}:
-                            \begin{equation*}
-                                \bVector{(1)&(2)&(3)\\(4)&(5)&(6)\\7&8&9}
-                                    \overset{F_1 \lEqual F_2}{\lLongTo}
-                                \bVector{(4)&(5)&(6)\\(1)&(2)&(3)\\7&8&9}
-                            \end{equation*}
-
-                        \vfill
-                        
-                        \textbf{Ejemplo de Cambio de Columna}:
-                            \begin{equation*}
-                                \bVector{(1)&2&(3)\\(4)&5&(6)\\(7)&8&(9)}
-                                    \overset{C_1 \lEqual F_3}{\lLongTo}
-                                \bVector{(3)&2&(1)\\(6)&5&(4)\\(9)&8&(7)}
-                            \end{equation*}
-
-                    
-                    \end{SmallIndentation}
-                        
-
-                \end{multicols}
-
-
-                % ==================================
-                % =======  MATRIZ ELEMENTAL    =====
-                % ==================================
-                \vspace{1em}
-                \subsubsection{Matriz Elemental}
-
-                    Podemos si queremos expresar esta operación como una \Quote{Matriz Elemental}
-                    que la verdad es que no es muy útil pero la verdad es que es una forma de verlo
-                    muy bonito.
-
-                    Vamos a llamarla $SwapFilas_{a, b}$ a la matriz que es la matriz identidad pero
-                    con la fila $a$ y $b$ intercambiada y $SwapColumnas_{a, b}$ a la matriz que es
-                    la matriz identidad pero con la columna $a$ y $b$ intercambiada.
-
-                    Por lo tanto para lograr el efecto de intercambiar las filas y columna haremos esto:
-                    \begin{itemize}
-                        \item Matriz con Cambio de Fila = $SwapFilas_{a, b} * A$
-                        \item Matriz con Cambio de Columna = $A * SwapColumna_{a, b}$
-                    \end{itemize}
-
-                    Ahora, recuerda que cambiar una columna se parece mucho a intercambiar una fila y hacer
-                    una transpuesta. Solo recuerda que $B^T A^T = (AB)^T$.
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Ejemplo de Cambio de Fila}:
-                            \begin{equation*}
-                                \bVector{(1)&(2)&(3)\\(4)&(5)&(6)\\7&8&9}
-                                    \overset{F_1 \lEqual F_2}{\lLongTo}
-                                \bVector{(4)&(5)&(6)\\(1)&(2)&(3)\\7&8&9}
-                                    \MegaSpace
-                                    =
-                                    \MegaSpace
-                                \bVector{(0)&(1)&(0)\\(1)&(0)&(0)\\0&0&1}
-                                    *
-                                \bVector{1&2&3\\4&5&6\\7&8&9}
-                                    =
-                                \bVector{4&5&6\\1&2&3\\7&8&9}
-                            \end{equation*}
-
-                        \textbf{Ejemplo de Cambio de Columna}:
-                            \begin{equation*}
-                                \bVector{(1)&2&(3)\\(4)&5&(6)\\(7)&8&(9)}
-                                    \overset{C_1 \lEqual F_3}{\lLongTo}
-                                \bVector{(3)&2&(1)\\(6)&5&(4)\\(9)&8&(7)}
-                                    \MegaSpace
-                                    =
-                                    \MegaSpace
-                                \bVector{1&2&3\\4&5&6\\7&8&9}
-                                    *
-                                \bVector{(0)&0&(1)\\(0)&1&(0)\\(1)&0&(0)}
-                                    =
-                                \bVector{3&2&1\\6&5&4\\9&8&7}
-                            \end{equation*}
-                        
-                    \end{SmallIndentation}
-
-
-
-            % ==================================================
-            % == PIVOT: FILAS / COL MAS MULTIPLO DE OTRA  ======
-            % ==================================================
-            \subsection{Pivot: Filas ó Columnas más múltiplo de otras}
-
-                La segunda operación elemental es la de hacer Pivot, es decir a una columna sumarle
-                un multiplo de otra.
-                \begin{align*}
-                    &\overset{F_i \lEqual F_i + nF_j}{\lLongTo}     \\
-                    &\overset{C_i \lEqual C_i + nC_j}{\lLongTo}
-                \end{align*}
-
-                \begin{multicols}{2}
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Ejemplo con Fila}:
-                            \begin{equation*}
-                                \bVector{(1)&(2)&(3)\\(4)&(5)&(6)\\7&8&9}
-                                    \overset{F_1 \lEqual F_1 + 2F_2}{\lLongTo}
-                                \bVector{(9)&(12)&(15)\\(4)&(5)&(6)\\7&8&9}
-                            \end{equation*}
-
-                        \vfill
-                        
-                        \textbf{Ejemplo con Columna}:
-                            \begin{equation*}
-                                \bVector{(1)&2&(3)\\(4)&5&(6)\\(7)&8&(9)}
-                                    \overset{C_1 \lEqual C_1 + 1F_3}{\lLongTo}
-                                \bVector{(4)&2&(3)\\(10)&5&(6)\\(16)&8&(9)}
-                            \end{equation*}
-
-                    
-                    \end{SmallIndentation}
-                        
-
-                \end{multicols}
-
-
-                % ==================================
-                % =======  MATRIZ ELEMENTAL    =====
-                % ==================================
-                \vspace{1em}
-                \subsubsection{Matriz Elemental}
-
-                    Podemos si queremos expresar esta operación como una \Quote{Matriz Elemental},
-                    pero esta vez, será más raro que lo normal.
-
-                    En general $Pivot_{a, b}(k)$ es aquella matriz que nos permitirá cambiar una matriz
-                    haciendo que la fila o columna $a$ sea igual a si misma más $k$ veces la fila o columna
-                    $b$.
-
-                    Vamos a llamarla $PivotFilas_{a, b}(k)$ a la matriz que es la matriz identidad
-                    pero en el elemento $[PivotFilas]_{a, b}$ será igual a $k$, mientras que
-                    $PivotColumnas_{a, b}(k)$ es la matriz identidad pero el elemento $[PivotColumnas]_{b, a}$
-                    es igual a $k$.
-
-                    Por lo tanto para lograr el efecto deseado haremos esto:
-                    \begin{itemize}
-                        \item Matriz con Pivot de Fila    = $PivotFilas_{a, b}(k) * A$
-                        \item Matriz con Pivot en Columna = $A * PivotColumnas_{a, b}(k)$
-                    \end{itemize}
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Ejemplo de Cambio de Fila}:
-                            \begin{equation*}
-                                \bVector{(1)&(2)&(3)\\(4)&(5)&(6)\\7&8&9}
-                                    \overset{F_1 \lEqual F_1 + 2F_2}{\lLongTo}
-                                \bVector{(9)&(12)&(15)\\(4)&(5)&(6)\\7&8&9}
-                                    \MegaSpace
-                                    =
-                                    \MegaSpace
-                                \bVector{1&(2)&0\\0&1&0\\0&0&1}
-                                    *
-                                \bVector{1&2&3\\4&5&6\\7&8&9}
-                                    =
-                                \bVector{(9)&(12)&(15)\\(4)&(5)&(6)\\7&8&9}
-                            \end{equation*}
-
-                        \textbf{Ejemplo de Cambio de Columna}:
-                            \begin{equation*}
-                                \bVector{(1)&2&(3)\\(4)&5&(6)\\(7)&8&(9)}
-                                    \overset{C_1 \lEqual C_1 + 1F_3}{\lLongTo}
-                                \bVector{(4)&2&(3)\\(10)&5&(6)\\(16)&8&(9)}
-                                    \MegaSpace
-                                    =
-                                    \MegaSpace
-                                \bVector{1&2&3\\4&5&6\\7&8&9}
-                                    *
-                                \bVector{1&0&0\\0&1&0\\(1)&0&1}
-                                    =
-                                \bVector{(4)&2&(3)\\(10)&5&(6)\\(16)&8&(9)}
-                            \end{equation*}
-                        
-                    \end{SmallIndentation}
-
-
-
-            % ==================================================
-            % =======    SCALE: ESCALAR FILAS / COL     ========
-            % ==================================================
-            \subsection{Scale: Escalar Filas ó Columnas}
-
-                La tercera operación elemental es ... Ok, ok, espera, lo que pasa es que siendo
-                estricto, Scale es un caso particular de Pivot donde la fila o columna de origen
-                y de la destino es la misma, es decir a efectos practicos es lo mismo que escalar
-                una fila o columna k veces.
-                \begin{align*}
-                    &\overset{F_i \lEqual nF_i}{\lLongTo}     \\
-                    &\overset{C_i \lEqual nC_i}{\lLongTo}
-                \end{align*}
-
-                \begin{multicols}{2}
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Ejemplo con Fila}:
-                            \begin{equation*}
-                                \bVector{(1)&(2)&(3)\\4&5&6\\7&8&9}
-                                    \overset{F_1 \lEqual 3F_1}{\lLongTo}
-                                \bVector{(3)&(6)&(9)\\4&5&6\\7&8&9}
-                            \end{equation*}
-
-                        \vfill
-                        
-                        \textbf{Ejemplo con Columna}:
-                            \begin{equation*}
-                                \bVector{1&2&(3)\\4&5&(6)\\7&8&(9)}
-                                    \overset{C_3 \lEqual 2C_3}{\lLongTo}
-                                \bVector{1&2&(6)\\4&5&(12)\\7&8&(18)}
-                            \end{equation*}
-                    
-                    \end{SmallIndentation}
-
-                \end{multicols}
-
-
-                % ==================================
-                % =======  MATRIZ ELEMENTAL    =====
-                % ==================================
-                \vspace{1em}
-                \subsubsection{Matriz Elemental}
-
-                    Podemos si queremos expresar esta operación como una \Quote{Matriz Elemental},
-                    pero esta vez, será más raro que lo normal.
-
-                    Vamos a llamarla $ScaleFilas_{i}(k)$ a la matriz que es la matriz identidad
-                    pero en el elemento $[ScaleFilas]_{i, i}$ será igual a $k$, mientras que
-                    $ScaleColumns_{j}(k)$ es la matriz identidad pero el elemento $[ScaleColumns]_{j, j}$
-                    es igual a $k$.
-
-                    Por lo tanto para lograr el efecto deseado haremos esto:
-                    \begin{itemize}
-                        \item Matriz con Scale de Fila    = $ScaleFilas_{i}(k) * A$
-                        \item Matriz con Scale en Columna = $A * ScaleColumns_{j}(k)$
-                    \end{itemize}
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Ejemplo de Cambio de Fila}:
-                            \begin{equation*}
-                                \bVector{(1)&(2)&(3)\\4&5&6\\7&8&9}
-                                    \overset{F_1 \lEqual 3F_1}{\lLongTo}
-                                \bVector{(3)&(6)&(9)\\4&5&6\\7&8&9}
-                                    \MegaSpace
-                                    =
-                                    \MegaSpace
-                                \bVector{(3)&0&0\\0&1&0\\0&0&1}
-                                    *
-                                \bVector{1&2&3\\4&5&6\\7&8&9}
-                                    =
-                                \bVector{(3)&(6)&(9)\\4&5&6\\7&8&9}
-                            \end{equation*}
-
-                        \textbf{Ejemplo de Cambio de Columna}:
-                            \begin{equation*}
-                                \bVector{1&2&(3)\\4&5&(6)\\7&8&(9)}
-                                    \overset{C_3 \lEqual 2C_3}{\lLongTo}
-                                \bVector{1&2&(6)\\4&5&(12)\\7&8&(18)}
-                                    \MegaSpace
-                                    =
-                                    \MegaSpace
-                                \bVector{1&2&3\\4&5&6\\7&8&9}
-                                    *
-                                \bVector{1&0&0\\0&1&0\\0&0&(2)}
-                                    =
-                                \bVector{1&2&(6)\\4&5&(12)\\7&8&(18)}
-                            \end{equation*}
-                        
-                    \end{SmallIndentation}
-
-
-
-
-
-        % ==============================================
-        % =====     ELIMINACION GAUSSIANA       ========
-        % ==============================================
-        \clearpage
-        \section{Eliminación Gaussiana}
-
-
-            % ==============================================
-            % =====   MATRIZ ESCALONADA POR FILAS     ======
-            % ==============================================
-            \subsection{Matriz Escalonada por Filas}
-
-                Nuestro objetivo es usando las operaciones elementales encontrar una
-                forma de pasar nuestra matriz ampliada a esta forma:
-                \begin{align*}
-                    \textcolor{Indigo700MD}{
-                        \begin{bmatrix}[lll|r]
-                            1 & * & * & * \\
-                            0 & 1 & * & * \\
-                            0 & 0 & 1 & * 
-                        \end{bmatrix}
-                    }
-                \end{align*}
-
-                Ok, esto no es una definición muy matemática, estas no tienen porque
-                ser matrices cuadradas, pero tienen que cumplir con las siguientes
-                características:
-                \begin{itemize}
-                    \item 
-                        Para toda fila, \textbf{si} existe un elemento distinto de cero en la fila
-                        \textbf{(al que llamaremos pivote)}, entonces para todos los
-                        elementos anteriores  de la fila deben ser cero y este elemento
-                        \textbf{(pivote) debe ser uno, la unidad}.
-                    \item
-                        Los pivotes deben aparecer de forma escalonada (excepto si es que la
-                        fila es nula).
-                    \item
-                        Si una fila no tiene pivotes entonces toda esa fila debe ser nula.
-                    \item
-                        Si una fila no tiene pivotes (osea que sea nula) entonces todas
-                        las filas de abajo no pueden tener pivotes.
-                \end{itemize}
-
-                % =========================
-                % ======== EJEMPLO ========
-                % =========================
-                \vspace{1em}
-                \begin{SmallIndentation}[1em]
-                
-                    \begin{ColorText}{Red700MD}
-                        \textbf{Ejemplo de Cosas que NO son}:
-                        \begin{align*}
-                            \bVector{2&5\\6&0}
-                            \MegaSpace
-                            \bVector{1&4&3\\0&1&7\\0&0&8}
-                            \MegaSpace
-                            \bVector{1&3&2&1\\1&-1&0&0\\0&0&1&0}
-                        \end{align*}
-                                
-                    \end{ColorText}
-
-                    \begin{ColorText}{Green700MD}
-                        \textbf{Ejemplo de Cosas que SI son}:
-                        \begin{align*}
-                            \bVector{1&3&4\\0&1&7\\0&0&1}
-                            \MegaSpace
-                            \bVector{0&1&4\\0&0&1\\0&0&0}
-                            \MegaSpace
-                            \bVector{0&1&4&3\\0&0&0&1\\0&0&0&0}
-                        \end{align*}
-                                
-                    \end{ColorText}
-
-
-                \end{SmallIndentation}
-
-
-
-            % ==============================================
-            % ===========       ALGORITMO     ==============
-            % ==============================================
-            \clearpage
-            \subsection{Algoritmo}
-
-                \begin{enumerate}
-                    \item 
-                        Inicias en el primer elemento, es decir $[Matriz]_{1, 1}$
-                    \item 
-                        Convierte ese elemento a uno (usando la operación escalar)
-                    \item
-                        Usas ese uno que acabas de crear (usando la operación pivot)
-                        para hacer a toda a parte de abajo de la columna sea cero
-                    \item
-                        Te mueves a la siguiente columna y bajas un elemento el columna
-                        y repites desde el paso uno.
-                \end{enumerate}
-
-
-
-
-        % ==============================================
-        % =====     ELIMINACION GAUSSIANA       ========
-        % ==============================================
-        \clearpage
-        \section{Gauss-Jordan}
-
-
-            % ==============================================
-            % =====   MATRIZ ESCALONADA POR FILAS     ======
-            % ==============================================
-            \subsection{Matriz Escalonada Reducida por Filas}
-
-                Nuestro objetivo es usando las operaciones elementales encontrar una
-                forma de pasar nuestra matriz ampliada a esta forma:
-                \begin{align*}
-                    \textcolor{Indigo700MD}{
-                        \begin{bmatrix}[lll|r]
-                            1 & 0 & 0 & * \\
-                            0 & 1 & 0 & * \\
-                            0 & 0 & 1 & * 
-                        \end{bmatrix}
-                    }
-                \end{align*}
-
-                Ok, esto no es una definición muy matemática, estas no tienen porque
-                ser matrices cuadradas, pero tienen que cumplir con las siguientes
-                características:
-                \begin{itemize}
-                    \item 
-                        Para toda fila, \textbf{si} existe un elemento distinto de cero en la fila
-                        \textbf{(al que llamaremos pivote)}, entonces para todos los
-                        elementos anteriores  de la fila deben ser cero y este elemento
-                        \textbf{(pivote) debe ser uno, la unidad}.
-                    \item
-                        Los pivotes deben aparecer de forma escalonada (excepto si es que la
-                        fila es nula).
-                    \item
-                        Si una fila no tiene pivotes entonces toda esa fila debe ser nula
-                    \item
-                        Si una fila no tiene pivotes (osea que sea nula) entonces todas
-                        las filas de abajo no pueden tener pivotes.
-
-
-                \end{itemize}
-
-                % =========================
-                % ======== EJEMPLO ========
-                % =========================
-                \vspace{1em}
-                \begin{SmallIndentation}[1em]
-
-                    \begin{ColorText}{Green700MD}
-                        \textbf{Ejemplo de Cosas que SI son}:
-                        \begin{align*}
-                            \bVector{1&0&0\\0&1&0\\0&0&1}
-                            \MegaSpace
-                            \bVector{1&0&0&0\\0&0&1&0\\0&0&0&1}
-                            \MegaSpace
-                            \bVector{1&7&0&1&0\\0&0&1&4&0\\0&0&0&0&1\\0&0&0&0&0}
-                        \end{align*}
-                                
-                    \end{ColorText}
-
-
-                \end{SmallIndentation}
-
-
-
-            % ==============================================
-            % ===========       EJEMPLOS      ==============
-            % ==============================================
-            \clearpage
-            \subsection{Ejemplos}
-    
-            \begin{SmallIndentation}[1em]
-                
-                % ======== EJEMPLO ========
-                \textbf{Ejemplo 1}:
-                    
-                    Nota este sistema de ecuaciones:
-                    \begin{MultiLineEquation*}{3}
-                        2x_1 &-  x_2 &+ 4x_3 &= -3       \\
-                         x_1 &+ 2x_2 &- 3x_3 &= 1        \\
-                        5x_1 &+ 3x_2 &+  x_3 &= -2  
-                    \end{MultiLineEquation*}
-
-                    Ahora, ve esto:
-                    \begin{align*}
-                        \begin{bmatrix}[r r r | r]
-                            2 & -1 &  4 & -3       \\
-                            1 &  2 & -3 &  1       \\
-                            5 &  3 &  1 & -2  
-                        \end{bmatrix}
-                    \end{align*}
-
-                    Ahora, apliquemos Gauss-Jordan:
-                    \begin{align*}
-                        &
-                        \begin{bmatrix}[r r r | r]
-                            2 & -1 &  4 & -3       \\
-                            1 &  2 & -3 &  1       \\
-                            5 &  3 &  1 & -2  
-                        \end{bmatrix}
-                        &&
-                        \overset{F_1 \lEqual F_2}{\lLongTo}
-                        &&
-                        \begin{bmatrix}[r r r | r]
-                            1 &  2 & -3 &  1       \\
-                            2 & -1 &  4 & -3       \\
-                            5 &  3 &  1 & -2  
-                        \end{bmatrix}
-                        &&
-                        \overset{F_2 = F_2 -2F_1}{\lLongTo}
-                        &&
-                        \begin{bmatrix}[r r r | r]
-                            1 &  2 & -3 &  1       \\
-                            0 & -5 & 10 & -5       \\
-                            5 &  3 &  1 & -2  
-                        \end{bmatrix}
-                        \\
-                        &
-                        \begin{bmatrix}[r r r | r]
-                            1 &  2 & -3 &  1       \\
-                            0 & -5 & 10 & -5       \\
-                            5 &  3 &  1 & -2  
-                        \end{bmatrix}
-                        &&
-                        \overset{F_3 = F_3 -5F_1}{\lLongTo}
-                        &&
-                        \begin{bmatrix}[r r r | r]
-                            1 &  2 & -3  &  1       \\
-                            0 & -5 & 10  & -5       \\
-                            0 & -7 & 16  & -7  
-                        \end{bmatrix}
-                        &&
-                        \overset{F_2 = -\frac{1}{5}F_2}{\lLongTo}
-                        &&
-                        \begin{bmatrix}[r r r | r]
-                            1 &  2 & -3  &  1       \\
-                            0 & 1  & -2  & 1        \\
-                            0 & -7 & 16  & -7  
-                        \end{bmatrix}
-                        \\
-                        &
-                        \begin{bmatrix}[r r r | r]
-                            1 &  2 & -3  &  1       \\
-                            0 & 1  & -2  & 1        \\
-                            0 & -7 & 16  & -7  
-                        \end{bmatrix}
-                        &&
-                        \overset{F_1 = F_1 -2F_2}{\lLongTo}
-                        &&
-                        \begin{bmatrix}[r r r | r]
-                            1 & 0  & 1   & -1       \\
-                            0 & 1  & -2  &  1       \\
-                            0 & -7 & 16  & -7  
-                        \end{bmatrix}
-                        &&
-                        \overset{F_1 = F_1 -2F_2}{\lLongTo}
-                        &&
-                        \begin{bmatrix}[r r r | r]
-                            1 & 0  & 1   & -1       \\
-                            0 & 1  & -2  &  1       \\
-                            0 & -7 & 16  & -7  
-                        \end{bmatrix}
-                        \\
-                        &
-                        \begin{bmatrix}[r r r | r]
-                            1 & 0  & 1   & -1       \\
-                            0 & 1  & -2  &  1       \\
-                            0 & -7 & 16  & -7  
-                        \end{bmatrix}
-                        &&
-                        \overset{F_3 = F_3 + 7F_2}{\lLongTo}
-                        &&
-                        \begin{bmatrix}[r r r | r]
-                            1 & 0  & 1   & -1       \\
-                            0 & 1  & -2  &  1       \\
-                            0 & 0  &  2  & 0  
-                        \end{bmatrix}
-                        &&
-                        \overset{F_3 = \frac{1}{2}F_3}{\lLongTo}
-                        &&
-                        \begin{bmatrix}[r r r | r]
-                            1 & 0  &  1  & -1       \\
-                            0 & 1  & -2  &  1       \\
-                            0 & 0  &  1  &  0  
-                        \end{bmatrix}
-                        \\
-                        &
-                        \begin{bmatrix}[r r r | r]
-                            1 & 0  &  1  & -1       \\
-                            0 & 1  & -2  &  1       \\
-                            0 & 0  &  1  &  0  
-                        \end{bmatrix}
-                        &&
-                        \overset{F_1 = F_1 - F_3}{\lLongTo}
-                        &&
-                        \begin{bmatrix}[r r r | r]
-                            1 & 0  &  0  & -1       \\
-                            0 & 1  & -2  &  1       \\
-                            0 & 0  &  1  &  0  
-                        \end{bmatrix}
-                        &&
-                        \overset{F_2 = F_2 + 2F_3}{\lLongTo}
-                        &&
-                        \begin{bmatrix}[r r r | r]
-                            1 & 0  &  0  & -1       \\
-                            0 & 1  &  0  &  1       \\
-                            0 & 0  &  1  &  0  
-                        \end{bmatrix}
-                    \end{align*}
-
-                    Ahora si, creo que ahora es más que obvio que:
-                    \begin{align*}
-                        x_1 &= -1   \\
-                        x_2 &=  1   \\
-                        x_3 &=  0
-                    \end{align*}
-
-            \end{SmallIndentation}
-                
-
-
-                    
-           
-
-        
-                    
-                    
-
-
-
-
-
-
-
-        % ==============================================
-        % ====        INVERSA DE UNA MATRIZ       ======
-        % ==============================================
-        \clearpage
-        \section{Inversa de una Matriz}
-
-            Sea $A \in M_{n \times n}(\GenericField)$ y entonces definimos a $A^{-1}$ 
-            de forma informal como aquella matriz que cumple con que $A^{-1}A = AA^{-1} = I_{n}$
-            nota que no para todas las matrices $M_{n \times n}(\GenericField)$ existe una matriz inversa.
-
-
-           \subsubsection*{El Problema de la Notación $A^{-1}$}
-
-           El problema con esta notación es que existen matrices no invertibles, para las cuales
-           la notación $A^{-1}$ no tiene sentido.
-
-           La notación $A^{-1}$ se puede usar solamente despúes de demostrar que $A$ es invertible.
-
-            % ===============================
-            % =========   PROPIEDADES =======
-            % ===============================
-            \clearpage
-            \subsection{Propiedades}
-
-                \begin{itemize}
-
-                    \item La Matriz Inversa de $A$ ($A^{-1}$) es única.
-
-                        % ======== DEMOSTRACION ========
-                        \begin{SmallIndentation}[1em]
-                            \textbf{Demostración}:
-
-                            Lo que hay que ver que si $A,B,C \in M_n(\GenericField)$ tales que
-                            $AB = BA = I_n$ y $AC = CA = I_n$. Entonces $B=C$.
-
-                            Usando la Ley asociativa de la Multiplicación de Matrices $(A(BC)=(AB)C)$
-                            tenemos que:
-                            $B = B(I_n) = B(AC) = (BA)C = I_nC =  C $
-
-                        \end{SmallIndentation}
-
-                    \item Es necesario aunque no suficiente que todas las columnas y filas de una
-                        matriz $A \in M_{n \times n}$ sea diferentes de cero para que $A$ sea invertible.
-
-                        % ======== DEMOSTRACION ========
-                        \begin{SmallIndentation}[1em]
-                            \textbf{Demostración}:
-
-                            Renglones Nulos:
-
-                                Sea $A \in M_{n \times n}(\GenericField)$.
-                                Supongamos que (por lo menos) un renglón de A es nulo, es decir:
-                                $[A]_{p,*} = 0_{1,n}$ donde $0 < p \leq n$ esto es lo mismo que decir
-                                que $\forall j \in \{1, \dots, n\} [A]_{p,j} = 0$.
-
-                                Ahora supongamos que $A$ es invertible, entonces, en particular, la entrada
-                                $(p,p)$ del producto $AA^{-1}$ debe coincidir con la entrada $(p,p)$ de la
-                                matriz identidad $I_n$.
-                                Podemos calcular esa entrada como
-                                $[AA^{-1}]_{p,p} = \sum_{k=1}^{n} [A]_{p,k} [A^{-1}]_{k,p}$
-                                esto debería ser $[I_n]_{p,p}=1$ pero ya vimos que $[A]_{p,k} = 0$, es decir
-                                $0 = 1$. Contradicción.
-
-
-                            Columnas Nulas:
-                                Sea $A \in M_{n \times n}(\GenericField)$.
-                                Supongamos que (por lo menos) una columna de A es nulo, es decir:
-                                $[A]_{*,p} = 0_{n,1}$ donde $0 < p \leq n$ esto es lo mismo que decir
-                                que $\forall j \in \{1, \dots, n\} [A]_{p,j} = 0$.
-
-                                Ahora supongamos que $A$ es invertible, entonces, en particular, la entrada
-                                $(p,p)$ del producto $A^{-1}A$ debe coincidir con la entrada $(p,p)$ de la
-                                matriz identidad $I_n$.
-
-                                Podemos calcular esa entrada como
-                                $[A^{-1}A]_{p,p} = \sum_{k=1}^{n} [A^{-1}]_{p,k} [A]_{k,p}$
-                                esto debería ser $[I_n]_{p,p}=1$ pero ya vimos que $[A]_{k,p} = 0$, es decir
-                                $0 = 1$. Contradicción.
-                            
-                        \end{SmallIndentation}
-
-                    \item Sea $A,B \in M_{m \times n}(\GenericField)$ y sean invertibles, entonces tenemos
-                        que $(AB)^{-1} = B^{-1}A^{-1}$
-
-                        % ======== DEMOSTRACION ========
-                        \begin{SmallIndentation}[1em]
-                            \textbf{Demostración}:
-
-                            Si $(AB)$ es invertible entonces tenemos que probar que:
-                            \begin{equation}
-                            \begin{split}
-                                (AB)(B^{-1}A^{-1})  &=                      \\
-                                                    &= (((AB)B^{-1})A^{-1})  
-                                                    &= ((A(BB^{-1}))A^{-1}) 
-                                                    &= ((A(I_n))A^{-1})     
-                                                    &= (AA^{-1})            \\
-                                                    &= I_n 
-                            \end{split}
-                            \end{equation}
-                            
-                        \end{SmallIndentation}
-
-                    \clearpage
-
-                    \item Una Matriz Diagonal es invertible si y solo si los elementos de la diagonal
-                        son distintos de cero.
-
-                    \item Una Matriz Diagonal es invertible si y solo si los elementos de la diagonal
-                        son distintos de cero.
-
-                    \item Sea $A \in M_{m \times n}(\GenericField)$ y sea invertible, entonces tenemos
-                        que $(A^{-1})^{-1} = A$
-
-                    \item Sea $A \in M_{m \times n}(\GenericField)$ y sea invertible, entonces tenemos
-                        que $(A^T)^{-1} = (A^{-1})^T$
-
-                \end{itemize}
-            
 
 
 
@@ -4271,7 +3208,7 @@
     % ===============================================================================
     % ===================      TRANSFORMACIONES LINEALES          ===================
     % ===============================================================================
-    \chapter{Introducción a Transformaciones Lineales}
+    \chapter{Características de las Lineales}
 
 
         % ==============================================
@@ -4284,13 +3221,41 @@
             Sean $\VectorSet$ y $\SubVectorSet$ espacios vectoriales sobre $\GenericField$.
 
             Una función $\LinTrans: \VectorSet \to \SubVectorSet$ se le llama una transformación lineal
-            de $\VectorSet$ a $\SubVectorSet$
-            si y solo si $\forall \vec x, \vec y \in \VectorSet$ y $c \in \GenericField$ tenemos que:
+            de $\VectorSet$ a $\SubVectorSet$ si y solo si 
+            $\forall \vec x, \vec y \in \VectorSet$ y $c \in \GenericField$ tenemos que:
             \begin{itemize}
-                \item $\FnLinTrans{\vec x +_{\VectorSet} \vec y} 
-                            = \FnLinTrans{\vec x} +_{\SubVectorSet} \FnLinTrans{\vec y}$
+                \item 
+                    $\FnLinTrans{\vec x +_{{}_{\VectorSet}} \vec y} 
+                        = \FnLinTrans{\vec x} +_{{}_{\SubVectorSet}} \FnLinTrans{\vec y}$
                 \item $\FnLinTrans{c\vec x} = c\FnLinTrans{\vec x}$
             \end{itemize}
+
+            Claro esta que podemos simplificar el proceso en una sola condición, esta será que nuestra
+            transformación lineal $\LinTrans$ conserva las combinaciones lineales, es decir:
+
+            Una función $\LinTrans: \VectorSet \to \SubVectorSet$ se le llama una transformación lineal
+            de $\VectorSet$ a $\SubVectorSet$ si y solo si 
+            \begin{align*}
+                \forall \vec x, \vec y \in \VectorSet 
+                    \Also c \in \GenericField
+                \MegaSpace
+                \FnLinTrans{c \vec x +_{{}_{\VectorSet}} \vec y} 
+                        = c\FnLinTrans{\vec x} +_{{}_{\SubVectorSet}} \FnLinTrans{\vec y}
+            \end{align*}
+
+
+            % ==============================================
+            % ========          DEFINICION            ======
+            % ==============================================
+            \vspace{1em}
+            \subsection{Espacio de las Transformaciones Lineales}
+
+
+                El conjunto de todas las posibles transformaciones lineales de $\VectorSet$
+                a $\SubVectorSet$ es un espacio vectorial en si mismo, con los vectores
+                siendo funciones estas las denotamos como $\Laplace(\VectorSet, \SubVectorSet)$
+
+                Esto lo vamos a demostrar despúes :v
 
 
 
@@ -4374,9 +3339,9 @@
                         Esta esta muy facil:
                         \begin{align*}
                             \FnLinTrans{\vec 0_{\VectorSet}}
-                                &= \FnLinTrans{\vec x - \vec x}                     \\
-                                &= \FnLinTrans{\vec x} - \FnLinTrans{\vec x}        \\
-                                &= \vec 0_{\SubVectorSet}
+                                = \FnLinTrans{\vec x - \vec x}                     
+                                = \FnLinTrans{\vec x} - \FnLinTrans{\vec x}        
+                                = \vec 0_{\SubVectorSet}
                         \end{align*}
                     
                     \end{SmallIndentation}
@@ -4397,9 +3362,17 @@
                         
                         Vamos a crear esa dichosa $\LinTrans$, antes, sea $\vec x \in \VectorSet$, ahora
                         como $B$ es una base podemos decir que existe una única manera de escribirlo
-                        como combinación lineal de sus elementos. Digamos $\vec x = \sum_{i=1}^n a_i \vec v_i$
+                        como combinación lineal de sus elementos. 
 
-                        Ahora, digamos que $\LinTrans$ es una función dada por $\FnLinTrans{\vec x} = \sum_{i=1}^n a_i \vec w_i$
+                        Digamos $\displaystyle \vec x = \sum_{i=1}^n a_i \vec v_i$
+
+                        Ahora, digamos que $\LinTrans$ es una función dada por:
+                        \begin{align*}
+                            \FnLinTrans{\vec x} = \sum_{i=1}^n a_i \vec w_i
+                        \end{align*}
+                        
+                        Ahora, por como definimos a $\LinTrans$ es obvio que $\LinTrans(\vec v_i) = \vec w_i$, por
+                        lo tanto nuestra propuesta de $\LinTrans$ cumple con nuestros prerequisitos.
                         Ahora, demostremos que es lineal.
 
                         Eso esta fácil, porque sean $\vec u, \vec v \in \VectorSet$, entonces
@@ -4410,25 +3383,32 @@
                                 &= \FnLinTrans{d \Wrap{\sum_{i=1}^n b_i \vec v_i} + \Wrap{\sum_{i=1}^n c_i \vec v_i}}   \\ 
                                 &= \FnLinTrans{\Wrap{\sum_{i=1}^n db_i \vec v_i} + \Wrap{\sum_{i=1}^n c_i \vec v_i}}    \\ 
                                 &= \FnLinTrans{\Wrap{\sum_{i=1}^n (db_i + c_i) \vec v_i}}                               \\ 
-                                &= \FnLinTrans{\Wrap{\sum_{i=1}^n (db_i + c_i) \vec v_i}}                               \\ 
-                                &= \Wrap{\sum_{i=1}^n (db_i + c_i) \vec W_i}                                            \\ 
-                                &= d\Wrap{\sum_{i=1}^n b_i \vec W_i} + \Wrap{\sum_{i=1}^n c_i \vec W_i}                 \\ 
+                                &= \sum_{i=1}^n (db_i + c_i) \FnLinTrans{\vec v_i}                                      \\ 
+                                &= \sum_{i=1}^n (db_i + c_i) \vec w_i                                                   \\ 
+                                &= d\Wrap{\sum_{i=1}^n b_i \vec w_i} + \Wrap{\sum_{i=1}^n c_i \vec w_i}                 \\ 
                                 &= d\FnLinTrans{\vec u} + \FnLinTrans{\vec v}    
                         \end{align*}
 
-                        Ahora, por como definimos a $\LinTrans$ es obvio que $\LinTrans(\vec v_i) = \vec w_i$
+                        \clearpage
 
-                        Ahora, supon que no es única, que tenemos otra transformación qe sea lineal y que cumpla
-                        lo que le pedimos de los conjuntos, llamemosla $R$
+                        Ahora, supon que no es única, que tenemos otra transformación que sea lineal y que cumpla
+                        lo que le pedimos al inicio, llamemosla $R$
 
                         Entonces:
                         \begin{align*}
                             R(\vec x)
-                                &= R\Wrap{\sum_{i=1}^n a_i \vec v_i}        \\
-                                &= \sum_{i=1}^n a_i \vec w_i                \\
-                                &= \sum_{i=1}^n a_i \LinTrans(\vec v_i)     \\
-                                &= \FnLinTrans{\sum_{i=1}^n a_i \vec v_i}   \\
+                                &= R\Wrap{\sum_{i=1}^n a_i \vec v_i}        
+                                    && \Remember{Despues de todo podemos ver a $\vec x$ como combinación lineal de la base} \\
+                                &= \sum_{i=1}^n a_i R{\vec v_i}             
+                                    && \Remember{Despues de todo $R$ es lineal}                                             \\
+                                &= \sum_{i=1}^n a_i \vec w_i                
+                                    && \Remember{Quiero que $R$ cumpla con las condiciones}                                 \\
+                                &= \sum_{i=1}^n a_i \LinTrans(\vec v_i)     
+                                    && \Remember{Uhhhh, pero mira que $\LinTrans$ también cumple, ya lo probamos}           \\
+                                &= \FnLinTrans{\sum_{i=1}^n a_i \vec v_i}   
+                                    && \Remember{Y $\LinTrans$ también es lineal :v}                                        \\
                                 &= \FnLinTrans{\vec x}   
+                                    && \Remember{Tomala perro}
                         \end{align*}
 
                         Por lo tanto, son la misma -.-
@@ -4441,8 +3421,8 @@
                     lineales $T, U$ entre los dos, ahora, si $B$ es una base de $\VectorSet$
                     entonces sin perdida de generalidad $B =\Set{\vec v_i, \dots, \vec v_n}$
 
-                    Si $T(\vec x_i) = U(\vec x_i) \forall i \in \Set{1, \dots, n}$, es decir
-                    si manda a los elementos e la base al mismo lugar. Entonces son la misma
+                    Si $T(\vec x_i) = U(\vec x_i) \Space \forall i \in \Set{1, \dots, n}$, es decir
+                    si manda a los elementos de la base a los mismos vectores. Entonces son la misma
                     transformación
 
                     % ======== DEMOSTRACION ========
@@ -4486,7 +3466,7 @@
                     \item
                         El conjunto de todas las posibles transformaciones lineales de $\VectorSet$
                         a $\SubVectorSet$ es un espacio vectorial en si mismo, con los vectores
-                        siendo funciones    
+                        siendo funciones estas las denotamos como $\Laplace(\VectorSet, \SubVectorSet)$
                     
                     \end{SmallIndentation}
                         
@@ -4582,7 +3562,8 @@
 
                 \begin{itemize}
                     
-                    \item $K[\LinealTransformation]$ es un espacio vectorial
+                    \item $K[\LinealTransformation]$ es un subespacio vectorial
+                        de $\VectorSet$
 
                         % ======== DEMOSTRACION ========
                         \begin{SmallIndentation}[1em]
@@ -4604,22 +3585,32 @@
                                 \item 
                                     Conserva las operaciones
 
-                                    Dados $\vec a, \vec b \in K[\LinealTransformation]$ tenemos que:
+                                    Dados $\vec a, \vec b \in K[\LinealTransformation]$ entonces
+                                    tenemos que lo único que nos queda por probar es que $d\vec a + \vec b$
+                                    sigue en el $K[\LinealTransformation]$, es decir que 
+                                    $\FnLinTrans{d\vec a + \vec b} = \vec 0_{\SubVectorSet}$,
+                                    vamos a demostrarlo:
                                     \begin{align*}
                                         \FnLinTrans{d\vec a + \vec b}
                                             &= \FnLinTrans{d\vec a} + \FnLinTrans{\vec b}       \\
                                             &= \FnLinTrans{d\vec a} + \vec 0_{\SubVectorSet}    \\
                                             &= d\FnLinTrans{\vec a} + \vec 0_{\SubVectorSet}    \\
                                             &= d\vec 0_{\SubVectorSet} + \vec 0_{\SubVectorSet} \\
-                                            &= 0_{\SubVectorSet} + \vec 0_{\SubVectorSet}       \\
-                                            &= 0_{\SubVectorSet}
+                                            &= \vec 0_{\SubVectorSet} + \vec 0_{\SubVectorSet}  \\
+                                            &= \vec 0_{\SubVectorSet}
                                     \end{align*}
+
+                                    Por lo tomamos $\vec a, \vec b$ que estan en el Kernel, y tenemos que
+                                    $d\vec a + \vec b$ sigue en el Kernel
 
                             \end{itemize}
 
+                            Por lo tanto si, si es un subespacio.
+
                         \end{SmallIndentation}
 
-                    \item $R[\LinealTransformation]$ es un espacio vectorial
+                    \item $R[\LinealTransformation]$ es un subsuespacio vectorial
+                        de $\SubVectorSet$
 
                         % ======== DEMOSTRACION ========
                         \begin{SmallIndentation}[1em]
@@ -4644,7 +3635,12 @@
 
                                     Dados $\vec a, \vec b \in R[\LinealTransformation]$, es decir
                                     existen vectores tales que $\FnLinTrans{\vec v} = \vec a$ y
-                                    $\FnLinTrans{\vec u} = \vec b$ tenemos que:
+                                    $\FnLinTrans{\vec u} = \vec b$ 
+
+                                    Lo único que nos queda por probar es que $d\vec a + \vec b$
+                                    sigue en el $R[\LinealTransformation]$, es decir que 
+                                    $\exists \vec x \in \VectorSet \Such \FnLinTrans{d\vec a + \vec b} = \vec x$,
+                                    vamos a demostrarlo:
                                     \begin{align*}
                                         \FnLinTrans{d\vec v + \vec u}
                                             &= \FnLinTrans{d\vec v} + \FnLinTrans{\vec u}       \\
@@ -4653,8 +3649,12 @@
                                             &= da + b                                           
                                     \end{align*}
 
+                                    Por lo tanto $\vec x = da + b$, y $da + b$ sigue en el Rango
+
                             \end{itemize}
                         
+                            Por lo tanto si es un subespacio
+
                         \end{SmallIndentation}
 
 
@@ -4790,6 +3790,10 @@
                             por lo tanto $\LinTrans$ es inyectiva.
 
                         \end{SmallIndentation}
+
+                    \item 
+                        $\LinTrans: \VectorSpace \to \SubVectorSet$ es lineal entonces $\LinTrans$ es inyectiva
+                        si y solo si $K[T] = \Set{\vec 0}$ 
 
 
                     \item
@@ -5457,5 +4461,1071 @@
                             
                 \end{itemize}
             
+
+
+
+
+
+% //////////////////////////////////////////////////////////////////////////////////////////////////////////
+% ////////////     GAUSS JORDAN, AMIGOS   Y SISTEMAS ECUACIONES LINEALES     ///////////////////////////////
+% //////////////////////////////////////////////////////////////////////////////////////////////////////////
+\part{Ecuaciones Lineales, Gauss-Jordan y sus Amigos}
+\clearpage
+
+
+
+    % ===============================================================================
+    % ===================    SISTEMAS DE ECUACIONES LINEALES        =================
+    % ===============================================================================
+    \chapter{Sistemas de Ecuaciones Lineales}
+        \clearpage
+
+
+        % =====================================================
+        % ==============      GENERALIDADES     ===============
+        % =====================================================
+        \section{Generalidades}
+
+            Podemos usar las matrices y álgebra lineal para encontrar las soluciones
+            de un sistema de ecuaciones lineales dentro de cualquier campo (eso quiere
+            decir que podemos ocuparla incluso para resolver sistemas en el campo de
+            los complejos o el campo enteros módulo n).
+
+            % ==================================
+            % ===   ECUACIONES LINEALES   ======
+            % ==================================
+            \subsection{Definición: Ecuaciones Lineales}
+
+                Este es muy obvio pero mejor lo digo, TODAS las ecuaciones debe ser lineales,
+                es decir estar escritas de la forma:
+                \begin{equation*}
+                    a_1x_1 + a_2x_2 + a_3x_3 + \dots + a_nx_n = b
+                \end{equation*}
+
+                Por lo tanto podemos definir un sistema de $m \times n$ (es decir $m$ ecuaciones
+                con $n$ incognitas, repito $m$ ecuaciones, donde cada una de las ecuaciones tendrá
+                $n$ variables.) ecuaciones lineales como:
+
+                \begin{align*}
+                    m \text{ ecuaciones}
+                    \begin{cases}
+                        a_{1,1}x_1 + a_{1,2}x_2 + a_{1,3}x_3 + \dots + a_{1,n}x_n &= b_1  \\
+                        a_{2,1}x_1 + a_{2,2}x_2 + a_{2,3}x_3 + \dots + a_{2,n}x_n &= b_2  \\
+                        \cdots                                                            \\
+                        a_{m,1}x_1 + a_{m,2}x_2 + a_{m,3}x_3 + \dots + a_{m,n}x_n &= b_m  
+                    \end{cases}      
+                \end{align*}
+
+                \begin{align*}
+                    a_{1,1}x_1 + a_{1,2}x_2 + a_{1,3}x_3 + \dots + a_{1,n}x_n = b_1    \\
+                    a_{2,1}x_1 + a_{2,2}x_2 + a_{2,3}x_3 + \dots + a_{2,n}x_n = b_2    \\
+                    \cdots                                                             \\
+                    \underbrace{a_{m,1}x_1 + a_{m,2}x_2 + a_{m,3}x_3 + \dots + a_{m,n}x_n = b_m}_\text{$n$ incognitas}
+                \end{align*}
+
+                Donde tenemos que:
+                \begin{itemize}
+                    \item $a_{i, j}$ es una constante, especificamente es la constante
+                        relacionada con la $j$ variable y la $i$ ecuación.
+
+                    \item $x_{i}$ es la $i$-esíma variable
+                \end{itemize}
+
+
+            % ==================================
+            % ===   MATRIZ AMPLIADA       ======
+            % ==================================
+            \clearpage
+            \subsection{Matriz Ampliada}
+                La forma en la que Álgebra Lineal nos ayuda a resolver nuestro sistema de ecuaciones
+                es mediante una matriz ampliada, que no es más que convertir nuestro sistema
+                de ecuaciones de esta manera:
+
+                Desde algo así:
+                \begin{align*}
+                    a_{1,1}x_1 + a_{1,2}x_2 + a_{1,3}x_3 + \dots + a_{1,n}x_n &= b_1    \\
+                    a_{2,1}x_1 + a_{2,2}x_2 + a_{2,3}x_3 + \dots + a_{2,n}x_n &= b_2    \\
+                    \cdots                                                              \\
+                    a_{m,1}x_1 + a_{m,2}x_2 + a_{m,3}x_3 + \dots + a_{m,n}x_n &= b_m
+                \end{align*}
+
+                Hasta algo así:
+                \begin{equation*}
+                    \begin{bmatrix}[ccccc|c]
+                        a_{1,1} & a_{1,2} & a_{1,3} & \dots  & a_{1,n} & b_1     \\
+                        a_{2,1} & a_{2,2} & a_{2,3} & \dots  & a_{2,n} & b_2     \\
+                        \cdots  & \cdots  & \cdots  & \cdots & \cdots  & \cdots  \\
+                        a_{m,1} & a_{m,2} & a_{m,3} & \dots  & a_{m,n} & b_m     \\
+                    \end{bmatrix}
+                \end{equation*}
+
+
+                % ==================================
+                % ===         EJEMPLOS        ======
+                % ==================================
+                \subsubsection{Ejemplo}
+                \begin{SmallIndentation}[1em]
+                    
+                    Supongamos que tenengamos este sistema:
+                    \begin{align*}
+                        (2)x_1  +  (3)x_2 + (-1)x_3 &= 0    \\
+                        (-1)x_1 +  (2)x_2 + (-3)x_3 &= -3   \\
+                        (3)x_1  +  (5)x_2 + (7)x_3  &= 5    
+                    \end{align*}
+
+                    Entonces la Matriz Ampliada es:
+                    \begin{equation*}
+                        \begin{bmatrix}[rrr|r]
+                            2  & 3 & -1 & 0  \\
+                            -1 & 2 & -3 & -3 \\
+                            3  & 5 & 7  & 5  \\
+                        \end{bmatrix}
+                    \end{equation*}
+
+                \end{SmallIndentation}
+
+
+            % ==================================
+            % ==  COMO MULTIPLICAR MATRICES  ===
+            % ==================================
+            \clearpage
+            \subsection{Sistema Ecuaciones como Multiplicación de Matrices}
+
+                Puedes escribir tu sistema de ecuaciones lineales como dos matrices:
+                \begin{itemize}
+                    \item $A \in M_{m \times n}$ Es la Matriz de los coeficientes de las incognitas.
+
+                    \item $b \in M_{m \times 1}$ Es la Matriz Columna (o vector $\vec{b}$) con las variables 
+                        independientes de cada ecuación.
+                \end{itemize}
+
+                Entonces podemos decir que $A \vec x = \vec b$ donde $\vec x \in M_{m \times 1}$ es un vector columna
+                que contiene todas las soluciones que buscamos a nuestro sistema de ecuaciones.
+
+
+
+
+        % =====================================================
+        % ========       SISTEMAS NO CONSISTENTES      ========
+        % =====================================================
+        \clearpage
+        \section{Sistemas Inconsistentes}
+
+            Estos son los feos.
+            Ocurren cuando llegamos una contradicción, como este estilo:
+            \begin{align*}
+                a_{1,1}x_1 + a_{1,2}x_2 + a_{1,3}x_3 + \dots + a_{1,n}x_n &= b_1 \\
+                a_{2,1}x_1 + a_{2,2}x_2 + a_{2,3}x_3 + \dots + a_{2,n}x_n &= b_2 \\
+               \cdots                                                            \\
+                0x_1       + 0x_2       + 0x_3       + \dots + 0x_n       &= b_p \\
+               \cdots                                                            \\
+                a_{m,1}x_1 + a_{m,2}x_2 + a_{m,3}x_3 + \dots + a_{m,n}x_n &= b_m \\
+            \end{align*}
+
+            Esto nos indica que no tienen solución.
+
+            \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.60\textwidth]{SistemasNoConsistentes}
+            \end{figure}
+
+
+
+
+                
+        % =====================================================
+        % ========       SISTEMAS CONSISTENTES     ============
+        % =====================================================
+        \clearpage
+        \section{Sistemas Consistentes}
+
+            Podemos tener primeramente sistemas consistentes, es decir que tienen \textbf{mínimo}
+            una solución.
+
+            Es decir que las $n$ rectas (o lo que sea que sea el análogo en n-dimensiones)
+            se interesectan MÍNIMO en un punto.
+
+            Además algo muy interesante es que todo sistema homogéneo, osea que sus coeficientes
+            independientes valgan cero es consistente. Donde la solución mas obvia es que
+            todas las variables $x_i$ valgan CERO.
+
+            \begin{figure}[h]
+                \centering
+                \includegraphics[width=0.60\textwidth]{SistemasConsistentes}
+            \end{figure}
+
+            
+            % =====================================================
+            % =======    VARIABLES PRINCIPALES Y LIBRES    ========
+            % =====================================================
+            \clearpage
+            \subsection{Variables Principales y Libres}
+
+                Si una matriz aumentada de un sistema de ecuaciones
+                se lleva a su forma escalonada reducida por filas
+                entonces decimos que:
+
+                \begin{itemize}
+                    \item \textbf{Variables Principales:}
+                        Son aquellas variables que estan relacionadas
+                        con un pivote
+                    \item \textbf{Variables Libres:}
+                        Son aquellas variables que estan relacionadas
+                        con filas llenas de ceros.
+                \end{itemize}
+
+
+                % ======== EJEMPLO ========
+                \begin{SmallIndentation}[3em]
+                    \textbf{Ejemplo}:
+                    Considera esta matriz escalonada reducida por filas:
+                    \begin{align*}
+                        \begin{bmatrix}[c c c c c c]
+                            1&0&0&0&0&0                                     \\
+                            0&1&0&\frac{1}{4}&\frac{-3}{4}&\frac{-3}{4}     \\
+                            0&0&1&\frac{3}{4}&\frac{-1}{4}&\frac{1}{4}      \\
+                            0&0&0&0&0&0
+                        \end{bmatrix}
+                    \end{align*}
+
+                    Entonces podemos ver que llegamos a estas ecuaciones:
+                    \begin{align*}
+                        x_1 &= 0                                                \\
+                        x_2 + \frac{1}{4}x_4 - \frac{3}{4}x_5 &= -\frac{3}{4}   \\
+                        x_3 + \frac{3}{4}x_4 - \frac{1}{4}x_5 &= \frac{1}{4}
+                    \end{align*}
+
+                    Por lo tanto vamos a llegar a que:
+                    \begin{align*}
+                        x_1 &= 0                                            \\
+                        x_2 &= -\frac{1}{4}r + \frac{3}{4}s - \frac{3}{4}   \\
+                        x_3 &= -\frac{3}{4}r + \frac{1}{4}s + \frac{1}{4}   \\
+                        x_4 &= r                                            \\
+                        x_5 &= s
+                    \end{align*}  
+
+                    Es decir llegamos a que el sistema tiene una solución
+                    muy bonita para cada $r, s$, \textbf{por eso las llamamos
+                    variables libres}
+                
+                \end{SmallIndentation}
+                    
+
+
+            % ==================================================
+            % ===   SISTEMAS CONSISTENTES  INDEPENDIENTES  =====
+            % ==================================================
+            \clearpage
+            \subsection{Sistemas Consistentes Independientes}
+
+                Que es lo esperado y a lo que yo llamaría normal.
+                Por lo tanto si tocan en un punto entonces solo habrá una única solución.
+
+                Esto pasa si es que no hay variables libres en el sistema.
+
+
+            % ==================================================
+            % ===   SISTEMAS CONSISTENTES DEPENDIENTES     =====
+            % ==================================================
+            \vspace{2em}
+            \subsection{Sistemas Consistentes Dependientes}
+
+                Este caso es muy especial, pues nos dice que el sistema esta
+                dado por ecuaciones que son múltiplos de la otra o otra forma
+                de verlo es que esta dado por vectores linealmente dependientes.
+
+                Podemos despejar las variables principales en términos de las variables
+                libres para obtener las soluciones, así que, debido a la presencia
+                de variables libres el sistema tiene infinitas soluciones.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    % ===============================================================================
+    % ===================    GAUSS-JORDAN Y LOS AMIGOS         ======================
+    % ===============================================================================
+    \clearpage
+    \chapter{Gauss-Jordan y sus Amigos}
+
+
+
+        % ==============================================
+        % =====     OPERACIONES ELEMENTALES       ======
+        % ==============================================
+        \clearpage
+        \section{Operaciones Elementales}
+
+
+            % =================================================
+            % =====   SWAP: INTERCAMBIAR FILAS / COL   ========
+            % =================================================
+            \subsection{Swap: Intercambiar Filas ó Columnas}
+
+                La primera operación elemental es la de hacer Swap, es decir intercambiar una
+                fila o columna en la matriz.
+                \begin{align*}
+                    &\overset{F_i \lEqual F_j}{\lLongTo}     \\
+                    &\overset{C_i \lEqual C_j}{\lLongTo}
+                \end{align*}
+
+                \begin{multicols}{2}
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Ejemplo de Cambio de Fila}:
+                            \begin{equation*}
+                                \bVector{(1)&(2)&(3)\\(4)&(5)&(6)\\7&8&9}
+                                    \overset{F_1 \lEqual F_2}{\lLongTo}
+                                \bVector{(4)&(5)&(6)\\(1)&(2)&(3)\\7&8&9}
+                            \end{equation*}
+
+                        \vfill
+                        
+                        \textbf{Ejemplo de Cambio de Columna}:
+                            \begin{equation*}
+                                \bVector{(1)&2&(3)\\(4)&5&(6)\\(7)&8&(9)}
+                                    \overset{C_1 \lEqual F_3}{\lLongTo}
+                                \bVector{(3)&2&(1)\\(6)&5&(4)\\(9)&8&(7)}
+                            \end{equation*}
+
+                    
+                    \end{SmallIndentation}
+                        
+
+                \end{multicols}
+
+
+                % ==================================
+                % =======  MATRIZ ELEMENTAL    =====
+                % ==================================
+                \vspace{1em}
+                \subsubsection{Matriz Elemental}
+
+                    Podemos si queremos expresar esta operación como una \Quote{Matriz Elemental}
+                    que la verdad es que no es muy útil pero la verdad es que es una forma de verlo
+                    muy bonito.
+
+                    Vamos a llamarla $SwapFilas_{a, b}$ a la matriz que es la matriz identidad pero
+                    con la fila $a$ y $b$ intercambiada y $SwapColumnas_{a, b}$ a la matriz que es
+                    la matriz identidad pero con la columna $a$ y $b$ intercambiada.
+
+                    Por lo tanto para lograr el efecto de intercambiar las filas y columna haremos esto:
+                    \begin{itemize}
+                        \item Matriz con Cambio de Fila = $SwapFilas_{a, b} * A$
+                        \item Matriz con Cambio de Columna = $A * SwapColumna_{a, b}$
+                    \end{itemize}
+
+                    Ahora, recuerda que cambiar una columna se parece mucho a intercambiar una fila y hacer
+                    una transpuesta. Solo recuerda que $B^T A^T = (AB)^T$.
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Ejemplo de Cambio de Fila}:
+                            \begin{equation*}
+                                \bVector{(1)&(2)&(3)\\(4)&(5)&(6)\\7&8&9}
+                                    \overset{F_1 \lEqual F_2}{\lLongTo}
+                                \bVector{(4)&(5)&(6)\\(1)&(2)&(3)\\7&8&9}
+                                    \MegaSpace
+                                    =
+                                    \MegaSpace
+                                \bVector{(0)&(1)&(0)\\(1)&(0)&(0)\\0&0&1}
+                                    *
+                                \bVector{1&2&3\\4&5&6\\7&8&9}
+                                    =
+                                \bVector{4&5&6\\1&2&3\\7&8&9}
+                            \end{equation*}
+
+                        \textbf{Ejemplo de Cambio de Columna}:
+                            \begin{equation*}
+                                \bVector{(1)&2&(3)\\(4)&5&(6)\\(7)&8&(9)}
+                                    \overset{C_1 \lEqual F_3}{\lLongTo}
+                                \bVector{(3)&2&(1)\\(6)&5&(4)\\(9)&8&(7)}
+                                    \MegaSpace
+                                    =
+                                    \MegaSpace
+                                \bVector{1&2&3\\4&5&6\\7&8&9}
+                                    *
+                                \bVector{(0)&0&(1)\\(0)&1&(0)\\(1)&0&(0)}
+                                    =
+                                \bVector{3&2&1\\6&5&4\\9&8&7}
+                            \end{equation*}
+                        
+                    \end{SmallIndentation}
+
+
+
+            % ==================================================
+            % == PIVOT: FILAS / COL MAS MULTIPLO DE OTRA  ======
+            % ==================================================
+            \subsection{Pivot: Filas ó Columnas más múltiplo de otras}
+
+                La segunda operación elemental es la de hacer Pivot, es decir a una columna sumarle
+                un multiplo de otra.
+                \begin{align*}
+                    &\overset{F_i \lEqual F_i + nF_j}{\lLongTo}     \\
+                    &\overset{C_i \lEqual C_i + nC_j}{\lLongTo}
+                \end{align*}
+
+                \begin{multicols}{2}
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Ejemplo con Fila}:
+                            \begin{equation*}
+                                \bVector{(1)&(2)&(3)\\(4)&(5)&(6)\\7&8&9}
+                                    \overset{F_1 \lEqual F_1 + 2F_2}{\lLongTo}
+                                \bVector{(9)&(12)&(15)\\(4)&(5)&(6)\\7&8&9}
+                            \end{equation*}
+
+                        \vfill
+                        
+                        \textbf{Ejemplo con Columna}:
+                            \begin{equation*}
+                                \bVector{(1)&2&(3)\\(4)&5&(6)\\(7)&8&(9)}
+                                    \overset{C_1 \lEqual C_1 + 1F_3}{\lLongTo}
+                                \bVector{(4)&2&(3)\\(10)&5&(6)\\(16)&8&(9)}
+                            \end{equation*}
+
+                    
+                    \end{SmallIndentation}
+                        
+
+                \end{multicols}
+
+
+                % ==================================
+                % =======  MATRIZ ELEMENTAL    =====
+                % ==================================
+                \vspace{1em}
+                \subsubsection{Matriz Elemental}
+
+                    Podemos si queremos expresar esta operación como una \Quote{Matriz Elemental},
+                    pero esta vez, será más raro que lo normal.
+
+                    En general $Pivot_{a, b}(k)$ es aquella matriz que nos permitirá cambiar una matriz
+                    haciendo que la fila o columna $a$ sea igual a si misma más $k$ veces la fila o columna
+                    $b$.
+
+                    Vamos a llamarla $PivotFilas_{a, b}(k)$ a la matriz que es la matriz identidad
+                    pero en el elemento $[PivotFilas]_{a, b}$ será igual a $k$, mientras que
+                    $PivotColumnas_{a, b}(k)$ es la matriz identidad pero el elemento $[PivotColumnas]_{b, a}$
+                    es igual a $k$.
+
+                    Por lo tanto para lograr el efecto deseado haremos esto:
+                    \begin{itemize}
+                        \item Matriz con Pivot de Fila    = $PivotFilas_{a, b}(k) * A$
+                        \item Matriz con Pivot en Columna = $A * PivotColumnas_{a, b}(k)$
+                    \end{itemize}
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Ejemplo de Cambio de Fila}:
+                            \begin{equation*}
+                                \bVector{(1)&(2)&(3)\\(4)&(5)&(6)\\7&8&9}
+                                    \overset{F_1 \lEqual F_1 + 2F_2}{\lLongTo}
+                                \bVector{(9)&(12)&(15)\\(4)&(5)&(6)\\7&8&9}
+                                    \MegaSpace
+                                    =
+                                    \MegaSpace
+                                \bVector{1&(2)&0\\0&1&0\\0&0&1}
+                                    *
+                                \bVector{1&2&3\\4&5&6\\7&8&9}
+                                    =
+                                \bVector{(9)&(12)&(15)\\(4)&(5)&(6)\\7&8&9}
+                            \end{equation*}
+
+                        \textbf{Ejemplo de Cambio de Columna}:
+                            \begin{equation*}
+                                \bVector{(1)&2&(3)\\(4)&5&(6)\\(7)&8&(9)}
+                                    \overset{C_1 \lEqual C_1 + 1F_3}{\lLongTo}
+                                \bVector{(4)&2&(3)\\(10)&5&(6)\\(16)&8&(9)}
+                                    \MegaSpace
+                                    =
+                                    \MegaSpace
+                                \bVector{1&2&3\\4&5&6\\7&8&9}
+                                    *
+                                \bVector{1&0&0\\0&1&0\\(1)&0&1}
+                                    =
+                                \bVector{(4)&2&(3)\\(10)&5&(6)\\(16)&8&(9)}
+                            \end{equation*}
+                        
+                    \end{SmallIndentation}
+
+
+
+            % ==================================================
+            % =======    SCALE: ESCALAR FILAS / COL     ========
+            % ==================================================
+            \subsection{Scale: Escalar Filas ó Columnas}
+
+                La tercera operación elemental es ... Ok, ok, espera, lo que pasa es que siendo
+                estricto, Scale es un caso particular de Pivot donde la fila o columna de origen
+                y de la destino es la misma, es decir a efectos practicos es lo mismo que escalar
+                una fila o columna k veces.
+                \begin{align*}
+                    &\overset{F_i \lEqual nF_i}{\lLongTo}     \\
+                    &\overset{C_i \lEqual nC_i}{\lLongTo}
+                \end{align*}
+
+                \begin{multicols}{2}
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Ejemplo con Fila}:
+                            \begin{equation*}
+                                \bVector{(1)&(2)&(3)\\4&5&6\\7&8&9}
+                                    \overset{F_1 \lEqual 3F_1}{\lLongTo}
+                                \bVector{(3)&(6)&(9)\\4&5&6\\7&8&9}
+                            \end{equation*}
+
+                        \vfill
+                        
+                        \textbf{Ejemplo con Columna}:
+                            \begin{equation*}
+                                \bVector{1&2&(3)\\4&5&(6)\\7&8&(9)}
+                                    \overset{C_3 \lEqual 2C_3}{\lLongTo}
+                                \bVector{1&2&(6)\\4&5&(12)\\7&8&(18)}
+                            \end{equation*}
+                    
+                    \end{SmallIndentation}
+
+                \end{multicols}
+
+
+                % ==================================
+                % =======  MATRIZ ELEMENTAL    =====
+                % ==================================
+                \vspace{1em}
+                \subsubsection{Matriz Elemental}
+
+                    Podemos si queremos expresar esta operación como una \Quote{Matriz Elemental},
+                    pero esta vez, será más raro que lo normal.
+
+                    Vamos a llamarla $ScaleFilas_{i}(k)$ a la matriz que es la matriz identidad
+                    pero en el elemento $[ScaleFilas]_{i, i}$ será igual a $k$, mientras que
+                    $ScaleColumns_{j}(k)$ es la matriz identidad pero el elemento $[ScaleColumns]_{j, j}$
+                    es igual a $k$.
+
+                    Por lo tanto para lograr el efecto deseado haremos esto:
+                    \begin{itemize}
+                        \item Matriz con Scale de Fila    = $ScaleFilas_{i}(k) * A$
+                        \item Matriz con Scale en Columna = $A * ScaleColumns_{j}(k)$
+                    \end{itemize}
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Ejemplo de Cambio de Fila}:
+                            \begin{equation*}
+                                \bVector{(1)&(2)&(3)\\4&5&6\\7&8&9}
+                                    \overset{F_1 \lEqual 3F_1}{\lLongTo}
+                                \bVector{(3)&(6)&(9)\\4&5&6\\7&8&9}
+                                    \MegaSpace
+                                    =
+                                    \MegaSpace
+                                \bVector{(3)&0&0\\0&1&0\\0&0&1}
+                                    *
+                                \bVector{1&2&3\\4&5&6\\7&8&9}
+                                    =
+                                \bVector{(3)&(6)&(9)\\4&5&6\\7&8&9}
+                            \end{equation*}
+
+                        \textbf{Ejemplo de Cambio de Columna}:
+                            \begin{equation*}
+                                \bVector{1&2&(3)\\4&5&(6)\\7&8&(9)}
+                                    \overset{C_3 \lEqual 2C_3}{\lLongTo}
+                                \bVector{1&2&(6)\\4&5&(12)\\7&8&(18)}
+                                    \MegaSpace
+                                    =
+                                    \MegaSpace
+                                \bVector{1&2&3\\4&5&6\\7&8&9}
+                                    *
+                                \bVector{1&0&0\\0&1&0\\0&0&(2)}
+                                    =
+                                \bVector{1&2&(6)\\4&5&(12)\\7&8&(18)}
+                            \end{equation*}
+                        
+                    \end{SmallIndentation}
+
+
+
+
+
+        % ==============================================
+        % =====     ELIMINACION GAUSSIANA       ========
+        % ==============================================
+        \clearpage
+        \section{Eliminación Gaussiana}
+
+
+            % ==============================================
+            % =====   MATRIZ ESCALONADA POR FILAS     ======
+            % ==============================================
+            \subsection{Matriz Escalonada por Filas}
+
+                Nuestro objetivo es usando las operaciones elementales encontrar una
+                forma de pasar nuestra matriz ampliada a esta forma:
+                \begin{align*}
+                    \textcolor{Indigo700MD}{
+                        \begin{bmatrix}[lll|r]
+                            1 & * & * & * \\
+                            0 & 1 & * & * \\
+                            0 & 0 & 1 & * 
+                        \end{bmatrix}
+                    }
+                \end{align*}
+
+                Ok, esto no es una definición muy matemática, estas no tienen porque
+                ser matrices cuadradas, pero tienen que cumplir con las siguientes
+                características:
+                \begin{itemize}
+                    \item 
+                        Para toda fila, \textbf{si} existe un elemento distinto de cero en la fila
+                        \textbf{(al que llamaremos pivote)}, entonces para todos los
+                        elementos anteriores  de la fila deben ser cero y este elemento
+                        \textbf{(pivote) debe ser uno, la unidad}.
+                    \item
+                        Los pivotes deben aparecer de forma escalonada (excepto si es que la
+                        fila es nula).
+                    \item
+                        Si una fila no tiene pivotes entonces toda esa fila debe ser nula.
+                    \item
+                        Si una fila no tiene pivotes (osea que sea nula) entonces todas
+                        las filas de abajo no pueden tener pivotes.
+                \end{itemize}
+
+                % =========================
+                % ======== EJEMPLO ========
+                % =========================
+                \vspace{1em}
+                \begin{SmallIndentation}[1em]
+                
+                    \begin{ColorText}{Red700MD}
+                        \textbf{Ejemplo de Cosas que NO son}:
+                        \begin{align*}
+                            \bVector{2&5\\6&0}
+                            \MegaSpace
+                            \bVector{1&4&3\\0&1&7\\0&0&8}
+                            \MegaSpace
+                            \bVector{1&3&2&1\\1&-1&0&0\\0&0&1&0}
+                        \end{align*}
+                                
+                    \end{ColorText}
+
+                    \begin{ColorText}{Green700MD}
+                        \textbf{Ejemplo de Cosas que SI son}:
+                        \begin{align*}
+                            \bVector{1&3&4\\0&1&7\\0&0&1}
+                            \MegaSpace
+                            \bVector{0&1&4\\0&0&1\\0&0&0}
+                            \MegaSpace
+                            \bVector{0&1&4&3\\0&0&0&1\\0&0&0&0}
+                        \end{align*}
+                                
+                    \end{ColorText}
+
+
+                \end{SmallIndentation}
+
+
+
+            % ==============================================
+            % ===========       ALGORITMO     ==============
+            % ==============================================
+            \clearpage
+            \subsection{Algoritmo}
+
+                \begin{enumerate}
+                    \item 
+                        Inicias en el primer elemento, es decir $[Matriz]_{1, 1}$
+                    \item 
+                        Convierte ese elemento a uno (usando la operación escalar)
+                    \item
+                        Usas ese uno que acabas de crear (usando la operación pivot)
+                        para hacer a toda a parte de abajo de la columna sea cero
+                    \item
+                        Te mueves a la siguiente columna y bajas un elemento el columna
+                        y repites desde el paso uno.
+                \end{enumerate}
+
+
+
+
+        % ==============================================
+        % =====     ELIMINACION GAUSSIANA       ========
+        % ==============================================
+        \clearpage
+        \section{Gauss-Jordan}
+
+
+            % ==============================================
+            % =====   MATRIZ ESCALONADA POR FILAS     ======
+            % ==============================================
+            \subsection{Matriz Escalonada Reducida por Filas}
+
+                Nuestro objetivo es usando las operaciones elementales encontrar una
+                forma de pasar nuestra matriz ampliada a esta forma:
+                \begin{align*}
+                    \textcolor{Indigo700MD}{
+                        \begin{bmatrix}[lll|r]
+                            1 & 0 & 0 & * \\
+                            0 & 1 & 0 & * \\
+                            0 & 0 & 1 & * 
+                        \end{bmatrix}
+                    }
+                \end{align*}
+
+                Ok, esto no es una definición muy matemática, estas no tienen porque
+                ser matrices cuadradas, pero tienen que cumplir con las siguientes
+                características:
+                \begin{itemize}
+                    \item 
+                        Para toda fila, \textbf{si} existe un elemento distinto de cero en la fila
+                        \textbf{(al que llamaremos pivote)}, entonces para todos los
+                        elementos anteriores  de la fila deben ser cero y este elemento
+                        \textbf{(pivote) debe ser uno, la unidad}.
+                    \item
+                        Los pivotes deben aparecer de forma escalonada (excepto si es que la
+                        fila es nula).
+                    \item
+                        Si una fila no tiene pivotes entonces toda esa fila debe ser nula
+                    \item
+                        Si una fila no tiene pivotes (osea que sea nula) entonces todas
+                        las filas de abajo no pueden tener pivotes.
+
+
+                \end{itemize}
+
+                % =========================
+                % ======== EJEMPLO ========
+                % =========================
+                \vspace{1em}
+                \begin{SmallIndentation}[1em]
+
+                    \begin{ColorText}{Green700MD}
+                        \textbf{Ejemplo de Cosas que SI son}:
+                        \begin{align*}
+                            \bVector{1&0&0\\0&1&0\\0&0&1}
+                            \MegaSpace
+                            \bVector{1&0&0&0\\0&0&1&0\\0&0&0&1}
+                            \MegaSpace
+                            \bVector{1&7&0&1&0\\0&0&1&4&0\\0&0&0&0&1\\0&0&0&0&0}
+                        \end{align*}
+                                
+                    \end{ColorText}
+
+
+                \end{SmallIndentation}
+
+
+
+            % ==============================================
+            % ===========       EJEMPLOS      ==============
+            % ==============================================
+            \clearpage
+            \subsection{Ejemplos}
+    
+            \begin{SmallIndentation}[1em]
+                
+                % ======== EJEMPLO ========
+                \textbf{Ejemplo 1}:
+                    
+                    Nota este sistema de ecuaciones:
+                    \begin{MultiLineEquation*}{3}
+                        2x_1 &-  x_2 &+ 4x_3 &= -3       \\
+                         x_1 &+ 2x_2 &- 3x_3 &= 1        \\
+                        5x_1 &+ 3x_2 &+  x_3 &= -2  
+                    \end{MultiLineEquation*}
+
+                    Ahora, ve esto:
+                    \begin{align*}
+                        \begin{bmatrix}[r r r | r]
+                            2 & -1 &  4 & -3       \\
+                            1 &  2 & -3 &  1       \\
+                            5 &  3 &  1 & -2  
+                        \end{bmatrix}
+                    \end{align*}
+
+                    Ahora, apliquemos Gauss-Jordan:
+                    \begin{align*}
+                        &
+                        \begin{bmatrix}[r r r | r]
+                            2 & -1 &  4 & -3       \\
+                            1 &  2 & -3 &  1       \\
+                            5 &  3 &  1 & -2  
+                        \end{bmatrix}
+                        &&
+                        \overset{F_1 \lEqual F_2}{\lLongTo}
+                        &&
+                        \begin{bmatrix}[r r r | r]
+                            1 &  2 & -3 &  1       \\
+                            2 & -1 &  4 & -3       \\
+                            5 &  3 &  1 & -2  
+                        \end{bmatrix}
+                        &&
+                        \overset{F_2 = F_2 -2F_1}{\lLongTo}
+                        &&
+                        \begin{bmatrix}[r r r | r]
+                            1 &  2 & -3 &  1       \\
+                            0 & -5 & 10 & -5       \\
+                            5 &  3 &  1 & -2  
+                        \end{bmatrix}
+                        \\
+                        &
+                        \begin{bmatrix}[r r r | r]
+                            1 &  2 & -3 &  1       \\
+                            0 & -5 & 10 & -5       \\
+                            5 &  3 &  1 & -2  
+                        \end{bmatrix}
+                        &&
+                        \overset{F_3 = F_3 -5F_1}{\lLongTo}
+                        &&
+                        \begin{bmatrix}[r r r | r]
+                            1 &  2 & -3  &  1       \\
+                            0 & -5 & 10  & -5       \\
+                            0 & -7 & 16  & -7  
+                        \end{bmatrix}
+                        &&
+                        \overset{F_2 = -\frac{1}{5}F_2}{\lLongTo}
+                        &&
+                        \begin{bmatrix}[r r r | r]
+                            1 &  2 & -3  &  1       \\
+                            0 & 1  & -2  & 1        \\
+                            0 & -7 & 16  & -7  
+                        \end{bmatrix}
+                        \\
+                        &
+                        \begin{bmatrix}[r r r | r]
+                            1 &  2 & -3  &  1       \\
+                            0 & 1  & -2  & 1        \\
+                            0 & -7 & 16  & -7  
+                        \end{bmatrix}
+                        &&
+                        \overset{F_1 = F_1 -2F_2}{\lLongTo}
+                        &&
+                        \begin{bmatrix}[r r r | r]
+                            1 & 0  & 1   & -1       \\
+                            0 & 1  & -2  &  1       \\
+                            0 & -7 & 16  & -7  
+                        \end{bmatrix}
+                        &&
+                        \overset{F_1 = F_1 -2F_2}{\lLongTo}
+                        &&
+                        \begin{bmatrix}[r r r | r]
+                            1 & 0  & 1   & -1       \\
+                            0 & 1  & -2  &  1       \\
+                            0 & -7 & 16  & -7  
+                        \end{bmatrix}
+                        \\
+                        &
+                        \begin{bmatrix}[r r r | r]
+                            1 & 0  & 1   & -1       \\
+                            0 & 1  & -2  &  1       \\
+                            0 & -7 & 16  & -7  
+                        \end{bmatrix}
+                        &&
+                        \overset{F_3 = F_3 + 7F_2}{\lLongTo}
+                        &&
+                        \begin{bmatrix}[r r r | r]
+                            1 & 0  & 1   & -1       \\
+                            0 & 1  & -2  &  1       \\
+                            0 & 0  &  2  & 0  
+                        \end{bmatrix}
+                        &&
+                        \overset{F_3 = \frac{1}{2}F_3}{\lLongTo}
+                        &&
+                        \begin{bmatrix}[r r r | r]
+                            1 & 0  &  1  & -1       \\
+                            0 & 1  & -2  &  1       \\
+                            0 & 0  &  1  &  0  
+                        \end{bmatrix}
+                        \\
+                        &
+                        \begin{bmatrix}[r r r | r]
+                            1 & 0  &  1  & -1       \\
+                            0 & 1  & -2  &  1       \\
+                            0 & 0  &  1  &  0  
+                        \end{bmatrix}
+                        &&
+                        \overset{F_1 = F_1 - F_3}{\lLongTo}
+                        &&
+                        \begin{bmatrix}[r r r | r]
+                            1 & 0  &  0  & -1       \\
+                            0 & 1  & -2  &  1       \\
+                            0 & 0  &  1  &  0  
+                        \end{bmatrix}
+                        &&
+                        \overset{F_2 = F_2 + 2F_3}{\lLongTo}
+                        &&
+                        \begin{bmatrix}[r r r | r]
+                            1 & 0  &  0  & -1       \\
+                            0 & 1  &  0  &  1       \\
+                            0 & 0  &  1  &  0  
+                        \end{bmatrix}
+                    \end{align*}
+
+                    Ahora si, creo que ahora es más que obvio que:
+                    \begin{align*}
+                        x_1 &= -1   \\
+                        x_2 &=  1   \\
+                        x_3 &=  0
+                    \end{align*}
+
+            \end{SmallIndentation}
+                
+
+
+                    
+           
+
+        
+                    
+                    
+
+
+
+
+
+
+
+        % ==============================================
+        % ====        INVERSA DE UNA MATRIZ       ======
+        % ==============================================
+        \clearpage
+        \section{Inversa de una Matriz}
+
+            Sea $A \in M_{n \times n}(\GenericField)$ y entonces definimos a $A^{-1}$ 
+            de forma informal como aquella matriz que cumple con que $A^{-1}A = AA^{-1} = I_{n}$
+            nota que no para todas las matrices $M_{n \times n}(\GenericField)$ existe una matriz inversa.
+
+
+           \subsubsection*{El Problema de la Notación $A^{-1}$}
+
+           El problema con esta notación es que existen matrices no invertibles, para las cuales
+           la notación $A^{-1}$ no tiene sentido.
+
+           La notación $A^{-1}$ se puede usar solamente despúes de demostrar que $A$ es invertible.
+
+            % ===============================
+            % =========   PROPIEDADES =======
+            % ===============================
+            \clearpage
+            \subsection{Propiedades}
+
+                \begin{itemize}
+
+                    \item La Matriz Inversa de $A$ ($A^{-1}$) es única.
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+
+                            Lo que hay que ver que si $A,B,C \in M_n(\GenericField)$ tales que
+                            $AB = BA = I_n$ y $AC = CA = I_n$. Entonces $B=C$.
+
+                            Usando la Ley asociativa de la Multiplicación de Matrices $(A(BC)=(AB)C)$
+                            tenemos que:
+                            $B = B(I_n) = B(AC) = (BA)C = I_nC =  C $
+
+                        \end{SmallIndentation}
+
+                    \item Es necesario aunque no suficiente que todas las columnas y filas de una
+                        matriz $A \in M_{n \times n}$ sea diferentes de cero para que $A$ sea invertible.
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+
+                            Renglones Nulos:
+
+                                Sea $A \in M_{n \times n}(\GenericField)$.
+                                Supongamos que (por lo menos) un renglón de A es nulo, es decir:
+                                $[A]_{p,*} = 0_{1,n}$ donde $0 < p \leq n$ esto es lo mismo que decir
+                                que $\forall j \in \{1, \dots, n\} [A]_{p,j} = 0$.
+
+                                Ahora supongamos que $A$ es invertible, entonces, en particular, la entrada
+                                $(p,p)$ del producto $AA^{-1}$ debe coincidir con la entrada $(p,p)$ de la
+                                matriz identidad $I_n$.
+                                Podemos calcular esa entrada como
+                                $[AA^{-1}]_{p,p} = \sum_{k=1}^{n} [A]_{p,k} [A^{-1}]_{k,p}$
+                                esto debería ser $[I_n]_{p,p}=1$ pero ya vimos que $[A]_{p,k} = 0$, es decir
+                                $0 = 1$. Contradicción.
+
+
+                            Columnas Nulas:
+                                Sea $A \in M_{n \times n}(\GenericField)$.
+                                Supongamos que (por lo menos) una columna de A es nulo, es decir:
+                                $[A]_{*,p} = 0_{n,1}$ donde $0 < p \leq n$ esto es lo mismo que decir
+                                que $\forall j \in \{1, \dots, n\} [A]_{p,j} = 0$.
+
+                                Ahora supongamos que $A$ es invertible, entonces, en particular, la entrada
+                                $(p,p)$ del producto $A^{-1}A$ debe coincidir con la entrada $(p,p)$ de la
+                                matriz identidad $I_n$.
+
+                                Podemos calcular esa entrada como
+                                $[A^{-1}A]_{p,p} = \sum_{k=1}^{n} [A^{-1}]_{p,k} [A]_{k,p}$
+                                esto debería ser $[I_n]_{p,p}=1$ pero ya vimos que $[A]_{k,p} = 0$, es decir
+                                $0 = 1$. Contradicción.
+                            
+                        \end{SmallIndentation}
+
+                    \item Sea $A,B \in M_{m \times n}(\GenericField)$ y sean invertibles, entonces tenemos
+                        que $(AB)^{-1} = B^{-1}A^{-1}$
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+
+                            Si $(AB)$ es invertible entonces tenemos que probar que:
+                            \begin{equation}
+                            \begin{split}
+                                (AB)(B^{-1}A^{-1})  &=                      \\
+                                                    &= (((AB)B^{-1})A^{-1})  
+                                                    &= ((A(BB^{-1}))A^{-1}) 
+                                                    &= ((A(I_n))A^{-1})     
+                                                    &= (AA^{-1})            \\
+                                                    &= I_n 
+                            \end{split}
+                            \end{equation}
+                            
+                        \end{SmallIndentation}
+
+                    \clearpage
+
+                    \item Una Matriz Diagonal es invertible si y solo si los elementos de la diagonal
+                        son distintos de cero.
+
+                    \item Una Matriz Diagonal es invertible si y solo si los elementos de la diagonal
+                        son distintos de cero.
+
+                    \item Sea $A \in M_{m \times n}(\GenericField)$ y sea invertible, entonces tenemos
+                        que $(A^{-1})^{-1} = A$
+
+                    \item Sea $A \in M_{m \times n}(\GenericField)$ y sea invertible, entonces tenemos
+                        que $(A^T)^{-1} = (A^{-1})^T$
+
+                \end{itemize}
+            
+
+
+
 
 \end{document}
