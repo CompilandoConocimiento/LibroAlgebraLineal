@@ -151,6 +151,7 @@
     \DeclareMathOperator \VectorSpace  {\VectorSet_{\GenericField}} %Use: \VectorSpace por Notation
     \DeclareMathOperator \LinealTransformation {\mathcal{T}}        %Use: \LinealTransformation for a cool T
     \DeclareMathOperator \LinTrans {\mathcal{T}}                    %Use: \LinTrans for a cool T
+    \DeclareMathOperator \Laplace {\mathcal{L}}                     %Use: \LinTrans for a cool T
 
 
     % =====  CONTAINERS   ===============
@@ -362,6 +363,8 @@
     }
  
     \lstset{style = CompilandoStyle}                                %Use this style
+
+
 
 
 
@@ -718,7 +721,168 @@
 
     \end{SmallIndentation}
                             
-                        
+     
 
+
+% ==============================================================
+% =================          PROBLEMA 3       ==================
+% ==============================================================
+\clearpage
+\section{3 Problema}
+
+
+    Sean $\VectorSet, \SubVectorSet$ espacios vectoriales y sean 
+    $T, U \in \Laplace(\VectorSet, \SubVectorSet)$ no nulas. 
+
+    Si $R[T] \cap R[U] = \Set{\vec 0}$, entonces ${T, U}$ es un
+    subconjunto linealmente independiende de $\Laplace(\VectorSet, \SubVectorSet)$. 
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Demostración}:
+        
+        Este deberia ser sencillo, primero supongamos que no son linealmente independientes
+        es decir que podemos expresar a $T = kU$, entonces tomemos a un vector en el rango 
+        de $T$ (que no nos de el cero vector, ni que sea el cero vector), podemos hacer esto
+        porque el dijimos que ninguna de las transformaciones es nula.
+
+        Ahora ve que $T(x) = kU(x) = U(kx)$, entonces si te das cuenta encontramos un vector
+        en el rango de ambos que comparten, ahora, como $\vec x \neq 0$ y ademas especificamente
+        seleccionamos a $\vec x$ para que su transformada no sea cero.
+
+        Pero eso es imposible, dijimos que $R[T] \cap R[U] = \Set{\vec 0}$, por lo tanto
+        contradicción.
+
+        ${T, U}$ es un subconjunto linealmente independiende de $\Laplace(\VectorSet, \SubVectorSet)$
+
+    \end{SmallIndentation}
+                            
+
+
+% ==============================================================
+% =================          PROBLEMA 4       ==================
+% ==============================================================
+\clearpage
+\section{4 Problema}
+
+
+    Sea $\VectorSet$ un espacio vectorial y sea $T \in \Laplace(\VectorSet)$. Entonces 
+    $T^2 = T_0$(la transformación cero) si y solo si $R[T] \subseteq N[T]$.
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Demostración}:
+        
+        Ok, vamos paso por paso, por un lado:
+
+        Supongamos que $T^2 = T_0$ entonces tomemos $\vec y \in R[T]$ entonces 
+        tenemos que $\vec y = T(\vec x)$ para alguna $\vec x$.
+        Y $T(\vec y) = T(T(\vec x)) = T^2(\vec x) = \vec 0$, por lo tanto $\vec y \in N[T]$
+
+        Por otro lado tenemos que:
+        Si $R[T] \subseteq N[T]$, tenemos que $T^2(\vec x) = T(T(\vec x)) = \vec 0$ 
+        y ya que $T(\vec x)$ es un elemento de $R[T]$ y como vimos de $N(T)$.
+    
+    \end{SmallIndentation}
+
+
+
+
+% ==============================================================
+% =================          PROBLEMA 5       ==================
+% ==============================================================
+\clearpage
+\section{5 Problema}
+
+
+    % ==============================================================
+    % =============  TEOREMAS QUE OCUPAR P1       ==================
+    % ==============================================================
+    \clearpage
+    \subsection{Problema en si}
+
+        \begin{itemize}
+            \item 
+                Sea $B$ una base de $\VectorSet$ entonces $R[\LinealTransformation] = <\LinTrans[B]>$ 
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
+                    
+                    A fin de cuentas es la igualdad entre 2 conjuntos, así que vamos por doble contención
+                    para hacerlo. Sea $B = \Set{\vec v_1, \dots, \vec v_n}$, entonces:
+
+                    \begin{itemize}
+                        \item 
+                            Por un lado, sea $\vec u \in R[\LinealTransformation]$ entonces
+                            tenemos que existe un $\vec x \in \VectorSet$ que al $\FnLinTrans{\vec x} = \vec u$
+                            donde tenemos que $\vec x = \sum_{i=1}^n a_i \vec v_i$, entonces:
+                            \begin{align*}
+                                \FnLinTrans{\vec x} 
+                                    &= \FnLinTrans{\sum_{i=1}^n a_i \vec v_i} 
+                                    &= \sum_{i=1}^n \FnLinTrans{a_i \vec v_i} 
+                                    &= \sum_{i=1}^n a_i \FnLinTrans{\vec v_i} 
+                            \end{align*}
+
+                                Y nota que $\sum_{i=1}^n a_i \FnLinTrans{\vec v_i} \in <\LinTrans[B]>$ 
+
+                       \item
+                        La otra contención es .... es basicamente lo mismo
+
+                    \end{itemize}
+
+                \end{SmallIndentation}
+
+            \item
+                Hablando de espacios finitos decimos que
+                $\VectorSet \cong_{\GenericField} \SubVectorSet$ si y solo si 
+                $dim(\VectorSet) = dim(\SubVectorSet)$
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Idea Demostración}:
+
+                    Por un lado es sencillo, si suponemos que $\VectorSet \cong_{\GenericField} \SubVectorSet$
+                    entonces se que existe una función invertible entre los dos espacios, dicha
+                    función si es invertible entonces es biyectiva, entonces tenemos que
+                    es una función inyectiva y una función suprayectiva, entonces
+                    $dim(\VectorSet) = dim(\SubVectorSet)$
+
+                    Por el otro lado es casi lo mismo
+                
+                \end{SmallIndentation}
+
+
+
+        \end{itemize}
+
+    % ==============================================================
+    % =============  TEOREMAS QUE OCUPAR P1       ==================
+    % ==============================================================
+    \vspace{1em}
+    \subsection{Teoremas que Ocupar}
+
+        Sean $\VectorSet, \SubVectorSet$ espacios vectoriales y sea 
+        $T: \VectorSet \cong_{\GenericField} \SubVectorSet$. Si $\beta$ es una base
+        para $\SubVectorSet$, entonces que $T[\beta]$ es una base para $\SubVectorSet$.
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+            
+            Ahora, sabemos de otra demostración que $<T[\beta]> = R[T]$, por lo tanto lo unico que nos
+            falta por ver es que son linealmente independiente, pues de serlo y por ser base de $\VectorSet$
+            (y por otro teorema pasado) tienen la cantidad de vectores necesarios para ser base
+            de $\SubVectorSet$.
+
+            Ahora, como $\beta$ es una base entonces $\sum_{i=1}^n a_i \beta_i = \vec 0$ implica
+            que $a_i = 0$ para $i \in [1, n]$.
+
+            Ahora, nota que $\sum_{i=1}^n a_i T(\beta_i) = T(\sum_{i=1}^n a_i \beta_i) = T(\vec 0) = \vec 0$.
+            Por lo tanto, también que la combinación lineal de el conjunto de las transformadas de la base
+            sea cero, implica que todos los escalares son cero, por lo tanto, tenemos que son linealmente
+            independientes y son también $n$ vectores, por lo tanto son base  
+        
+        \end{SmallIndentation}
 
 \end{document}
