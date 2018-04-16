@@ -446,9 +446,6 @@
     % ==============================================================
     % =============  TEOREMAS QUE OCUPAR P1       ==================
     % ==============================================================
-    \clearpage
-    \subsection{Teoremas que Ocupar}
-
         \begin{itemize}
             \item Sea $B$ una base de $\VectorSet$ entonces $R[\LinealTransformation] = <\LinTrans[B]>$ 
 
@@ -762,7 +759,7 @@
 % ==============================================================
 % =================          PROBLEMA 4       ==================
 % ==============================================================
-\clearpage
+\vspace{1em}
 \section{4 Problema}
 
 
@@ -796,10 +793,9 @@
 
 
     % ==============================================================
-    % =============  TEOREMAS QUE OCUPAR P1       ==================
+    % =============  TEOREMAS QUE OCUPAR P5       ==================
     % ==============================================================
-    \clearpage
-    \subsection{Problema en si}
+    \subsection{Teoremas que Ocupar}
 
         \begin{itemize}
             \item 
@@ -857,10 +853,10 @@
         \end{itemize}
 
     % ==============================================================
-    % =============  TEOREMAS QUE OCUPAR P1       ==================
+    % =============           PROBLEMA 5          ==================
     % ==============================================================
     \vspace{1em}
-    \subsection{Teoremas que Ocupar}
+    \subsection{Problema en si}
 
         Sean $\VectorSet, \SubVectorSet$ espacios vectoriales y sea 
         $T: \VectorSet \cong_{\GenericField} \SubVectorSet$. Si $\beta$ es una base
@@ -884,5 +880,229 @@
             independientes y son también $n$ vectores, por lo tanto son base  
         
         \end{SmallIndentation}
+
+
+
+
+% ==============================================================
+% =================          PROBLEMA 6       ==================
+% ==============================================================
+\clearpage
+\section{6 Problema}
+
+    Sea $B \in M_{n \times n}(\GenericField)$ invertible. 
+    Defina $\eta : M_{n \times n}(\GenericField) to M_{n \times n}(\GenericField)$
+    dada por $\eta(A) = B^{-1}AB$. Demuestre que $\eta$ es un isomorfismo.
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Demostración}:
+        
+        Primero que nada hay que demostrar que $\eta$ es lineal:
+        \begin{align*}
+            \eta(cA + D)
+                &= B^{-1}(cA + D)B                  \\
+                &= B^{-1}(cAB + DB)                 \\
+                &= (B^{-1}cAB) + (B^{-1}DB)         \\
+                &= c(B^{-1}AB) + (B^{-1}DB)         \\
+                &= c \eta(A) + \eta(D)              
+        \end{align*}
+
+        Ahora para probar que es inyectiva lo unico que vamos a ver
+        que es inyectiva demostrando que su kernel solo contiene al cero.
+
+        Ya que si $\eta(A) = 0$ entonces quiere decir que $\eta(A) = B^{-1}0B$
+        porque después de todo $B$ es invertible, por lo tanto ni ella ni su inversa
+        puede ser el cero vector, por lo tanto no nos queda mas que $A = 0$.
+
+        Por otro lado es subrayectiva, es decir, puedo llegar a cualquier matriz
+        del espacio con esta función. Para una matriz arbitraria $A$ tenemos que
+        $\eta(D) = B^{-1}DB = D$.
+
+        Por lo tanto $\eta$ es inyectiva y subrayectiva, por lo tanto es invertible
+        por $\eta$ es un isomorfismo por definición.
+
+    \end{SmallIndentation}
+
+
+
+
+% ==============================================================
+% =================          PROBLEMA 7       ==================
+% ==============================================================
+\clearpage
+\section{7 Problema}
+
+    Sea $\beta = \Set{1, x, x,^2}$ y sea $\gamma = \Set{1+x+x^2, 1-x, 1}$.
+
+    Hallemos la matriz de cambio de coordenadas de $\gamma$ a $\beta$.
+
+    Primero veamos cada uno de los elementos de $\gamma$ como combinación lineal de $\beta$:
+    \begin{itemize}
+        \item $(1+x+x^2) = 1(1) + 1(x) + 1(x^2)$
+        \item $(1-x) = 1(1) + (-1)(x) + 0(x^2)$
+        \item $(1) = 1(1) + 0(x) + 0(x^2)$
+    \end{itemize}
+
+    Por lo tanto tenemos que nuestra matriz de cambio es:
+    $Q = \bVector{1 & 1 & 1 \\ 1 & -1 & 0 \\ 1 & 0 & 0}$
+
+    Por ejemplo el vector $x^2$ se ve en gamma como $\bVector{1 \\ 1 \\ -2}$ entonces tenemos que:
+    \begin{align*}
+        Q\bVector{1, 1, -2}
+            &= \bVector{1 & 1 & 1 \\ 1 & -1 & 0 \\ 1 & 0 & 0} \bVector{1 \\ 1 \\ -2}        \\
+            &= \bVector{0 \\ 0 \\ 1}
+    \end{align*}
+
+
+% ==============================================================
+% =================          PROBLEMA 8       ==================
+% ==============================================================
+\clearpage
+\section{8 Problema}
+
+    \begin{itemize}
+
+        \item
+            Si $A, B \in M_{n \times n}(\GenericField)$ entonces $traza(AB) = traza(BA)$
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Demostración}:
+                
+                Veamos como sale esto:
+                \begin{align*}
+                    traza(AB)
+                        &= \sum_{k = 1}^n [AB]_{k, k}                                \\
+                        &= \sum_{k = 1}^n \sum_{k' = 1}^n [A]_{k, k'} [B]_{k', k}    \\
+                        &= \sum_{k = 1}^n \sum_{k' = 1}^n [B]_{k', k} [A]_{k, k'}    \\
+                        &= \sum_{k' = 1}^n \sum_{k = 1}^n [B]_{k', k} [A]_{k, k'}    \\
+                        &= \sum_{k' = 1}^n [BA]_{k', k'}                             \\
+                        &= traza(BA)
+                \end{align*}
+            
+            \end{SmallIndentation}
+
+        \item
+            Si $A \in M_{n \times n}(\GenericField)$ entonces $traza(A) = traza(A^T)$
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Demostración}:
+                
+                Veamos como sale esto:
+                \begin{align*}
+                    traza(A)
+                        &= \sum_{k = 1}^n [A]_{k, k}                                 \\
+                        &= \sum_{k' = 1}^n [A^T]_{k, k}                              \\
+                        &= traza(A^T)
+                \end{align*}
+
+                Así de sencillo
+
+            \end{SmallIndentation}
+
+
+        \item
+            Si $A, B \in M_{n \times n}(\GenericField)$ y $A$ similiar a $B$ entonces $traza(A) = traza(B)$
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Demostración}:
+
+                Ahora como tenemos que son similares tenemos que $B = P^{-1}AP$
+                
+                Veamos como sale esto:
+                \begin{align*}
+                    traza(B)
+                        &= traza(P^{-1}AP)                                          
+                            && \Remember{Ahora como sabemos que son similiares}     \\
+                        &= traza(P^{-1}(AP))                                          
+                            && \Remember{Ahora agrupamos}                           \\
+                        &= traza((AP)P^{-1})                                          
+                            && \Remember{$traza(AB) = traza(BA)$}                   \\
+                        &= traza(A(PP^{-1}))                                          
+                            && \Remember{Agrupamos ahora si}                        \\
+                        &= traza(AId_n)                                          
+                            && \Remember{Definición}                                \\
+                        &= traza(A)                                        
+                            && \Remember{Definición de indentidad}
+                \end{align*}
+            
+            \end{SmallIndentation}
+
+    \end{itemize}
+
+
+
+% ==============================================================
+% =================          PROBLEMA 9       ==================
+% ==============================================================
+\clearpage
+\section{9 Problema}
+
+    Sea $M_{n \times n}(\GenericField)$ entonces si $A^2 = 0$ entonces $A$ no es invertible
+
+        % ======== DEMOSTRACION ========
+        \begin{SmallIndentation}[1em]
+            \textbf{Demostración}:
+
+            Si $A$ es invertible entonces $I = AB$ para alguna $B$, quien sabe cual sea, pero existe.
+
+            Entonces $A = AI = A(AB) = A^2B = 0B = 0$, y por lo tanto $A = 0$, pero $0$ no es invertible
+
+            ¡Contradicción! Entonces solo nos queda por admitir que $A$ no es invertible
+        
+        \end{SmallIndentation}
+
+
+
+% ==============================================================
+% =================          PROBLEMA 10      ==================
+% ==============================================================
+\clearpage
+\section{10 Problema}
+
+    Sea $\VectorSpace$ un espacio vectorial con $\beta = \Set{\vec x_1, \dots , \vec x_n}$ 
+    como base ordenada.
+
+    Dado que $\vec x_0 = \vec 0$
+
+    Entonces debe existir una transformación lineal $T \in \Laplace(\VectorSet)$ tal
+    que $T(\vec x_j) = \vec x_j - \vec x_{j - 1}$ para toda $j \in \Set{1, \dots, n}$.
+
+    Encontremos $[T]_\beta$
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Solución}:
+        
+        Vamos a tomar a cada uno de los $n$ vectores de la base $\beta$ y transformarlo entonces:
+        \begin{itemize}
+            \item Para el primer vector tenemos que $T(\vec x_1) = \vec x_1$
+            \item Para el segundo vector tenemos que $T(\vec x_2) = \vec x_2 - \vec x_1$
+            \item Para el tercer vector tenemos que $T(\vec x_3) = \vec x_3 - \vec x_2$
+            \item \dots
+        \end{itemize}
+
+        Entonces tenemos los vectores columna serán:
+        \begin{itemize}
+            \item Primera Columna \bVector{1 \\ 0 \\ 0 \\ \dots \\ 0}
+            \item Segunda Columna \bVector{-1 \\ 1 \\ 0 \\ \dots \\ 0}
+            \item Tercera Columna \bVector{0 \\ -1 \\ 1 \\ \dots \\ 0}
+        \end{itemize}
+
+        Entonces en general:
+        \begin{align*}
+            [T]_\beta
+                &= \bVector{
+                    1 & -1 &  0 & \dots & 0 & 0   \\
+                    0 &  1 & -1 & \dots & 0 & 0   \\
+                    0 &  0 &  1 & \dots & 0 & 0   \\
+                    0 &  0 &  0 & \dots & 0 & 0   \\
+                    \dots                         \\
+                    0 &  0 &  0 & \dots & 1 & -1  \\
+                    0 &  0 &  0 & \dots & 0 & 1   \\
+                }
+        \end{align*}
+    
+    \end{SmallIndentation}
 
 \end{document}

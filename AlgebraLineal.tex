@@ -1183,6 +1183,54 @@
                             \end{align*}
                         
                         \end{SmallIndentation}
+
+
+                    \item
+                        Si $A \in M_{n \times n}(\GenericField)$ entonces $traza(A) = traza(A^T)$
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Veamos como sale esto:
+                            \begin{align*}
+                                traza(A)
+                                    &= \sum_{k = 1}^n [A]_{k, k}                                 \\
+                                    &= \sum_{k' = 1}^n [A^T]_{k, k}                              \\
+                                    &= traza(A^T)
+                            \end{align*}
+
+                            Así de sencillo
+                        
+                        \end{SmallIndentation}
+
+                    \clearpage
+
+                    \item
+                        Si $A, B \in M_{n \times n}(\GenericField)$ y $A$ similiar a $B$ entonces $traza(A) = traza(B)$
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+
+                            Ahora como tenemos que son similares tenemos que $B = P^{-1}AP$
+                            
+                            Veamos como sale esto:
+                            \begin{align*}
+                                traza(B)
+                                    &= traza(P^{-1}AP)                                          
+                                        && \Remember{Ahora como sabemos que son similiares}     \\
+                                    &= traza(P^{-1}(AP))                                          
+                                        && \Remember{Ahora agrupamos}                           \\
+                                    &= traza((AP)P^{-1})                                          
+                                        && \Remember{$traza(AB) = traza(BA)$}                   \\
+                                    &= traza(A(PP^{-1}))                                          
+                                        && \Remember{Agrupamos ahora si}                        \\
+                                    &= traza(AId_n)                                          
+                                        && \Remember{Definición}                                \\
+                                    &= traza(A)                                        
+                                        && \Remember{Definición de indentidad}
+                            \end{align*}
+                        
+                        \end{SmallIndentation}
                             
 
                 \end{itemize}
@@ -4230,6 +4278,8 @@
                         \end{SmallIndentation}
                             
 
+                    
+
                 \end{itemize}
 
 
@@ -4239,50 +4289,108 @@
             \clearpage
             \subsection{Ejemplos}
 
-                Sea $\LinTrans: \Reals^2 \to \Reals^2$ dada por $\FnLinTrans{(a_1, a_2)} = (a_1 +3a_2, 0, 2a_1-4a_2)$
-                con $B$ y $\gamma$ las bases canonicas correspondientes, entonces
-                podemos armar la represetanción matricial columna a columna:
+                % ==============================================
+                % =======        EJEMPLO 1          ============
+                % ==============================================
+                \subsubsection{Ejemplo 1}
 
-                \begin{itemize}
-                    \item Para el primer vector de la base de $B$
+
+                    Sea $\LinTrans: \Reals^2 \to \Reals^3$ dada por $\FnLinTrans{(a_1, a_2)} = (a_1 +3a_2, 0, 2a_1-4a_2)$
+                    con $B$ y $\gamma$ las bases canonicas correspondientes, entonces
+                    podemos armar la represetanción matricial columna a columna:
+
+                    \begin{itemize}
+                        \item Para el primer vector de la base de $B$
+                            \begin{align*}
+                                \LinTrans(e_1) 
+                                    &= \LinTrans\pVector{1\\0}          
+                                    = \pVector{1\\0\\2}            
+                            \end{align*}
+
+                            Ahora, solo porque $\gamma$ es la base canonica, esto suena medio estupido, pero
+                            lo podemos ver como:
+                            \begin{align*}
+                                \pVector{1\\0\\2} 
+                                    = (1)\pVector{1\\0\\0} + (0)\pVector{0\\1\\0} + (2)\pVector{1\\0\\2}
+                            \end{align*}
+
+                            Entonces el primer vector es $\pVector{1\\0\\2}$
+
+                        \item Para el segundo vector de la base de $B$
+                            \begin{align*}
+                                \LinTrans(e_2) 
+                                    &= \LinTrans\pVector{0\\1}          
+                                    = \pVector{3\\0\\-4}            
+                            \end{align*}
+
+                            Ahora, solo porque $\gamma$ es la base canonica, esto suena medio estupido, pero
+                            lo podemos ver como:
+                            \begin{align*}
+                                \pVector{3\\0\\-4} 
+                                    = (3)\pVector{1\\0\\0} + (0)\pVector{0\\1\\0} + (-4)\pVector{1\\0\\2}
+                            \end{align*}
+
+                            Entonces el primer vector es $\pVector{3\\0\\-4}$
+
+                    \end{itemize}
+
+                    Ahora se ve claramente que la matriz que buscamos es:
+                    \begin{align*}
+                        \bigBrackets{\LinTrans}_{B}^{\gamma}
+                            &= \pVector{1 && 3 \\ 0 && 0 \\ 2 && -4}
+                    \end{align*}
+
+                % ==============================================
+                % =======        EJEMPLO 1          ============
+                % ==============================================
+                \clearpage
+                \subsubsection{Ejemplo 2}
+
+                    Sea $\VectorSpace$ un espacio vectorial con $\beta = \Set{\vec x_1, \dots , \vec x_n}$ 
+                    como base ordenada.
+
+                    Dado que $\vec x_0 = \vec 0$
+
+                    Entonces debe existir una transformación lineal $T \in \Laplace(\VectorSet)$ tal
+                    que $T(\vec x_j) = \vec x_j - \vec x_{j - 1}$ para toda $j \in \Set{1, \dots, n}$.
+
+                    Encontremos $[T]_\beta$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Solución}:
+                        
+                        Vamos a tomar a cada uno de los $n$ vectores de la base $\beta$ y transformarlo entonces:
+                        \begin{itemize}
+                            \item Para el primer vector tenemos que $T(\vec x_1) = \vec x_1$
+                            \item Para el segundo vector tenemos que $T(\vec x_2) = \vec x_2 - \vec x_1$
+                            \item Para el tercer vector tenemos que $T(\vec x_3) = \vec x_3 - \vec x_2$
+                            \item \dots
+                        \end{itemize}
+
+                        Entonces tenemos los vectores columna serán:
+                        \begin{itemize}
+                            \item Primera Columna \bVector{1 \\ 0 \\ 0 \\ \dots \\ 0}
+                            \item Segunda Columna \bVector{-1 \\ 1 \\ 0 \\ \dots \\ 0}
+                            \item Tercera Columna \bVector{0 \\ -1 \\ 1 \\ \dots \\ 0}
+                        \end{itemize}
+
+                        Entonces en general:
                         \begin{align*}
-                            \LinTrans(e_1) 
-                                &= \LinTrans\pVector{1\\0}          
-                                = \pVector{1\\0\\2}            
+                            [T]_\beta
+                                &= \bVector{
+                                    1 & -1 &  0 & \dots & 0 & 0   \\
+                                    0 &  1 & -1 & \dots & 0 & 0   \\
+                                    0 &  0 &  1 & \dots & 0 & 0   \\
+                                    0 &  0 &  0 & \dots & 0 & 0   \\
+                                    \dots                         \\
+                                    0 &  0 &  0 & \dots & 1 & -1  \\
+                                    0 &  0 &  0 & \dots & 0 & 1   \\
+                                }
                         \end{align*}
-
-                        Ahora, solo porque $\gamma$ es la base canonica, esto suena medio estupido, pero
-                        lo podemos ver como:
-                        \begin{align*}
-                            \pVector{1\\0\\2} 
-                                = (1)\pVector{1\\0\\0} + (0)\pVector{0\\1\\0} + (2)\pVector{1\\0\\2}
-                        \end{align*}
-
-                        Entonces el primer vector es $\pVector{1\\0\\2}$
-
-                    \item Para el segundo vector de la base de $B$
-                        \begin{align*}
-                            \LinTrans(e_2) 
-                                &= \LinTrans\pVector{0\\1}          
-                                = \pVector{3\\0\\-4}            
-                        \end{align*}
-
-                        Ahora, solo porque $\gamma$ es la base canonica, esto suena medio estupido, pero
-                        lo podemos ver como:
-                        \begin{align*}
-                            \pVector{3\\0\\-4} 
-                                = (3)\pVector{1\\0\\0} + (0)\pVector{0\\1\\0} + (-4)\pVector{1\\0\\2}
-                        \end{align*}
-
-                        Entonces el primer vector es $\pVector{3\\0\\-4}$
-
-                \end{itemize}
-
-                Ahora se ve claramente que la matriz que buscamos es:
-                \begin{align*}
-                    \bigBrackets{\LinTrans}_{B}^{\gamma}
-                        &= \pVector{1 && 3 \\ 0 && 0 \\ 2 && -4}
-                \end{align*}
+                    
+                    \end{SmallIndentation}
+                        
             
             
         % ==============================================
@@ -4551,6 +4659,9 @@
                 \begin{itemize}
 
                     \item
+                        $T$ es invertible si y solo si $T$ es inyectiva y subrayectiva
+
+                    \item
                         Si $\LinTrans: \VectorSet \to \SubVectorSet$ entonces $T^{-1}$ debe ser lineal
 
                         % ======== DEMOSTRACION ========
@@ -4596,6 +4707,22 @@
                             el Kernel solo tiene al cero.
 
                             Por lo tanto, por el teorema de la dimensión, es biyectiva.
+
+                        \end{SmallIndentation}
+                            
+
+                    \item
+                        Sea $M_{n \times n}(\GenericField)$ entonces si $A^2 = 0$ entonces $A$ no es invertible
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+
+                            Si $A$ es invertible entonces $I = AB$ para alguna $B$, quien sabe cual sea, pero existe.
+
+                            Entonces $A = AI = A(AB) = A^2B = 0B = 0$, y por lo tanto $A = 0$, pero $0$ no es invertible.
+
+                            ¡Contradicción! Entonces solo nos queda por admitir que $A$ no es invertible
 
                         \end{SmallIndentation}
                             
@@ -4691,12 +4818,80 @@
                             independientes y son también $n$ vectores, por lo tanto son base  
                         
                         \end{SmallIndentation}
-                            
 
+                    \item
+                        Sea $B \in M_{n \times n}(\GenericField)$ invertible. 
+                        Defina $\eta : M_{n \times n}(\GenericField) to M_{n \times n}(\GenericField)$
+                        dada por $\eta(A) = B^{-1}AB$. Entonces $\eta$ es un isomorfismo.
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Primero que nada hay que demostrar que $\eta$ es lineal:
+                            \begin{align*}
+                                \eta(cA + D)
+                                    &= B^{-1}(cA + D)B                  \\
+                                    &= B^{-1}(cAB + DB)                 \\
+                                    &= (B^{-1}cAB) + (B^{-1}DB)         \\
+                                    &= c(B^{-1}AB) + (B^{-1}DB)         \\
+                                    &= c \eta(A) + \eta(D)              
+                            \end{align*}
+
+                            Ahora para probar que es inyectiva lo unico que vamos a ver
+                            que es inyectiva demostrando que su kernel solo contiene al cero.
+
+                            Ya que si $\eta(A) = 0$ entonces quiere decir que $\eta(A) = B^{-1}0B$
+                            porque después de todo $B$ es invertible, por lo tanto ni ella ni su inversa
+                            puede ser el cero vector, por lo tanto no nos queda mas que $A = 0$.
+
+                            Por otro lado es subrayectiva, es decir, puedo llegar a cualquier matriz
+                            del espacio con esta función. Para una matriz arbitraria $A$ tenemos que
+                            $\eta(D) = B^{-1}DB = D$.
+
+                            Por lo tanto $\eta$ es inyectiva y subrayectiva, por lo tanto es invertible
+                            por $\eta$ es un isomorfismo por definición.
+                        
+                        \end{SmallIndentation}
+                            
                 \end{itemize}
             
 
+        % ==============================================
+        % ======      CAMBIO DE COORDENADAS     ========
+        % ==============================================
+        \clearpage
+        \section{Cambio de Coordenadas}
 
+            % ==============================================
+            % =======        EJEMPLOS           ============
+            % ==============================================
+            \subsection{Ejemplos}
+
+                \begin{itemize}
+                    \item 
+
+                        Sea $\beta = \Set{1, x, x,^2}$ y sea $\gamma = \Set{1+x+x^2, 1-x, 1}$.
+
+                        Hallemos la matriz de cambio de coordenadas de $\gamma$ a $\beta$.
+
+                        Primero veamos cada uno de los elementos de $\gamma$ como combinación lineal de $\beta$:
+                        \begin{itemize}
+                            \item $(1+x+x^2) = 1(1) + 1(x) + 1(x^2)$
+                            \item $(1-x) = 1(1) + (-1)(x) + 0(x^2)$
+                            \item $(1) = 1(1) + 0(x) + 0(x^2)$
+                        \end{itemize}
+
+                        Por lo tanto tenemos que nuestra matriz de cambio es:
+                        $Q = \bVector{1 & 1 & 1 \\ 1 & -1 & 0 \\ 1 & 0 & 0}$
+
+                        Por ejemplo el vector $x^2$ se ve en gamma como $\bVector{1 \\ 1 \\ -2}$ entonces tenemos que:
+                        \begin{align*}
+                            Q\bVector{1, 1, -2}
+                                &= \bVector{1 & 1 & 1 \\ 1 & -1 & 0 \\ 1 & 0 & 0} \bVector{1 \\ 1 \\ -2}        \\
+                                &= \bVector{0 \\ 0 \\ 1}
+                        \end{align*}
+                \end{itemize}
 
 
 
