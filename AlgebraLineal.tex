@@ -3260,242 +3260,272 @@
 
 
 
-        % =====================================================
-        % ============       EJEMPLOS               ===========
-        % =====================================================
-        \clearpage
-        \section{Ejemplos}
-
-            % ========================
-            % =====   EJEMPLO   ======
-            % ========================
-            \subsubsection{Ejemplo 1:}
-                Sea $\mathbb{R}^3 \to \mathbb{R}^2$ tal que:
-                \begin{equation*}
-                    \VecLinTrans{x\\y\\z}  = \pVector{x-z\\y+z}
-                \end{equation*}
-
-                Probemos que esta $\LinTrans$ es una Transformación Lineal:
-
-                Probemos la primera propiedad como:
-                \begin{align*}
-                    \VecLinTrans{ v_1 + v_2 }                                             
-                        &= \VecLinTrans{ \pVector{x_1\\y_1\\z_1} +\pVector{x_2\\y_2\\z_2} }
-                            &&= \VecLinTrans{ x_1+x_2\\y_1+y_2\\z_1+z_2 }                               \\
-                        &= \pVector{ (x_1+x_2) & - & (z_1+z_2) \\ (y_1+y_2) & + & (z_1+z_2) }                       
-                            &&= \pVector{ x_1+x_2-z_1-z_2 \\ y_1+y_2+z_1+z_2 }                          \\
-                        &= \pVector{ (x_1-z_1)+(x_2-z_2) \\ (y_1+z_1)+(y_2+z_2) }                                   
-                            &&= \pVector{ x_1-z_1\\y_1+z_1 }  + \pVector{ x_2-z_2\\y_2+z_2 }            \\
-                        &= \VecLinTrans{x_1\\y_1\\z_1} +\VecLinTrans{x_2\\y_2\\z_2}                     \\
-                        &= \LinTrans(v_1) + \LinTrans(v_2)
-                \end{align*}
-
-                Probemos la segunda propiedad:
-                \begin{equation*}
-                \begin{split}
-                    \FnLinTrans{\alpha v_1}                                                      
-                        &= \FnLinTrans{\alpha \cdot \pVector{x\\y\\z} }                      
-                         = \VecLinTrans{\alpha x\\\alpha y\\\alpha z}                                   \\
-                        &= \pVector{\alpha x - \alpha z\\ \alpha y + \alpha z}                                      
-                         = \alpha \cdot \pVector{x-z\\y+z}                                                          
-                         = \alpha \cdot \LinTrans \pVector{x\\y\\z}                                     \\
-                        &= \alpha \cdot \LinTrans (v_1)                                                 
-                \end{split}
-                \end{equation*}
-
-                Por lo tanto las 2 propiedades se cumplen así que si que es una transformación lineal.
-
-            % ========================
-            % =====   EJEMPLO   ======
-            % ========================
+            % =====================================================
+            % ============       EJEMPLOS               ===========
+            % =====================================================
             \clearpage
-            \subsubsection{Ejemplo 2:}
+            \subsection{Ejemplos}
 
-                Ve que falla con el siguiente intento de Transformación Lineal:
+                % ========================
+                % =====   EJEMPLO   ======
+                % ========================
+                \subsubsection{Ejemplo 1:}
+                    Sea $\mathbb{R}^3 \to \mathbb{R}^2$ tal que:
+                    \begin{equation*}
+                        \VecLinTrans{x\\y\\z}  = \pVector{x-z\\y+z}
+                    \end{equation*}
 
-                Sea $\mathbb{R}_2[x] \to \mathbb{R}_3[x]$ tal que:
-                \begin{equation*}
-                    \FnLinTrans{a_0+a_1x+a_2x^2} = \Wrap{3+a_0x+a_1x^2+a_2x^3}
-                \end{equation*}
+                    Probemos que esta $\LinTrans$ es una Transformación Lineal:
 
-                Esta muere de una manera muy estúpida, pues no lleva el cero vector al nuevo cero vector XD.
+                    Probemos la primera propiedad como:
+                    \begin{align*}
+                        \VecLinTrans{ v_1 + v_2 }                                             
+                            &= \VecLinTrans{ \pVector{x_1\\y_1\\z_1} +\pVector{x_2\\y_2\\z_2} }
+                                &&= \VecLinTrans{ x_1+x_2\\y_1+y_2\\z_1+z_2 }                               \\
+                            &= \pVector{ (x_1+x_2) & - & (z_1+z_2) \\ (y_1+y_2) & + & (z_1+z_2) }                       
+                                &&= \pVector{ x_1+x_2-z_1-z_2 \\ y_1+y_2+z_1+z_2 }                          \\
+                            &= \pVector{ (x_1-z_1)+(x_2-z_2) \\ (y_1+z_1)+(y_2+z_2) }                                   
+                                &&= \pVector{ x_1-z_1\\y_1+z_1 }  + \pVector{ x_2-z_2\\y_2+z_2 }            \\
+                            &= \VecLinTrans{x_1\\y_1\\z_1} +\VecLinTrans{x_2\\y_2\\z_2}                     \\
+                            &= \LinTrans(v_1) + \LinTrans(v_2)
+                    \end{align*}
+
+                    Probemos la segunda propiedad:
+                    \begin{equation*}
+                    \begin{split}
+                        \FnLinTrans{\alpha v_1}                                                      
+                            &= \FnLinTrans{\alpha \cdot \pVector{x\\y\\z} }                      
+                             = \VecLinTrans{\alpha x\\\alpha y\\\alpha z}                                   \\
+                            &= \pVector{\alpha x - \alpha z\\ \alpha y + \alpha z}                                      
+                             = \alpha \cdot \pVector{x-z\\y+z}                                                          
+                             = \alpha \cdot \LinTrans \pVector{x\\y\\z}                                     \\
+                            &= \alpha \cdot \LinTrans (v_1)                                                 
+                    \end{split}
+                    \end{equation*}
+
+                    Por lo tanto las 2 propiedades se cumplen así que si que es una transformación lineal.
+
+                % ========================
+                % =====   EJEMPLO   ======
+                % ========================
+                \clearpage
+                \subsubsection{Ejemplo 2:}
+
+                    Ve que falla con el siguiente intento de Transformación Lineal:
+
+                    Sea $\mathbb{R}_2[x] \to \mathbb{R}_3[x]$ tal que:
+                    \begin{equation*}
+                        \FnLinTrans{a_0+a_1x+a_2x^2} = \Wrap{3+a_0x+a_1x^2+a_2x^3}
+                    \end{equation*}
+
+                    Esta muere de una manera muy estúpida, pues no lleva el cero vector al nuevo cero vector XD.
 
 
+            % ==============================================
+            % ========          PROPIEDADES          =======
+            % ==============================================
+            \clearpage
+            \subsection{Propiedades}
 
-        % ==============================================
-        % ========          PROPIEDADES          =======
-        % ==============================================
-        \clearpage
-        \section{Propiedades}
+                \begin{itemize}
+                    \item 
+                        $\FnLinTrans{\vec 0_{\VectorSet}} = \vec 0_{\SubVectorSet}$
 
-            \begin{itemize}
-                \item 
-                    $\FnLinTrans{\vec 0_{\VectorSet}} = \vec 0_{\SubVectorSet}$
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Demostración}:
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Esta esta muy facil:
+                            \begin{align*}
+                                \FnLinTrans{\vec 0_{\VectorSet}}
+                                    = \FnLinTrans{\vec x - \vec x}                     
+                                    = \FnLinTrans{\vec x} - \FnLinTrans{\vec x}        
+                                    = \vec 0_{\SubVectorSet}
+                            \end{align*}
                         
-                        Esta esta muy facil:
-                        \begin{align*}
-                            \FnLinTrans{\vec 0_{\VectorSet}}
-                                = \FnLinTrans{\vec x - \vec x}                     
-                                = \FnLinTrans{\vec x} - \FnLinTrans{\vec x}        
-                                = \vec 0_{\SubVectorSet}
-                        \end{align*}
-                    
-                    \end{SmallIndentation}
-
-                \item
-                    Dados $\VectorSet, \SubVectorSet$ sobre el mismo campo (y ambos de dimensión finita), entonces y
-                    sea $B = \Set{\vec v_1, \dots, \vec v_n}$ base de $\VectorSet$
-
-                    Tomando a otro conjunto $\gamma = \Set{\vec w_i, \dots, \vec w_n} \subseteq \SubVectorSet$
-                    existe una ÚNICA transformación lineal $\LinTrans: \VectorSet \to \SubVectorSet$
-                    tal que $\FnLinTrans{\vec v_i} = \vec w_i$
-
-                    Es decir existe una unica transformación lineal tal que $\LinTrans[B] = \gamma$
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Demostración}:
-                        
-                        Vamos a crear esa dichosa $\LinTrans$, antes, sea $\vec x \in \VectorSet$, ahora
-                        como $B$ es una base podemos decir que existe una única manera de escribirlo
-                        como combinación lineal de sus elementos. 
-
-                        Digamos $\displaystyle \vec x = \sum_{i=1}^n a_i \vec v_i$
-
-                        Ahora, digamos que $\LinTrans$ es una función dada por:
-                        \begin{align*}
-                            \FnLinTrans{\vec x} = \sum_{i=1}^n a_i \vec w_i
-                        \end{align*}
-                        
-                        Ahora, por como definimos a $\LinTrans$ es obvio que $\LinTrans(\vec v_i) = \vec w_i$, por
-                        lo tanto nuestra propuesta de $\LinTrans$ cumple con nuestros prerequisitos.
-                        Ahora, demostremos que es lineal.
-
-                        Eso esta fácil, porque sean $\vec u, \vec v \in \VectorSet$, entonces
-                        $\vec u = \sum_{i=1}^n b_i \vec v_i$ y $\vec v = \sum_{i=1}^n c_i \vec v_i$
-                        y sea $d \in \GenericField$, entonces decimos que:
-                        \begin{align*}
-                            \FnLinTrans{d \vec u + \vec v}
-                                &= \FnLinTrans{d \Wrap{\sum_{i=1}^n b_i \vec v_i} + \Wrap{\sum_{i=1}^n c_i \vec v_i}}   \\ 
-                                &= \FnLinTrans{\Wrap{\sum_{i=1}^n db_i \vec v_i} + \Wrap{\sum_{i=1}^n c_i \vec v_i}}    \\ 
-                                &= \FnLinTrans{\Wrap{\sum_{i=1}^n (db_i + c_i) \vec v_i}}                               \\ 
-                                &= \sum_{i=1}^n (db_i + c_i) \FnLinTrans{\vec v_i}                                      \\ 
-                                &= \sum_{i=1}^n (db_i + c_i) \vec w_i                                                   \\ 
-                                &= d\Wrap{\sum_{i=1}^n b_i \vec w_i} + \Wrap{\sum_{i=1}^n c_i \vec w_i}                 \\ 
-                                &= d\FnLinTrans{\vec u} + \FnLinTrans{\vec v}    
-                        \end{align*}
-
-                        \clearpage
-
-                        Ahora, supon que no es única, que tenemos otra transformación que sea lineal y que cumpla
-                        lo que le pedimos al inicio, llamemosla $R$
-
-                        Entonces:
-                        \begin{align*}
-                            R(\vec x)
-                                &= R\Wrap{\sum_{i=1}^n a_i \vec v_i}        
-                                    && \Remember{Despues de todo podemos ver a $\vec x$ como combinación lineal de la base} \\
-                                &= \sum_{i=1}^n a_i R{\vec v_i}             
-                                    && \Remember{Despues de todo $R$ es lineal}                                             \\
-                                &= \sum_{i=1}^n a_i \vec w_i                
-                                    && \Remember{Quiero que $R$ cumpla con las condiciones}                                 \\
-                                &= \sum_{i=1}^n a_i \LinTrans(\vec v_i)     
-                                    && \Remember{Uhhhh, pero mira que $\LinTrans$ también cumple, ya lo probamos}           \\
-                                &= \FnLinTrans{\sum_{i=1}^n a_i \vec v_i}   
-                                    && \Remember{Y $\LinTrans$ también es lineal :v}                                        \\
-                                &= \FnLinTrans{\vec x}   
-                                    && \Remember{Tomala perro}
-                        \end{align*}
-
-                        Por lo tanto, son la misma -.-
-                    
-                    \end{SmallIndentation}
-                        
-
-                \item
-                    Sean $\VectorSet, \SubVectorSet$ espacios finitos, y dos transformaciones
-                    lineales $T, U$ entre los dos, ahora, si $B$ es una base de $\VectorSet$
-                    entonces sin perdida de generalidad $B =\Set{\vec v_i, \dots, \vec v_n}$
-
-                    Si $T(\vec x_i) = U(\vec x_i) \Space \forall i \in \Set{1, \dots, n}$, es decir
-                    si manda a los elementos de la base a los mismos vectores. Entonces son la misma
-                    transformación
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Demostración}:
-                        
-                        Es un colorario del teorema de arriba.
-                    
-                    \end{SmallIndentation}
-
-
-                \item
-                    Las suma y el producto por escalares de transformaciones lineales tambien
-                    son transformaciones lineales.
-
-                    Es decir, sean $T, U: \VectorSet \to \SubVectorSet$ transformaciones
-                    lineales y $a \in \GenericField$ entonces $aT + U$ es también una transformación
-                    lineal
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Demostración}:
-                        
-                        Esta va a quedar con una sencilla ecuación:
-                        \begin{align*}
-                            (aT + U)(d\vec x + \vec y)
-                                &= (aT)(d\vec x + \vec y) + U(d\vec x + \vec y)
-                                    && \Remember{$(f+g)(x)=f(x)+g(x)$}                      \\
-                                &= a(T)(d\vec x + \vec y) + U(d\vec x + \vec y)
-                                    && \Remember{$(kf)(x)=[k][f(x)]$}                       \\
-                                &= a(T)(d\vec x) + a(T)(\vec y) + U(d\vec x) + U(\vec y)
-                                    && \Remember{Como son lineales}                         \\
-                                &= a(T)(d\vec x) + U(d\vec x) + a(T)(\vec y) + U(\vec y)
-                                    && \Remember{Reacomodamos}                              \\
-                                &= d[a(T)(\vec x) + U(\vec x)] + [a(T)(\vec y) + U(\vec y)]
-                                    && \Remember{Reacomodamos}                              \\
-                                &= d(aT + U)(\vec x) + (aT + U)(\vec y)
-                                    && \Remember{Magia}
-                        \end{align*}
+                        \end{SmallIndentation}
 
                     \item
-                        El conjunto de todas las posibles transformaciones lineales de $\VectorSet$
-                        a $\SubVectorSet$ es un espacio vectorial en si mismo, con los vectores
-                        siendo funciones estas las denotamos como $\Laplace(\VectorSet, \SubVectorSet)$
-                    
-                    \end{SmallIndentation}
+                        Dados $\VectorSet, \SubVectorSet$ sobre el mismo campo (y ambos de dimensión finita), entonces y
+                        sea $B = \Set{\vec v_1, \dots, \vec v_n}$ base de $\VectorSet$
+
+                        Tomando a otro conjunto $\gamma = \Set{\vec w_i, \dots, \vec w_n} \subseteq \SubVectorSet$
+                        existe una ÚNICA transformación lineal $\LinTrans: \VectorSet \to \SubVectorSet$
+                        tal que $\FnLinTrans{\vec v_i} = \vec w_i$
+
+                        Es decir existe una unica transformación lineal tal que $\LinTrans[B] = \gamma$
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Vamos a crear esa dichosa $\LinTrans$, antes, sea $\vec x \in \VectorSet$, ahora
+                            como $B$ es una base podemos decir que existe una única manera de escribirlo
+                            como combinación lineal de sus elementos. 
+
+                            Digamos $\displaystyle \vec x = \sum_{i=1}^n a_i \vec v_i$
+
+                            Ahora, digamos que $\LinTrans$ es una función dada por:
+                            \begin{align*}
+                                \FnLinTrans{\vec x} = \sum_{i=1}^n a_i \vec w_i
+                            \end{align*}
+                            
+                            Ahora, por como definimos a $\LinTrans$ es obvio que $\LinTrans(\vec v_i) = \vec w_i$, por
+                            lo tanto nuestra propuesta de $\LinTrans$ cumple con nuestros prerequisitos.
+                            Ahora, demostremos que es lineal.
+
+                            Eso esta fácil, porque sean $\vec u, \vec v \in \VectorSet$, entonces
+                            $\vec u = \sum_{i=1}^n b_i \vec v_i$ y $\vec v = \sum_{i=1}^n c_i \vec v_i$
+                            y sea $d \in \GenericField$, entonces decimos que:
+                            \begin{align*}
+                                \FnLinTrans{d \vec u + \vec v}
+                                    &= \FnLinTrans{d \Wrap{\sum_{i=1}^n b_i \vec v_i} + \Wrap{\sum_{i=1}^n c_i \vec v_i}}   \\ 
+                                    &= \FnLinTrans{\Wrap{\sum_{i=1}^n db_i \vec v_i} + \Wrap{\sum_{i=1}^n c_i \vec v_i}}    \\ 
+                                    &= \FnLinTrans{\Wrap{\sum_{i=1}^n (db_i + c_i) \vec v_i}}                               \\ 
+                                    &= \sum_{i=1}^n (db_i + c_i) \FnLinTrans{\vec v_i}                                      \\ 
+                                    &= \sum_{i=1}^n (db_i + c_i) \vec w_i                                                   \\ 
+                                    &= d\Wrap{\sum_{i=1}^n b_i \vec w_i} + \Wrap{\sum_{i=1}^n c_i \vec w_i}                 \\ 
+                                    &= d\FnLinTrans{\vec u} + \FnLinTrans{\vec v}    
+                            \end{align*}
+
+                            \clearpage
+
+                            Ahora, supon que no es única, que tenemos otra transformación que sea lineal y que cumpla
+                            lo que le pedimos al inicio, llamemosla $R$
+
+                            Entonces:
+                            \begin{align*}
+                                R(\vec x)
+                                    &= R\Wrap{\sum_{i=1}^n a_i \vec v_i}        
+                                        && \Remember{Despues de todo podemos ver a $\vec x$ como combinación lineal de la base} \\
+                                    &= \sum_{i=1}^n a_i R{\vec v_i}             
+                                        && \Remember{Despues de todo $R$ es lineal}                                             \\
+                                    &= \sum_{i=1}^n a_i \vec w_i                
+                                        && \Remember{Quiero que $R$ cumpla con las condiciones}                                 \\
+                                    &= \sum_{i=1}^n a_i \LinTrans(\vec v_i)     
+                                        && \Remember{Uhhhh, pero mira que $\LinTrans$ también cumple, ya lo probamos}           \\
+                                    &= \FnLinTrans{\sum_{i=1}^n a_i \vec v_i}   
+                                        && \Remember{Y $\LinTrans$ también es lineal :v}                                        \\
+                                    &= \FnLinTrans{\vec x}   
+                                        && \Remember{Tomala perro}
+                            \end{align*}
+
+                            Por lo tanto, son la misma -.-
                         
+                        \end{SmallIndentation}
+                            
+
+                    \item
+                        Sean $\VectorSet, \SubVectorSet$ espacios finitos, y dos transformaciones
+                        lineales $T, U$ entre los dos, ahora, si $B$ es una base de $\VectorSet$
+                        entonces sin perdida de generalidad $B =\Set{\vec v_i, \dots, \vec v_n}$
+
+                        Si $T(\vec x_i) = U(\vec x_i) \Space \forall i \in \Set{1, \dots, n}$, es decir
+                        si manda a los elementos de la base a los mismos vectores. Entonces son la misma
+                        transformación
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Es un colorario del teorema de arriba.
                         
-
-                    
-            \end{itemize}
+                        \end{SmallIndentation}
 
 
+                    \item
+                        Las suma y el producto por escalares de transformaciones lineales tambien
+                        son transformaciones lineales.
 
-        % ==============================================
-        % ========          PROYECCIONES         =======
-        % ==============================================
-        \clearpage
-        \section{Proyecciones}
+                        Es decir, sean $T, U: \VectorSet \to \SubVectorSet$ transformaciones
+                        lineales y $a \in \GenericField$ entonces $aT + U$ es también una transformación
+                        lineal
 
-            
-            Sean $\VectorSet$ un espacio vectorial y $\SubVectorSet$ un subespacio vectorial sobre 
-            $\GenericField$.
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Esta va a quedar con una sencilla ecuación:
+                            \begin{align*}
+                                (aT + U)(d\vec x + \vec y)
+                                    &= (aT)(d\vec x + \vec y) + U(d\vec x + \vec y)
+                                        && \Remember{$(f+g)(x)=f(x)+g(x)$}                      \\
+                                    &= a(T)(d\vec x + \vec y) + U(d\vec x + \vec y)
+                                        && \Remember{$(kf)(x)=[k][f(x)]$}                       \\
+                                    &= a(T)(d\vec x) + a(T)(\vec y) + U(d\vec x) + U(\vec y)
+                                        && \Remember{Como son lineales}                         \\
+                                    &= a(T)(d\vec x) + U(d\vec x) + a(T)(\vec y) + U(\vec y)
+                                        && \Remember{Reacomodamos}                              \\
+                                    &= d[a(T)(\vec x) + U(\vec x)] + [a(T)(\vec y) + U(\vec y)]
+                                        && \Remember{Reacomodamos}                              \\
+                                    &= d(aT + U)(\vec x) + (aT + U)(\vec y)
+                                        && \Remember{Magia}
+                            \end{align*}
 
-            Una función $\LinTrans: \VectorSet \to \VectorSet$ se le llama una proyección
-            si y solo si:
-            \begin{itemize}
-                \item Existe otro subespacio de $\SubVectorSet_2$ tal que 
-                    $\SubVectorSet \oplus \SubVectorSet_2 = \VectorSet$ 
-                \item Para $\vec x = \vec x_1 + \vec x_2$ donde $x_1 \in \SubVectorSet$ y 
-                    $x_2 \in \SubVectorSet_2$ tenemos que $\FnLinTrans{\vec x} = \vec x_1$
-            \end{itemize}
+                        \item
+                            El conjunto de todas las posibles transformaciones lineales de $\VectorSet$
+                            a $\SubVectorSet$ es un espacio vectorial en si mismo, con los vectores
+                            siendo funciones estas las denotamos como $\Laplace(\VectorSet, \SubVectorSet)$
+                        
+                        \end{SmallIndentation}
 
+                    \item
+                        Sea $\VectorSet, \SubVectorSet$ espacios vectoriales con subespacios 
+                        $\VectorSet_1, \SubVectorSet_1$, respectivamente. 
+
+                        Si $T : \VectorSet \to \SubVectorSet$ es lineal, entonces:
+                        \begin{align*}
+                            T[\VectorSet_1] \leq_{\GenericField} \SubVectorSet
+                            \Space \Also \Space     
+                            \Set{x \in \VectorSet \Such T(x) \in \SubVectorSet_1} \leq_{\GenericField} \VectorSet   
+                        \end{align*} 
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Primero vamos a ver que $T[\VectorSet_1] \leq_{\GenericField} \SubVectorSet$
+                            esto se hace en 2 pasos:
+                            \begin{itemize}
+                                \item 
+                                    Nota que $\VectorSet_1$ es un subespacio entonces ya tiene al cero
+                                    vector simplemente por ser un subespacio, ahora como $T$ es una transformación
+                                    lineal, ya sabemos que $T(\vec 0) = \vec 0$, por lo tanto este también 
+                                    esta en $T[\VectorSet_1]$, por lo tanto $\vec 0 \in T[\VectorSet_1]$
+
+                                \item
+                                    Vamos tomemos $c \in \GenericField$ y $\vec y_1, \vec y_2 \in T[\VectorSet_1]$
+                                    entonces tenemos $\vec x_1, \vec x_2 \in \VectorSet_1$ tal que 
+                                    $T(\vec x_1) = \vec y_1$ y $T(\vec x_2) = \vec y_2$.
+
+                                    Entonces tenemos que $T(x_1 + x_2) = y_1 + y_2$ y $T(cx_1) = cy_1$, por lo tanto
+                                    $y_1 + y_2, cy_1 \in T[\VectorSet_1]$
+                            \end{itemize}
+
+                            Ahora vamos a probar que $\Set{x \in \VectorSet \Such T(x) \in \SubVectorSet_1} 
+                            \leq_{\GenericField} \VectorSet$.
+                            \begin{itemize}
+                                \item 
+                                    Nota que $\SubVectorSet_1$ es un subespacio entonces ya tiene al cero
+                                    vector simplemente por ser un subespacio, ahora como $T$ es una transformación
+                                    lineal, ya sabemos que $T(\vec 0) = \vec 0$, por lo tanto este también 
+                                    esta en $\Set{x \in \VectorSet \Such T(x) \in \SubVectorSet_1}$, por lo
+                                    tanto $\vec 0 \in \Set{x \in \VectorSet \Such T(x) \in \SubVectorSet_1}$
+
+                                \item
+                                    Vamos tomemos $c \in \GenericField$ y 
+                                    $\vec y_1, \vec y_2 \in \Set{x \in \VectorSet \Such T(x) \in \SubVectorSet_1}$
+                                    entonces tenemos $\vec x_1, \vec x_2 \in \SubVectorSet_1$ tal que 
+                                    $T(\vec y_1) = \vec x_1$ y $T(\vec y_2) = \vec x_2$.
+
+                                    Entonces tenemos que $T(y_1 + y_2) = x_1 + x_2$ y $T(cy_1) = cx_1$, por lo tanto
+                                    $y_1 + y_2, cy_1 \in \Set{x \in \VectorSet \Such T(x) \in \SubVectorSet_1}$
+                            \end{itemize}
+
+                        \end{SmallIndentation}
+                            
+                        
+                \end{itemize}
 
 
         % ==============================================
@@ -3609,7 +3639,7 @@
 
                         \end{SmallIndentation}
 
-                    \item $R[\LinealTransformation]$ es un subsuespacio vectorial
+                    \item $R[\LinealTransformation]$ es un subespacio vectorial
                         de $\SubVectorSet$
 
                         % ======== DEMOSTRACION ========
@@ -3703,7 +3733,6 @@
                             \textbf{Demostración}:
                             
                             Fijemos la dimensión de $\VectorSet$ a ser $n$, un natural.
-
                             Ahora, por el mero hecho de que $K[\LinTrans]$ es un subespacio de $\VectorSet$
                             tenemos que $dim(K[\LinTrans]) \leq dim(\VectorSet)$.
 
@@ -3724,8 +3753,10 @@
                             \begin{itemize}
                                 \item 
                                     Por un lado $S$ genera a $R[\LinTrans]$ porque sabemos que $<\LinTrans[B]>$.
+
                                     Pero, 
-                                    $\Generate{\LinTrans[B]} = \Generate{\vec 0, \LinTrans(\vec v_{k+1}), \dots, \LinTrans(\vec v_n)}$
+                                    $\Generate{\LinTrans[B]} 
+                                        = \Generate{\vec 0, \LinTrans(\vec v_{k+1}), \dots, \LinTrans(\vec v_n)}$
 
                                     Pero espera, todos los primeros $k$ elementos de $B$ por definición son mapeados
                                     al cero, pero $R[\LinTrans]$ es ya un espacio por lo cual ya tienen al cero, y no 
@@ -3814,16 +3845,173 @@
                         
                         \end{SmallIndentation}
                             
+                    \item
+                        Sean $\VectorSet, \SubVectorSet$ espacios vectoriales y sean 
+                        $T, U \in \Laplace(\VectorSet, \SubVectorSet)$ no nulas. 
+
+                        Si $R[T] \cap R[U] = \Set{\vec 0}$, entonces ${T, U}$ es un
+                        subconjunto linealmente independiende de $\Laplace(\VectorSet, \SubVectorSet)$. 
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Este deberia ser sencillo, primero supongamos que no son linealmente independientes
+                            es decir que podemos expresar a $T = kU$, entonces tomemos a un vector en el rango 
+                            de $T$ (que no nos de el cero vector, ni que sea el cero vector), podemos hacer esto
+                            porque el dijimos que ninguna de las transformaciones es nula.
+
+                            Ahora ve que $T(x) = kU(x) = U(kx)$, entonces si te das cuenta encontramos un vector
+                            en el rango de ambos que comparten, ahora, como $\vec x \neq 0$ y ademas especificamente
+                            seleccionamos a $\vec x$ para que su transformada no sea cero.
+
+                            Pero eso es imposible, dijimos que $R[T] \cap R[U] = \Set{\vec 0}$, por lo tanto
+                            contradicción.
+
+                            ${T, U}$ es un subconjunto linealmente independiende de $\Laplace(\VectorSet, \SubVectorSet)$
+
+                        \end{SmallIndentation}
                             
 
                 \end{itemize}
 
 
+            % ==============================================
+            % ============       EJEMPLOS         ==========
+            % ==============================================
+            \clearpage
+            \subsection{Ejemplos}
+
+                \begin{itemize}
+
+                    \item
+                        Encontrar una base para el rango y el kernel de:
+                        $T: \Polynomials_2(\Reals) \to \Polynomials_3(\Reals)$
+                        dada por $T(f(x)) := xf(x) + f'(x)$
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Primero, antes que nada vamos a demostrar que $T$ es una transformación lineal
+                            para eso tomemos arbitrariamente $f(x), g(x) \in \Polynomials_2(\Reals)$
+                            y $c \in \Reals$, entonces tenemos que:
+                            \begin{align*}
+                                T(cf(x) + g(x))
+                                    &= x(cf(x) + g(x)) + (cf(x) + g(x))'         \\
+                                    &= xcf(x) + xg(x) + (cf(x))' + g'(x)         \\
+                                    &= xcf(x) + xg(x) + cf'(x) + g'(x)           \\
+                                    &= xcf(x) + xg(x) + cf'(x) + g'(x)           \\
+                                    &= xcf(x) + cf'(x) + xg(x) + g'(x)           \\
+                                    &= c(xf(x) + f'(x)) + xg(x) + g'(x)          \\
+                                    &= c(T(f(x))) + T(g(x))
+                            \end{align*}
+
+                            Ok, ahora veamos que la pasa a una base al transformarla:
+                            \begin{align*}
+                                T\Brackets{\Wrap{1, x, x^2}}
+                                    &= \Set{T(1), T(x), T(x^2)}             \\ 
+                                    &= \Set{(x), (x^2 + 1), (x^3 + 2x)}     \\ 
+                            \end{align*}
+
+                            Creo que es más que obvio que son independientes linealmente (sobretodo por el grado
+                            del polinomio)
+                            y más aún hemos demostrado que el generado del conjunto de las transformados
+                            de una base de $\VectorSet$ nos da el Rango de la transformación, por lo tanto
+                            cumple todas las características de una base.
+
+                            Ahora, por el otro lado, y por el teorema de la dimensión tenemos que el Kernel
+                            solo contiene al polinomio cero por lo tanto tenemos que:
+
+                            \begin{itemize}
+                                \item Una base para $R[T]$ es $\Set{x, x^2+1, x^3+2x}$ otra
+                                por ejemplo puede ser $\Set{x, x^2 + 1, x^3}$
+                                \item Una base para $K[T]$ es $\emptyset$ es decir el Kernel es
+                                    $\Set{0}$
+                            \end{itemize}
+
+                        
+                        \end{SmallIndentation}
+
+                    \item
+                        Encontrar una base para el rango y el kernel de:
+                        $T: M_{n \times n}(\Reals) \to \Reals$
+                        dada por $T(A) := tr(A)$
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Primero, antes que nada vamos a demostrar que $T$ es una transformación lineal
+                            para eso tomemos arbitrariamente $A, B$
+                            y $c \in \Reals$, entonces tenemos que:
+                            \begin{align*}
+                                T(cA + B)
+                                    &= tr(cA + B)                           \\
+                                    &= \sum_{i = 0}^n(c[A]_{i,i} + B{i,i})  \\
+                                    &= \sum_{i = 0}^n(c[A]_{i,i}) 
+                                       +
+                                       \sum_{i = 0}^n([B]_{i,i})            \\
+                                    &= c\sum_{i = 0}^n([A]_{i,i}) 
+                                       +
+                                       \sum_{i = 0}^n([B]_{i,i})            \\
+                                    &= c tr(A) + tr(B)
+                            \end{align*}
+
+                            Ok entonces, ya sabemos que es una transformación lineal
+                            ahora, claro que podemos llegar a cualquier elemento del campo,
+                            es decir $T(E_{1, 1}) = 1$, por lo tanto $T(kE_{1, 1}) = k$
+                            entonces la base del Rango es claramente {1}.
+
+                            Ahora, el Kernel, el Kernel es otra historia, para empezar podemos
+                            pensar en todas las matrices que tienen cero a lo largo de la diagonal
+                            es decir $\Set{E_{i, j} \Such i \neq j}$.
+
+                            Ahora hay que pensar en las que suman cero, su base claramente son:
+                            $\Set{E_{i, i} + E_{n, n} \Such i \in [1, 2, \dots, n - 1]}$
+
+                            Por lo tanto tenemos que:
+                            \begin{itemize}
+                                \item Una base para $R[T]$ es $\Set{1}$
+                                \item Una base para $K[T]$ es $\Set{E_{i, j} \Such i \neq j} \cup 
+                                    \Set{E_{i, i} + E_{n, n} \Such i \in [1, 2, \dots, n - 1]}$
+                            \end{itemize}
+                        
+                        \end{SmallIndentation}
+
+
+                \end{itemize}
+
+                        
+
+
+        % ==============================================
+        % ========          PROYECCIONES         =======
+        % ==============================================
+        \clearpage
+        \section{Proyecciones}
+
+            
+            Sean $\VectorSet$ un espacio vectorial y $\SubVectorSet_1, \SubVectorSet_2$ dos subespacios 
+            vectorial sobre $\GenericField$ tal que \\
+            $\SubVectorSet_1 \oplus \SubVectorSet_2 = \VectorSet$ 
+
+            Una función $\LinTrans: \VectorSet \to \VectorSet$ se le llama una proyección
+            de $\SubVectorSet_1$ sobre $\SubVectorSet_2$ si y solo si:
+            \begin{align*}
+                \text{Para } 
+                    \vec x = \vec x_1 + \vec x_2 \text{ donde } 
+                    x_1 \in \SubVectorSet \Also
+                    x_2 \in \SubVectorSet_2
+                    \text{ tenemos que }
+                    \FnLinTrans{\vec x} = \vec x_1
+            \end{align*}
+
 
         % ==============================================
         % ======    ESPACIOS INVARIANTES         =======
         % ==============================================
-        \clearpage
+        \vspace{1em}
         \section{Invariantes}
             
             Sean $\VectorSet$ un espacio vectorial y sea $\LinTrans: \VectorSet \to \VectorSet$
@@ -3831,7 +4019,7 @@
 
             Se dice que $\SubVectorSet$ es $\LinTrans$-invariante si y solo si $\SubVectorSet$ es
             un subespacio vectorial tal que la transformación de todos sus elementos se quedan en $\SubVectorSet$
-            es decir $\forall \vec x \in \SubVectorSet, \MiniSpace \FnLinTrans{\vec x} \subseteq \SubVectorSet$.
+            es decir $\forall \vec x \in \SubVectorSet, \MiniSpace \FnLinTrans{\vec x} \in \SubVectorSet$.
 
 
 
