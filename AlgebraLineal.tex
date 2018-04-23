@@ -1601,7 +1601,6 @@
 
 
 
-
 % //////////////////////////////////////////////////////////////////////////////////////////////////////////
 % /////////////////////////////           ESPACIOS VECTORIALES        //////////////////////////////////////
 % //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -4174,13 +4173,13 @@
 
                 Sea $B = \Set{\vec x_1, \dots, \vec x_n}$ una base ordenada de $\VectorSet$, un espacio
                 vectorial finito. Para $\vec v \in \VectorSet$ existen los escalares únicos
-                tales que $\vec x = \sum_{i=1}^n a_i \vec u_i$.
+                tales que $\displaystyle \vec x = \sum_{i=1}^n a_i \vec u_i$.
 
                 Así podemos crear el vector columna coordenada:
                 \begin{align*}
-                    \pVector{a_1 \\ a_2 \\ \dots \\a_n}
+                    \bigBrackets{\vec x}_{B}
                     =
-                    \Brackets{\vec x}_{B}
+                    \pVector{a_1 \\ a_2 \\ \vdots \\a_n}
                 \end{align*}
 
 
@@ -4198,23 +4197,31 @@
                 Sea $\LinTrans: \VectorSet \to \SubVectorSet$, una transformación lineal
                 entre dos espacios sobre el mismo campo.
                 Ahora, sean $B = \Set{\vec v_1, \dots, \vec v_n}$ y $\gamma = \Set{\vec u_1, \dots, \vec u_k}$
-                bases de estos dos espacios respectivamente. 
+                bases ordenadas de estos dos espacios respectivamente.
+
                 Llamaremos a la matriz que pertenece a $M_{m \times n}(\GenericField)$ una
                 representación de esta transformación sobre dichas bases, denotada como: 
 
                 \begin{align*}
-                    A = \bigBrackets{\LinTrans}_{B \text{Base del Dominio}}^{\gamma \text{Base del Contradominio}}
+                    A = \BigBrackets{\LinTrans}_{B: \text{Base del Dominio}}^{\gamma: \text{Base del Contradominio}}
                 \end{align*}
 
-                Donde la columna j-ésima de la matriz es $\Brackets{\FnLinTrans{\vec v_j}}_{\gamma}$
+                Donde la columna j-ésima de la matriz es $\Brackets{\FnLinTrans{\vec v_j}}_{\gamma}$,
+                es decir, la j-ésima columna de la matriz esta hecha con los escalares de la combinación
+                lineal del j-ésimo vector de la base como combinación lineal de los elementos del contradominio.
 
                 Ahora como información importante recuerda que:
                 \begin{itemize}
                     \item 
-                        El número de columnas de es el número de vectores en la base, es decir
-                        la $dim(Dom)$
+                        El número de columnas de es el número de vectores en la base
                     \item 
                         El número de filas de es el número de vectores en $\gamma$
+                    \item
+                        Por otro lado si es que tenemos una transformación lineal de $\VectorSet \to \VectorSet$
+                        y hablamos por lo tanto de la misma base, entonces simplemente decimos:
+                        \begin{align*}
+                        \BigBrackets{\LinTrans}_{B: \text{Base del Dominio}}
+                    \end{align*}
                 \end{itemize}
 
 
@@ -4446,8 +4453,7 @@
 
                     \item 
                         $\LinTrans \circ (U_1 + U_2) = \LinTrans \circ U_1 + \LinTrans \circ U_2$
-
-                    \item 
+                        y 
                         $(U_1 + U_2) \circ \LinTrans = U_1 \circ \LinTrans + U_2 \circ \LinTrans$
 
                     \item 
@@ -4518,7 +4524,7 @@
                 Sea $A \in M_{m \times n}(\GenericField)$.
                 Entonces definimos a $L_A: \GenericField^n \to \GenericField^m$:
                 \begin{align*}
-                    L_A(\vec x) = A(\vec x) \Space \forall \vec x \in \GenericField^n 
+                    L_A(\vec x) := A(\vec x) \Space \forall \vec x \in \GenericField^n 
                 \end{align*}
 
 
@@ -4750,7 +4756,8 @@
 
                 Solemos decir entonces que $\VectorSet \cong_{\GenericField} \SubVectorSet$
 
-                A dicha transformación le llamamos isoformismo
+                A dicha transformación le llamamos isoformismo, la relación \Quote{es isomorfo con}
+                es una relación de equivalencia.
 
 
             % ==============================================
@@ -4785,7 +4792,7 @@
                         $dim(\VectorSpace) = n$ 
 
                     \item
-                        Dados $\VectorSet, \SubVectorSet$ finitos donde $dim(\VectorSet) = n$
+                        Dados $\VectorSet, \SubVectorSet$ finitos donde $dim(\VectorSet) = n$,
                         $dim(\SubVectorSet) = m$ con bases ordenadas $\beta, \gamma$ entonces tomando
                         a $\phi : \mathscr{L}(\VectorSet, \SubVectorSet) \to M_{m \times n}(\GenericField)$
                         dada por $\phi(T) = \BigBrackets{T}_\beta^\gamma$ es un isoformismo
@@ -4857,6 +4864,7 @@
                 \end{itemize}
             
 
+
         % ==============================================
         % ======      CAMBIO DE COORDENADAS     ========
         % ==============================================
@@ -4864,8 +4872,44 @@
         \section{Cambio de Coordenadas}
 
             % ==============================================
+            % =======        DEFINICION         ============
+            % ==============================================
+            \subsection{Definición}
+
+                Sea $\beta$ y $\beta'$ 2 bases ordenadas entonces la matriz de cambio de coordenadas
+                esta definida como:
+                \begin{align*}
+                    \BigBrackets{Id_{\VectorSet}}_{\beta'}^{\beta}
+                \end{align*}
+
+                La usamos de la siguiente manera:
+                \begin{align*}
+                    [\vec v]_\beta 
+                       &= \BigBrackets{Iv(\vec v)}_\beta                                    \\
+                       &= \BigBrackets{Iv}_{\beta'}^\beta \BigBrackets{\vec v}_{\beta'}     \\
+                       &= Q [\vec v]_{\beta'}
+                \end{align*}
+
+
+
+            % ==============================================
+            % =======          PROPIEDADES        ==========
+            % ==============================================
+            \subsection{Propiedades}
+
+                \begin{itemize}
+                    \item 
+                        Si $Q$ es la matriz de cambio de coordenadas de $\beta$ a $\beta'$,
+                        entonces la matriz de cambio de coordenadas de $\beta'$ a $\beta$
+                        es $Q^{-1}$
+                \end{itemize}
+
+
+
+            % ==============================================
             % =======        EJEMPLOS           ============
             % ==============================================
+            \clearpage
             \subsection{Ejemplos}
 
                 \begin{itemize}
@@ -4895,8 +4939,10 @@
 
 
 
+
+
 % //////////////////////////////////////////////////////////////////////////////////////////////////////////
-% ////////////     GAUSS JORDAN, AMIGOS   Y SISTEMAS ECUACIONES LINEALES     ///////////////////////////////
+% ////////////           GAUSS JORDAN, AMIGOS   Y SISTEMAS ECUACIONES LINEALES        //////////////////////
 % //////////////////////////////////////////////////////////////////////////////////////////////////////////
 \part{Ecuaciones Lineales, Gauss-Jordan y sus Amigos}
 \clearpage
@@ -5169,39 +5215,18 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     % ===============================================================================
-    % ===================    GAUSS-JORDAN Y LOS AMIGOS         ======================
+    % ===================    OPERACIONES ELEMENTALES           ======================
     % ===============================================================================
     \clearpage
-    \chapter{Gauss-Jordan y sus Amigos}
-
+    \chapter{Operaciones Elementales}
 
 
         % ==============================================
-        % =====     OPERACIONES ELEMENTALES       ======
+        % ==========      DEFINICION         ===========
         % ==============================================
         \clearpage
-        \section{Operaciones Elementales}
+        \section{Definición}
 
 
             % =================================================
@@ -5299,7 +5324,6 @@
                             \end{equation*}
                         
                     \end{SmallIndentation}
-
 
 
             % ==================================================
@@ -5400,7 +5424,6 @@
                     \end{SmallIndentation}
 
 
-
             % ==================================================
             % =======    SCALE: ESCALAR FILAS / COL     ========
             % ==================================================
@@ -5495,6 +5518,74 @@
                     \end{SmallIndentation}
 
 
+
+            % ==============================================
+            % ===========     PROPIEDADES     ==============
+            % ==============================================
+            \clearpage
+            \subsection{Propiedades}
+
+            \begin{itemize}
+                
+                \item 
+                    Las matrices elementales son invertibles y el inverso de una matriz elemental es 
+                    también del mismo tipo que la original
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Idea de la Demostración}:
+                            
+                        Creo que es mas que obvio que por ejemplo si tienes una matriz elemental que reprensenta
+                        el intercambio de columnas, entonces su inversa es la misma, o si tienes una que multiplica
+                        a cierta columa con $5$ entonces su inversa es la que multiplica a dicha columna por $\frac{1}{5}$
+
+                    \end{SmallIndentation}
+                        
+
+            \end{itemize}
+
+
+
+        % ==============================================
+        % ======      RANGO DE MATRICES      ===========
+        % ==============================================
+        \clearpage
+        \section{Rango de Matrices}
+
+            Si $A \in M_{m \times n}(\GenericField)$, definimos el rango de $A$
+            como el rango de la transformación lineal $L_A$.
+
+
+            % ==============================================
+            % ===========     PROPIEDADES     ==============
+            % ==============================================
+            \clearpage
+            \subsection{Propiedades}
+
+                \begin{itemize}
+                    
+                    \item 
+                        Sea una matriz de $m \times n$, si $P, Q$ son invertibles de $m \times m$
+                        y de $m \times m$ entonces:
+                        \begin{itemize}
+                            \item $rango(AQ) = rango(A)$
+                            \item $rango(PA) = rango(A)$
+                        \end{itemize}
+
+
+                    \item
+                        Las operaciones elementales no cambian el rango de una matriz
+
+
+                \end{itemize}
+
+
+
+    % ===============================================================================
+    % ===================    GAUSS-JORDAN Y LOS AMIGOS         ======================
+    % ===============================================================================
+    \clearpage
+    \chapter{Gauss-Jordan y sus Amigos}
 
 
 
