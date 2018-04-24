@@ -4637,7 +4637,7 @@
         % ============      INVERSAS      ==============
         % ==============================================
         \clearpage
-        \section{Inversa}
+        \section{Inversa de una Transformación Lineal}
 
             % ==============================================
             % =======        DEFINICION         ============
@@ -5411,8 +5411,6 @@
 
 
 
-
-
     % ===============================================================================
     % ===================    SISTEMAS DE ECUACIONES LINEALES        =================
     % ===============================================================================
@@ -5620,6 +5618,21 @@
             \end{figure}
 
 
+            % =====================================================
+            % =======             PROPIEDADES              ========
+            % =====================================================
+            \vspace{1em}
+            \subsection{Propiedades}
+
+                \begin{itemize}
+                    \item 
+                        Sea $A \vec x = \vec b$ un sistema de ecuaciones lineales
+                        entonces el sistema es consistente si y solo si 
+                        $rango(A) = rango(A | b)$
+
+                \end{itemize}
+
+
 
             
             % =====================================================
@@ -5721,8 +5734,8 @@
                             Entonces podemos escribir para cualquier solución $\vec s$ al conjunto de soluciones
                             como:
                             \begin{align*}
-                                K   &= \Set{\vec s} + K_H
-                                    &= \Set{\vec s + \vec k \Such \vec k \in K_H}
+                                K = \Set{\vec s} + K_H
+                                  = \Set{\vec s + \vec k \Such \vec k \in K_H}
                             \end{align*}
 
                             % ======== DEMOSTRACION ========
@@ -5747,7 +5760,9 @@
                                 Es decir $K \subseteq \Set{s} + K_H$
 
                                 Por otro lado si $\vec w \in \Set{s} + K_H$ entonces podemos decir que $\vec w = \vec s + \vec k$,
-                                pero 
+                                pero entonces $A\vec w = A\vec s + A \vec K = \vec b + \vec 0$, por lo tanto $\vec w \in K$.
+
+                                Por lo tanto $\Set{s} + K_H \subseteq K$
 
                             \end{SmallIndentation}
                                 
@@ -5764,13 +5779,50 @@
                 Que es lo esperado y a lo que yo llamaría normal.
                 Por lo tanto si tocan en un punto entonces solo habrá una única solución.
 
-                Esto pasa si es que no hay variables libres en el sistema.
+                Esto pasa si es que no hay variables libres en el sistema
+
+
+                % =====================================================
+                % =======             PROPIEDADES              ========
+                % =====================================================
+                \vspace{1em}
+                \subsubsection{Propiedades}
+
+                    \begin{itemize}
+                        \item 
+                            Sea $A \vec x = \vec b$ un sistema de n ecuaciones
+                            con n incognitas.
+
+                            A es invertible si y solo si el sistema tiene una
+                            sola solución
+
+                            % ======== DEMOSTRACION ========
+                            \begin{SmallIndentation}[1em]
+                                \textbf{Demostración}:
+                                
+                                Supongamos que $A$ es invertible entonces
+                                $A(A^{-1}\vec b) = \vec b$, entonces $A^{-1}b$
+                                es una solución.
+
+                                Ahora, supón otra solución $\vec s$
+                                entonces $A \vec s = \vec b$ al multiplicar
+                                todo por la inversa tenemos que $\vec s = A^{-1}\vec b$
+
+                                Por el otro lado si es sistema solo tiene una solución
+                                entonces el conjunto de soluciones homogeneas solo
+                                puede ser $\Set{\vec 0}$, por lo tanto $N(L_A) = \Set{\vec 0}$
+                                entonces $A$ es invertible
+                            
+                            \end{SmallIndentation}
+                                
+
+                    \end{itemize}
 
 
             % ==================================================
             % ===   SISTEMAS CONSISTENTES DEPENDIENTES     =====
             % ==================================================
-            \vspace{2em}
+            \clearpage
             \subsection{Sistemas Consistentes Dependientes}
 
                 Este caso es muy especial, pues nos dice que el sistema esta
@@ -6116,18 +6168,6 @@
                 
 
 
-                    
-           
-
-        
-                    
-                    
-
-
-
-
-
-
 
         % ==============================================
         % ====        INVERSA DE UNA MATRIZ       ======
@@ -6218,16 +6258,14 @@
                             \textbf{Demostración}:
 
                             Si $(AB)$ es invertible entonces tenemos que probar que:
-                            \begin{equation}
-                            \begin{split}
+                            \begin{align*}
                                 (AB)(B^{-1}A^{-1})  &=                      \\
                                                     &= (((AB)B^{-1})A^{-1})  
                                                     &= ((A(BB^{-1}))A^{-1}) 
                                                     &= ((A(I_n))A^{-1})     
                                                     &= (AA^{-1})            \\
                                                     &= I_n 
-                            \end{split}
-                            \end{equation}
+                            \end{align*}
                             
                         \end{SmallIndentation}
 
@@ -6247,6 +6285,136 @@
 
                 \end{itemize}
             
+
+
+
+
+
+% //////////////////////////////////////////////////////////////////////////////////////////////////////////
+% /////////////////////////////              DETERMINANTES               ///////////////////////////////////
+% //////////////////////////////////////////////////////////////////////////////////////////////////////////
+\part{Determinantes}
+\clearpage
+
+
+    % ===============================================================================
+    % ===================            INTRODUCCION                 ===================
+    % ===============================================================================
+    \chapter{Determinantes de $2 \times 2$}
+
+
+        % ==============================================
+        % ========          DEFINICION           =======
+        % ==============================================
+        \clearpage
+        \section{Definición}
+
+            La idea es construir recursivamente el concepto, por lo
+            cual comenzaremos por construir los determinantes de $2 \times 2$
+
+            Sea $A \in M_{2 \times 2}(\GenericField)$ definida como:
+            \begin{align*}
+                A = \pVector{a_{11} & a_{12} \\ a_{21} & a_{22}}
+            \end{align*}
+
+            Entonces definimos al determinante como:
+            \begin{align*}
+                |A| := a_{11} a_{22} - a_{12} a_{21} 
+            \end{align*}
+
+            Claramente el $det(A) \in \GenericField$ y es importante
+            recordar que $det(A)$ \textbf{no es una transformación lineal}
+
+
+        % ==============================================
+        % ========        PROPIEDADES            =======
+        % ==============================================
+        \clearpage
+        \section{Propiedades}
+
+            \begin{itemize}
+
+                \item
+                    $det(A) = det(A^T)$
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+                        
+                        Ya sabemos cual es el determinate ahora, simplemente
+                        tenemos que sacar el:
+                        \begin{align*}
+                            det\Wrap{A^T}
+                                &= det\Wrap{\pVector{a_{11} & a_{12} \\ a_{21} & a_{22}}^T}     \\
+                                &= det\Wrap{\pVector{a_{11} & a_{21} \\ a_{12} & a_{22}}}       \\
+                                &= a_{11} a_{22} - a_{21} a_{12}
+                        \end{align*}
+                    
+                    \end{SmallIndentation}
+                        
+
+                \item 
+                    La función del determinante es una función lineal
+                    para cada renglón, dejando fijo al otro
+
+                    Es decir dados $\vec u, \vec v, \vec w \in \GenericField^2$ y
+                    y $k \in \GenericField$ entonces:
+                    \begin{align*}
+                        det \pVector{\vec u + k\vec v \\ \vec w}
+                            =  det \pVector{\vec u \\ \vec w}
+                            + det k\pVector{\vec v \\ \vec w}
+                    \end{align*}
+
+                    Y 
+                    \begin{align*}
+                        det \pVector{\vec w \\ \vec u + k\vec v}
+                            =  det \pVector{\vec w  \\ \vec u}
+                            + det k\pVector{\vec w  \\ \vec v}
+                    \end{align*}
+
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+                        
+                        Es pura talacha men :v
+                        
+                    
+                    \end{SmallIndentation}
+
+                \item
+                    $det(A) \neq 0$ si y solo si $A$ es invertible
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Idea de la Demostración}:
+                        
+                        Podemos ver que la inversa de $A$ esta dada
+                        por:
+                        \begin{align*}
+                            A^{-1}
+                                = \frac{1}{det(A)} \pVector{
+                                                         a_{22} & -a_{12} \\
+                                                        -a_{21} &  a_{11}
+                                                    }
+                        \end{align*}
+
+                        Podemos ver claramente que funciona como la inversa, pero
+                        necesita que $det(A)$ no sea cero para que tenga sentido, ese
+                        es el sentido de la demostración
+                    
+                    \end{SmallIndentation}
+                        
+                        
+
+
+
+            \end{itemize}
+
+
+
+
+
 
 
 
