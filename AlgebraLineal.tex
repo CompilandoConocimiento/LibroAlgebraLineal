@@ -6326,6 +6326,36 @@
             recordar que $det(A)$ \textbf{no es una transformación lineal}
 
 
+            % ==============================================
+            % ========          N-LINEAL             =======
+            % ==============================================
+            \vspace{1em}
+            \subsection{N-Lineal}
+
+                Decimos que una función es $n-lineal$ si es que para una matriz de $m \times n$
+                (Recuerda que $[A]^i$ es la i-ésima fila horizontal de la matriz):
+                \begin{align*}
+                    \delta\pVector{\Brackets{A}^1 \\ \ldots \\ c\Brackets{A}^i + \Brackets{A}^j \\ \ldots \\ \Brackets{A}^m}
+                        &= c
+                        \delta\pVector{\Brackets{A}^1 \\ \ldots \\ \Brackets{A}^i \\ \ldots \\ \Brackets{A}^m}
+                        + \delta\pVector{\Brackets{A}^1 \\ \ldots \\ \Brackets{A}^j \\ \ldots \\ \Brackets{A}^m}
+                \end{align*}
+
+
+            % ==============================================
+            % ========         ALTERNANTE            =======
+            % ==============================================
+            \vspace{1em}
+            \subsection{Alternante}
+
+                Decimos que una función $\delta$ es alternante si y solo si $\delta(A) = 0$
+                si es que $[A]^i = [A]^j$
+
+
+
+
+
+
         % ==============================================
         % ========        PROPIEDADES            =======
         % ==============================================
@@ -6413,6 +6443,8 @@
                 \item
                     $det(Id_{2 \times 2}) = 1$
 
+                \clearpage
+
                 \item
                     Sea $\delta: M_{2 \times 2}(\GenericField) \to \GenericField$ una función
                     tal que:
@@ -6425,6 +6457,61 @@
 
                     Entonces $\delta = det$
 
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Idea de la Demostración}:
+                        
+                        Igual la idea de la demostración esta sencilla, pero
+                        la idea se basa en sacar la $\delta$ de cada uno de los elementos
+                        de la base, en este caso es util ver la base:
+                        \begin{align*}
+                            \Set{
+                                \pVector{1&&0\\0&&1}, 
+                                \pVector{1&&0\\0&&0},
+                                \pVector{0&&0\\1&&0},
+                                \pVector{0&&1\\1&&0}
+                            }
+                        \end{align*}
+
+                        Despúes de obtener por propiedades ver que nos dan deltas
+                        igual a $1, -1, 0$.
+
+                        Despúes simplemente tienes que expresar a cualquier matriz como
+                        combinación lineal de esta base, y usando que $\delta$ en n-lineal
+                        llegar a la definición de determinante de $2 \times 2$
+                    
+                    \end{SmallIndentation}
+
+                \item
+                    La combinación lineal de funciones n-lineales es n-lineal
+
+                \item
+                    Si $\delta$ es una función alternante, entonces si es que
+                    para 2 matrices $A, B$ tal que $B$ es igual a $A$ excepto
+                    porque tienen las filas $i, j$ cambiadas entonces
+                    $\delta(A) = - \delta(B)$.
+
+            \end{itemize}
+
+
+    % ===============================================================================
+    % ============      DETERMINANTES EN GENERAL                  ===================
+    % ===============================================================================
+    \chapter{Determinantes}
+
+
+        % ==============================================
+        % ========          DEFINICION           =======
+        % ==============================================
+        \clearpage
+        \section{Definición}
+
+            Un determinante es una función que va del espacio de las matrices cuadradas
+            a el campo, es una función que:
+            \begin{itemize}
+                \item Es n-lineal
+                \item Es alternante
+                \item Evaluada en cualquier identidad nos da el uno del campo
             \end{itemize}
 
 
