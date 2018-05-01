@@ -858,6 +858,67 @@
 
 
 
+% ==============================================================
+% =================          PROBLEMA 11      ==================
+% ==============================================================
+\clearpage
+\section{11 Problema}
+
+    El sistema $A \vec x = \vec b$ tiene solución si y solo si $b \in R[L_A]$.
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Demostración}:
+        
+        Esta es por definición, $b \in R[L_A]$ si y solo si existe un vector
+        $\vec x$ tal que $L_A(\vec x) = \vec b$ y esto ocurre si y solo si
+        $A \vec x = \vec b$.
+
+    \end{SmallIndentation}
+
+
+
+% ==============================================================
+% =================          PROBLEMA 12      ==================
+% ==============================================================
+\vspace{1em}
+\section{12 Problema}
+
+    Si la matriz de coeficientes de un sistema de m ecuaciones lineales
+    con n incógnitas tiene rango m, entonces el sistema tiene
+    solución.
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Demostración}:
+        
+        Ahora, ve que porque el rango es $m$ entonces sabemos que $L_A$ es una función suprayetiva, y por definición
+        el encaje es inyectiva, por lo tanto esa matriz, llamemosla $A$, tiene una inversa.
+
+        Es decir que el sistema $A \vec x = b$ tiene una solución, de hecho una solución es $A^{-1}A \vec x = A^{-1}b$
+        porque es lo mismo que decir $\vec x = A^{-1}b$
+
+    \end{SmallIndentation}
+
+
+
+% ==============================================================
+% =================          PROBLEMA 13      ==================
+% ==============================================================
+\vspace{1em}
+\section{13 Problema}
+
+    Sea $T: \Reals^3 \to \Reals^2$ dada por $T(a, b, c) = (a + b, 2a - c)$. Encuentre $T^{-1}(10, 4)$.
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Demostración}:
+        
+        Entonces tenemos que $T(a, b, c) = (a + b, 2a - c) = (10, 4)$ entonces $a + b = 10$, $2a - c = 4$
+        Es decir $T^{-1}(10, 4) = \Set{(a, 10 - a, 2a - 4) \forall a \in \Reals}$
+
+    \end{SmallIndentation}
+
 
 
 \end{document}
