@@ -2,17 +2,18 @@
 % ************************            ALGEBRA LINEAL          ****************************
 % ****************************************************************************************
 
-
 % =======================================================
 % =======         HEADER FOR DOCUMENT        ============
 % =======================================================
     
     % *********   HEADERS AND FOOTERS ********
     \def\ProjectAuthorLink{https://github.com/SoyOscarRH}           %Just to keep it in line
-    \def\ProjectNameLink{https://github.com/CompilandoConocimiento} %Just to keep it in line
+    \def\ProjectNameLink{\ProjectAuthorLink/Proyect}                %Link to Proyect
 
     % *********   DOCUMENT ITSELF   **************
     \documentclass[12pt, fleqn]{report}                             %Type of docuemtn and size of font and left eq
+    \usepackage[spanish]{babel}                                     %Please use spanish
+    \usepackage[utf8]{inputenc}                                     %Please use spanish - UFT
     \usepackage[margin = 1.2in]{geometry}                           %Margins and Geometry pacakge
     \usepackage{ifthen}                                             %Allow simple programming
     \usepackage{hyperref}                                           %Create MetaData for a PDF and LINKS!
@@ -21,9 +22,7 @@
     \setlength{\parindent}{0pt}                                     %Eliminate ugly indentation
     \author{Oscar Andrés Rosas}                                     %Who I am
 
-    % *********   LANGUAJE AND UFT-8   *********
-    \usepackage[spanish]{babel}                                     %Please use spanish
-    \usepackage[utf8]{inputenc}                                     %Please use spanish - UFT
+    % *********   LANGUAJE    *****************
     \usepackage[T1]{fontenc}                                        %Please use spanish
     \usepackage{textcmds}                                           %Allow us to use quoutes
     \usepackage{changepage}                                         %Allow us to use identate paragraphs
@@ -153,7 +152,6 @@
     \DeclareMathOperator \LinTrans {\mathcal{T}}                    %Use: \LinTrans for a cool T
     \DeclareMathOperator \Laplace {\mathcal{L}}                     %Use: \LinTrans for a cool T
 
-
     % =====  CONTAINERS   ===============
     \newcommand{\Set}[1]    {\left\{ \; #1 \; \right\}}             %Use: \Set {Info} for INTELLIGENT space 
     \newcommand{\bigSet}[1] {\big\{  \; #1 \; \big\}}               %Use: \bigSet  {Info} for space 
@@ -173,8 +171,10 @@
     \newcommand{\biggWrap}[1]{\bigg( \; #1 \; \bigg)}               %Use: \biggBrackets {Info} for space 
     \newcommand{\BiggWrap}[1]{\Bigg( \; #1 \; \Bigg)}               %Use: \BiggBrackets {Info} for space 
     
-    \newcommand{\Generate}[1]{\left\langle #1 \right\rangle}        %Use: \Wrap {Info} for INTELLIGENT space
-
+    \newcommand{\Generate}[1]{\left\langle #1 \right\rangle}        %Use: \Generate {Info} <>
+    \newcommand{\Floor}[1]{\left \lfloor #1 \right \rfloor}         %Use: \Floor {Info} for floor 
+    \newcommand{\Ceil}[1]{\left \lceil #1 \right \rceil }           %Use: \Ceil {Info} for ceil
+    
     % =====  BETTERS MATH COMMANDS   =====
     \newcommand{\pfrac}[2]{\Wrap{\dfrac{#1}{#2}}}                   %Use: Put fractions in parentesis
 
@@ -270,6 +270,10 @@
 
     \DeclareMathOperator \Evaluate  {\Big|}                         %Use: \Evaluate por Notation
 
+    % ====== INTEGRALS ============
+    \newcommand{\inftyInt} {\int_{-\infty}^{\infty}}                %Use: \inftyInt for simple integrants
+    
+    
     % =========================================
     % ========    GENERAL STYLE     ===========
     % =========================================
@@ -361,10 +365,29 @@
         tabsize             = 4,                                    %Style
         inputencoding       = utf8/latin1                           %Allow me to use special chars
     }
+
+    % =====  CODE EDITOR =============
+    \lstdefinestyle{CompilandoStylePurity} {                        %This is Code Style
+        backgroundcolor     = \color{white},                        %Background Color  
+        basicstyle          = \tiny\color{BlueGrey900MD},           %Style of text
+        commentstyle        = \color{Green300MD},                   %Comment style
+        stringstyle         = \color{Teal700MD},                    %String style
+        keywordstyle        = \color{Blue700MD},                    %keywords style
+        numberstyle         = \tiny\color{TealMD},                  %Size of a number
+        frame               = none,                                 %Adds a frame around the code
+        breakatwhitespace   = true,                                 %Style   
+        breaklines          = true,                                 %Style   
+        showstringspaces    = false,                                %Hate those spaces                  
+        breaklines          = true,                                 %Style                   
+        keepspaces          = true,                                 %Style                   
+        numbers             = left,                                 %Style                   
+        numbersep           = 11pt,                                 %Style 
+        xleftmargin         = \parindent,                           %Style 
+        tabsize             = 4,                                    %Style
+        inputencoding       = utf8/latin1                           %Allow me to use special chars
+    }
  
     \lstset{style = CompilandoStyle}                                %Use this style
-
-
 
 
 
@@ -5290,6 +5313,74 @@
                     $m \times m-n \times n$ entonces $EA - AE$ es la matriz obtenida 
                     de realizar las mismas operaciones elementales que crean a $E$ desde
                     $I_m - I_n$ 
+
+                \item
+                    E es una matriz elemental si y solo si $E^T$ tambien lo es
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+                        
+                        Ok, quería hacer una demostración general, pero para ser mas claro, vayamos por casos
+                        \begin{itemize}
+                            \item Las Matrices Elementales de Tipo 1
+
+                                Estas son simetricas, veamos:
+                                % ======== DEMOSTRACION ========
+                                \begin{SmallIndentation}[1em]
+                                    \textbf{Demostración}:
+                                    
+                                    Por definición una matriz elemental de Tipo 1 es la matriz identidad de $n \times n$
+                                    donde la fila $i$ ha sido cambiada por la fila $j$.
+
+                                    Ahora, veamos como es su transpuesta, por un lado, si miramos en filas diferentes a la $i, j$
+                                    entonces estamos viendo a la identidad, que es solo $1$ si estamos en la diagonal principal, por
+                                    lo tanto es simétrica.
+
+                                    Ahora, ahora, al momento de hacer el cambio lo único que hemos hecho ha sido cambiar un $1$ en la
+                                    posición $i, i$ por uno en la posición $i, j$ y un 1 en la posición $j, j$ por un 1 en la posición $j, i$.
+
+                                    Esto creo que es más que obvio que es simetrico.
+
+                                \end{SmallIndentation}
+
+                            \item Las Matrices Elementales de Tipo 2
+
+                                Estas son simetricas, veamos:
+                                % ======== DEMOSTRACION ========
+                                \begin{SmallIndentation}[1em]
+                                    \textbf{Demostración}:
+                                    
+                                    Estas son en las que multiplicas una fila o una columna $i$ por un escalar diferene de cero, es decir son la identidad
+                                    excepto en la posición $i, i$, así que es mas ue obvio que sigue siendo simetrica.
+                                
+                                \end{SmallIndentation}
+                                    
+                                    
+
+                            \item
+                                Las Matrices Elementales de Tipo 3
+
+                                % ======== DEMOSTRACION ========
+                                \begin{SmallIndentation}[1em]
+                                    \textbf{Demostración}:
+                                    
+                                    Estas no son simetricas.
+
+                                    Recordemos, son sumarle a una fila $i$ un multiplico $k$ de otra, digamos la $j$.
+
+                                    Por lo mismo, son iguales que la identidad expecto en la posición $i, j$ que tiene $k$.
+
+                                    Ahora, cuando la transpones tenemos la identidad excepto en la posición $j, i$ que tiene $k$.
+                                    Es decir en la matriz resultante de hacer el 3 tipo de operación elemental, donde se suma a la fila
+                                    $j$ un multiplo $k$ de la fila $i$.
+                                
+                                \end{SmallIndentation}
+
+                        \end{itemize}
+                    
+                    \end{SmallIndentation}
+                        
                         
 
             \end{itemize}
@@ -5384,6 +5475,23 @@
                             \Space
                             rango(AB) \leq rango(B)
                         \end{align*}
+
+                    \item
+                        Dada $A \in M_{m \times n}(\GenericField)$, $ran(A) = 0$ si y solo si $A = 0_{m \times n}$
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Recuerda que el rango es el número de columnas linealmente independientes, entonces
+                            es obvio que la matriz cero, es decir, un conjunto de vectores cero, no genera nada, es decir
+                            tienen una dimensión cero, es decir tiene rango cero.
+
+                            Ahora si tiene rango cero, entonces todos sus vectores son cero, porque porque si hubiera uno que no
+                            fuera cero, entonces su dimensión ya no sería cero, como todos sus vectores son cero, entonces
+                            cada elemento de la matriz es cero, es decir, es la matriz cero.
+                        
+                        \end{SmallIndentation}
 
                 \end{itemize}
 
