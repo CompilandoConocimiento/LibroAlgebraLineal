@@ -6411,7 +6411,6 @@
 
 
 
-
 % //////////////////////////////////////////////////////////////////////////////////////////////////////////
 % /////////////////////////////              DETERMINANTES               ///////////////////////////////////
 % //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -6447,33 +6446,9 @@
             Claramente el $det(A) \in \GenericField$ y es importante
             recordar que $det(A)$ \textbf{no es una transformación lineal}
 
-
-            % ==============================================
-            % ========          N-LINEAL             =======
-            % ==============================================
-            \vspace{1em}
-            \subsection{N-Lineal}
-
-                Decimos que una función es $n-lineal$ si es que para una matriz de $m \times n$
-                (Recuerda que $[A]^i$ es la i-ésima fila horizontal de la matriz):
-                \begin{align*}
-                    \delta\pVector{\Brackets{A}^1 \\ \ldots \\ c\Brackets{A}^i + \Brackets{A}^j \\ \ldots \\ \Brackets{A}^m}
-                        &= c
-                        \delta\pVector{\Brackets{A}^1 \\ \ldots \\ \Brackets{A}^i \\ \ldots \\ \Brackets{A}^m}
-                        + \delta\pVector{\Brackets{A}^1 \\ \ldots \\ \Brackets{A}^j \\ \ldots \\ \Brackets{A}^m}
-                \end{align*}
-
-
-            % ==============================================
-            % ========         ALTERNANTE            =======
-            % ==============================================
-            \vspace{1em}
-            \subsection{Alternante}
-
-                Decimos que una función $\delta$ es alternante si y solo si $\delta(A) = 0$
-                si es que $[A]^i = [A]^j$
-
-
+            Otra cosa importante que recordar es que en el siguiente capitulo veremos
+            que esto no es una definición simplemente una consecuencia de la definición
+            formal de un determinante.
 
 
 
@@ -6579,31 +6554,6 @@
 
                     Entonces $\delta = det$
 
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Idea de la Demostración}:
-                        
-                        Igual la idea de la demostración esta sencilla, pero
-                        la idea se basa en sacar la $\delta$ de cada uno de los elementos
-                        de la base, en este caso es util ver la base:
-                        \begin{align*}
-                            \Set{
-                                \pVector{1&&0\\0&&1}, 
-                                \pVector{1&&0\\0&&0},
-                                \pVector{0&&0\\1&&0},
-                                \pVector{0&&1\\1&&0}
-                            }
-                        \end{align*}
-
-                        Despúes de obtener por propiedades ver que nos dan deltas
-                        igual a $1, -1, 0$.
-
-                        Despúes simplemente tienes que expresar a cualquier matriz como
-                        combinación lineal de esta base, y usando que $\delta$ en n-lineal
-                        llegar a la definición de determinante de $2 \times 2$
-                    
-                    \end{SmallIndentation}
-
                 \item
                     La combinación lineal de funciones n-lineales es n-lineal
 
@@ -6616,16 +6566,102 @@
             \end{itemize}
 
 
+
+
+
+
+
     % ===============================================================================
     % ============      DETERMINANTES EN GENERAL                  ===================
     % ===============================================================================
-    \chapter{Determinantes}
+    \chapter{Determinantes en General}
+
+        % ==============================================
+        % ========          NOTACION             =======
+        % ==============================================
+        \clearpage
+        \section{Notación}
+
+            Dada $A \in M_{n \times n}(\GenericField)$ entonces decimos que
+            $\tilde A_{i, j} \in M_{n-1 \times n-1}(\GenericField)$ es la matriz $A$
+            pero sin la fila $i$ ni la columna $j$.
+
+            % ======== EJEMPLO ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Ejemplo}:
+                
+                Por ejemplo $A = \pVector{
+                    1 & 2 & 3   \\
+                    4 & 5 & 6   \\
+                    7 & 8 & 9   \\
+                }$ entonces $\tilde A_{1, 1} = \pVector{
+                    5 & 6   \\
+                    8 & 9   \\
+                }$ entonces $\tilde A_{3, 2} = \pVector{
+                    1 & 3   \\
+                    4 & 6   \\
+                }$ 
+            
+            \end{SmallIndentation}
+                
+
+
+        % ==============================================
+        % ======     DEFINICION RECURSIVA        =======
+        % ==============================================
+        \vspace{1em}
+        \section{Definición Recursiva}
+
+            Sea $A \in M_{n \times n}(\GenericField)$ entonces tenemos que:
+            \begin{align*}
+                det(A) := \sum_{i = 1}^n (-1)^{x + i} A_{x, i} \; det(\tilde A_{x, i})
+            \end{align*}
+
+            Esta función funciona para cualquier $x \in [1, \dots, n]$
+
+            Bajo esta definición es importante denotar que el escalar 
+            $(-1)^{1 + i} A_{i, j} det(\tilde A_{i, j})$ es llamado cofactor.
+
+
+
+        % ==============================================
+        % ====    CARACTERISTICAS IMPORTANTES     ======
+        % ==============================================
+        \clearpage
+        \section{Características Importantes}
+
+
+            % ==============================================
+            % ========          N-LINEAL             =======
+            % ==============================================
+            \subsection{N-Lineal}
+
+                Decimos que una función es $n-lineal$ si es que para una matriz de $m \times n$
+                (Recuerda que $[A]^i$ es la i-ésima fila horizontal de la matriz):
+                \begin{align*}
+                    \delta\pVector{\Brackets{A}^1 \\ \vdots \\ c\Brackets{A}^i + \Brackets{A}^j \\ \vdots \\ \Brackets{A}^m}
+                        &= c
+                        \delta\pVector{\Brackets{A}^1 \\ \vdots \\ \Brackets{A}^i \\ \vdots \\ \Brackets{A}^m}
+                        + \delta\pVector{\Brackets{A}^1 \\ \vdots \\ \Brackets{A}^j \\ \vdots \\ \Brackets{A}^m}
+                \end{align*}
+
+
+            % ==============================================
+            % ========         ALTERNANTE            =======
+            % ==============================================
+            \vspace{1em}
+            \subsection{Alternante}
+
+                Decimos que una función $\delta$ es alternante si y solo si $\delta(A) = 0$
+                si es que $[A]^i = [A]^j$ (es decir si es que 2 columnas son iguales)
+
+
 
 
         % ==============================================
         % ========          DEFINICION           =======
         % ==============================================
-        \clearpage
+        \vspace{1em}
         \section{Definición}
 
             Un determinante es una función que va del espacio de las matrices cuadradas
@@ -6637,6 +6673,64 @@
             \end{itemize}
 
 
+
+
+            % ==============================================
+            % ========        PROPIEDADES            =======
+            % ==============================================
+            \clearpage
+            \subsection{Propiedades}
+
+                \begin{itemize}
+
+                    \item
+                        $det(A) = det(A^T)$
+
+                    \item
+                        $det(A) \neq 0$ si y solo si $A$ es invertible
+
+                    \item
+                        Si $A \in M_{n \times n}(\GenericField)$ tiene un rango menor que $n$
+                        entonces $det(A) = 0$
+
+                    \item
+                        Si $A \in M_{n \times n}(\GenericField)$ y $A$ tiene dos filas iguales
+                        entonces su determinante es cero
+
+                    \item
+                        Si $A \in M_{n \times n}(\GenericField)$ y $B$ es igual a $A$ pero con una
+                        columna cambiada entonces $det(A) = - det(B)$
+
+                    \item
+                        Si $A \in M_{n \times n}(\GenericField)$ y $B$ es igual a $A$ pero se sumo un
+                        multiplo de una fila de $A$ a otra fila de $A$.
+
+                        Entonces $det(A) = det(B)$
+
+
+                \end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+% ===============================================
+% ========        BIBLIO      ===================
+% ===============================================
+\begin{thebibliography}{10}
+
+    \bibitem{Friedberg-LinealAlgebra} 
+        Friedberg
+        \textit{LinealAlgebra}. 
+
+\end{thebibliography}
 
 
 
