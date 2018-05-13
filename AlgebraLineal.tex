@@ -6614,13 +6614,13 @@
 
             Sea $A \in M_{n \times n}(\GenericField)$ entonces tenemos que:
             \begin{align*}
-                det(A) := \sum_{i = 1}^n (-1)^{x + i} A_{x, i} \; det(\tilde A_{x, i})
+                det(A) := \sum_{i = 1}^n (-1)^{x + i} [A]_{x, i} \; det(\tilde A_{x, i})
             \end{align*}
 
             Esta función funciona para cualquier $x \in [1, \dots, n]$
 
             Bajo esta definición es importante denotar que el escalar 
-            $(-1)^{1 + i} A_{i, j} det(\tilde A_{i, j})$ es llamado cofactor.
+            $(-1)^{1 + i} [A]_{i, j} det(\tilde A_{i, j})$ es llamado cofactor.
 
 
 
@@ -6678,13 +6678,10 @@
             % ==============================================
             % ========        PROPIEDADES            =======
             % ==============================================
-            \clearpage
+            \vspace{1em}
             \subsection{Propiedades}
 
                 \begin{itemize}
-
-                    \item
-                        $det(A) = det(A^T)$
 
                     \item
                         $det(A) \neq 0$ si y solo si $A$ es invertible
@@ -6692,6 +6689,10 @@
                     \item
                         Si $A \in M_{n \times n}(\GenericField)$ tiene un rango menor que $n$
                         entonces $det(A) = 0$
+
+                    \item
+                        Si $A \in M_{n \times n}(\GenericField)$ tiene 2 columnas o filas iguales entoces
+                        $det(A) = 0$
 
                     \item
                         Si $A \in M_{n \times n}(\GenericField)$ y $A$ tiene dos filas iguales
@@ -6707,11 +6708,165 @@
 
                         Entonces $det(A) = det(B)$
 
+                    \item
+                        Sea $\beta = \Set{\vec x_1, \dots \vec x_n}$ donde cada uno $\vec x_i \in \GenericField^n$
+                        y si tenemos $A \in M_{n \times n}(\GenericField)$ y $A_i = \vec x_i$.
+
+                        Entonces si $\beta$ es una base de $\GenericField^n$ entonces $det(B) \neq 0$.
+
+                        % ======== DEMOSTRACION ========
+                         \begin{SmallIndentation}[1em]
+                             \textbf{Demostración}:
+                             
+                            Es decir, podemos reescribirlo como que si $\beta$ NO es una base de $\GenericField^n$
+                            entonces $det(B) = 0$.
+
+                            Sabemos que si $\beta$ no es base, entonces no es linealmente independiente es decir
+                            que existe algún vector dentro de $\beta$ que podemos obtener de la combinación lineal
+                            de los otros. Es decir que el rango de la matriz no es $n$, y ya habiamos visto que matrices
+                            con un rango menor que n tiene un determinate igual a 0.
+
+                            Ahora por otro lado si es que el determinante es cero entonces podemos asegurar que no
+                            es invertible, por lo tanto su rango no es n por lo tanto no son linealmente independientes
+                            sus vectores columna, por lo tanto $\beta$ no puede ser base.
+
+                         \end{SmallIndentation}
+                              
 
                 \end{itemize}
 
 
+        % ==============================================
+        % ==   DETERMINANTES Y OPERACION ELEMENTAL  ====
+        % ==============================================
+        \clearpage
+        \section{Determinantes y Elementales}
 
+            \begin{itemize}
+                
+                \item 
+                    Sea $E_{\text{Tipo 1}}$ una matriz elemental obtenida de intercambiar
+                    cualquier 2 filas de la identidad, entonces $det(E) = -1$
+
+                \item 
+                    Sea $E_{\text{Tipo 2}}$ una matriz elemental obtenida de mutiplicar
+                    una fila por un escalar ($k$) no cero, entonces $det(E) = k$
+
+                \item 
+                    Sea $E_{\text{Tipo 3}}$ una matriz elemental obtenida de sumar
+                    un múltiplo de una fila a otra fila, entonces $det(E) = 1$
+
+            \end{itemize}
+
+
+            % ==============================================
+            % ========        PROPIEDADES            =======
+            % ==============================================
+            \clearpage
+            \subsection{Propiedades}
+
+                \begin{itemize}
+
+                    \item
+                        Para cualquier $A, B \in M_{n \times n}(\GenericField)$
+                        entonces $det(AB) = det(A) det(B)$.
+
+                    \item
+                        Si $A$ es invertible entonces $det(A^{-1}) = \dfrac{1}{det(A)}$
+
+                    \item
+                        Si $E \in \in M_{n \times n}(\GenericField)$ es una matriz elemental
+                        entonces $det(E) = det(E^T)$
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Vamos a hacerlo por partes:
+                            \begin{itemize}
+                                
+                                \item 
+                                    Si $E$ es de tipo 1 (cambio de filas o columnas) entonces
+                                    sabemos que $E$ es simetrico, por lo tanto $det(E^T) = det(E)$.
+
+                                \item 
+                                    Si $E$ es de tipo 2 entonces sabemos que $E$ es simetrico,
+                                    por lo tanto $det(E^T) = det(E)$.
+
+                                \item
+                                    Si es que $E$ es de tipo 3, entonces $E^T$ es también una matriz 
+                                    de tipo 3, y sabemos que $det(E) = 1$ entonces $det(E^T) = 1$, por lo
+                                    tanto son iguales 
+                            \end{itemize}
+                        
+                        \end{SmallIndentation}
+                            
+
+                    \item
+                        Sea $A \in M_{n \times n}(\GenericField)$
+                        entonces $det(A^T) = det(A)$
+
+                    \item
+                        Sea $A \in M_{n \times n}(\GenericField)$ donde $A$ es una matriz triangular
+                        superior (o inferior) es el producto de las entradas de la diagonal.
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Vamos a hacer inducción sobre $n$, el tamaño de la diagonal, para una matriz de $2 \times 2$
+                            creo que es más que obvio que se cumple, pues:
+                            \begin{align*}
+                                |A| = \Mag{\pVector{a_{11} & a_{12} \\ 0 & a_{22}}} = a_{11}a_{22} - 0a_{12} = a_{11}a_{22}
+                            \end{align*}
+
+                            Ahora considera que se cumple para una $n = k$, entonces considera una matriz de $k+1 \times k+1$
+                            que sea triangular superior, entonces podemos encontrar su determinante como:
+                            \begin{align*}
+                                det(A) = \sum_{x = 1}^{k+1} (-1)^{x + 1} [A]_{1, x} det(\tilde A _{1, j})     
+                            \end{align*} 
+
+                            Ahora para $\tilde [A]_{1, 2}, \tilde [A]_{1, 3}, \dots \tilde A_{1, n +1}$ tiene la primera
+                            columan de puros 0, por lo tanto su determinante es cero, por lo tanto esa suma inicial sobre $x$
+                            se reduce a solo el primer termino.
+                            \begin{align*}
+                                det(A) 
+                                    &= [A]_{1, 1} det(\tilde A _{1, 1})
+                                        && \Remember{Mira que bonito}                       \\
+                                    &= [A]_{1, 1} [A]_{2, 2} [A]_{3, 3} \dots [A]_{n+1, n+1}
+                                        && \Remember{Por inducción}
+                            \end{align*}
+
+                            Ahora, sabemos que $det(A^T) = det(A)$, por lo tanto ya esta demostrado para matrices
+                            triangulares inferiores.
+
+                        \end{SmallIndentation}
+
+
+                    \item
+                        Sea $A \in M_{n \times n}(\GenericField)$ donde $A$ es una matriz triangular
+                        superior (o inferior) entonces es invertible si y solo si en la diagonal no hay ceros
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Ahora, suponte que en la diagonal hay 1 cero, entonces ya sabemos que 
+                            $det(A) = \prod_{i = 1}^n [A]_{i, i}$ ahora, si hay un cero por ahí entonces
+                            $det(A) = 0$, por lo tanto no puede ser invertible.
+
+                            De modo parecido, si $A$ no es invertible entonces $det(A) = 0$, por lo tanto
+                            tenemos que alguna de los elementos de la diagonal tiene que ser cero, pues estamos hablando
+                            de elementos de un campo, en el que el producto de elementos nos da cero si y solo si alguno de 
+                            ellos es cero.
+
+                        \end{SmallIndentation}
+
+                    \item
+                        Sea $A, B \in M_{n \times n}(\GenericField)$ matrices similares entonces tenemos
+                        $det(A) = det(B)$
+
+                \end{itemize}
 
 
 
@@ -6727,7 +6882,7 @@
 \begin{thebibliography}{10}
 
     \bibitem{Friedberg-LinealAlgebra} 
-        Friedberg
+        Friedberg,
         \textit{LinealAlgebra}. 
 
 \end{thebibliography}
