@@ -6678,7 +6678,7 @@
             % ==============================================
             % ========        PROPIEDADES            =======
             % ==============================================
-            \vspace{1em}
+            \clearpage
             \subsection{Propiedades}
 
                 \begin{itemize}
@@ -6709,6 +6709,26 @@
                         Entonces $det(A) = det(B)$
 
                     \item
+                        Si $A \in M_{n \times n}(\GenericField)$ entonces $det(cA) = c^n \; det(A) \forall c \in \GenericField$
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Recuerda que por definición el determinante es una función $n-lineal$, entonces
+                            podemos ver al determinante de $A$ como:
+                            \begin{align*}
+                                det\Wrap{cA}
+                                    = det\pVector{ka_1 \\ ka_2 \\ \ldots  \\ka_n }              
+                                    = k \; det\pVector{a_1 \\ ka_2 \\ \ldots  \\ka_n }          
+                                    = k^2 \; det\pVector{a_1 \\ a_2 \\ \ldots  \\ka_n }         
+                                    = k^n \; det\pVector{a_1 \\ a_2 \\ \ldots  \\ a_n }
+                            \end{align*}
+                        
+                        \end{SmallIndentation}
+                            
+
+                    \item
                         Sea $\beta = \Set{\vec x_1, \dots \vec x_n}$ donde cada uno $\vec x_i \in \GenericField^n$
                         y si tenemos $A \in M_{n \times n}(\GenericField)$ y $A_i = \vec x_i$.
 
@@ -6731,7 +6751,35 @@
                             sus vectores columna, por lo tanto $\beta$ no puede ser base.
 
                          \end{SmallIndentation}
-                              
+
+                    \item
+                        Sea $M \in M_{n \times n}(\GenericField)$ que puede ser escribirse de la forma:
+                        \begin{align*}
+                            M = \pVector{B_1 & B_2 \\ 0 & B_3}
+                        \end{align*}
+
+                        Donde $B_1, B_3$ son matrices cuadradas entonces $det(A) = det(B_1) \; det(B_3)$
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Primero si $C$ no es invertible entonces el conjunto de vectores fila de $C$
+                            no es independiente, esto quiere decir que $(0 B_3)$ tampoco puede ser linealmente
+                            independiente, por lo tanto es imposible que $M$ tenga un conjunto de vectores
+                            fila linealmente independiente.
+
+                            Por lo tanto $det(A) = 0 = det(B_3) = det(B_3) det(B_1)$
+
+                            Ahora, si $B_3$ es invertible entonces tenemos esto bien bonito:
+                            \begin{align*}
+                                \pVector{I & 0 \\ 0 & B_3^{-1}} \pVector{B_1 & B_2 \\ 0 & B_3} = \pVector{B_1 & B_2 \\ 0 & I}
+                            \end{align*}
+
+                            Por lo tanto obtenemos la identidad:
+                            $det(B_3^{-1}) det(A) = det(B_1)$, por lo tanto $det(A) = det(B_1) det(B_3)$
+                        
+                        \end{SmallIndentation}
 
                 \end{itemize}
 
