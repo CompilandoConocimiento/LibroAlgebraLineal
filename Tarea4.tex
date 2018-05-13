@@ -1,5 +1,5 @@
 % ****************************************************************************************
-% ************************          TAREA 2           ************************************
+% ************************          TAREA 4           ************************************
 % ****************************************************************************************
 
 
@@ -398,7 +398,7 @@
 
     % ============ NAME OF THE BOOK  ===============
     \href{\ProjectNameLink/LibroAlgebraLineal}                      %Link to Author
-    {\fontsize{65}{78}\selectfont \textbf{3 Tarea-Examen}\\[0.5cm]  %Name of the book
+    {\fontsize{65}{78}\selectfont \textbf{4 Tarea-Examen}\\[0.5cm]  %Name of the book
     \textcolor{ColorSubtext}{\textsc{\Huge Algebra Lineal 1 }}}     %Name of the general theme
     
     \vfill                                                          %Fill the space
@@ -441,100 +441,98 @@
 % ==============================================================
 \clearpage
 \section{1 Problema}
-        
-    Demuestra que $E$ es una matriz elemental si y solo si $E^t$ es una matriz elemental.
+   
+   \begin{itemize}
+       \item
+            Sea $A \in M_{n \times n}(\GenericField)$ donde $A$ es una matriz triangular
+            superior (o inferior) es el producto de las entradas de la diagonal.
 
-
-    % ======== DEMOSTRACION ========
-    \begin{SmallIndentation}[1em]
-        \textbf{Demostración}:
-        
-        Ok, quería hacer una demostración general, pero para ser mas claro, vayamos por casos
-        \begin{itemize}
-            \item Las Matrices Elementales de Tipo 1
-
-                Estas son simetricas, veamos:
-                % ======== DEMOSTRACION ========
-                \begin{SmallIndentation}[1em]
-                    \textbf{Demostración}:
-                    
-                    Por definición una matriz elemental de Tipo 1 es la matriz identidad de $n \times n$
-                    donde la fila $i$ ha sido cambiada por la fila $j$.
-
-                    Ahora, veamos como es su transpuesta, por un lado, si miramos en filas diferentes a la $i, j$
-                    entonces estamos viendo a la identidad, que es solo $1$ si estamos en la diagonal principal, por
-                    lo tanto es simétrica.
-
-                    Ahora, ahora, al momento de hacer el cambio lo único que hemos hecho ha sido cambiar un $1$ en la
-                    posición $i, i$ por uno en la posición $i, j$ y un 1 en la posición $j, j$ por un 1 en la posición $j, i$.
-
-                    Esto creo que es más que obvio que es simetrico.
-
-                \end{SmallIndentation}
-
-            \item Las Matrices Elementales de Tipo 2
-
-                Estas son simetricas, veamos:
-                % ======== DEMOSTRACION ========
-                \begin{SmallIndentation}[1em]
-                    \textbf{Demostración}:
-                    
-                    Estas son en las que multiplicas una fila o una columna $i$ por un escalar diferene de cero, es decir son la identidad
-                    excepto en la posición $i, i$, así que es mas ue obvio que sigue siendo simetrica.
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Demostración}:
                 
-                \end{SmallIndentation}
-                    
-                    
+                Vamos a hacer inducción sobre $n$, el tamaño de la diagonal, para una matriz de $2 \times 2$
+                creo que es más que obvio que se cumple, pues:
+                \begin{align*}
+                    |A| = \Mag{\pVector{a_{11} & a_{12} \\ 0 & a_{22}}} = a_{11}a_{22} - 0a_{12} = a_{11}a_{22}
+                \end{align*}
 
-            \item
-                Las Matrices Elementales de Tipo 3
+                Ahora considera que se cumple para una $n = k$, entonces considera una matriz de $k+1 \times k+1$
+                que sea triangular superior, entonces podemos encontrar su determinante como:
+                \begin{align*}
+                    det(A) = \sum_{x = 1}^{k+1} (-1)^{x + 1} [A]_{1, x} det(\tilde A _{1, j})     
+                \end{align*} 
 
-                % ======== DEMOSTRACION ========
-                \begin{SmallIndentation}[1em]
-                    \textbf{Demostración}:
-                    
-                    Estas no son simetricas.
+                Ahora para $\tilde [A]_{1, 2}, \tilde [A]_{1, 3}, \dots \tilde A_{1, n +1}$ tiene la primera
+                columan de puros 0, por lo tanto su determinante es cero, por lo tanto esa suma inicial sobre $x$
+                se reduce a solo el primer termino.
+                \begin{align*}
+                    det(A) 
+                        &= [A]_{1, 1} det(\tilde A _{1, 1})
+                            && \Remember{Mira que bonito}                       \\
+                        &= [A]_{1, 1} [A]_{2, 2} [A]_{3, 3} \dots [A]_{n+1, n+1}
+                            && \Remember{Por inducción}
+                \end{align*}
 
-                    Recordemos, son sumarle a una fila $i$ un multiplico $k$ de otra, digamos la $j$.
+                Ahora, sabemos que $det(A^T) = det(A)$, por lo tanto ya esta demostrado para matrices
+                triangulares inferiores.
 
-                    Por lo mismo, son iguales que la identidad expecto en la posición $i, j$ que tiene $k$.
+            \end{SmallIndentation}
 
-                    Ahora, cuando la transpones tenemos la identidad excepto en la posición $j, i$ que tiene $k$.
-                    Es decir en la matriz resultante es una matriz elemental de tipo 3, donde se suma a la fila
-                    $j$ un multiplo $k$ de la fila $i$.
+
+        \item
+            Sea $A \in M_{n \times n}(\GenericField)$ donde $A$ es una matriz triangular
+            superior (o inferior) entonces es invertible si y solo si en la diagonal no hay ceros
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Demostración}:
                 
-                \end{SmallIndentation}
+                Ahora, suponte que en la diagonal hay 1 cero, entonces ya sabemos que 
+                $det(A) = \prod_{i = 1}^n [A]_{i, i}$ ahora, si hay un cero por ahí entonces
+                $det(A) = 0$, por lo tanto no puede ser invertible.
 
-        \end{itemize}
-    
-    \end{SmallIndentation}
-            
+                De modo parecido, si $A$ no es invertible entonces $det(A) = 0$, por lo tanto
+                tenemos que alguna de los elementos de la diagonal tiene que ser cero, pues estamos hablando
+                de elementos de un campo, en el que el producto de elementos nos da cero si y solo si alguno de 
+                ellos es cero.
+
+            \end{SmallIndentation}
+   \end{itemize}
+
+
 
 % ==============================================================
 % =================          PROBLEMA 2       ==================
 % ==============================================================
 \clearpage
 \section{2 Problema}
-                            
-    Dada $A \in M_{m \times n} (\GenericField)$. Prueba que si $B$ se puede obtener mediante un
-    número finito de operaciones elementales aplicadas a A, entonces $B^t$
-    se puede obtener mediante las mismas operaciones elementales pero
-    aplicadas a $A^t$
+
+    Si $E \in M_{n \times n}(\GenericField)$ es una matriz elemental
+    entonces $det(E) = det(E^T)$
 
     % ======== DEMOSTRACION ========
     \begin{SmallIndentation}[1em]
         \textbf{Demostración}:
         
-        Si $B$ se puede obtener de A por operaciones elementales sobre las filas entonces
-        podemos escribir que $B = EA$ donde $E$ es un producto de operaciones elementales.
+        Vamos a hacerlo por partes:
+        \begin{itemize}
+            
+            \item 
+                Si $E$ es de tipo 1 (cambio de filas o columnas) entonces
+                sabemos que $E$ es simetrico, por lo tanto $det(E^T) = det(E)$.
 
-        Entonces podemos escribir que $B^t = E^t A^t$, esto nos dice que podemos obtener 
-        a $B^t$ a tráves de operaciones elementales sobre columnas a partir de $A^t$
+            \item 
+                Si $E$ es de tipo 2 entonces sabemos que $E$ es simetrico,
+                por lo tanto $det(E^T) = det(E)$.
 
-        De un modo análogo para las columnas.
+            \item
+                Si es que $E$ es de tipo 3, entonces $E^T$ es también una matriz 
+                de tipo 3, y sabemos que $det(E) = 1$ entonces $det(E^T) = 1$, por lo
+                tanto son iguales 
+        \end{itemize}
     
     \end{SmallIndentation}
-     
 
 
 % ==============================================================
@@ -543,31 +541,7 @@
 \vspace{1em}
 \section{3 Problema}
 
-    Dada $A \in M_{m \times n}(\GenericField) \ 0_{m \times n}$. Entonces existe un número finito de
-    operaciones elementales que transforman a A en una matriz triangular superior.
 
-    % ======== DEMOSTRACION ========
-    \begin{SmallIndentation}[1em]
-        \textbf{Demostración}:
-        
-        Esta es una consecuencia del teorema ya visto en clae:
-
-        Sea $A$ una matriz de $m \times n$ de rango $r$, entonces
-        tendremos que $r \leq m$ y $r \leq n$
-        y por un número finito de operaciones elementales podemos transformar
-        a $A$ en la Matriz D.
-
-        D se ve así, ($0_1, 0_2, 0_3$ son matrices cero):
-        \begin{align*}
-            \pVector{
-                I_{r \times r} & 0_1 \\
-                0_2            & 0_3 \\
-            }
-        \end{align*}
-
-        Nota que obviamente esta matriz es triangular superior.
-    
-    \end{SmallIndentation}
 
 
 
@@ -577,347 +551,44 @@
 \clearpage
 \section{4 Problema}
 
-    \begin{itemize}
-        
-        \item 
-            $rango\pVector{
-                1 & 2  & 0 & 1  & 1 \\
-                2 & 4  & 1 & 3  & 0 \\
-                3 & 6  & 2 & 5  & 1 \\
-                4 & -8 & 1 & -3 & 1 \\
-                }$
+    Sea $\beta = \Set{\vec x_1, \dots \vec x_n}$ donde cada uno $\vec x_i \in \GenericField^n$
+    y si tenemos $A \in M_{n \times n}(\GenericField)$ y $A_i = \vec x_i$.
 
-            % ======== DEMOSTRACION ========
-            \begin{SmallIndentation}[1em]
-                \textbf{Demostración}:
-                
-                Primero voy a afirmar que $(1, 2, 3, 4), (2, 4, 6, -8), (0, 1, 2, 0), (1, 0, 1, 1)$
-                son vectores linealmente independientes
-
-                % ======== DEMOSTRACION ========
-                \begin{SmallIndentation}[1em]
-                    \textbf{Demostración}:
-                    
-                    Hagamos la clasica, es decir:
-                    $a(1, 2, 3, 4) + b(2, 4, 6, -8) + c(0, 1, 2, 0) + d(1, 0, 1, 1) = (0, 0, 0, 0)$
-                    Es decir:
-                    \begin{itemize}
-                        \item $a + 2b + d = 0$
-                        \item $2a + 4b + c = 0$
-                        \item $3a + 6b + 2c + d = 0$
-                        \item $4a - 8b + d = 0$
-                    \end{itemize}
-
-                    Sumemos la primera y al cuarta:
-                    $8a + 5d = 0$
-
-                    Ahora usemos la segunda y tercera:
-                    $a + 2b - d = 0$
-
-                    Ahora usemos la mas nueva y la cuarta:
-                    $8a -3b = 0$
-
-                    Ahora despejamos una variable:
-                    $-8b = 0$.
-
-                    Por lo tanto $a = 0$, por lo tanto $d = 0$, por lo tanto $c = 0$.
-
-                \end{SmallIndentation}
-
-                Ahora, como tenemos 4 vectores linealmente independientes con 4 entradas, es claro que son base de $\GenericField^4$, por lo
-                tanto es el máximo rango que puede tener la matriz con 4 filas, por lo tanto su rango es $4$.
-
-
-            \end{SmallIndentation}
-
-        \clearpage
-
-        \item 
-            $rango\pVector{
-                -9 & 10  & 2  & 0 & 1  & -1 \\
-                4  & 2   & 7  & 1 & 3  & 0  \\
-                4  & 6   & 6  & 5 & 1  & 1  \\
-                -3 & 0   & -8 & 1 & -3 & 1  \\
-                }$
-
-            % ======== DEMOSTRACION ========
-            \begin{SmallIndentation}[1em]
-                \textbf{Demostración}:
-                
-                Primero voy a afirmar que $(9, 4, 4, 3), (10, 2, 6, 0), (2, 7, 6, -8), (1, 3, 1, -3)$
-                son vectores linealmente independientes
-
-                % ======== DEMOSTRACION ========
-                \begin{SmallIndentation}[1em]
-                    \textbf{Demostración}:
-                    
-                    Hagamos la clasica, es decir:
-                    $a(9, 4, 4, 3) + b(10, 2, 6, 0) + c(2, 7, 6, -8) + d(1, 3, 1, -3) = (0, 0, 0, 0)$
-                    Es decir:
-                    \begin{itemize}
-                        \item $9a + 10b + 2c + d = 0$
-                        \item $4a + 2b + 7c + 3d = 0$
-                        \item $4a + 6b + 6c + d = 0$
-                        \item $3a - 8c - 3d = 0$
-                    \end{itemize}
-
-                    Sumemos la segunda y al cuarta:
-                    $7a + 8b + 13c = 0$
-
-                    Ahora restamos la tercera y la cuarta:
-                    $5a + 4b - 4c = 0$
-
-                    Finalmente vamos a hacer tercera y cuarta:
-                    $9a + 18b + 10c = 0$
-
-                    Ahora saquemos ecuaciones la primera nueva y la segunda nueva:
-                    $-3a + 21c = 0$
-
-                    Y hagamos lo mismo con la segunda y tercera nueva:
-                    $45a + 36b - 36c = 0$ y $-18a - 36b - 20c = 0$
-
-                    Es decir $27a - 56c = 0$, por lo tanto $a = 0$, $c = 0$, por lo tanto $b = 0$ y $d = 0$.
-
-                \end{SmallIndentation}
-
-                Ahora, como tenemos 4 vectores linealmente independientes con 4 entradas, es claro que son base de $\GenericField^4$, por lo
-                tanto es el máximo rango que puede tener la matriz con 4 filas, por lo tanto su rango es $4$.
-
-
-            \end{SmallIndentation}
-
-
-    \end{itemize}
-
-
-
-
-% ==============================================================
-% =================          PROBLEMA 5      ==================
-% ==============================================================
-\clearpage
-\section{5 Problema}
-
-    Dada $A \in M_{m \times n}(\GenericField)$, $ran(A) = 0$ si y solo si $A = 0_{m \times n}$
+    Entonces si $\beta$ es una base de $\GenericField^n$ entonces $det(B) \neq 0$.
 
     % ======== DEMOSTRACION ========
-    \begin{SmallIndentation}[1em]
-        \textbf{Demostración}:
-        
-        Recuerda que el rango es el número de columnas linealmente independientes, entonces
-        es obvio que la matriz cero, es decir, un conjunto de vectores cero, no genera nada, es decir
-        tienen una dimensión cero, es decir tiene rango cero.
+     \begin{SmallIndentation}[1em]
+         \textbf{Demostración}:
+         
+        Es decir, podemos reescribirlo como que si $\beta$ NO es una base de $\GenericField^n$
+        entonces $det(B) = 0$.
 
-        Ahora si tiene rango cero, entonces todos sus vectores son cero, porque porque si hubiera uno que no
-        fuera cero, entonces su dimensión ya no sería cero, como todos sus vectores son cero, entonces
-        cada elemento de la matriz es cero, es decir, es la matriz cero.
-    
-    \end{SmallIndentation}
-        
+        Sabemos que si $\beta$ no es base, entonces no es linealmente independiente es decir
+        que existe algún vector dentro de $\beta$ que podemos obtener de la combinación lineal
+        de los otros. Es decir que el rango de la matriz no es $n$, y ya habiamos visto que matrices
+        con un rango menor que n tiene un determinate igual a 0.
 
-% ==============================================================
-% =================          PROBLEMA 6      ==================
-% ==============================================================
-\section{6 Problema}
+        Ahora por otro lado si es que el determinante es cero entonces podemos asegurar que no
+        es invertible, por lo tanto su rango no es n por lo tanto no son linealmente independientes
+        sus vectores columna, por lo tanto $\beta$ no puede ser base.
 
-    Dada $A \in M_{m \times n}(\GenericField)$. Si $c$ es un escalar distinto de cero,
-    entonces $ran(cA) = ran(A)$
-
-    % ======== DEMOSTRACION ========
-    \begin{SmallIndentation}[1em]
-        \textbf{Demostración}:
-        
-        Por definición tenemos que $R(L_A) = R(L_{cA})$
-    
-        % ======== DEMOSTRACION ========
-        \begin{SmallIndentation}[1em]
-            \textbf{Demostración}:
-            
-            Por puras propiedades:
-            $R(L_A) = L_A(\GenericField^m) = cLA(\GenericField^m) = L_{cA}(\GenericField) = R(L_{cA})$
-        
-        \end{SmallIndentation}
-            
-    \end{SmallIndentation}
-        
-
-
-% ==============================================================
-% =================          PROBLEMA 7       ==================
-% ==============================================================
-\section{7 Problema}
-
-    Dadas $A, B \in M_{m \times n}(\GenericField)$. Entonces $M(A|B) = (MA|MB)$ para toda
-    $M \in M_{m \times m}(F)$
-
-    % ======== DEMOSTRACION ========
-    \begin{SmallIndentation}[1em]
-        \textbf{Demostración}:
-        
-        Sea $P = M(A | B)$ y sea $Q = (MA | MB)$. 
-
-        Ahora vamos a mostrar que son iguales entrada a entrada.
-
-        Supongamos que $A, B$ tienen $a$ y $b$ columnas respectivamente.
-
-        \begin{multicols}{2}
-
-            Ahora, como estamos hablando de matrices ampliadas, vamos a ver
-            por partes, primero, para las columnas de la $1$ a la $a$ tenemos que:
-
-            \begin{align*}
-                [P]_{i, j} 
-                    &= \sum_{k = 1}^n [M]_{i, k}A_{k, j}   \Space \forall j \in [1, \dots a]    \\
-                    &= MA_{i, j}                                                                \\
-                    &= Q_{i, j}
-            \end{align*}
-
-            Ahora para $j \in [a + 1, \dots, a + b]$ tenemos algo similar:
-            \begin{align*}
-                [P]_{i, j} 
-                    &= \sum_{k = 1}^n [M]_{i, k}B_{k, j}   \Space \forall j \in [1, \dots a]    \\
-                    &= MB_{i, j}                                                                \\
-                    &= Q_{i, j}
-            \end{align*}
-
-        \end{multicols}
-
-            
-    
-    \end{SmallIndentation}
-        
-
-% ==============================================================
-% =================          PROBLEMA 8       ==================
-% ==============================================================
-\clearpage
-\section{8 Problema}
-
-    Dadas $A \in M_{m \times 1}(\GenericField) - 0_{m \times 1}$ y $B \in M_{1 \times n}(\GenericField) - 0_{1 \times 0}$.
-    Entonces $rango(AB) = 1$
-
-    % ======== DEMOSTRACION ========
-    \begin{SmallIndentation}[1em]
-        \textbf{Demostración}:
-        
-        Ok, este esta muy muy bueno.
-        Supongamos a $A = \pVector{a_1 \\ a_2 \\ \vdots \\ a_m}$ y $B = \pVector{a_1 & a_2 & \vdots & a_m}$
-
-        Veamos como se ve la matriz $AB$:
-        \begin{align*}
-            [AB]_{i, j}
-                &= \sum_{k = 1}^1 [A]_{i, k} [B]_{k, j}         \\
-                &= [A]_{i, 1} [B]_{1, j}                        \\
-                &= a_i b_j                                      
-        \end{align*}
-
-        Ahora, para encontrar el rango de la matriz haremos primero un cambio de columna, una operación que conserva el rango
-        y vamos a mover la columna donde $b_k$ sea diferente de cero, nota que como no es puros ceros, tiene que haber mínimo uno
-        y ese lo intercambiamos con la columna 1 con la columna $k$.
-
-        Ahora si vamos a calcular el rango de esta nueva matriz.
-
-        Ahora, considera la columna $r$ con $r > 1$, entonces mira que la columna $r$ se puede expresar usando la columna $1$
-        pues $\pVector{a_1 b_r \\ a_2 b_r \\ \vdots \\ a_m b_r} = \dfrac{b_r}{b_1} \pVector{a_1 b_1 \\ a_2 b_1 \\ \vdots \\ a_m b_1}$
-
-        Por lo tanto solo tenemos una columna linealmente independiente.
-    
-    \end{SmallIndentation}
-        
-
-
-
-% ==============================================================
-% =================          PROBLEMA 9       ==================
-% ==============================================================
-\clearpage
-\section{9 Problema}
-
-    Dada $A \in M_{m \times n}(\GenericField)$, tal que $ran(A) = m$. Entonces existe 
-    $B \in M_{n \times m}(\GenericField)$ y $AB = Id_m$.
-
-    % ======== DEMOSTRACION ========
-    \begin{SmallIndentation}[1em]
-        \textbf{Demostración}:
-        
-
-        Sea $\beta$ la base estandar para $\GenericField^m$, es decir
-        $\beta = \Set{e_1, e_2, e_3, \dots, e_m}$.
-
-        Ya que el tango de $A = m$, entonces sabemos que $L_A$ es una función suprayectiva,
-        es decir podemos encontrar un vector $\vec x_i$ en $\GenericField^m$ tal que $L_A(\vec x_i) = e_i$
-        para cualquier $i$ de $1$ a $m$.
-
-        Por lo tanto esa matriz, la llamemos $B$, aquella de la i-ésima columna sea $\vec x_i$.
-
-        Es decir, será una matriz de $n \times m$, y ya que $A \vec x_i = e_i$ tendremos que $AB = Id_m$
-    
-    \end{SmallIndentation}
+     \end{SmallIndentation}
 
 
 
 
 
-% ==============================================================
-% =================          PROBLEMA 11      ==================
-% ==============================================================
-\clearpage
-\section{11 Problema}
-
-    El sistema $A \vec x = \vec b$ tiene solución si y solo si $b \in R[L_A]$.
-
-    % ======== DEMOSTRACION ========
-    \begin{SmallIndentation}[1em]
-        \textbf{Demostración}:
-        
-        Esta es por definición, $b \in R[L_A]$ si y solo si existe un vector
-        $\vec x$ tal que $L_A(\vec x) = \vec b$ y esto ocurre si y solo si
-        $A \vec x = \vec b$.
-
-    \end{SmallIndentation}
 
 
 
-% ==============================================================
-% =================          PROBLEMA 12      ==================
-% ==============================================================
-\vspace{1em}
-\section{12 Problema}
-
-    Si la matriz de coeficientes de un sistema de m ecuaciones lineales
-    con n incógnitas tiene rango m, entonces el sistema tiene
-    solución.
-
-    % ======== DEMOSTRACION ========
-    \begin{SmallIndentation}[1em]
-        \textbf{Demostración}:
-        
-        Ahora, ve que porque el rango es $m$ entonces sabemos que $L_A$ es una función suprayetiva, y por definición
-        el encaje es inyectiva, por lo tanto esa matriz, llamemosla $A$, tiene una inversa.
-
-        Es decir que el sistema $A \vec x = b$ tiene una solución, de hecho una solución es $A^{-1}A \vec x = A^{-1}b$
-        porque es lo mismo que decir $\vec x = A^{-1}b$
-
-    \end{SmallIndentation}
 
 
 
-% ==============================================================
-% =================          PROBLEMA 13      ==================
-% ==============================================================
-\vspace{1em}
-\section{13 Problema}
 
-    Sea $T: \Reals^3 \to \Reals^2$ dada por $T(a, b, c) = (a + b, 2a - c)$. Encuentre $T^{-1}(10, 4)$.
 
-    % ======== DEMOSTRACION ========
-    \begin{SmallIndentation}[1em]
-        \textbf{Demostración}:
-        
-        Entonces tenemos que $T(a, b, c) = (a + b, 2a - c) = (10, 4)$ entonces $a + b = 10$, $2a - c = 4$
-        Es decir $T^{-1}(10, 4) = \Set{(a, 10 - a, 2a - 4) \forall a \in \Reals}$
 
-    \end{SmallIndentation}
+
+
 
 
 
