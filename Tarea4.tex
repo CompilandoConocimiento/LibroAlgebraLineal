@@ -630,8 +630,160 @@
 
 
 
+% ==============================================================
+% =================          PROBLEMA 10      ==================
+% ==============================================================
+\clearpage
+\section{10 Problema}
+
+    Calcule los determinantes:
+    \begin{itemize}
+        
+        \item 
+            $\pVector{
+                6 & 7 &9    \\ 
+                0 & 10 & 4  \\
+                2 & -6 & -4 \\
+                }$
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Solución}:
+
+                Por la definición recursiva:
+                \begin{align*}
+                    det \pVector{
+                        6 & 7 &9    \\ 
+                        0 & 10 & 4  \\
+                        2 & -6 & -4 \\
+                    }
+                    &=
+                        + 6 det\pVector{10 & 4 \\ -6 & -4}
+                        - 7 det\pVector{0 & 4 \\ 2 & -4}
+                        + 9 det\pVector{0 & 10 \\ 2 & -6}       \\
+                    &= 
+                        + 6 (-16)
+                        - 7 (-8)
+                        + 9 (-20)                               \\
+                    &= -220                                     
+                \end{align*}
+                
+            \end{SmallIndentation}
+
+        \item 
+            $\pVector{
+                9  & -11 & 5  & 6   & 9    \\ 
+                10 & -3  & 15 & 18  & 12   \\ 
+                6  & -7  & 10 & 8   & 21   \\ 
+                -9 & 0   & 9  & -8  & 0    \\ 
+                4  & 12  & -5 & -20 & -5   \\ 
+                }$
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Solución}:
+
+                Por la definición recursiva:
+                \begin{align*}
+                    det \pVector{
+                        9  & -11 & 5  & 6   & 9    \\ 
+                        10 & -3  & 15 & 18  & 12   \\ 
+                        6  & -7  & 10 & 8   & 21   \\ 
+                        -9 & 0   & 9  & -8  & 0    \\ 
+                        4  & 12  & -5 & -20 & -5   \\ 
+                        }
+                    &=
+                    det \pVector{
+                        10  & -3 & 15  & 18   & 12    \\ 
+                        0   & -\frac{83}{10}  & -\frac{17}{2} & -\frac{51}{5} & -\frac{9}{5} \\
+                        0   & -\frac{26}{5}  & 1 & -\frac{14}{5} & \frac{69}{5} \\
+                        0   & -\frac{27}{10}  & \frac{45}{2} & \frac{41}{5} & \frac{54}{5} \\
+                        0   & \frac{66}{5}  & -11 & -\frac{136}{5} & -\frac{49}{5} \\
+                        }\\
+                    &=
+                    -det \pVector{
+                        10  & -3 & 15  & 18   & 12    \\ 
+                        0   & \frac{66}{5}  & -11 & -\frac{136}{5} & -\frac{49}{5} \\
+                        0   & 0  & -\frac{10}{3} & -\frac{446}{33} & -\frac{328}{33} \\
+                        0   & 0  & \frac{81}{4} & \frac{29}{11} & \frac{387}{44} \\
+                        0   & 0  & -\frac{185}{12} & -\frac{901}{33} & \frac{1051}{132} \\
+                        }\\
+                    &=
+                    -det \pVector{
+                        10  & -3 & 15  & 18   & 12    \\ 
+                        0   & \frac{66}{5}  & -11 & -\frac{136}{5} & -\frac{49}{5} \\
+                        0   & 0  & -\frac{10}{3} & -\frac{446}{33} & -\frac{328}{33} \\
+                        0   & 0  & 0 & \frac{67616}{2673} & \frac{376}{297} \\
+                        0   & 0  & 0 & -\frac{43966}{2673} & \frac{3382}{297} \\
+                        }\\
+                    &=
+                    det \pVector{
+                        10  & -3 & 15  & 18   & 12    \\ 
+                        0   & \frac{66}{5}  & -11 & -\frac{136}{5} & -\frac{49}{5} \\
+                        0   & 0  & -\frac{10}{3} & -\frac{446}{33} & -\frac{328}{33} \\
+                        0   & 0  & 0 & \frac{67616}{2673} & \frac{376}{297} \\
+                        0   & 0  & 0 & 0 & \frac{50889}{4226} \\
+                        }
+                \end{align*}
+
+                Ahora es fácil, es implemente la multiplicación de la diagonal,
+                dando por resultado $-814224$
+                
+            \end{SmallIndentation}
+
+        \clearpage
+
+        \item 
+            $\pVector{
+                11 & -6 & 10 & 7   \\ 
+                -5 & 20 & -2 & 9   \\
+                4  & 10 & 6 & 9    \\
+                1  & -5 & 7 & 0    \\
+                }$
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Solución}:
+
+                Por la definición recursiva:
+                \begin{align*}
+                    det \pVector{
+                        11 & -6 & 10 & 7   \\ 
+                        -5 & 20 & -2 & 9   \\
+                        4  & 10 & 6 & 9    \\
+                        1  & -5 & 7 & 0    \\
+                        }
+                    &=
+                    det \pVector{
+                        11 & -6 & 10 & 7   \\ 
+                        0 & \frac{190}{11} & \frac{28}{11} & \frac{134}{11}   \\
+                        0  & 0 & \frac{54}{95} & -\frac{203}{95}    \\
+                        0  & -\frac{49}{11} & \frac{67}{11} & -\frac{7}{11}    \\
+                        }\\
+                    &=
+                    det \pVector{
+                        11 & -6 & 10 & 7   \\ 
+                        0 & \frac{190}{11} & \frac{28}{11} & \frac{134}{11}   \\
+                        0  & 0 & \frac{641}{95} & -\frac{238}{95}    \\
+                        0  & 0 & \frac{54}{95} & -\frac{203}{95}    \\
+                        }\\
+                    &=
+                    -det \pVector{
+                        11 & -6 & 10 & 7   \\ 
+                        0 & \frac{190}{11} & \frac{28}{11} & \frac{134}{11}   \\
+                        0  & 0 & \frac{641}{95} & -\frac{238}{95}    \\
+                        0  & 0 & 0 & -\frac{1505}{641}    \\
+                        }
+                \end{align*}
+
+                Ahora es fácil, es implemente la multiplicación de la diagonal,
+                dando por resultado $3010$
+                
+            \end{SmallIndentation}
+                
 
 
+    \end{itemize}
 
 
 
