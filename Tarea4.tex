@@ -482,17 +482,20 @@
 
         \item
             Sea $A \in M_{n \times n}(\GenericField)$ donde $A$ es una matriz triangular
-            superior (o inferior) entonces es invertible si y solo si en la diagonal no hay ceros
+            superior (o inferior) entonces $A$ es invertible si y solo si en la diagonal no hay ceros
 
             % ======== DEMOSTRACION ========
             \begin{SmallIndentation}[1em]
                 \textbf{Demostración}:
+
+                Vamos a demostrar este enunciado pero de otra forma: Sea $A$ una matriz triangular
+                superior (o inferior) entonces A NO es invertible si y solo si en la diagonal hay ceros
                 
                 Ahora, suponte que en la diagonal hay 1 cero, entonces ya sabemos que 
                 $det(A) = \prod_{i = 1}^n [A]_{i, i}$ ahora, si hay un cero por ahí entonces
                 $det(A) = 0$, por lo tanto no puede ser invertible.
 
-                De modo parecido, si $A$ no es invertible entonces $det(A) = 0$, por lo tanto
+                De modo parecido, si $A$ no es invertible entonces $det(A) \neq 0$, por lo tanto
                 tenemos que alguna de los elementos de la diagonal tiene que ser cero, pues estamos hablando
                 de elementos de un campo, en el que el producto de elementos nos da cero si y solo si alguno de 
                 ellos es cero.
@@ -520,10 +523,10 @@
             
             \item 
                 Si $E$ es de tipo 1 (cambio de filas o columnas) entonces
-                sabemos que $E$ es simetrico, por lo tanto $det(E^T) = det(E)$.
+                sabemos que $E$ es simétrico, por lo tanto $det(E^T) = det(E)$.
 
             \item 
-                Si $E$ es de tipo 2 entonces sabemos que $E$ es simetrico,
+                Si $E$ es de tipo 2 entonces sabemos que $E$ es simétrico,
                 por lo tanto $det(E^T) = det(E)$.
 
             \item
@@ -551,10 +554,11 @@
         podemos ver al determinante de $A$ como:
         \begin{align*}
             det\Wrap{cA}
-                = det\pVector{ka_1 \\ ka_2 \\ \ldots  \\ka_n }              
-                = k \; det\pVector{a_1 \\ ka_2 \\ \ldots  \\ka_n }          
-                = k^2 \; det\pVector{a_1 \\ a_2 \\ \ldots  \\ka_n }         
-                = k^n \; det\pVector{a_1 \\ a_2 \\ \ldots  \\ a_n }
+                = det\pVector{ca_1 \\ ca_2 \\ \ldots  \\ca_n }              
+                = c \; det\pVector{a_1 \\ ca_2 \\ \ldots  \\ca_n }          
+                = c^2 \; det\pVector{a_1 \\ a_2 \\ \ldots  \\ca_n } 
+                = \dots        
+                = c^n \; det\pVector{a_1 \\ a_2 \\ \ldots  \\ a_n }
         \end{align*}
     
     \end{SmallIndentation}
@@ -594,14 +598,14 @@
 
 
 % ==============================================================
-% =================          PROBLEMA 4       ==================
+% =================          PROBLEMA 5       ==================
 % ==============================================================
 \clearpage
 \section{5 Problema}
 
-    Sea $M \in M_{n \times n}(\GenericField)$ que puede ser escribirse de la forma:
+    Sea $A \in M_{n \times n}(\GenericField)$ que puede ser escribirse de la forma:
     \begin{align*}
-        M = \pVector{B_1 & B_2 \\ 0 & B_3}
+        A = \pVector{B_1 & B_2 \\ 0 & B_3}
     \end{align*}
 
     Donde $B_1, B_3$ son matrices cuadradas entonces $det(A) = det(B_1) \; det(B_3)$
@@ -609,23 +613,870 @@
     % ======== DEMOSTRACION ========
     \begin{SmallIndentation}[1em]
         \textbf{Demostración}:
+
+        Para hacerlo nos vamos a basar de la afirmación que si $A = \pVector{B_1 & B_2 \\ 0 & Id}$ entonces
+        $A = det(B_1)$, esto ya no demostramos pero aún así la idea es simplemente una doble inducción primero
+        una inducción expandiendo la $n-aba$ fila y luego la $n-1$aba fial recursivamente.
+
+        Ahora si... vamos
         
-        Primero si $C$ no es invertible entonces el conjunto de vectores fila de $C$
-        no es independiente, esto quiere decir que $(0 B_3)$ tampoco puede ser linealmente
-        independiente, por lo tanto es imposible que $M$ tenga un conjunto de vectores
+        Primero si $B_3$ no es invertible entonces el conjunto de vectores fila de $B_3$
+        no es independiente, esto quiere decir que $(0 \;\; B_3)$ tampoco puede ser linealmente
+        independiente, por lo tanto es imposible que $A$ tenga un conjunto de vectores
         fila linealmente independiente.
 
         Por lo tanto $det(A) = 0 = det(B_3) = det(B_3) det(B_1)$
 
         Ahora, si $B_3$ es invertible entonces tenemos esto bien bonito:
         \begin{align*}
-            \pVector{I & 0 \\ 0 & B_3^{-1}} \pVector{B_1 & B_2 \\ 0 & B_3} = \pVector{B_1 & B_2 \\ 0 & I}
+            \pVector{Id & 0 \\ 0 & B_3^{-1}} \pVector{B_1 & B_2 \\ 0 & B_3} = \pVector{B_1 & B_2 \\ 0 & I}
         \end{align*}
 
         Por lo tanto obtenemos la identidad:
-        $det(B_3^{-1}) det(A) = det(B_1)$, por lo tanto $det(A) = det(B_1) det(B_3)$
+        $det(B_3^{-1}) det(A) = det(B_1)$, y ya que sabemos que $det(B_3^{-1}) = det(B_3)^{-1}$ por lo tanto
+        $det(A) = det(B_1) det(B_3)$
     
     \end{SmallIndentation}
+
+
+% ==============================================================
+% =================          PROBLEMA 6      ==================
+% ==============================================================
+\clearpage
+\section{6 Problema}
+
+    \begin{itemize}
+
+        \item
+            Sea $A \in M_{n \times n}(\GenericField)$ entonces
+            $A^{-1} = \dfrac{1}{det(A)} \; adj(A)$
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Demostración}:
+                
+                Considera primero el producto:
+                \begin{align*}
+                    \bigBrackets{A \; adj(A)}_{i, j}
+                        &= \sum_{k = 1}^n 
+                            [A]_{i, k} \; [adj(A)]_{k, j}       
+                            && \Remember{Por definición de multiplicación}  \\
+                        &= \sum_{k = 1}^n 
+                            a_{i, k} \; [C^T]_{k, j}       
+                            && \Remember{Por definición de adjunta}         \\
+                        &= \sum_{k = 1}^n 
+                            a_{i, k} \; c_{j, k}       
+                            && \Remember{Otra definición de determinante}   \\
+                        &= det(A) \; \delta(i, j)                           \\
+                        &= det(A) [Id]_{i, j}                               \\
+                \end{align*}
+
+                Ahora como $A$ es invertible entonces podemos dividir por
+                $det(A)$, después de todo, es solo un número del campo
+                que no es cero.
+
+                Con esto llegamos a que:
+                $\bigBrackets{A \; \frac{adj(A)}{det(A)} }_{i, j} = [Id]_{i, j}$,
+                es decir 
+                $[A]_{i, j} \Brackets{ \frac{adj(A)}{det(A)} }_{i, j} = [Id]_{i, j}$
+                por lo tanto $\frac{adj(A)}{det(A)}$ se comporta perfectamente como
+                una inversa.
+            
+            \end{SmallIndentation}
+
+        \item
+            Sea $A \in M_{n \times n}(\GenericField)$ entonces
+            $det( adj(A) ) = det(A)^{n-1}$
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Demostración}:
+                
+                Con la propiedad anterior ya tenemos las herramientas
+                necesarias:
+
+                Primero tenemos que $A^{-1} = \dfrac{adj(A)}{det(A)}$
+                entonces podemos decir que $A^{-1} det(A) = adj(A)$
+
+                Ahora si multiplicamos todo por $A$ tenemos que:
+                $det(A) Id = A adj(A)$, ahora si tomamos el determinante
+                de ambos lados tenemos que:
+                $det(det(A) Id) = det(A \; adj(A))$
+
+                Ahora del lado derecho todo tiene sentido pues
+                $det(det(A) Id) = det(A) \; det(adj(A))$.
+
+                Ahora lo importante es el lado izquierdo vamos a aplicar
+                la siguiente propiedad $det(cA) = c^n det(A)$, por lo tanto
+                tendremos que:
+
+                $det(A)^n \; (1) = det(A) \; det(adj(A))$, ahora solo despejas
+                y tienes que $det(A)^{n-1} = det(adj(A))$
+            
+            \end{SmallIndentation}
+                
+    \end{itemize}
+
+
+
+% ==============================================================
+% =================          PROBLEMA 7       ==================
+% ==============================================================
+\clearpage
+\section{7 Problema}
+
+    $adj(A^T) = adj(A)^T$
+
+    % ======== DEMOSTRACION ========
+    \begin{SmallIndentation}[1em]
+        \textbf{Demostración}:
+        
+        Esta debería salir por definición, solo recuerda que $C$ es la matriz de cofactores de $A$,
+        por lo tanto la matriz de cofactores de $A^T$ la llamaremos $C'$
+        \begin{align*}
+            adj(A^T)
+                &= C'^T
+                    && \Remember{Recuerda que $[C']_{i, j} = [C]_{j, i}$ }   \\
+                &= (C'^T)^T                                            
+                    && \Remember{Por eso $C'^T = C$ }   \\
+                &= adj(A)^T
+                    && \Remember{Magia}
+        \end{align*}
+    
+    \end{SmallIndentation}
+
+
+
+% ==============================================================
+% =================          PROBLEMA 8       ==================
+% ==============================================================
+\clearpage
+\section{8 Problema}
+    
+    \begin{itemize}
+
+        \item
+            Sea $A \in M_{n \times n}(\GenericField)$ tal que $A$ sea invertible y triangular superior, 
+            entonces $A^{-1}$ es triangular también.
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Demostración}:
+                
+                Ok, para esta demostración nos vamos a apoyar en otras propiedades.
+
+                Por un lado, sabemos que $A$ es invertible, es decir podemos realizar una serie finita de operaciones
+                elementales que transforman a $A$ en la identidad, ahora, lo interesante es que esas operaciones elementales
+                son triangulares (2 de ellas, la del escalar e sumar a una fila superior un multiplo de una fila inferior,
+                pero con esas 2 nos basta).
+
+                Y que el producto de matrices triangulares es también otra matriz triangular, por lo tanto si $A$ es triangular
+                entonces $A^{-1}$ también es triangular.
+            
+            \end{SmallIndentation}
+
+        \item
+            Sea $A \in M_{n \times n}(\GenericField)$ tal que $A$ sea invertible y triangular superior, 
+            entonces $adj(A)$ es triangular también.
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Demostración}:
+                
+                Ya sabemos que si $A$ es triangular superior, entonces $A^{-1}$ es triangular superior, ahora
+                también sabemos que $A^{-1} = \dfrac{1}{det(A)} \; adj(A)$, por lo tanto
+                la única diferencia entre $A^{-1}$ y $adj(A)$ es solo una constante, por lo tanto
+                como $A^{-1}$ es triangular superior, entonces $adj(A)$ también es triangular superior.
+            
+            \end{SmallIndentation}
+
+
+    \end{itemize}
+
+
+
+% ==============================================================
+% =================          PROBLEMA 9       ==================
+% ==============================================================
+\clearpage
+\section{9 Problema}
+
+    Calcule las matrices adjuntas:
+    \begin{itemize}
+        
+        \item 
+            $\pVector{
+                6 & 7 &9    \\ 
+                0 & 10 & 4  \\
+                2 & -6 & -4 \\
+                }$
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Solución}:
+
+                Vamos a ir paso por paso, elemento por elemento:
+                \begin{itemize}
+                    
+                    \item
+                        $[adj(A)]_{1, 1} 
+                            = [C]_{1, 1} 
+                            = (-1)^{1+1} M_{1, 1}
+                            = \pVector{
+                                10 & 4  \\
+                                -6 & -4 \\
+                                }
+                            = -40 + 24 = -16$
+
+                    \item
+                        $[adj(A)]_{1, 2} 
+                            = [C]_{2, 1} 
+                            = (-1)^{2+1} M_{2, 1}
+                            = \pVector{
+                                7 & 9   \\ 
+                                -6 & -4 \\
+                                }
+                            = -54 + 28 = -26$
+
+                    \item
+                        $[adj(A)]_{1, 3} 
+                            = [C]_{3, 1} 
+                            = (-1)^{3+1} M_{3, 1}
+                            = \pVector{
+                                7 &9    \\ 
+                                10 & 4  \\
+                            }
+                            = -62$
+
+                    \item
+                        $[adj(A)]_{2, 1} 
+                            = [C]_{1, 2} 
+                            = (-1)^{1+2} M_{1, 2}
+                            = \pVector{
+                                0 & 4  \\
+                                2 & -4 \\
+                            }
+                            = -8$
+
+                    \item
+                        $[adj(A)]_{2, 2} 
+                            = [C]_{2, 2} 
+                            = (-1)^{2+2} M_{2, 2}
+                            = \pVector{
+                                6 & 9  \\ 
+                                2 & -4 \\
+                            }
+                            = -42$
+
+                    \item
+                        $[adj(A)]_{2, 3} 
+                            = [C]_{3, 2} 
+                            = (-1)^{3+2} M_{3, 2}
+                            = \pVector{
+                                6 & 9  \\ 
+                                0 & 4  \\
+                            }
+                            = -24$
+
+                    \item
+                        $[adj(A)]_{3, 1} 
+                            = [C]_{1, 3} 
+                            = (-1)^{1+3} M_{1, 3}
+                            = \pVector{
+                                0 & 10  \\
+                                2 & -6  \\
+                            }
+                            = -20$
+
+                    \item
+                        $[adj(A)]_{3, 2} 
+                            = [C]_{2, 3} 
+                            = (-1)^{2+3} M_{2, 3}
+                            = \pVector{
+                                6 & 7  \\ 
+                                2 & -6 \\
+                            }
+                            = 50$
+
+                    \item
+                        $[adj(A)]_{3, 3} 
+                            = [C]_{3, 3} 
+                            = (-1)^{3+3} M_{3, 3}
+                            = \pVector{
+                                6 & 7   \\ 
+                                0 & 10  \\
+                            }
+                            = 60$
+                
+                \end{itemize}
+
+                Por lo tanto $adj \pVector{
+                6 & 7 &9    \\ 
+                0 & 10 & 4  \\
+                2 & -6 & -4 \\
+                } = 
+                \pVector{
+                -16 & -26 & -62     \\ 
+                8 & -42 & -24       \\
+                -20 & 50 & 60       \\
+                }$
+                
+            \end{SmallIndentation}
+
+        \clearpage
+
+        \item 
+            $\pVector{
+                9  & -11 & 5  & 6   & 9    \\ 
+                10 & -3  & 15 & 18  & 12   \\ 
+                6  & -7  & 10 & 8   & 21   \\ 
+                -9 & 0   & 9  & -8  & 0    \\ 
+                4  & 12  & -5 & -20 & -5   \\ 
+                }$
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Solución}:
+
+                Vamos a ir paso por paso, elemento por elemento:
+                \begin{itemize}
+                    
+                    \item
+                        $[adj(A)]_{1, 1} 
+                            = [C]_{1, 1} 
+                            = (-1)^{1+1} M_{1, 1}
+                            = \pVector{
+                                    -3  & 15 & 18  & 12   \\
+                                    -7  & 10 & 8   & 21   \\
+                                    0   & 9  & -8  & 0    \\
+                                    12  & -5 & -20 & -5   \\
+                                }
+                            = 9$
+
+                    \item
+                        $[adj(A)]_{1, 2} 
+                            = [C]_{2, 1} 
+                            = (-1)^{2+1} M_{2, 1}
+                            = \pVector{
+                                    -11 & 5  & 6   & 9    \\
+                                    -7  & 10 & 8   & 21   \\
+                                    0   & 9  & -8  & 0    \\
+                                    12  & -5 & -20 & -5   \\
+                                }
+                            = 10$
+
+                    \item
+                        $[adj(A)]_{1, 3} 
+                            = [C]_{3, 1} 
+                            = (-1)^{3+1} M_{3, 1}
+                            = \pVector{
+                                    9  & -11 & 6   & 9    \\
+                                    10 & -3  & 18  & 12   \\
+                                    -9 & 0   & -8  & 0    \\
+                                    4  & 12  & -20 & -5   \\
+                                }
+                            = 6$
+
+                    \item
+                        $[adj(A)]_{1, 4} 
+                            = [C]_{4, 1} 
+                            = (-1)^{4+1} M_{4, 1}
+                            = \pVector{
+                                    9  & -11 & 5  & 6   & 9    \\
+                                    10 & -3  & 15 & 18  & 12   \\
+                                    6  & -7  & 10 & 8   & 21   \\
+                                    -9 & 0   & 9  & -8  & 0    \\
+                                    4  & 12  & -5 & -20 & -5   \\
+                                }
+                            = -9$
+
+                    \item
+                        $[adj(A)]_{1, 5} 
+                            = [C]_{5, 1} 
+                            = (-1)^{5+1} M_{5, 1}
+                            = \pVector{
+                                    -11 & 5  & 6   & 9    \\
+                                    -3  & 15 & 18  & 12   \\
+                                    -7  & 10 & 8   & 21   \\
+                                    0   & 9  & -8  & 0    \\
+                                }
+                            = 4$
+
+                    \item
+                        $[adj(A)]_{2, 1} 
+                            = [C]_{1, 2} 
+                            = (-1)^{1+2} M_{1, 2}
+                            = \pVector{
+                                    -11 & 5  & 6   & 9    \\
+                                    -3  & 15 & 18  & 12   \\
+                                    -7  & 10 & 8   & 21   \\
+                                    0   & 9  & -8  & 0    \\
+                                }
+                            = -11$
+
+                    \item
+                        $[adj(A)]_{2, 2} 
+                            = [C]_{2, 2} 
+                            = (-1)^{2+2} M_{2, 2}
+                            = \pVector{
+                                    9  & 5  & 6   & 9    \\
+                                    6  & 10 & 8   & 21   \\
+                                    -9 & 9  & -8  & 0    \\
+                                    4  & -5 & -20 & -5   \\
+                                }
+                            = -3$
+
+                    \item
+                        $[adj(A)]_{2, 3} 
+                            = [C]_{3, 2} 
+                            = (-1)^{3+2} M_{3, 2}
+                            = \pVector{
+                                    9  & 5  & 6   & 9    \\
+                                    10 & 15 & 18  & 12   \\
+                                    -9 & 9  & -8  & 0    \\
+                                    4  & -5 & -20 & -5   \\
+                                }
+                            = -7$
+
+                    \item
+                        $[adj(A)]_{2, 4} 
+                            = [C]_{4, 2} 
+                            = (-1)^{4+2} M_{4, 2}
+                            = \pVector{
+                                    9  & 5  & 6   & 9    \\
+                                    10 & 15 & 18  & 12   \\
+                                    6  & 10 & 8   & 21   \\
+                                    4  & -5 & -20 & -5   \\
+                                }
+                            = 0$
+
+                    \item
+                        $[adj(A)]_{2, 5} 
+                            = [C]_{5, 2} 
+                            = (-1)^{5+2} M_{5, 2}
+                            = \pVector{
+                                    9  & 5  & 6   & 9    \\
+                                    10 & 15 & 18  & 12   \\
+                                    6  & 10 & 8   & 21   \\
+                                    -9 & 9  & -8  & 0    \\
+                                }
+                            = 12$
+
+                    \item
+                        $[adj(A)]_{3, 1} 
+                            = [C]_{1, 3} 
+                            = (-1)^{1+3} M_{1, 3}
+                            = \pVector{
+                                    10 & -3 & 18  & 12   \\
+                                    6  & -7 & 8   & 21   \\
+                                    -9 & 0  & -8  & 0    \\
+                                    4  & 12 & -20 & -5   \\
+                                }
+                            = 5$
+
+                    \item
+                        $[adj(A)]_{3, 2} 
+                            = [C]_{2, 3} 
+                            = (-1)^{2+3} M_{2, 3}
+                            = \pVector{
+                                    9  & -11 & 6   & 9    \\
+                                    6  & -7  & 8   & 21   \\
+                                    -9 & 0   & -8  & 0    \\
+                                    4  & 12  & -20 & -5   \\
+                                }
+                            = 15$
+
+                    \item
+                        $[adj(A)]_{3, 3} 
+                            = [C]_{3, 3} 
+                            = (-1)^{3+3} M_{3, 3}
+                            = \pVector{
+                                    9  & -11 & 6   & 9    \\
+                                    10 & -3  & 18  & 12   \\
+                                    -9 & 0   & -8  & 0    \\
+                                    4  & 12  & -20 & -5   \\
+                                }
+                            = 10$
+
+                    \item
+                        $[adj(A)]_{3, 4} 
+                            = [C]_{3, 4} 
+                            = (-1)^{4+3} M_{4, 3}
+                            = \pVector{
+                                    9  & -11 & 6   & 9    \\
+                                    10 & -3  & 18  & 12   \\
+                                    6  & -7  & 8   & 21   \\
+                                    4  & 12  & -20 & -5   \\
+                                }
+                            = 9$
+
+                    \item
+                        $[adj(A)]_{3, 5} 
+                            = [C]_{3, 5} 
+                            = (-1)^{5+3} M_{5, 3}
+                            = \pVector{
+                                    9  & -11 & 6   & 9    \\
+                                    10 & -3  & 18  & 12   \\
+                                    6  & -7  & 8   & 21   \\
+                                    -9 & 0   & -8  & 0    \\
+                                }
+                            = -5$
+
+                    \item
+                        $[adj(A)]_{4, 1} 
+                            = [C]_{1, 4} 
+                            = (-1)^{1+4} M_{1, 4}
+                            = \pVector{
+                                    10 & -3  & 15 & 12   \\
+                                    6  & -7  & 10 & 21   \\
+                                    -9 & 0   & 9  & 0    \\
+                                    4  & 12  & -5 & -5   \\
+                                }
+                            = 6$
+
+                    \item
+                        $[adj(A)]_{4, 2} 
+                            = [C]_{2, 4} 
+                            = (-1)^{2+4} M_{2, 4}
+                            = \pVector{
+                                    9  & -11 & 5  & 9    \\
+                                    6  & -7  & 10 & 21   \\
+                                    -9 & 0   & 9  & 0    \\
+                                    4  & 12  & -5 & -5   \\
+                                }
+                            = 18$
+
+                    \item
+                        $[adj(A)]_{4, 3} 
+                            = [C]_{3, 4} 
+                            = (-1)^{3+4} M_{3, 4}
+                            = \pVector{
+                                    9  & -11 & 5  & 9    \\
+                                    10 & -3  & 15 & 12   \\
+                                    -9 & 0   & 9  & 0    \\
+                                    4  & 12  & -5 & -5   \\
+                                }
+                            = 8$
+
+                    \item
+                        $[adj(A)]_{4, 4} 
+                            = [C]_{4, 4} 
+                            = (-1)^{4+4} M_{4, 4}
+                            = \pVector{
+                                    9  & -11 & 5  & 9    \\
+                                    10 & -3  & 15 & 12   \\
+                                    6  & -7  & 10 & 21   \\
+                                    4  & 12  & -5 & -5   \\
+                                }
+                            = -8$
+
+                    \item
+                        $[adj(A)]_{4, 5} 
+                            = [C]_{5, 4} 
+                            = (-1)^{5+4} M_{5, 4}
+                            = \pVector{
+                                    9  & -11 & 5   & 9    \\
+                                    10 & -3  & 15  & 12   \\
+                                    6  & -7  & 10  & 21   \\
+                                    -9 & 0   & 9   & 0    \\
+                                }
+                            = 20$
+
+                    \item
+                        $[adj(A)]_{5, 1} 
+                            = [C]_{1, 5} 
+                            = (-1)^{1+5} M_{1, 5}
+                            = \pVector{
+                                    10 & -3  & 15 & 18    \\
+                                    6  & -7  & 10 & 8     \\
+                                    -9 & 0   & 9  & -8    \\
+                                    4  & 12  & -5 & -20   \\
+                                }
+                            = 9$
+
+                    \item
+                        $[adj(A)]_{5, 2} 
+                            = [C]_{2, 5} 
+                            = (-1)^{2+5} M_{2, 5}
+                            = \pVector{
+                                    9  & -11 & 5  & 6   \\
+                                    6  & -7  & 10 & 8   \\
+                                    -9 & 0   & 9  & -8  \\
+                                    4  & 12  & -5 & -20 \\
+                                }
+                            = 12$
+
+                    \item
+                        $[adj(A)]_{5, 3} 
+                            = [C]_{3, 5} 
+                            = (-1)^{3+5} M_{3, 5}
+                            = \pVector{
+                                    9  & -11 & 5  & 6   \\
+                                    10 & -3  & 15 & 18  \\
+                                    6  & -7  & 10 & 8   \\
+                                    4  & 12  & -5 & -20 \\
+                                }
+                            = 21$
+
+                    \item
+                        $[adj(A)]_{5, 4} 
+                            = [C]_{4, 5} 
+                            = (-1)^{4+5} M_{4, 5}
+                            = \pVector{
+                                    9  & -11 & 5  & 6   \\
+                                    10 & -3  & 15 & 18  \\
+                                    6  & -7  & 10 & 8   \\
+                                    4  & 12  & -5 & -20 \\
+                                }
+                            = 0$
+
+                    \item
+                        $[adj(A)]_{5, 5} 
+                            = [C]_{5, 5} 
+                            = (-1)^{5+5} M_{5, 5}
+                            = \pVector{
+                                    9  & -11 & 5  & 6  \\
+                                    10 & -3  & 15 & 18 \\
+                                    6  & -7  & 10 & 8  \\
+                                    -9 & 0   & 9  & -8 \\
+                                }
+                            = -5$
+
+                
+                \end{itemize}
+
+                Por lo tanto $adj \pVector{
+                9  & -11 & 5  & 6   & 9    \\
+                10 & -3  & 15 & 18  & 12   \\
+                6  & -7  & 10 & 8   & 21   \\
+                -9 & 0   & 9  & -8  & 0    \\
+                4  & 12  & -5 & -20 & -5   \\
+                } = 
+                \pVector{
+                9 & 10 & 6 & -9 & 4\\
+                -11 & -3 & -7 & 0 & 12\\
+                5 & 15 & 10 & 9 & -5 \\
+                6 & 18 & 8 & -8 & -20 \\
+                9 & 12 & 21 & 0 & -5\\
+                }$
+                
+            \end{SmallIndentation}
+
+        \clearpage
+
+        \item 
+            $\pVector{
+                11 & -6 & 10 & 7   \\ 
+                -5 & 20 & -2 & 9   \\
+                4  & 10 & 6 & 9    \\
+                1  & -5 & 7 & 0    \\
+                }$
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Solución}:
+
+                Vamos a ir paso por paso, elemento por elemento:
+                \begin{itemize}
+                    
+                    \item
+                        $[adj(A)]_{1, 1} 
+                            = [C]_{1, 1} 
+                            = (-1)^{1+1} M_{1, 1}
+                            = \pVector{
+                                    20 & -2 & 9   \\
+                                    10 & 6 & 9    \\
+                                    -5 & 7 & 0    \\
+                                }
+                            = 11$
+
+                    \item
+                        $[adj(A)]_{1, 2} 
+                            = [C]_{2, 1} 
+                            = (-1)^{2+1} M_{2, 1}
+                            = \pVector{
+                                    -6 & 10 & 7   \\ 
+                                    10 & 6 & 9    \\
+                                    -5 & 7 & 0    \\
+                                }
+                            = -5$
+
+                    \item
+                        $[adj(A)]_{1, 3} 
+                            = [C]_{3, 1} 
+                            = (-1)^{3+1} M_{3, 1}
+                            = \pVector{
+                                    -6 & 10 & 7   \\ 
+                                    20 & -2 & 9   \\
+                                    -5 & 7 & 0    \\
+                                }
+                            = 4$
+
+                    \item
+                        $[adj(A)]_{1, 4} 
+                            = [C]_{4, 1} 
+                            = (-1)^{4+1} M_{4, 1}
+                            = \pVector{
+                                    -6 & 10 & 7   \\ 
+                                    20 & -2 & 9   \\
+                                    10 & 6 & 9    \\
+                                }
+                            = 1$
+
+                    \item
+                        $[adj(A)]_{2, 1} 
+                            = [C]_{1, 2} 
+                            = (-1)^{1+2} M_{1, 2}
+                            = \pVector{
+                                    -5 & -2 & 9   \\
+                                    4  & 6 & 9    \\
+                                    1  & 7 & 0    \\
+                                }
+                            = -6$
+
+                    \item
+                        $[adj(A)]_{2, 2} 
+                            = [C]_{2, 2} 
+                            = (-1)^{2+2} M_{2, 2}
+                            = \pVector{
+                                    11 & 10 & 7   \\ 
+                                    4  & 6 & 9    \\
+                                    1  & 7 & 0    \\
+                                }
+                            = 20$
+
+                    \item
+                        $[adj(A)]_{2, 3} 
+                            = [C]_{3, 2} 
+                            = (-1)^{3+2} M_{3, 2}
+                            = \pVector{
+                                    11 & 10 & 7   \\ 
+                                    -5 & -2 & 9   \\
+                                    1  & 7 & 0    \\
+                                }
+                            = 10$
+
+                    \item
+                        $[adj(A)]_{2, 4} 
+                            = [C]_{4, 2} 
+                            = (-1)^{4+2} M_{4, 2}
+                            = \pVector{
+                                    11 & 10 & 7   \\ 
+                                    -5 & -2 & 9   \\
+                                    4  & 6 & 9    \\
+                                }
+                            = -5$
+
+                    \item
+                        $[adj(A)]_{3, 1} 
+                            = [C]_{1, 3} 
+                            = (-1)^{1+3} M_{1, 3}
+                            = \pVector{
+                                    -5 & 20 & & 9   \\
+                                    4  & 10 & & 9    \\
+                                    1  & -5 & & 0    \\
+                                }
+                            = 10$
+
+                    \item
+                        $[adj(A)]_{3, 2} 
+                            = [C]_{2, 3} 
+                            = (-1)^{2+3} M_{2, 3}
+                            = \pVector{
+                                    11 & -6  & 7   \\ 
+                                    4  & 10 & 9    \\
+                                    1  & -5 & 0    \\
+                                }
+                            = -2$
+
+                    \item
+                        $[adj(A)]_{3, 3} 
+                            = [C]_{3, 3} 
+                            = (-1)^{3+3} M_{3, 3}
+                            = \pVector{
+                                    11 & -6  & 7   \\ 
+                                    -5 & 20  & 9   \\
+                                    1  & -5 & 0    \\
+                                }
+                            = 6$
+
+                    \item
+                        $[adj(A)]_{3, 4} 
+                            = [C]_{4, 3} 
+                            = (-1)^{4+3} M_{4, 3}
+                            = \pVector{
+                                    11 & -6 & 7   \\ 
+                                    -5 & 20 & 9   \\
+                                    4  & 10& 9    \\
+                                }
+                            = 7$
+
+                    \item
+                        $[adj(A)]_{4, 1} 
+                            = [C]_{1, 4} 
+                            = (-1)^{1+4} M_{1, 4}
+                            = \pVector{
+                                    -5 & 20 & -2   \\
+                                    4  & 10 & 6    \\
+                                    1  & -5 & 7    \\
+                                }
+                            = 7$
+
+                    \item
+                        $[adj(A)]_{4, 2} 
+                            = [C]_{2, 4} 
+                            = (-1)^{2+4} M_{2, 4}
+                            = \pVector{
+                                    11 & -6 & 10  \\ 
+                                    4  & 10 & 6   \\
+                                    1  & -5 & 7   \\
+                                }
+                            = 9$
+
+                    \item
+                        $[adj(A)]_{4, 3} 
+                            = [C]_{3, 4} 
+                            = (-1)^{3+4} M_{3, 4}
+                            = \pVector{
+                                    11 & -6 & 10   \\ 
+                                    -5 & 20 & -2   \\
+                                    1  & -5 & 7    \\
+                                }
+                            = 9$
+
+                    \item
+                        $[adj(A)]_{4, 4} 
+                            = [C]_{4, 4} 
+                            = (-1)^{4+4} M_{4, 4}
+                            = \pVector{
+                                    11 & -6 & 10 \\ 
+                                    -5 & 20 & -2 \\
+                                    4  & 10 & 6  \\
+                                }
+                            = 0$
+
+                \end{itemize}
+
+                Por lo tanto $adj \pVector{
+                11 & -6 & 10 & 7   \\ 
+                -5 & 20 & -2 & 9   \\
+                4  & 10 & 6 & 9    \\
+                1  & -5 & 7 & 0    \\
+                } = 
+                \pVector{
+                11 & -5 & 4  & 1  \\
+                -6 & 20 & 10 & -5 \\
+                10 & -2 &  6 & 7  \\
+                7  & 9  &  9 & 0  \\
+                }$
+                    
+            \end{SmallIndentation}
+
+
+    \end{itemize}
+
+
+
 
 
 
