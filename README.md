@@ -41,6 +41,7 @@ acaba de empezar.
 **Compilar es Compartir**
 
 <br />
+
 [![DownloadButton](Graphics/BookShow.png)](https://CompilandoConocimiento.github.io/LibroAlgebraLineal/LibroAlgebraLineal.pdf)
 
 ## Contenidos
