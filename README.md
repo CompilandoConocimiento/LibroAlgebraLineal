@@ -100,7 +100,7 @@ En este libro podrás aprender sobre los siguientes temas:
 
 ### Ver el Documento en Línea o Descargarlo
 
-[![DownloadButton](Graphics/DownloadButton.png)](https://compilandoconocimiento.github.io/LibroAlgebraLineal/LibroAlgebraLineal)
+[![DownloadButton](Graphics/DownloadButton.png)](https://compilandoconocimiento.github.io/LibroAlgebraLineal/LibroAlgebraLineal.pdf)
 
 Puedes descargar ambos archivos para tu disfrute o modificar del código fuente siguiendo las ideas del software libre.
 
