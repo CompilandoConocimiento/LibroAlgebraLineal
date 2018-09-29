@@ -7439,6 +7439,79 @@
             \begin{MultiLineEquation*}{3}
                 Error(\vec x) \leq Cond(A) Error(b)
             \end{MultiLineEquation*}
+
+
+        % ==============================================
+        % ====      CONDICION DE UNA MATRIZ       ======
+        % ==============================================
+        \clearpage
+        \section{Condición de una Matriz}
+
+
+            Sea $A \in M_{m \times n}$ entonces definimos:
+            \begin{MultiLineEquation*}{3}
+                Cond(A) := \Abs{A} \Abs{A^{-1}}
+            \end{MultiLineEquation*}
+
+            Si es que $A$ es singular entonces definimos $Cond(A) := \infty$
+
+            Vamos a ver algunas propiedades:
+
+            % ==============================================
+            % ====            PROPIEDADES             ======
+            % ==============================================
+            \vspace{1em}
+            \section{Propiedades}
+            
+            Primero, recuerda que esto es para una norma subordinada:
+            \begin{itemize}
+                \item $Cond(A) \geq 1$ 
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+                        
+                        Si es que $A$ es singular, pues no problema.
+
+                        Ahora $\Abs{Id_n} = 1 = \Abs{A A^{-1}}$
+                        Recuerda que $\Abs{A A^{-1}} \leq \Abs{A} \Abs{B}$, por lo tanto, la 
+                        condición de $A$ es mayor o igual que uno.
+                    
+                    \end{SmallIndentation}
+                        
+                \item $Cond(Id_n) = 1$ 
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+                        
+                        Esta demasiado sencilla, pues $\Abs{Id_n}\Abs{Id_n^{-1}} = (1)(1) = 1$
+                    
+                    \end{SmallIndentation}
+                        
+
+                \item $Cond(\alpha A) = Cond(A)$ 
+
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+                        \begin{MultiLineEquation*}{3}
+                            Cond(\alpha A)
+                                &= \Abs{\alpha A} \Abs{\alpha^{-1} A^{-1}}                      \\
+                                &= \Abs{\alpha} \Abs{A} \dfrac{1}{\Abs{\alpha}} \Abs{A^{-1}}    \\
+                                &= \Abs{A}{\Abs{A^{-1}}}                                        \\
+                                &= Cond(A)
+                        \end{MultiLineEquation*}
+                            
+                    
+                    \end{SmallIndentation}
+
+
+
+            \end{itemize}
+
+
+
                 
 
 
