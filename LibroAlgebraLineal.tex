@@ -442,8 +442,7 @@
     \vspace                                                         %Give some space
     \baselineskip                                                   %But we need this to up command
     
-    {\large \textsf{Julio 2018}}                                    %Date
-
+    {\large \textsf{Octubre 2018}}                                  %Date
 \end{titlepage}
 
 
@@ -7490,7 +7489,7 @@
                     \end{SmallIndentation}
                         
 
-                \item $Cond(\alpha A) = Cond(A)$ 
+                \item $Cond(\alpha A) = Cond(A) \Space \forall \alpha \neq 0$ 
 
                     % ======== DEMOSTRACION ========
                     \begin{SmallIndentation}[1em]
@@ -7509,6 +7508,98 @@
 
 
             \end{itemize}
+
+    % ===============================================================================
+    % ===================          ANALISIS DEL ERROR             ===================
+    % ===============================================================================
+    \chapter{Solucionar $A \vec x = \vec b$ con $A$ no cuadrada}
+
+
+        % ==============================================
+        % ========          INTRODUCCION         =======
+        % ==============================================
+        \clearpage
+        \section{Introducción}
+
+            Sea $A \in M_{m \times n}$ donde $m > n$ entonces lo que pasa es que tenemos
+            mas ecuaciones que incognitas, con esto nos pueden pasar dos cosas:
+            \begin{itemize}
+                \item Que las demás ecuaciones solo nos den más información que ya sabiamos
+                \item Que nos generé un sistema que no tenga solución
+            \end{itemize}
+
+
+        % ==============================================
+        % ====      ES MEJOR QUE NO DECIR NADA      ====
+        % ==============================================
+        \clearpage
+        \section{Sistema de Ecuaciones Normales}
+
+            Ok, tenemos un sistema $A \vec x = \vec b$ donde $A \in M_{m \times n}$ donde $m > n$
+            tal que no tiene solución.
+
+            Recuerda que el hecho de que no tenga solución quiere decir que $\vec b \notin span(A)$.
+
+            Ahora, lo que haremos será aproximar una solución, para hacer eso vamos a tomar a todos
+            los elementos del $span(A)$ e intentar reducir su distancia con el vector resultado $\vec b$
+
+
+            % ==============================================
+            % ====           FUNCION DE ERROR           ====
+            % ==============================================
+            \vspace{1em}
+            \subsection{Función de Error}
+
+                Vamos a definir la función de error como:
+                \begin{MultiLineEquation*}{3}
+                    \phi(x) = \Abs{A \vec x - \vec b}
+                \end{MultiLineEquation*}
+
+                Ahora, el problema de esta función es que no derivable en todo momento,
+                pero no hay problema, como queremos minimizar una función podemos intentar
+                minimizar una función que tiene el mismo mínimo:
+                \begin{MultiLineEquation*}{3}
+                    \phi(x)^2 = \Abs{A \vec x - \vec b}^2
+                \end{MultiLineEquation*}
+
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
+                    
+                    Vamos a simplificar una vez:
+                    \begin{MultiLineEquation*}{3}
+                        \phi(x)^2 
+                            &= \Abs{A \vec x - \vec b}^2                            \\
+                            &= \Wrap{A \vec x - \vec b}^t\Wrap{A \vec x - \vec b}    \\
+                            &= \vec x A^t a \vec x 
+                                - \vec x^t A^t\vec b - \vec b^t A \vec x 
+                                + \vec b^t \vec b                                   \\
+                            &= \vec x^t A^t A \vec x - 2 \vec x^t A^t \vec b 
+                                + \vec b^t \vec b                                   \\
+                    \end{MultiLineEquation*}
+
+                    Ahora, vamos a derivar:
+                    \begin{MultiLineEquation*}{3}
+                        \phi'(x) 
+                            &= 2A^t A \vec x - 2A^t \vec b      \\
+                        \phi''(x) 
+                            &= 2A^t A 
+                    \end{MultiLineEquation*}
+
+                    Ahora, si $A^t A$ es definida positiva entonces $phi(x)$
+                    tiene un mínimo.
+
+                    Y si quieres encontar el minímo basta con solucionar
+                    el sistema:
+                    \begin{MultiLineEquation*}{3}
+                        A^t A \vec x = A^t \vec b
+                    \end{MultiLineEquation*}
+
+                
+                \end{SmallIndentation}
+                    
+
+                    
 
 
 
