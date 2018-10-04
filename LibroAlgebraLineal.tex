@@ -109,6 +109,9 @@
     \newenvironment{MultiLineEquation*}[1]                          %Use: To create MultiLine equations
         {\begin{\Eq*}\begin{alignedat}{#1}}                         %Use: \begin{Multi..}{Num. de Columnas}
         {\end{alignedat}\end{\Eq*}}                                 %And.. that's it!
+
+    \newenvironment{LargeEq} {\begingroup \Large}{\endgroup}        %Make eq bigger
+    \newenvironment{HugeEq} {\begingroup \Huge}{\endgroup}          %Make eq bigger!
     
 
     % =========================================
@@ -143,6 +146,9 @@
     \newcommand \lEqual  {\MiniSpace \Leftrightarrow \MiniSpace}    %Use: \lEqual for a logic double arrow
     \newcommand \lInfire {\MiniSpace \Rightarrow \MiniSpace}        %Use: \lInfire for a logic infire
     \newcommand \lLongTo {\longrightarrow}                          %Use: \lLongTo for a long arrow
+    \newcommand \lAnd    {\land}                                    %Use: \lAnd ^
+    \newcommand \lOr     {\lor}                                     %Use: \lOr or symbol
+    \newcommand \lNot    {\neg}                                     %Use: \lNot for negation
 
     % =====  FAMOUS SETS  ===============
     \DeclareMathOperator \Naturals     {\mathbb{N}}                 %Use: \Naturals por Notation
@@ -280,7 +286,7 @@
 
     % ====== INTEGRALS ============
     \newcommand{\inftyInt} {\int_{-\infty}^{\infty}}                %Use: \inftyInt for simple integrants
-    
+      
         
 % =======================================================
 % ===========      COLOR: MATERIAL DESIGN     ===========
@@ -7341,6 +7347,58 @@
     % ===============================================================================
     \chapter{Factorización LU}
 
+        % ==============================================
+        % ========          RECORDEMOS           =======
+        % ==============================================
+        \clearpage
+        \section{Recordemos}
+
+            Sea $A \in M_{n \times n}$ y tengamos el sistema
+            clasico:
+            \begin{HugeEq}
+                \begin{MultiLineEquation*}{3}
+                    A \Color{Indigo700MD}{\vec x} = \vec b
+                \end{MultiLineEquation*}
+            \end{HugeEq}
+
+            Ahora, creo que ahora es claro cuando el sistema tiene solución, lo hemos
+            visto antes:
+            \begin{itemize}
+                \item $det(A) \neq 0$
+                \item $Rango(A) = n$
+                \item $\exists A^{-1}$
+            \end{itemize}
+
+            Si es que pasa alguna de estas entonces diremos que $A$ no es singular.
+
+            Ahora, una forma \Quote{sencilla} de resolver el problema es usando inversas:
+            \begin{LargeEq}
+                \begin{MultiLineEquation*}{3}
+                    \vec x = A^{-1} \vec b
+                \end{MultiLineEquation*}
+            \end{LargeEq}
+
+            Pero el problema es que calcular la inversa de $A$ es muy pesado en cuanto a operaciones
+            y sufre muchas veces de problemas de exactitud por las operaciones de punto flotante, así 
+            que veamos que otra cosa podemos hacer...
+                
+                
+        % ==============================================
+        % ========          DEFINICION           =======
+        % ==============================================
+        \clearpage
+        \section{Definición}
+
+            Sea $A \in M_{m \times n}$, simétrica y definida positiva, entonces
+            tenemos que que existe una única factorización de la forma:
+            \begin{MultiLineEquation*}{3}
+                A = L L^T
+            \end{MultiLineEquation*}
+
+            Donde $L$ es un matriz de triangular inferior con diagonal positiva.
+
+
+
 
 
     % ===============================================================================
@@ -7354,13 +7412,13 @@
         \clearpage
         \section{Definición}
 
-        Sea $A \in M_{m \times n}$, simétrica y definida positiva, entonces
-        tenemos que que existe una única factorización de la forma:
-        \begin{MultiLineEquation*}{3}
-            A = L L^T
-        \end{MultiLineEquation*}
+            Sea $A \in M_{m \times n}$, simétrica y definida positiva, entonces
+            tenemos que que existe una única factorización de la forma:
+            \begin{MultiLineEquation*}{3}
+                A = L L^T
+            \end{MultiLineEquation*}
 
-        Donde $L$ es un matriz de triangular inferior con diagonal positiva.
+            Donde $L$ es un matriz de triangular inferior con diagonal positiva.
 
 
 
