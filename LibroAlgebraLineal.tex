@@ -110,6 +110,7 @@
         {\begin{\Eq*}\begin{alignedat}{#1}}                         %Use: \begin{Multi..}{Num. de Columnas}
         {\end{alignedat}\end{\Eq*}}                                 %And.. that's it!
 
+    \newenvironment{largeEq} {\begingroup \large}{\endgroup}        %Make eq bigger
     \newenvironment{LargeEq} {\begingroup \Large}{\endgroup}        %Make eq bigger
     \newenvironment{HugeEq} {\begingroup \Huge}{\endgroup}          %Make eq bigger!
     
@@ -386,7 +387,7 @@
         inputencoding       = utf8/latin1                           %Allow me to use special chars
     }
 
-    % =====  CODE EDITOR =============
+    % =====  CODE EDITOR   =============
     \lstdefinestyle{CompilandoStylePurity} {                        %This is Code Style
         backgroundcolor     = \color{white},                        %Background Color  
         basicstyle          = \tiny\color{BlueGrey900MD},           %Style of text
@@ -408,6 +409,32 @@
     }
  
     \lstset{style = CompilandoStyle}                                %Use this style
+
+
+% =======================================================
+% ===========           VARIABLES             ===========
+% =======================================================
+
+
+    % =====  SOLVE LINEAL SYSTEM   =============
+
+    \newcommand \ColorMatrixA       {Teal700MD}                     %Color definition
+    \newcommand \ColorVecX          {Green700MD}                    %Color definition
+    \newcommand \ColorVecB          {Red700MD}                      %Color definition
+    \newcommand \ColorMatrixL       {Amber700MD}                    %Color definition
+    \newcommand \ColorMatrixU       {Indigo700MD}                   %Color definition
+    \newcommand \ColorVecSemiX      {Green900MD}                    %Color definition
+    \newcommand \ColorVecSemiB      {Red900MD}                      %Color definition
+    \newcommand \ColorVecY          {Purple700MD}                   %Color definition
+
+    \newcommand \MatrixA      {\Color{\ColorMatrixA}{A}}            %Use: Ax = b
+    \newcommand \VecX         {\Color{\ColorVecX}{\vec x}}          %Use: Ax = b
+    \newcommand \VecB         {\Color{\ColorVecB}{\vec b}}          %Use: Ax = b
+    \newcommand \MatrixL      {\Color{\ColorMatrixL}{L}}            %Use: A = LU
+    \newcommand \MatrixU      {\Color{\ColorMatrixU}{U}}            %Use: A = LU
+    \newcommand \VecSemiX     {\Color{\ColorVecSemiX}{\tilde x}}    %Use: Ax = b
+    \newcommand \VecSemiB     {\Color{\ColorVecSemiB}{\tilde b}}    %Use: Ax = b
+    \newcommand \VecY         {\Color{\ColorVecY}{\vec y}}          %Use: Ax = b
 
 
 % =====================================================
@@ -7353,19 +7380,19 @@
         \clearpage
         \section{Recordemos}
 
-            Sea $A \in M_{n \times n}$ y tengamos el sistema
+            Sea $\MatrixA \in M_{n \times n}$ y tengamos el sistema
             clasico:
-            \begin{HugeEq}
+            \begin{largeEq}
                 \begin{MultiLineEquation*}{3}
-                    A \Color{Indigo700MD}{\vec x} = \vec b
+                    \MatrixA \VecX = \VecB
                 \end{MultiLineEquation*}
-            \end{HugeEq}
+            \end{largeEq}
 
             Ahora, creo que ahora es claro cuando el sistema tiene solución, lo hemos
             visto antes:
             \begin{itemize}
-                \item $det(A) \neq 0$
-                \item $Rango(A) = n$
+                \item $det(\MatrixA) \neq 0$
+                \item $Rango(\MatrixA) = n$
                 \item $\exists A^{-1}$
             \end{itemize}
 
@@ -7374,11 +7401,11 @@
             Ahora, una forma \Quote{sencilla} de resolver el problema es usando inversas:
             \begin{LargeEq}
                 \begin{MultiLineEquation*}{3}
-                    \vec x = A^{-1} \vec b
+                    \vec x = \MatrixA^{-1} \VecB
                 \end{MultiLineEquation*}
             \end{LargeEq}
 
-            Pero el problema es que calcular la inversa de $A$ es muy pesado en cuanto a operaciones
+            Pero el problema es que calcular la inversa de $\MatrixA$ es muy pesado en cuanto a operaciones
             y sufre muchas veces de problemas de exactitud por las operaciones de punto flotante, así 
             que veamos que otra cosa podemos hacer...
                 
@@ -7387,17 +7414,31 @@
         % ========          DEFINICION           =======
         % ==============================================
         \clearpage
-        \section{Definición}
+        \section{Idea del Algoritmo}
 
-            Sea $A \in M_{m \times n}$, simétrica y definida positiva, entonces
-            tenemos que que existe una única factorización de la forma:
-            \begin{MultiLineEquation*}{3}
-                A = L L^T
-            \end{MultiLineEquation*}
+            Sea $\MatrixA \in M_{m \times n}$ que no es singular, entonces tenemos que existe una factorización
+            de la forma:
+            \begin{LargeEq}
+                \begin{MultiLineEquation*}{3}
+                    \MatrixA = \MatrixL \MatrixU
+                \end{MultiLineEquation*}
+            \end{LargeEq}
+            \begin{itemize}
+                \item 
+                    Donde $\MatrixL$ es un matriz \Color{\ColorMatrixL}{triangular inferior} con la diagonal
+                    llena de puros unos (es solo por convención).
+                \item
+                    Donde $\MatrixU$ es un matriz \Color{\ColorMatrixU}{triangular superior}.
+            \end{itemize}
 
-            Donde $L$ es un matriz de triangular inferior con diagonal positiva.
-
-
+            Ahora, la idea del algoritmo es sencilla:
+            \begin{itemize}
+                \item Primero factorizamos $ \MatrixA = \MatrixL \MatrixU$
+                \item Luego podemos escribir $\MatrixL \MatrixU \VecX = \VecB$ 
+                \item Por lo tanto podemos separar el sistema en otros dos 
+                    $\MatrixU \VecX = \VecY$ y $\MatrixL \VecY = \VecB$
+                \item Soluciona cada nuevo sistema con \Quote{foward substitution}
+            \end{itemize}
 
 
 
@@ -7451,51 +7492,62 @@
         \clearpage
         \section{Cotas del Error Absoluto}
 
-            Recuerda que como tenemos $\tilde x$ y $\vec x$ entonces ya tenemos dos sistemas:
-            \begin{itemize}
-                \item $A \vec x = \vec b$
-                \item $A \tilde x = \tilde b$
-            \end{itemize}
-
-
-            \begin{multicols}{2}
-                Ahora vamos a restar ambas:
+            Tenemos que:
+            \begin{largeEq}
                 \begin{MultiLineEquation*}{3}
-                    A\tilde x - A\vec x  &= \tilde b - \vec b                               \\
-                    A(\tilde x - \vec x) &= (\tilde b - \vec b)                             \\
-                    A(\tilde x - \vec x) &= (\tilde b - \vec b)                             \\
-                    (\tilde x - \vec x)  &= A^{-1} (\tilde b - \vec b)                      \\
-                    \Abs{\tilde x - \vec x}  &= \Abs{ A^{-1} (\tilde b - \vec b) }          \\
-                    \Abs{\tilde x - \vec x}  &\leq \Abs{ A^{-1}} \Abs{\tilde b - \vec b} 
+                    \Color{Red700MD}{Error(\vec x)} 
+                        \leq 
+                    \Color{Green700MD}{Cond(A)} \; \Color{Indigo700MD}{Error(b)}
+                \end{MultiLineEquation*}
+            \end{largeEq}
+            
+
+            % ======== DEMOSTRACION ========
+            \begin{SmallIndentation}[1em]
+                \textbf{Demostración}:
+            
+                Recuerda que como tenemos $\tilde x$ y $\vec x$ entonces ya tenemos dos sistemas:
+                \begin{itemize}
+                    \item $A \vec x = \vec b$
+                    \item $A \tilde x = \tilde b$
+                \end{itemize}
+
+
+                \begin{multicols}{2}
+                    Ahora vamos a restar ambas:
+                    \begin{MultiLineEquation*}{3}
+                        A\tilde x - A\vec x  &= \tilde b - \vec b                               \\
+                        A(\tilde x - \vec x) &= (\tilde b - \vec b)                             \\
+                        A(\tilde x - \vec x) &= (\tilde b - \vec b)                             \\
+                        (\tilde x - \vec x)  &= A^{-1} (\tilde b - \vec b)                      \\
+                        \Abs{\tilde x - \vec x}  &= \Abs{ A^{-1} (\tilde b - \vec b) }          \\
+                        \Abs{\tilde x - \vec x}  &\leq \Abs{ A^{-1}} \Abs{\tilde b - \vec b} 
+                    \end{MultiLineEquation*}
+
+                    Por otro lado:
+                    \begin{MultiLineEquation*}{3}
+                        \tilde b &= A \tilde x                                              \\
+                        \Abs{\tilde b} &= \Abs{A \tilde x}                                  \\
+                        \Abs{\tilde b} &\leq \Abs{A} \Abs{\tilde x}                         \\
+                        \dfrac{\Abs{\tilde b}}{\Abs{A}} &\leq \Abs{\tilde x}                \\
+                        \dfrac{1}{\Abs{\tilde x}} &\leq \dfrac{\Abs{A}}{\Abs{\tilde b}}     \\
+                    \end{MultiLineEquation*}
+                \end{multicols}
+
+
+                Uniendo ambos tenemos que:
+                \begin{MultiLineEquation*}{3}
+                    Error(\vec x) = \dfrac{\Abs{\tilde x - \vec x}}{\vec x}
+                        &\leq \dfrac{\Abs{ A^{-1}} \Abs{\tilde b - \vec b}}{\tilde b} \Abs{A}   \\
+                        &\leq \Abs{A} \Abs{A^{-1}} \dfrac{\Abs{\tilde b - \vec b}}{\tilde b}
                 \end{MultiLineEquation*}
 
-                Por otro lado:
+                Entonces definimos:
                 \begin{MultiLineEquation*}{3}
-                    \tilde b &= A \tilde x                                              \\
-                    \Abs{\tilde b} &= \Abs{A \tilde x}                                  \\
-                    \Abs{\tilde b} &\leq \Abs{A} \Abs{\tilde x}                         \\
-                    \dfrac{\Abs{\tilde b}}{\Abs{A}} &\leq \Abs{\tilde x}                \\
-                    \dfrac{1}{\Abs{\tilde x}} &\leq \dfrac{\Abs{A}}{\Abs{\tilde b}}     \\
+                    Cond(A) := \Abs{A} \Abs{A^{-1}}
                 \end{MultiLineEquation*}
-            \end{multicols}
-
-
-            Uniendo ambos tenemos que:
-            \begin{MultiLineEquation*}{3}
-                Error(\vec x) = \dfrac{\Abs{\tilde x - \vec x}}{\vec x}
-                    &\leq \dfrac{\Abs{ A^{-1}} \Abs{\tilde b - \vec b}}{\tilde b} \Abs{A}   \\
-                    &\leq \Abs{A} \Abs{A^{-1}} \dfrac{\Abs{\tilde b - \vec b}}{\tilde b}
-            \end{MultiLineEquation*}
-
-            Entonces definimos:
-            \begin{MultiLineEquation*}{3}
-                Cond(A) := \Abs{A} \Abs{A^{-1}}
-            \end{MultiLineEquation*}
-
-            Entonces decimos que:
-            \begin{MultiLineEquation*}{3}
-                Error(\vec x) \leq Cond(A) Error(b)
-            \end{MultiLineEquation*}
+            
+            \end{SmallIndentation}
 
 
         % ==============================================
@@ -7518,54 +7570,86 @@
             % ====            PROPIEDADES             ======
             % ==============================================
             \vspace{1em}
-            \section{Propiedades}
+            \subsection{Propiedades}
             
-            Primero, recuerda que esto es para una norma subordinada:
-            \begin{itemize}
-                \item $Cond(A) \geq 1$ 
+                Primero, recuerda que esto es para una norma subordinada:
+                \begin{itemize}
+                    \item $Cond(A) \geq 1$ 
 
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Demostración}:
-                        
-                        Si es que $A$ es singular, pues no problema.
-
-                        Ahora $\Abs{Id_n} = 1 = \Abs{A A^{-1}}$
-                        Recuerda que $\Abs{A A^{-1}} \leq \Abs{A} \Abs{B}$, por lo tanto, la 
-                        condición de $A$ es mayor o igual que uno.
-                    
-                    \end{SmallIndentation}
-                        
-                \item $Cond(Id_n) = 1$ 
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Demostración}:
-                        
-                        Esta demasiado sencilla, pues $\Abs{Id_n}\Abs{Id_n^{-1}} = (1)(1) = 1$
-                    
-                    \end{SmallIndentation}
-                        
-
-                \item $Cond(\alpha A) = Cond(A) \Space \forall \alpha \neq 0$ 
-
-                    % ======== DEMOSTRACION ========
-                    \begin{SmallIndentation}[1em]
-                        \textbf{Demostración}:
-                        \begin{MultiLineEquation*}{3}
-                            Cond(\alpha A)
-                                &= \Abs{\alpha A} \Abs{\alpha^{-1} A^{-1}}                      \\
-                                &= \Abs{\alpha} \Abs{A} \dfrac{1}{\Abs{\alpha}} \Abs{A^{-1}}    \\
-                                &= \Abs{A}{\Abs{A^{-1}}}                                        \\
-                                &= Cond(A)
-                        \end{MultiLineEquation*}
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
                             
-                    
-                    \end{SmallIndentation}
+                            Si es que $A$ es singular, pues no problema.
 
+                            Ahora $\Abs{Id_n} = 1 = \Abs{A A^{-1}}$
+                            Recuerda que $\Abs{A A^{-1}} \leq \Abs{A} \Abs{B}$, por lo tanto, la 
+                            condición de $A$ es mayor o igual que uno.
+                        
+                        \end{SmallIndentation}
+                            
+                    \item $Cond(Id_n) = 1$ 
 
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Esta demasiado sencilla, pues $\Abs{Id_n}\Abs{Id_n^{-1}} = (1)(1) = 1$
+                        
+                        \end{SmallIndentation}
+                            
 
-            \end{itemize}
+                    \item $Cond(\alpha A) = Cond(A) \Space \forall \alpha \neq 0$ 
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            \begin{MultiLineEquation*}{3}
+                                Cond(\alpha A)
+                                    &= \Abs{\alpha A} \Abs{\alpha^{-1} A^{-1}}                      \\
+                                    &= \Abs{\alpha} \Abs{A} \dfrac{1}{\Abs{\alpha}} \Abs{A^{-1}}    \\
+                                    &= \Abs{A}{\Abs{A^{-1}}}                                        \\
+                                    &= Cond(A)
+                            \end{MultiLineEquation*}
+                                
+                        
+                        \end{SmallIndentation}
+
+                \end{itemize}
+
+        
+        % ==============================================
+        % ====      MATRIZ DEFINIDA POSITIVA      ======
+        % ==============================================
+        \clearpage
+        \section{Matriz definida positiva}
+
+            % ==============================================
+            % ====            PROPIEDADES             ======
+            % ==============================================
+            \vspace{1em}
+            \subsection{Propiedades}
+
+                \begin{itemize}
+                    \item
+                        Sea $A \in M_{m \times n}$ con rango completo (es decir tiene rango $n$).
+                        Entonces tenemos que $A^t A$ es definida positiva.
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                        
+                            Nota que $(\vec x^t A^t)(A \vec x) = (A \vec x)^t(A \vec x) = \Abs{A \vec x}^2$.
+
+                            Ahora, nota que sabemos que las normas no son negativas, por lo tanto una norma al cuadrado
+                            es no es positiva, ahora, supongamos que $\Abs{A \vec x}^2 = 0$, ahora, eso solo pasa
+                            si $A$ es cero o $\vec x$ es cero, pero ninguna puede ser verdad, por la definición de
+                            estar definida positiva y porque el rango de $A$ es completo.
+
+                            Contradicción.
+
+                        \end{SmallIndentation}
+                \end{itemize}
 
     % ===============================================================================
     % ===================          ANALISIS DEL ERROR             ===================
@@ -7591,7 +7675,7 @@
         % ====      ES MEJOR QUE NO DECIR NADA      ====
         % ==============================================
         \clearpage
-        \section{Sistema de Ecuaciones Normales}
+        \section{Ecuaciones Normales}
 
             Ok, tenemos un sistema $A \vec x = \vec b$ donde $A \in M_{m \times n}$ donde $m > n$
             tal que no tiene solución.
@@ -7617,7 +7701,7 @@
                 pero no hay problema, como queremos minimizar una función podemos intentar
                 minimizar una función que tiene el mismo mínimo:
                 \begin{MultiLineEquation*}{3}
-                    \phi(x)^2 = \Abs{A \vec x - \vec b}^2
+                    \Psi(x) = \phi(x)^2 = \Abs{A \vec x - \vec b}^2
                 \end{MultiLineEquation*}
 
                 % ======== DEMOSTRACION ========
@@ -7645,26 +7729,23 @@
                     \end{MultiLineEquation*}
 
                     Ahora, si $A^t A$ es definida positiva entonces $phi(x)$
-                    tiene un mínimo.
-
-                    Y si quieres encontar el minímo basta con solucionar
-                    el sistema:
-                    \begin{MultiLineEquation*}{3}
-                        A^t A \vec x = A^t \vec b
-                    \end{MultiLineEquation*}
+                    entonces podemos asegurar que basta con solucionar
+                    el sistema y obtendremos el mínimo de la función:
+                    \begin{largeEq}
+                        \begin{MultiLineEquation*}{3}
+                            \Color{Teal700MD}{A^t A} \vec x = \Color{Teal700MD}{A^t} \vec b
+                        \end{MultiLineEquation*}
+                    \end{largeEq}
+                    
 
                 
                 \end{SmallIndentation}
-                    
 
                     
 
 
 
-                
-
-
-% ===============================================
+                % ===============================================
 % ========        BIBLIO      ===================
 % ===============================================
 \begin{thebibliography}{10}
