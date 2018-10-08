@@ -7414,13 +7414,34 @@
         % ========          DEFINICION           =======
         % ==============================================
         \clearpage
-        \section{Idea del Algoritmo}
+        \section{Definición del Algoritmo}
 
-            Sea $\MatrixA \in M_{m \times n}$ que no es singular, entonces tenemos que existe una factorización
+            Sea $\MatrixA \in M_{m \times n}$ tal que $\MatrixA$ no es singular, entonces tenemos que existe una 
+            factorización
             de la forma:
             \begin{LargeEq}
                 \begin{MultiLineEquation*}{3}
-                    \MatrixA = \MatrixL \MatrixU
+                    \MatrixA &= \MatrixL \MatrixU \\
+                    \Color{\ColorMatrixA}{\bVector{
+                        a_{1 1} & a_{1 2} & a_{1 3} \\
+                        a_{2 1} & a_{2 2} & a_{2 3} \\
+                        a_{3 1} & a_{3 2} & a_{3 3} \\
+                    }}  
+                        &= \Color{\ColorMatrixL}{
+                            \bVector{
+                                1       & 0       & 0 \\
+                                l_{2 1} & 1       & 0 \\
+                                l_{3 1} & l_{3 2} & 1 \\
+                            }
+                        }
+                        \Color{\ColorMatrixU}{
+                            \bVector{
+                                u_{1 1}  & u_{1 2} & u_{1 3} \\
+                                0        & u_{2 2} & u_{2 3} \\
+                                0        & 0       & u_{3 3} \\
+                            }
+                        }
+                        && \Remember{Si $M_{3 \times 3}$ veremos esto}
                 \end{MultiLineEquation*}
             \end{LargeEq}
             \begin{itemize}
@@ -7437,10 +7458,168 @@
                 \item Luego podemos escribir $\MatrixL \MatrixU \VecX = \VecB$ 
                 \item Por lo tanto podemos separar el sistema en otros dos 
                     $\MatrixU \VecX = \VecY$ y $\MatrixL \VecY = \VecB$
-                \item Soluciona cada nuevo sistema con \Quote{foward substitution}
+                \item Soluciona cada nuevo sistema con \Quote{foward substitution} y
+                \Quote{backward substitution} 
             \end{itemize}
 
+        % ==============================================
+        % ========          DEFINICION           =======
+        % ==============================================
+        \clearpage
+        \section{Forma de Obtener a LU}
 
+            Lo que haremos sera sencillo, un proceso iterativo:
+            \begin{itemize}
+                \item Primero vamos a iniciar con 2 matrices, una copia de nuestra matriz $\MatrixA$
+                    y una matrix identidad $I_n$.
+
+                    Lo que haremos será trabajar las matrices de tal forma de $\MatrixA \lInfire \MatrixU$
+                    y $I_n \lInfire \MatrixL$
+                \item 
+                    Ahora, elegimos un pivote como en Gauss-Jordan, es decir, en el primer
+                    paso elegimos a $a_{1 1}$, en el segundo paso a $a_{2 2}$, y así, así que vayamos en 
+                    el $i$ paso.
+                \item
+                    Habiendo seleccionado $a_{i i}$ para el $i$ paso entonces para encontrar
+                    a los elementos que no son cero de la columna $i$ de $\MatrixL$ tenemos que 
+                    seguir la siguiente fórmula:
+                    \begin{MultiLineEquation*}{3}
+                        \forall j \in [i+1, n] \Space I_{j, i} = \dfrac{a_{j i}}{a_{i, i}}
+                    \end{MultiLineEquation*}
+
+                    Y hacemos en la matrix $\MatrixA$ lo mismo que encontramos, tomamos la fila
+                    $i$ y para cada fila por debajo, la llamaremos $j$ (donde $j \in [i+1, n]$) lo
+                    que haremos sera tomar la fila $i$, multiplicarla por $- \dfrac{a_{j i}}{a_{i, i}}$
+                    (nota ese menos, es importante)
+                    y luego sumarla con la fila $j$ y guardar el resultado en la fila $j$.
+                \item
+                    Tras $i$ pasos habremos llegado a un punto en el que $\MatrixA \lInfire \MatrixU$
+                    y $I_n \lInfire \MatrixL$
+            \end{itemize}
+
+        % ==============================================
+        % ========             EJEMPLO           =======
+        % ==============================================
+        \clearpage
+        \subsection{Ejemplo}
+
+            Toma por ejemplo:
+            \begin{MultiLineEquation*}{3}
+                \Color{\ColorMatrixA}{
+                    A =\bVector{
+                        1,1,1   \\
+                        4,3,-1  \\
+                        4,5,3   \\
+                    } 
+                }
+                *
+                \Color{\ColorVecX}{
+                    \bVector{
+                        x_1  \\
+                        x_2  \\
+                        x_3  \\
+                    }
+                }
+                =
+                \Color{\ColorVecB}{
+                    \bVector{
+                        1  \\
+                        6  \\
+                        4  \\
+                    }
+                }
+            \end{MultiLineEquation*}
+
+            Entonces siguiendo nuestro pasos tenemos que:
+            \begin{MultiLineEquation*}{3}
+                \MatrixL &= \Color{\ColorMatrixL}{\bVector{
+                    1 & 0 & 0    \\
+                    4 & 1 & 0    \\
+                    4 & -1 & 1   \\
+                }}
+                \\
+                \MatrixU &= \Color{\ColorMatrixU}{\bVector{
+                    1 & 1  & 1    \\
+                    0 & -1 & -5  \\
+                    0 & 0  & -6   \\
+                }}
+            \end{MultiLineEquation*}
+
+            Nota entonces que:
+            \begin{MultiLineEquation*}{3}
+                \Color{\ColorMatrixA}{
+                    \bVector{
+                        1 & 0 & 0    \\
+                        4 & 1 & 0    \\
+                        4 & -1 & 1   \\
+                    } 
+                }
+                *
+                \Color{\ColorVecX}{
+                    \bVector{
+                        y_1  \\
+                        y_2  \\
+                        y_3  \\
+                    }
+                }
+                =
+                \Color{\ColorVecB}{
+                    \bVector{
+                        1  \\
+                        6  \\
+                        4  \\
+                    }
+                }
+            \end{MultiLineEquation*}
+
+
+            Y tenemos que:
+            \begin{MultiLineEquation*}{3}
+                \vec y = \bVector{
+                    1 \\ 2 \\ 2
+                }
+            \end{MultiLineEquation*}
+            
+            Nota entonces que:
+            \begin{MultiLineEquation*}{3}
+                \Color{\ColorMatrixA}{
+                    \bVector{
+                        1 & 1  & 1    \\
+                        0 & -1 & -5  \\
+                        0 & 0  & -6   \\
+                    } 
+                }
+                *
+                \Color{\ColorVecX}{
+                    \bVector{
+                        x_1  \\
+                        x_2  \\
+                        x_3  \\
+                    }
+                }
+                =
+                \Color{\ColorVecB}{
+                    \bVector{
+                        1  \\
+                        2  \\
+                        2  \\
+                    }
+                }
+            \end{MultiLineEquation*}
+
+            Por lo tanto tenemos que:
+            \begin{MultiLineEquation*}{3}
+                \VecX = \bVector{
+                    \frac{5}{3} \\ -\frac{1}{3} \\ -\frac{1}{3}
+                }
+            \end{MultiLineEquation*}
+
+
+
+            
+            
+
+            
 
     % ===============================================================================
     % ==============        FACTORIZACION DE CHOLESKY             ===================
