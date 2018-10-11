@@ -7776,6 +7776,27 @@
                             $\MatrixA_{i, i} = e_i^T \MatrixA e_i > 0$
                         
                         \end{SmallIndentation}
+
+                    \item $\forall i, j \Space A_{i, i} A_{j, j} \geq A_{i, j}$
+
+                    \item
+                        Sea $A \in M_{m \times n}$ con rango completo (es decir tiene rango $n$).
+                        Entonces tenemos que $A^t A$ es definida positiva.
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                        
+                            Nota que $(\vec x^t A^t)(A \vec x) = (A \vec x)^t(A \vec x) = \Abs{A \vec x}^2$.
+
+                            Ahora, nota que sabemos que las normas no son negativas, por lo tanto una norma al cuadrado
+                            es no es positiva, ahora, supongamos que $\Abs{A \vec x}^2 = 0$, ahora, eso solo pasa
+                            si $A$ es cero o $\vec x$ es cero, pero ninguna puede ser verdad, por la definición de
+                            estar definida positiva y porque el rango de $A$ es completo.
+
+                            Contradicción.
+
+                        \end{SmallIndentation}
                 \end{itemize}
             
 
@@ -8160,39 +8181,7 @@
 
                 \end{itemize}
 
-        
-        % ==============================================
-        % ====      MATRIZ DEFINIDA POSITIVA      ======
-        % ==============================================
-        \clearpage
-        \section{Matriz definida positiva}
 
-            % ==============================================
-            % ====            PROPIEDADES             ======
-            % ==============================================
-            \vspace{1em}
-            \subsection{Propiedades}
-
-                \begin{itemize}
-                    \item
-                        Sea $A \in M_{m \times n}$ con rango completo (es decir tiene rango $n$).
-                        Entonces tenemos que $A^t A$ es definida positiva.
-
-                        % ======== DEMOSTRACION ========
-                        \begin{SmallIndentation}[1em]
-                            \textbf{Demostración}:
-                        
-                            Nota que $(\vec x^t A^t)(A \vec x) = (A \vec x)^t(A \vec x) = \Abs{A \vec x}^2$.
-
-                            Ahora, nota que sabemos que las normas no son negativas, por lo tanto una norma al cuadrado
-                            es no es positiva, ahora, supongamos que $\Abs{A \vec x}^2 = 0$, ahora, eso solo pasa
-                            si $A$ es cero o $\vec x$ es cero, pero ninguna puede ser verdad, por la definición de
-                            estar definida positiva y porque el rango de $A$ es completo.
-
-                            Contradicción.
-
-                        \end{SmallIndentation}
-                \end{itemize}
 
     % ===============================================================================
     % ===================          ANALISIS DEL ERROR             ===================
