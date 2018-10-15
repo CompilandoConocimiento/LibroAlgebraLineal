@@ -1,1 +1,0 @@
-En la factoizacion LU ... la L esta llena de 1 en la diagonal?
