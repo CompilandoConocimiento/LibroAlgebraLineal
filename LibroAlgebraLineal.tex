@@ -347,6 +347,13 @@
     \definecolor{Amber700MD}{HTML}{FFA000}                          %Use: Color :D        
     \definecolor{Amber900MD}{HTML}{FF6F00}                          %Use: Color :D
 
+    \definecolor{OrangeMD}{HTML}{ff9800}                            %Use: Color :D        
+    \definecolor{Orange100MD}{HTML}{ffe0b2}                         %Use: Color :D        
+    \definecolor{Orange200MD}{HTML}{ffcc80}                         %Use: Color :D        
+    \definecolor{Orange300MD}{HTML}{ffb74d}                         %Use: Color :D        
+    \definecolor{Orange700MD}{HTML}{fb8c00}                         %Use: Color :D        
+    \definecolor{Orange900MD}{HTML}{ef6c00}                         %Use: Color :D
+
     \definecolor{BlueGreyMD}{HTML}{607D8B}                          %Use: Color :D        
     \definecolor{BlueGrey100MD}{HTML}{CFD8DC}                       %Use: Color :D        
     \definecolor{BlueGrey200MD}{HTML}{B0BEC5}                       %Use: Color :D        
@@ -427,6 +434,7 @@
     \newcommand \ColorVecSemiB      {Red900MD}                      %Color definition
     \newcommand \ColorVecY          {Purple700MD}                   %Color definition
     \newcommand \ColorMatrixP       {Cyan900MD}                     %Color definition
+    \newcommand \ColorMatrixQ       {Orange700MD}                   %Color definition
 
     \newcommand \MatrixA      {\Color{\ColorMatrixA}{A}}            %Use: Ax = b
     \newcommand \VecX         {\Color{\ColorVecX}{\vec x}}          %Use: Ax = b
@@ -439,6 +447,7 @@
     \newcommand \VecSemiB     {\Color{\ColorVecSemiB}{\tilde b}}    %Use: Ax = b
     \newcommand \VecY         {\Color{\ColorVecY}{\vec y}}          %Use: Ax = b
     \newcommand \MatrixP      {\Color{\ColorMatrixP}{P}}            %Use: PA = LU
+    \newcommand \MatrixQ      {\Color{\ColorMatrixQ}{Q}}            %Use: PA = LU
 
 
 % =====================================================
@@ -847,121 +856,121 @@
 
 
 
+        % ===================================
+        % ===   MATRICES TRIANGULARES   =====
+        % ===================================
+        \clearpage
+        \section{Matrices Triangulares Superiores}
+
+            Son aquellas matrices de $A \in M_{n \times n}(\GenericField)$ donde se cumple que: 
+            \begin{equation*}
+                \BigBrackets{f(i,j)}_{i, j = 1}^{n, n}
+                =
+                \Brackets{
+                    \begin{cases}
+                        f(i,j)  \MiniSpace& \text{ si } i \leq j \\
+                        0       \MiniSpace& \text{ si } i > j
+                    \end{cases}
+                }_{i, j = 1}^{m, n}  
+            \end{equation*}
+
+            Es decir $\forall i, j \in \Set{1, \dots, n} \MegaSpace i > j \implies \Space [A]_{i, j}$
+
+            \vspace{1em}
+
+            Notemos que en una matriz triangular superior algunos (hasta todos) de los elementos
+            por encima de la diagonal principal o en la diagonal principal pueden ser iguales a cero.
+
+            Por ejemplo, la matriz nula $0_{n,n}$ es triangular superior. La condición que define
+            matrices triangulares superiores solo nos dice que todos los elementos por debajo de la
+            diagonal principal deben cero iguales a cero.
+
+            Una matriz triangular superior tiene el siguiente aspecto:
+            \begin{equation*}
+                A_n =
+                \begin{bmatrix}[cccc]
+                    a_{1,1} & a_{1, 2}  & \dots & a_{1, n}  \\
+                    0       & a_{2,2}   & \dots & a_{2, n}  \\
+                    \vdots  &           &       & \vdots    \\
+                    0       & 0         & \dots & a_{n,n}   \\
+                \end{bmatrix}
+            \end{equation*}
+
             % ===================================
-            % ===   MATRICES TRIANGULARES   =====
+            % =======  PROPIEDADES   ============
             % ===================================
             \clearpage
-            \subsection{Matrices Triangulares Superiores}
+            \subsubsection{Propiedades}
 
-                Son aquellas matrices de $A \in M_{n \times n}(\GenericField)$ donde se cumple que: 
-                \begin{equation*}
-                    \BigBrackets{f(i,j)}_{i, j = 1}^{n, n}
-                    =
-                    \Brackets{
-                        \begin{cases}
-                            f(i,j)  \MiniSpace& \text{ si } i \leq j \\
-                            0       \MiniSpace& \text{ si } i > j
-                        \end{cases}
-                    }_{i, j = 1}^{m, n}  
-                \end{equation*}
+                \begin{itemize}
+                    
+                    \item 
+                        Sea $A, B$ matrices triangulares superiores, entonces $AB$ es también
+                        una matriz triangular superior, donde se tiene que:\\
+                        $[AB]_{i, i} = [A]_{i, i} [B]_{i, i}$
 
-                Es decir $\forall i, j \in \Set{1, \dots, n} \MegaSpace i > j \implies \Space [A]_{i, j}$
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                            
+                            Empecemos por ver que es una matriz diagonal, sea $i > j$ entonces
+                            vamos a demostrar que esa entrada es cero.
+                            \begin{align*}
+                                [AB]_{i, j} 
+                                    &= \sum_{k = 1}^n [A]_{i, k} [B]_{k, j} 
+                                        && \Remember{Definición}                                \\
+                                    &= 
+                                            \sum_{k = 1}^j        [A]_{i, k} [B]_{k, j}
+                                        + \sum_{k = j+1}^{i - 1}[A]_{i, k} [B]_{k, j} 
+                                        + \sum_{k = i}^n        [A]_{i, k} [B]_{k, j}   
+                                        && \Remember{Separamos en 3 sumas}                      \\
+                                    &= 
+                                            \sum_{k = 1}^j        (0) [B]_{k, j}
+                                        + \sum_{k = j+1}^{i - 1}(0) [B]_{k, j} 
+                                        + \sum_{k = i}^n        [A]_{i, k} [B]_{k, j}   
+                                        && \Remember{Siempre $i > k$, por eso $[A]_{i, k = 0}$} \\
+                                    &= 
+                                            \sum_{k = 1}^j        (0) [B]_{k, j}
+                                        + \sum_{k = j+1}^{i - 1}(0)(0)
+                                        + \sum_{k = i}^n        [A]_{i, k} (0)          
+                                        && \Remember{Siempre $k > j$, por eso $[B]_{k, j = 0}$} \\
+                                    &= 0 
+                            \end{align*}
 
-                \vspace{1em}
+                            Ahora veamos que $[AB]_{i, i} = [A]_{i, i} [B]_{i, i}$:
+                            \begin{align*}
+                                [AB]_{i, i} 
+                                    &= \sum_{k = 1}^n [A]_{i, k} [B]_{k, i} 
+                                        && \Remember{Definición}                                \\
+                                    &= 
+                                            \sum_{k = 1}^{i - 1}  [A]_{i, k} [B]_{k, i}
+                                        + [A]_{i, i} [B]_{i, i} 
+                                        + \sum_{k = i+1}^n      [A]_{i, k} [B]_{k, i}   
+                                        && \Remember{Separamos en 3 sumas}                      \\
+                                    &= 
+                                            \sum_{k = 1}^{i - 1}  (0) [B]_{k, i}
+                                        + [A]_{i, i} [B]_{i, i} 
+                                        + \sum_{k = i+1}^n      [A]_{i, k} [B]_{k, i}
+                                        && \Remember{Ve que $i > k$}                            \\
+                                    &= 
+                                            \sum_{k = 1}^{i - 1}  (0) [B]_{k, i}
+                                        + [A]_{i, i} [B]_{i, i} 
+                                        + \sum_{k = i+1}^n      [A]_{i, k} (0)          
+                                        && \Remember{Ve que $k > i$}                            \\
+                                    &= [A]_{i, i} [B]_{i, i} 
+                                        && \Remember{Mira que bonita fórmula}
+                            \end{align*}
 
-                Notemos que en una matriz triangular superior algunos (hasta todos) de los elementos
-                por encima de la diagonal principal o en la diagonal principal pueden ser iguales a cero.
+                        \end{SmallIndentation}
+                            
 
-                Por ejemplo, la matriz nula $0_{n,n}$ es triangular superior. La condición que define
-                matrices triangulares superiores solo nos dice que todos los elementos por debajo de la
-                diagonal principal deben cero iguales a cero.
-
-                Una matriz triangular superior tiene el siguiente aspecto:
-                \begin{equation*}
-                    A_n =
-                    \begin{bmatrix}[cccc]
-                        a_{1,1} & a_{1, 2}  & \dots & a_{1, n}  \\
-                        0       & a_{2,2}   & \dots & a_{2, n}  \\
-                        \vdots  &           &       & \vdots    \\
-                        0       & 0         & \dots & a_{n,n}   \\
-                    \end{bmatrix}
-                \end{equation*}
-
-                % ===================================
-                % =======  PROPIEDADES   ============
-                % ===================================
-                \clearpage
-                \subsubsection{Propiedades}
-
-                    \begin{itemize}
-                        
-                        \item 
-                            Sea $A, B$ matrices triangulares superiores, entonces $AB$ es también
-                            una matriz triangular superior, donde se tiene que:\\
-                            $[AB]_{i, i} = [A]_{i, i} [B]_{i, i}$
-
-                            % ======== DEMOSTRACION ========
-                            \begin{SmallIndentation}[1em]
-                                \textbf{Demostración}:
-                                
-                                Empecemos por ver que es una matriz diagonal, sea $i > j$ entonces
-                                vamos a demostrar que esa entrada es cero.
-                                \begin{align*}
-                                    [AB]_{i, j} 
-                                        &= \sum_{k = 1}^n [A]_{i, k} [B]_{k, j} 
-                                            && \Remember{Definición}                                \\
-                                        &= 
-                                              \sum_{k = 1}^j        [A]_{i, k} [B]_{k, j}
-                                            + \sum_{k = j+1}^{i - 1}[A]_{i, k} [B]_{k, j} 
-                                            + \sum_{k = i}^n        [A]_{i, k} [B]_{k, j}   
-                                            && \Remember{Separamos en 3 sumas}                      \\
-                                        &= 
-                                              \sum_{k = 1}^j        (0) [B]_{k, j}
-                                            + \sum_{k = j+1}^{i - 1}(0) [B]_{k, j} 
-                                            + \sum_{k = i}^n        [A]_{i, k} [B]_{k, j}   
-                                            && \Remember{Siempre $i > k$, por eso $[A]_{i, k = 0}$} \\
-                                        &= 
-                                              \sum_{k = 1}^j        (0) [B]_{k, j}
-                                            + \sum_{k = j+1}^{i - 1}(0)(0)
-                                            + \sum_{k = i}^n        [A]_{i, k} (0)          
-                                            && \Remember{Siempre $k > j$, por eso $[B]_{k, j = 0}$} \\
-                                        &= 0 
-                                \end{align*}
-
-                                Ahora veamos que $[AB]_{i, i} = [A]_{i, i} [B]_{i, i}$:
-                                \begin{align*}
-                                    [AB]_{i, i} 
-                                        &= \sum_{k = 1}^n [A]_{i, k} [B]_{k, i} 
-                                            && \Remember{Definición}                                \\
-                                        &= 
-                                              \sum_{k = 1}^{i - 1}  [A]_{i, k} [B]_{k, i}
-                                            + [A]_{i, i} [B]_{i, i} 
-                                            + \sum_{k = i+1}^n      [A]_{i, k} [B]_{k, i}   
-                                            && \Remember{Separamos en 3 sumas}                      \\
-                                        &= 
-                                              \sum_{k = 1}^{i - 1}  (0) [B]_{k, i}
-                                            + [A]_{i, i} [B]_{i, i} 
-                                            + \sum_{k = i+1}^n      [A]_{i, k} [B]_{k, i}
-                                            && \Remember{Ve que $i > k$}                            \\
-                                        &= 
-                                              \sum_{k = 1}^{i - 1}  (0) [B]_{k, i}
-                                            + [A]_{i, i} [B]_{i, i} 
-                                            + \sum_{k = i+1}^n      [A]_{i, k} (0)          
-                                            && \Remember{Ve que $k > i$}                            \\
-                                        &= [A]_{i, i} [B]_{i, i} 
-                                            && \Remember{Mira que bonita fórmula}
-                                \end{align*}
-
-                            \end{SmallIndentation}
-                                
-
-                        \item
-                            Si $A$ es una matriz triangular es invertible entonces $A^{-1}$ también
-                            será invertible.
+                    \item
+                        Si $A$ es una matriz triangular es invertible entonces $A^{-1}$ también
+                        será invertible.
 
 
 
-                    \end{itemize}
+                \end{itemize}
 
 
 
@@ -3353,6 +3362,147 @@
                 \end{itemize}
           
 
+% //////////////////////////////////////////////////////////////////////////////////////////////////////////
+% /////////////////////////         PRODUCTOS INTERNOS Y WEAS            ///////////////////////////////////
+% //////////////////////////////////////////////////////////////////////////////////////////////////////////
+\part{Productos Internos y weas}
+
+
+    % ===============================================================================
+    % ======================         PRODUCTO INTERNO        ========================
+    % ===============================================================================
+    \chapter{Producto Interno}
+
+        % ==============================================
+        % ========          DEFINICION           =======
+        % ==============================================
+        \clearpage
+        \section{Definición}
+
+            Recuerda que al final este libro es de Álgebra Lineal, así que hablemos de 
+            vectores, resulta que he dejado hasta este momento un tema bastante importante
+            para muchos es el producto interno.
+
+            Un producto interno es una función que toma dos vectores, dos elementos de un espacio
+            vectorial y que nos regresa un escalar, solo eso, es cualquier función que 
+            cumple que:
+            \begin{large}
+                \begin{itemize}
+                    \item $(\vec a, \vec b) = (\vec b, \vec a)$
+                    \item $(\vec a, \vec b + \vec c) = (\vec a, \vec b) + (\vec a, \vec c)$
+                    \item $(\vec a, \vec a) > 0 \forall \vec a \neq \vec 0$
+                \end{itemize}
+            \end{large}
+
+            Esta definición esta claramente inspirada en los vectores clásicos de geometría
+            en la que UN, un producto interno es el producto punto, que esta definido usando 
+            la noción de ángulo entre vectores y longitud de un vector.
+
+            Sin embargo veremos que podemos darle al vuelta y definir mejor de manera más general
+            un producto interno y usandolo definir todas las nociones de \Quote{longitud}, \Quote{ángulos
+            entre funciones} y usandolo es que definiremos cosas como la ortogonalidad o cosas así.
+
+            Es decir, con el producto interno y la noción de un espacio vectorial (en el que podemos sumar
+            vectores y multiplicar por escalares) podemos hallar una fórmula para cualquier cosa.
+        
+            Repito una idea que dije a la ligera antes, \textbf{No hay UN producto interno, hay muchos, infinitos}.
+
+            % ==============================================
+            % ========     ALGUNAS DEFINICIONES      =======
+            % ==============================================
+            \clearpage
+            \subsection{Algunas definiciones}
+
+                \begin{itemize}
+                    \item \textbf{Vectores \Quote{Normales}}
+                        \begin{MultiLineEquation*}{3}
+                            \vec a \cdot \vec b := \Mag{\vec a} \Mag{\vec b} \Cos{\gamma}
+                        \end{MultiLineEquation*}
+                \end{itemize}
+            
+        % ==============================================
+        % ====     COSAS QUE PODEMOS DEFINIR     =======
+        % ==============================================
+        \clearpage
+        \section{Cosas que podemos definir con esto}
+
+            % ==============================================
+            % =============     LONGITUD      ==============
+            % ==============================================
+            \subsection{Longitud}
+
+                Definimos la longitud de un vector como:
+                \begin{MultiLineEquation*}{3}
+                    \Abs{\vec x} := \sqrt{(\vec x, \vec x)}
+                \end{MultiLineEquation*}
+
+            % ==============================================
+            % =========    ORTOGONALIDAD      ==============
+            % ==============================================
+            \subsection{Ortogonalidad}
+
+                Definimos que un vector es ortogonal a otro si y solo si su producto interno es cero escalar.
+                \begin{MultiLineEquation*}{3}
+                    (\vec a, \vec b) = 0
+                \end{MultiLineEquation*}
+
+            % ==============================================
+            % =============     PROYECCION    ==============
+            % ==============================================
+            \subsection{Proyección y Ortogonales}
+
+                Definimos la Proyección de $\vec a$ sobre $\vec b$ como $\vec P$, que esta dado por:
+                \begin{MultiLineEquation*}{3}
+                    \vec P :=
+                    \dfrac{1}{{(\vec b, \vec b)}} \; (\vec a, \vec b) \; \vec b
+                \end{MultiLineEquation*}
+
+                Definimos la parte del vector $\vec a$ que es ortogonal al vector $\vec b$ como $\vec q$, que esta dado por:
+                \begin{MultiLineEquation*}{3}
+                    \vec q 
+                    &:= \vec a - \vec P                                                         \\
+                    &:= \vec a - \dfrac{1}{{(\vec b, \vec b)}} \; (\vec a, \vec b) \; \vec b
+                \end{MultiLineEquation*}
+
+            % ==============================================
+            % =============     DECOMPOSICIÓN  ==============
+            % ==============================================
+            \subsection{Descomposición en Combinación Lineal de la Base}
+
+                Considera que tienes una base que es ortogonal, entonces para encontrar la descomposicón de un vector $\vec v$
+                con respecto a un vector de la base $\vec e_i$ como:
+                \begin{MultiLineEquation*}{3}
+                    \alpha_i = \dfrac{1}{(\vec e_i, \vec e_i)} (\vec v, \vec e_i) 
+                \end{MultiLineEquation*}
+                
+
+
+
+
+    % ===============================================================================
+    % ==========           MATRICES ORTOGONALES Y ORTONORMALES        ===============
+    % ===============================================================================
+    \chapter{Cosas Ortogonales-normales}
+
+                
+        % ==============================================
+        % ========          PSEUDOINVERSA        =======
+        % ==============================================
+        \clearpage
+        \section{Matrices Ortogonales}
+
+            Una matriz ortogonal es aquella matriz $Q \in M_{m \times n}$ cumple que:
+            \begin{LargeEq}
+                \begin{MultiLineEquation*}{3}
+                    \Color{ \ColorMatrixQ }{
+                        Q Q^t = I_n = Q^t Q
+                    }                    
+                \end{MultiLineEquation*}
+            \end{LargeEq} 
+
+          
+
+            
 
 
 
@@ -7379,7 +7529,7 @@
 % //////////////////////////////////////////////////////////////////////////////////////////////////////////
 % /////////////////////////            ANALISIS NÚMERICO                 ///////////////////////////////////
 % //////////////////////////////////////////////////////////////////////////////////////////////////////////
-\part{Análisis Númerico}
+\part{Análisis Númerico: Solucionar $A \vec x = \vec b$}
 
     % ===============================================================================
     % ===================            FACTORIZACION LU             ===================
@@ -8371,12 +8521,15 @@
                 \end{itemize}
 
 
+% //////////////////////////////////////////////////////////////////////////////////////////////////////////
+% /////////////////////////            ANALISIS NÚMERICO                 ///////////////////////////////////
+% //////////////////////////////////////////////////////////////////////////////////////////////////////////
+\part{Análisis Númerico: Aproximar $A \vec x = \vec b$}
 
     % ===============================================================================
-    % ===================          ANALISIS DEL ERROR             ===================
+    % ===================          INTRODUCCION                   ===================
     % ===============================================================================
-    \chapter{Solucionar $A \vec x = \vec b$ con $A$ no cuadrada}
-
+    \chapter{Introducción}
 
         % ==============================================
         % ========          INTRODUCCION         =======
@@ -8391,12 +8544,29 @@
                 \item Que nos generé un sistema que no tenga solución
             \end{itemize}
 
+            Ok, tenemos un sistema $A \vec x = \vec b$ donde $A \in M_{m \times n}$ donde $m > n$
+            tal que no tiene solución.
+
+            Recuerda que el hecho de que no tenga solución quiere decir que $\vec b \notin span(A)$.
+
+            Ahora, lo que haremos será aproximar una solución, para hacer eso vamos a tomar a todos
+            los elementos del $span(A)$ e intentar reducir su distancia con el vector resultado $\vec b$
+
+            \begin{figure}[h]
+                \includegraphics[width=0.55\textwidth]{FindSpanB}
+                \caption{Ejemplo del $span(A)$}
+            \end{figure}
+
+    % ===============================================================================
+    % ===================          ECUACIONES NORMALES            ===================
+    % ===============================================================================
+    \chapter{Ecuaciones Normales}
 
         % ==============================================
-        % ====      ES MEJOR QUE NO DECIR NADA      ====
+        % ========          INTRODUCCION         =======
         % ==============================================
         \clearpage
-        \section{Ecuaciones Normales}
+        \section{Introducción}
 
             Ok, tenemos un sistema $A \vec x = \vec b$ donde $A \in M_{m \times n}$ donde $m > n$
             tal que no tiene solución.
@@ -8449,7 +8619,7 @@
                             &= 2A^t A 
                     \end{MultiLineEquation*}
 
-                    Ahora, si $A^t A$ es definida positiva entonces $phi(x)$
+                    Ahora, si $A^t A$ es definida positiva entonces $\phi(x)$
                     entonces podemos asegurar que basta con solucionar
                     el sistema y obtendremos el mínimo de la función:
                     \begin{largeEq}
@@ -8458,11 +8628,77 @@
                         \end{MultiLineEquation*}
                     \end{largeEq}
                     
-
-                
                 \end{SmallIndentation}
                     
+    % ===============================================================================
+    % ===================          MINIMOS CUADRADOS              ===================
+    % ===============================================================================
+    \chapter{Mínimos Cuadrados}
 
+        % ==============================================
+        % ========          PSEUDOINVERSA        =======
+        % ==============================================
+        \clearpage
+        \section{PseudoInversa}
+
+            Sea $\MatrixA \in M_{m \times n}$ de rango completo, entonces
+            se define la pseudo inversa como:
+            \begin{LargeEq}
+                \begin{MultiLineEquation*}{3}
+                    \Color{\ColorMatrixA}{A^+ = (A^t A)^{-1} A^t}
+                \end{MultiLineEquation*}
+            \end{LargeEq}
+
+            Esto se define así porque:
+            \begin{MultiLineEquation*}{3}
+                A^+ A
+                    &= ((A^t A)^{-1} A^t) A     \\
+                    &= (A^t A)^{-1} (A^t A)     \\
+                    &= I_n     
+            \end{MultiLineEquation*}
+
+            Ahora, ve que tendremos dos sistemas:
+            \begin{itemize}
+                \item $A \vec x = \vec b$
+                \item $A \tilde x = \tilde b$
+            \end{itemize}
+
+            Y asociados a ellos, dos sistemas:
+            \begin{itemize}
+                \item $A^t A \vec x = A^t \vec b$
+                \item $A^t A \tilde x = A^t \tilde b$
+            \end{itemize}
+
+            Entonces podemos despejarlos:
+            \begin{itemize}
+                \item $\vec x = (A^t A)^{-1} A^t \vec b$
+                \item $\tilde x = (A^t A)^{-1} A^t  \tilde b$
+            \end{itemize}
+
+            \clearpage
+
+            Ahora veamos esto:
+            \begin{MultiLineEquation*}{3}
+                \tilde x - \vec x 
+                    &= (A^t A)^{-1} A^t  \tilde b - (A^t A)^{-1} A^t \vec b             \\
+                    &= (A^t A)^{-1} A^t (\tilde b - \vec b)                             \\
+                \Abs{\tilde x - \vec x} 
+                    &= \Abs{(A^t A)^{-1} A^t (\tilde b - \vec b)}                       \\
+                \Abs{\tilde x - \vec x} 
+                    &\leq \Abs{(A^t A)^{-1} A^t} \Abs{(\tilde b - \vec b)}              \\
+                    &\leq \Abs{A^+} \Abs{(\tilde b - \vec b)}                           \\
+                    &\leq \Abs{A} \Abs{A^+} \dfrac{\Abs{(\tilde b - \vec b)}}{\Abs{A}}  \\                 
+                \dfrac{\Abs{\tilde x - \vec x}}{\Abs{\vec x}} 
+                    &\leq \Abs{A} \Abs{A^+} \dfrac{\Abs{(\tilde b - \vec b)}}{\Abs{\vec b}} \dfrac{\Abs{A}}{\Abs{A}\Abs{\vec x}}  \\
+                Error(\vec x)
+                    &\leq Cond(A) Error(\vec b) \dfrac{\Abs{A}}{\Abs{A}\Abs{\vec x}} \leq Cond(A) Error(\vec b) \dfrac{1}{cos \theta}
+                \end{MultiLineEquation*}
+
+
+
+                
+
+            
 
 % ===============================================
 % ========        BIBLIO      ===================
