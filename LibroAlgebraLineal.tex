@@ -3389,8 +3389,8 @@
             \begin{large}
                 \begin{itemize}
                     \item $(\vec a, \vec b) = (\vec b, \vec a)$
-                    \item $(\vec a, \vec b + \vec c) = (\vec a, \vec b) + (\vec a, \vec c)$
-                    \item $(\vec a, \vec a) > 0 \forall \vec a \neq \vec 0$
+                    \item $(\vec a, \beta \vec b + \vec c) = \beta (\vec a, \vec b) + (\vec a, \vec c)$
+                    \item $(\vec a, \vec a) > 0 \Space \forall \vec a \neq \vec 0$
                 \end{itemize}
             \end{large}
 
@@ -3413,13 +3413,31 @@
             \clearpage
             \subsection{Algunas definiciones}
 
+                Estas definiciones son clásicas, pero como dije antes, en general hay una infinidad de productos
+                internos, todos creados iguales, y que estan expresados en cosas que podemos hacer con cada \Quote{vector}.
+
+                Con los vectores normales podemos tener ángulos entre ellos, podemos hablar de sus longitud y cosas así,
+                para los polinomios podemos definir productos internos usando cosas como evaluación de polinomios o 
+                usando derivadas o integrales.
+
                 \begin{itemize}
                     \item \textbf{Vectores \Quote{Normales}}
                         \begin{MultiLineEquation*}{3}
-                            \vec a \cdot \vec b := \Mag{\vec a} \Mag{\vec b} \Cos{\gamma}
+                            \Wrap{\vec a, \vec b} := \vec a \cdot \vec b := \Mag{\vec a} \Mag{\vec b} \Cos{\gamma}
+                        \end{MultiLineEquation*}
+
+                    \item \textbf{Polinomios}
+                        \begin{MultiLineEquation*}{3}
+                            \BigWrap{ p(x), q(x) } := \int_{-1}^1 \; p(x) q(x) \;\; dx
+                        \end{MultiLineEquation*}
+
+                    \item $\mathbb{\Reals^n}$
+                        \begin{MultiLineEquation*}{3}
+                            \BigWrap{ \vec a, \vec b } := \sum_{i = 1}^n a[i] + b[i]
                         \end{MultiLineEquation*}
                 \end{itemize}
             
+
         % ==============================================
         % ====     COSAS QUE PODEMOS DEFINIR     =======
         % ==============================================
@@ -3460,8 +3478,8 @@
                 Definimos la parte del vector $\vec a$ que es ortogonal al vector $\vec b$ como $\vec q$, que esta dado por:
                 \begin{MultiLineEquation*}{3}
                     \vec q 
-                    &:= \vec a - \vec P                                                         \\
-                    &:= \vec a - \dfrac{1}{{(\vec b, \vec b)}} \; (\vec a, \vec b) \; \vec b
+                    &:= \vec a - \vec P                                                        
+                    = \vec a - \dfrac{1}{{(\vec b, \vec b)}} \; (\vec a, \vec b) \; \vec b
                 \end{MultiLineEquation*}
 
             % ==============================================
@@ -3484,7 +3502,22 @@
     % ===============================================================================
     \chapter{Cosas Ortogonales-normales}
 
+        
+        % ==============================================
+        % ========          DEFINICION           =======
+        % ==============================================
+        \clearpage
+        \section{Definición}
+
+            En general decimos que dos vectores con ortogonales si es que el producto interno
+            de ambos es el escalar cero.
+            
+            Y decimos que son ortonormales si es que son ortogonales y a parte tienen una
+            magnitud de 1.
+
                 
+
+
         % ==============================================
         % ========          PSEUDOINVERSA        =======
         % ==============================================
