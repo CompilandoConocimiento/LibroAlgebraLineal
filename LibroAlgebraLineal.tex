@@ -3379,9 +3379,9 @@
         \clearpage
         \section{Definición}
 
-            Recuerda que al final este libro es de Álgebra Lineal, así que hablemos de 
+            Recuerda que al final este libro es sobre Álgebra Lineal, así que hablemos de 
             vectores, resulta que he dejado hasta este momento un tema bastante importante
-            para muchos es el producto interno.
+            para muchos: El producto interno.
 
             Un producto interno es una función que toma dos vectores, dos elementos de un espacio
             vectorial y que nos regresa un escalar, solo eso, es cualquier función que 
@@ -3399,8 +3399,8 @@
             la noción de ángulo entre vectores y longitud de un vector.
 
             Sin embargo veremos que podemos darle al vuelta y definir mejor de manera más general
-            un producto interno y usandolo definir todas las nociones de \Quote{longitud}, \Quote{ángulos
-            entre funciones} y usandolo es que definiremos cosas como la ortogonalidad o cosas así.
+            un producto interno y usandolo definir todas las nociones de \Quote{longitud}, \Quote{ángulo}, etc 
+            y usandolo es que definiremos cosas como la ortogonalidad o cosas así.
 
             Es decir, con el producto interno y la noción de un espacio vectorial (en el que podemos sumar
             vectores y multiplicar por escalares) podemos hallar una fórmula para cualquier cosa.
@@ -3516,7 +3516,6 @@
             magnitud de 1.
 
                 
-
 
         % ==============================================
         % ========          PSEUDOINVERSA        =======
@@ -8662,7 +8661,14 @@
                     \end{largeEq}
                     
                 \end{SmallIndentation}
-                    
+         
+
+    % ===============================================================================
+    % ===================          DESCOMPOSICION QR              ===================
+    % ===============================================================================
+    \chapter{Factorización QR}
+
+
     % ===============================================================================
     % ===================          MINIMOS CUADRADOS              ===================
     % ===============================================================================
@@ -8728,10 +8734,69 @@
                 \end{MultiLineEquation*}
 
 
+    % ===============================================================================
+    % ===================          GRAM-SCHIMIDT                  ===================
+    % ===============================================================================
+    \chapter{Gram-Schimidt}
+  
+        % ==============================================
+        % ========          PSEUDOINVERSA        =======
+        % ==============================================
+        \clearpage
+        \section{Definición}
 
-                
-
+            Sea $\Set{\vec a_1, \vec a_2, \vec a_3, \dots}$ tal que forman una base
+            para nuestro espacio vectorial, ahora lo que queremos hacer es transformar 
+            este conjunto de tal manera que sea ortogonal:
             
+            Para hacerlo hay que recordar algo:
+            
+            % ==============================================
+            % ========          DESCOMPOSICION       =======
+            % ==============================================
+            \subsection{Descomposicón}
+
+                Si tenemos una base que es ortogonal y queremos descomponer un vector
+                cualquiera $\vec v$ en sus componentes (como combinación lineal de la base)
+                entonces tenemos que para encontrar la $i$-esíma componente solo tenemos que hacer
+                que:
+                \begin{MultiLineEquation*}{3}
+                    \alpha_i = \dfrac{1}{(e_i, e_i)} (\vec v, e_i)
+                \end{MultiLineEquation*}
+                
+            % ==============================================
+            % ========             WEAS              =======
+            % ==============================================
+            \subsection{Hacer un vector ortogonal a otro}
+
+                Si tienes un vector $\vec a$ y otro vector $\vec b$ tal que no son
+                ortogonales entre ellos, entonces lo que podemos hacer es tomar la proyección
+                de $\vec b$ sobre $\vec a$ y eliminarla del vector $\vec b$, de esta manera
+                lo que estamos haciendo es descomponer a nuestro vector en la parte que es
+                paralela a $\vec a$ y la que es ortogonal, y eliminamos la parte que es paralela.
+
+                Con esta idea tenemos la siguiente fórmula:
+                \begin{MultiLineEquation*}{3}
+                    \vec b' = \vec b - \dfrac{(\vec b, \vec a)}{(\vec a, \vec a)} \vec a
+                \end{MultiLineEquation*}
+
+            % ==============================================
+            % ======   ALGORITMO EN GENERAL          =======
+            % ==============================================
+            \subsection{Algoritmo en General}
+
+                Sea $\Set{\vec a_1, \vec a_2, \vec a_3, \dots}$ entonces lo que queremos hacer
+                es un conjunto de vectores $\Set{\vec w_1, \vec w_2, \vec w_3, \dots}$ que sean
+                ortogonales.
+
+                El algoritmo ahora debe de parecer muy sencillo:
+                \begin{itemize}
+                    \item $\vec w_1 = \vec a_1$
+                    \item $\vec w_2 = \vec a_2 - \dfrac{(\vec a_2, \vec w_1)}{(\vec w_1, \vec w_1)} \vec w_1$
+                    \item $\vec w_i 
+                        = \vec a_i - \displaystyle \sum_{j = 1}^{i-1} \dfrac{(\vec a_i, \vec w_j)}{(\vec w_j, \vec w_j)} \vec w_j$
+                \end{itemize}
+                
 
 % ===============================================
 % ========        BIBLIO      ===================
