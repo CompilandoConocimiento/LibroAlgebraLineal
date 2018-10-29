@@ -192,6 +192,8 @@
     
     % =====  BETTERS MATH COMMANDS   =====
     \newcommand{\pfrac}[2]      {\Wrap{\dfrac{#1}{#2}}}             %Use: Put fractions in parentesis
+    \newcommand{\Sum}           {\displaystyle \sum}                %Use: Sum to big sum
+    \newcommand{\Int}           {\displaystyle \int}                %Use: Sum to big integral
 
     % =========================================
     % ====   LINEAL ALGEBRA & VECTORS    ======
@@ -435,6 +437,7 @@
     \newcommand \ColorVecY          {Purple700MD}                   %Color definition
     \newcommand \ColorMatrixP       {Cyan900MD}                     %Color definition
     \newcommand \ColorMatrixQ       {Orange700MD}                   %Color definition
+    \newcommand \ColorMatrixR       {BlueGrey700MD}                 %Color definition
 
     \newcommand \MatrixA      {\Color{\ColorMatrixA}{A}}            %Use: Ax = b
     \newcommand \VecX         {\Color{\ColorVecX}{\vec x}}          %Use: Ax = b
@@ -447,7 +450,8 @@
     \newcommand \VecSemiB     {\Color{\ColorVecSemiB}{\tilde b}}    %Use: Ax = b
     \newcommand \VecY         {\Color{\ColorVecY}{\vec y}}          %Use: Ax = b
     \newcommand \MatrixP      {\Color{\ColorMatrixP}{P}}            %Use: PA = LU
-    \newcommand \MatrixQ      {\Color{\ColorMatrixQ}{Q}}            %Use: PA = LU
+    \newcommand \MatrixQ      {\Color{\ColorMatrixQ}{Q}}            %Use: QR = b
+    \newcommand \MatrixR      {\Color{\ColorMatrixR}{R}}            %Use: QR = b
 
 
 % =====================================================
@@ -1712,6 +1716,22 @@
 
                                 Número de Elementos Diferentes($n$) es $1+2+\dots+n = \sum_{i=1}^{n} i$
                                 que según el gran Gauss tiene que ser igual a $\frac{n(n+1)}{2}$
+
+                            \end{SmallIndentation}
+
+                        \item Si $A \in M_{n}(\GenericField)$ entonces $A A^t$ y $A^t A$ es simétrica
+
+                            % ======== DEMOSTRACION ========
+                            \begin{SmallIndentation}[1em]
+                                \textbf{Ideas de la Demostración}:
+
+                                Mira:
+                                \begin{MultiLineEquation*}{3}
+                                    (A A^t)^t 
+                                        &= (A^t)^t A^t
+                                        &= A A^t 
+                                \end{MultiLineEquation*}
+                                
 
                             \end{SmallIndentation}
 
@@ -3487,7 +3507,7 @@
             % ==============================================
             \subsection{Descomposición en Combinación Lineal de la Base}
 
-                Considera que tienes una base que es ortogonal, entonces para encontrar la descomposicón de un vector $\vec v$
+                Considera que tienes una base que es ortogonal, entonces para encontrar la descomposición de un vector $\vec v$
                 con respecto a un vector de la base $\vec e_i$ como:
                 \begin{MultiLineEquation*}{3}
                     \alpha_i = \dfrac{1}{(\vec e_i, \vec e_i)} (\vec v, \vec e_i) 
@@ -3531,6 +3551,35 @@
                     }                    
                 \end{MultiLineEquation*}
             \end{LargeEq} 
+
+            % ==============================================
+            % ========          PROPIEDADES          =======
+            % ==============================================
+            \vspace{1em}
+            \subsection{Propiedades}
+
+                \begin{itemize}
+                    \item
+                        Las matrices ortogonales conservan normas
+
+                        % ======== DEMOSTRACION ========
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                        
+                            Nota que:
+                            \begin{MultiLineEquation*}{3}
+                                \Abs{Q \vec v}^2 
+                                    &= (Q \vec v)^t (Q \vec v)   \\
+                                    &= \vec v^t Q^t Q \vec v     \\   
+                                    &= \vec v^t Id_n \vec v      \\   
+                                    &= \vec v^t \vec v           \\   
+                                    &= \Abs {\vec v}
+                            \end{MultiLineEquation*}
+                            
+                        
+                        \end{SmallIndentation}
+                \end{itemize}
+
 
           
 
@@ -8634,13 +8683,13 @@
                     Vamos a simplificar una vez:
                     \begin{MultiLineEquation*}{3}
                         \phi(x)^2 
-                            &= \Abs{A \vec x - \vec b}^2                            \\
-                            &= \Wrap{A \vec x - \vec b}^t\Wrap{A \vec x - \vec b}    \\
-                            &= \vec x A^t a \vec x 
-                                - \vec x^t A^t\vec b - \vec b^t A \vec x 
-                                + \vec b^t \vec b                                   \\
-                            &= \vec x^t A^t A \vec x - 2 \vec x^t A^t \vec b 
-                                + \vec b^t \vec b                                   \\
+                            = \Abs{A \vec x - \vec b}^2                           
+                            = \Wrap{A \vec x - \vec b}^t\Wrap{A \vec x - \vec b}  
+                            = \vec x A^t a \vec x 
+                               - \vec x^t A^t\vec b - \vec b^t A \vec x 
+                               + \vec b^t \vec b                                  
+                            = \vec x^t A^t A \vec x - 2 \vec x^t A^t \vec b 
+                                + \vec b^t \vec b                                 
                     \end{MultiLineEquation*}
 
                     Ahora, vamos a derivar:
@@ -8651,14 +8700,17 @@
                             &= 2A^t A 
                     \end{MultiLineEquation*}
 
-                    Ahora, si $A^t A$ es definida positiva entonces $\phi(x)$
-                    entonces podemos asegurar que basta con solucionar
+                    Ahora, si $A^t A$ es definida positiva entonces podemos asegurar que ese punto es en el cual
+                    $\phi(x)$ esta en un mínimo, osea podemos asegurar que basta con solucionar
                     el sistema y obtendremos el mínimo de la función:
                     \begin{largeEq}
                         \begin{MultiLineEquation*}{3}
                             \Color{Teal700MD}{A^t A} \vec x = \Color{Teal700MD}{A^t} \vec b
                         \end{MultiLineEquation*}
                     \end{largeEq}
+
+                    Esto lo podemos solucionar con factorización de Cholesky porque $\Color{Teal700MD}{A^t A}$ 
+                    es simétrico y si todo sale bien también definida positiva.
                     
                 \end{SmallIndentation}
          
@@ -8668,6 +8720,648 @@
     % ===============================================================================
     \chapter{Factorización QR}
 
+        % ==============================================
+        % ========          IDEAS                =======
+        % ==============================================
+        \clearpage
+        \section{Ideas}
+
+            Así, como teniamos en el caso cuadrada que podiamos hacer que $\MatrixA \VecX = \VecB$
+            se convirtiera a $\MatrixL \MatrixU = \VecB$ podemos hacer algo parecido en el caso
+            de matrices no cuadráticas donde $A \in M_{m \times n}$
+            \begin{LargeEq}
+                \begin{MultiLineEquation*}{3}
+                    \MatrixA \VecX = \VecB \Space \lLongTo \Space \MatrixQ \MatrixR \VecX = \VecB               
+                \end{MultiLineEquation*}
+            \end{LargeEq}
+            \begin{figure}[h]
+                \includegraphics[width=0.4\textwidth]{AQR}
+            \end{figure}
+
+            Donde:
+            \begin{itemize}
+                \item $\MatrixQ$: Es una matriz ortogonal cuadrada de $m \times m$ 
+                    (
+                        Recuerda que una matriz ortogonal es aquella matriz que cumple:
+                        $\Color{ \ColorMatrixQ }{Q Q^t = I_n = Q^t Q}$    
+                    )
+                \item $\MatrixR$: Es una matriz triangular superior $m \times n$
+            \end{itemize}
+
+            Ahora, no nos vamos a preocupar sobre como llegamos a esta descomposición (vamos a hablar de eso
+            en los proximos capitulos).
+
+            Podriamos hacer el mismo algoritmo $\MatrixL \MatrixU$ con un cambio de variable y resolviendo dos
+            sistemas simples o cosas así, pero mira, hay una forma mas sencilla aún.
+
+            Como sabemos que $\MatrixQ$ es ortogonal entonces su inversa es su transpuesta, entonces
+            se puede solucionar el sistema tan sencillo como:
+            \begin{LargeEq}
+                \begin{MultiLineEquation*}{3}
+                    \MatrixR \VecX = \Color{\ColorMatrixQ}{\MatrixQ^T} \VecB               
+                \end{MultiLineEquation*}
+            \end{LargeEq}
+
+            Y con esto tenemos un sistema donde $\MatrixR$ es una matriz triangular superior, por lo que podemos
+            resolver ahora un sistema mucho mas sencillo.
+
+
+
+    % ===============================================================================
+    % ===================          HOUSEHOLDER                    ===================
+    % ===============================================================================
+    \chapter{HouseHolder: Reflexiones}
+
+        % ==============================================
+        % ========          DEFINICION           =======
+        % ==============================================
+        \clearpage
+        \section{Definición}
+
+            Vamos a definir a la Matriz HouseHolder como:
+            \begin{largeEq}
+                \begin{MultiLineEquation*}{3}
+                    H
+                        &= Id - \frac{2(v v^t)}{\Abs{v}^2} \;                                   
+                        &= Id - 2u u^t \Space \text{donde } u = \frac{\vec v}{\Abs{\vec v}}
+                \end{MultiLineEquation*}
+            \end{largeEq}
+
+            Ahora también tenemos que definir a $\vec v = \vec x - \alpha e_1$ donde:
+            \begin{itemize}
+                \item $\vec x$ es un vector columna que representa una columna de la matriz
+            \item $
+                    \alpha = 
+                        \begin{cases}
+                            \Abs{\vec x} & \text{ si } [\vec x]_1 < 0       \\
+                            - \Abs{\vec x} & \text{ si } [\vec x]_1 \geq 0    
+                        \end{cases}
+                $
+            \end{itemize}
+
+            Ok, me explico, una transformación de Householder de un vector $\vec x$ es su reflexión
+            con respecto a un plano (o hiperplano) a través del origen representado por su vector normal
+            $\vec v$.
+
+            Es decir $H$ es tal que: 
+            $H \vec x = \bVector{\pm \Abs{\vec x} & 0 & \dots & 0}^t = \pm \Abs{\vec x} e_1$
+
+            % ==============================================
+            % ========          OBJETIVO             =======
+            % ==============================================
+            \subsection{Objetivo}
+
+                \begin{multicols}{2}
+                    
+                    Estamos haciendo esto porque pasa algo muy interesante, mira:
+                    \begin{MultiLineEquation*}{3}
+                        A = \bVector{
+                            a_{1, 1} & a_{1, 2} & \dots & a_{1, n}\\
+                            a_{2, 1} & a_{2, 2} & \dots & a_{2, n}\\
+                            \dots    & \dots    & \dots & \dots   \\
+                            a_{m, 1} & a_{m, 2} & \dots & a_{m, n}\\
+                        }
+                    \end{MultiLineEquation*}
+
+                    Entonces cuando tomamos como $\vec x$ como:
+                    \begin{MultiLineEquation*}{3}
+                        \vec x = \bVector{
+                            a_{1, 1} \\
+                            a_{2, 1} \\
+                            \dots    \\
+                            a_{m, 1} \\
+                        }
+                    \end{MultiLineEquation*}
+
+                    Entonces podemos crear a $H_1$ tal que:
+                    \begin{MultiLineEquation*}{3}
+                        H_1 A 
+                            &= \bVector{
+                                a_{1, 1} & a_{1, 2} & \dots & a_{1, n}\\
+                                0        & a_{2, 2} & \dots & a_{2, n}\\
+                                0        & \dots    & \dots & \dots   \\
+                                0        & a_{m, 2} & \dots & a_{m, n}\\
+                            }
+                    \end{MultiLineEquation*}
+                \end{multicols}
+            Así que magia, magia, estamos creando poco a poco $\MatrixR$, tal que:
+            \begin{largeEq}
+                \begin{MultiLineEquation*}{3}
+                    H_n H_{n-1} \dots H_1 \MatrixA &= \MatrixR          \\
+                    \MatrixA &= (H_1 \dots H_{n-1} H_n) \MatrixR        \\
+                    \MatrixA &= \MatrixQ \MatrixR      \\
+                \end{MultiLineEquation*}
+            \end{largeEq}
+
+            Donde $\MatrixQ = H_n H_{n-1} \dots H_1$
+            
+        
+        % ==============================================
+        % ========          PROPIEDADES          =======
+        % ==============================================
+        \clearpage
+        \section{Aclaración}
+
+            Nota que buscamos que buscamos una $H$ tal que 
+            $H \vec x = \bVector{\pm \Abs{\vec x} & 0 & \dots & 0}^t = \pm \Abs{\vec x} e_1$
+            
+            Ahora hacemos esto para poco a poco ir transformando una matrix $\MatrixA$
+            en una matriz triangular superior $\MatrixR$, entonces en nuestro primer paso
+            nuestro vector $\vec x$ es de $m$ filas y 1 columna.
+            
+            Pero en cada paso nos vamos a quedar con una dimensión menos, es decir
+            $H_2$ sería una matriz de $m-1 \times m-1$, así que nuestra $H_2$ la
+            definiremos como aquella matriz que es la identidad de $m \times m$ que tiene
+            a $H_i$ incrustada en la parte inferior derecha.
+
+            Es decir:
+            \begin{MultiLineEquation*}{3}
+                H_2 = \begin{tabular}{ |c |c| }
+                    1 & 0 $\dots 0$ \\
+                    \hline
+                    0   &\\
+                    $\dots$ & $H_2'$  \\
+                    0   &\\
+                \end{tabular}
+            \end{MultiLineEquation*}
+
+            Es decir, en general:
+            \begin{MultiLineEquation*}{3}
+                H_i 
+                    &= \bVector{
+                        Id_{\; i - 1} & 0 \\
+                        0 & H_i' \\
+                    }
+            \end{MultiLineEquation*}
+            
+
+        % ==============================================
+        % ========          PROPIEDADES          =======
+        % ==============================================
+        \clearpage
+        \section{Propiedades}
+
+            \begin{itemize}
+                \item La matriz Householder es simétrica
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+                    
+                        Decia que una wea es simétrica es lo mismo que decir que 
+                        $wea = wea^T$
+
+                        Veamos:
+                        \begin{MultiLineEquation*}{3}
+                            H^t
+                                &= \Wrap{Id - \frac{2(v v^t)}{\Abs{v}}}^t  \\
+                                &= Id^t - \frac{2(v v^t)^T}{\Abs{v}}       \\
+                                &= Id - \frac{2v v^t}{\Abs{v}}             \\
+                                &= H
+                        \end{MultiLineEquation*}
+                        
+                    
+                    \end{SmallIndentation}
+
+                \item La matriz Householder es ortogonal
+                    % ======== DEMOSTRACION ========
+                    \begin{SmallIndentation}[1em]
+                        \textbf{Demostración}:
+                    
+                        Bueno pues, recuerda que una matriz es ortogonal si
+                        y solo si $wea \; wea^t = Id$
+                        \begin{MultiLineEquation*}{3}
+                            H H^t
+                                &= \Wrap{Id - \frac{2(v v^t)}{\Abs{v}}} \Wrap{Id - \frac{2(v v^t)}{\Abs{v}}}        \\
+                                &= Id - \frac{4(v v^t)}{\Abs{v}} + \frac{4(v v^t)(v v^t)}{(v^t v)(v^t v)}           \\
+                                &= Id - \frac{4(v v^t)}{\Abs{v}} + \frac{4(vv^t)}{(v^t v)}                          \\
+                                &= Id
+                        \end{MultiLineEquation*}
+
+                        Magia :3
+                    
+                    \end{SmallIndentation}
+            \end{itemize}
+
+        
+        % ==============================================
+        % ====           EJEMPLO                  ======
+        % ==============================================
+        \clearpage
+        \section{Ejemplo}
+
+            Sea $\MatrixA \VecX = \VecB$ dado por:
+            \begin{MultiLineEquation*}{3}
+                \MatrixA = \bVector{
+                    1 & 0   \\
+                    0 & -1  \\
+                    1 & 0   \\
+                    0 & 1   \\ 
+                }
+                \Space
+                \VecB = \bVector{
+                    1 \\
+                    -1 \\
+                    0 \\
+                    2 \\
+                }
+            \end{MultiLineEquation*}
+
+            Vamos a obtener la primera matriz de Householder:
+
+            Primero tenemos que encontrar $\alpha$ esto se hace así:
+            \begin{MultiLineEquation*}{3}
+                \Abs{\alpha}
+                    = \Abs{
+                        \bVector{1 \\0 \\1 \\0}
+                    }                              
+                    = \sqrt{1^2 + 0^2 + 1^2 + 0^2} 
+                    = \sqrt{2}
+            \end{MultiLineEquation*}
+
+            Ahora como $a_{1, 1} = 1 \geq 0$, entonces $\alpha = - \sqrt{2}$ 
+            
+            Ahora tenemos encontar $\vec v_1$:
+            \begin{MultiLineEquation*}{3}
+                \vec v_1 
+                    &= \vec a_1 - \alpha e_1                                       
+                    &= \bVector{1 \\ 0 \\ 1 \\0} - \alpha \bVector{1 \\0\\0\\0}    
+                    &= \bVector{1 \\ 0 \\ 1 \\0} + \sqrt{2} \bVector{1 \\0\\0\\0}  
+                    &= \bVector{1 + \sqrt{2} \\ 0 \\1 \\0}
+            \end{MultiLineEquation*}   
+            
+            Ahora podemos sacar otros valores que necesitamos:
+            \begin{itemize}
+                \item
+                    La matriz:
+                    \begin{MultiLineEquation*}{3}
+                        \vec v_1 \; \vec v_1^{\;t}
+                            &= \bVector{
+                                3 + 2\sqrt{2} & 0 & 1 + \sqrt{2} & 0 \\
+                                0 & 0 & 0 & 0 \\
+                                1+\sqrt{2} & 0 & 1 & 0 \\
+                                0 & 0 & 0 & 0 \\
+                            }
+                    \end{MultiLineEquation*}
+                
+                \item
+                    El escalar:
+                    \begin{MultiLineEquation*}{3}
+                        \vec v_1^{\; t} \; \vec v_1
+                            &= (1+\sqrt{2})^2 + 0^2 + 1^2 + 0^2 \\
+                            &= 1 + 2\sqrt{2} + 2 + 1 \\
+                            &= 4 + 2\sqrt{2}
+                    \end{MultiLineEquation*}
+            \end{itemize}
+
+            Ahora si podemos hacer la primera matriz de Householder:
+            \begin{MultiLineEquation*}{3}
+                H_1
+                    &= I - 2 \dfrac{\vec v \; \vec v^t}{\vec v^t \; \vec v} \\
+                    &= \bVector{
+                        1 & 0 & 0 & 0 \\
+                        0 & 1 & 0 & 0 \\
+                        0 & 0 & 1 & 0 \\
+                        0 & 0 & 0 & 1 \\
+                    }
+                    -
+                    \dfrac{2}{4 + 2\sqrt{2}}
+                    \bVector{
+                        3 + 2\sqrt{2} & 0 & 1 + \sqrt{2} & 0 \\
+                        0 & 0 & 0 & 0 \\
+                        1+\sqrt{2} & 0 & 1 & 0 \\
+                        0 & 0 & 0 & 0 \\
+                    }   \\
+                    &= 
+                    \bVector{
+                        -\dfrac{1}{\sqrt{2}}  & 0 & -\dfrac{1}{\sqrt{2}} & 0 \\
+                        0 & 1 & 0 & 0 \\
+                        -\dfrac{1}{\sqrt{2}}  & 0 & \dfrac{1}{\sqrt{2}} & 0 \\
+                        0 & 0 & 0 & 1 \\
+                    }
+            \end{MultiLineEquation*}
+
+            Entonces tenemos que:
+            \begin{MultiLineEquation*}{3}
+                H_1 A &= H_1A   \\
+                \bVector{
+                    -\dfrac{1}{\sqrt{2}}  & 0 & -\dfrac{1}{\sqrt{2}} & 0 \\
+                    0 & 1 & 0 & 0 \\
+                    -\dfrac{1}{\sqrt{2}}  & 0 & \dfrac{1}{\sqrt{2}} & 0 \\
+                    0 & 0 & 0 & 1 \\
+                }
+                \bVector{
+                    1 & 0   \\
+                    0 & -1  \\
+                    1 & 0   \\
+                    0 & 1   \\ 
+                }
+                &= 
+                \bVector{
+                    -\sqrt{2} & 0   \\
+                    0 & -1  \\
+                    0 & 0   \\
+                    0 & 1   \\ 
+                }
+            \end{MultiLineEquation*}
+
+            \clearpage
+
+
+            Vamos a obtener la segunda matriz de Householder:
+
+            Primero tenemos que encontrar $\alpha$ esto se hace así:
+            \begin{MultiLineEquation*}{3}
+                \Abs{\alpha}
+                    &= \Abs{
+                        \bVector{-1 \\0 \\1}
+                    }                              
+                    &= \sqrt{(-1)^2 + 0^2 + 1^2} 
+                    &= \sqrt{2}
+            \end{MultiLineEquation*}
+
+            Ahora como $a_{1, 1} = -1 \leq 0$, entonces $\alpha = \sqrt{2}$ 
+            
+            Ahora tenemos encontar $\vec v_2$:
+            \begin{MultiLineEquation*}{3}
+                \vec v_2
+                    &= \vec a_2 - \alpha e_1                                
+                    &= \bVector{-1 \\0 \\1} - \alpha \bVector{1 \\0\\0}     
+                    &= \bVector{-1 \\0 \\1} - \sqrt{2} \bVector{1 \\0\\0}   
+                    &= \bVector{-1 -\sqrt{2} \\ 0 \\1}
+            \end{MultiLineEquation*}   
+            
+            Ahora podemos sacar otros valores que necesitamos:
+            \begin{itemize}
+                \item
+                    La matriz:
+                    \begin{MultiLineEquation*}{3}
+                        \vec v_2 \; \vec v_2^t
+                            &= \bVector{
+                                3 + 2\sqrt{2} & 0 & - 1 - \sqrt{2} \\
+                                0 & 0 & 0  \\
+                                -1-\sqrt{2} & 0 & 1 \\
+                                0 & 0 & 0  \\
+                            }
+                    \end{MultiLineEquation*}
+                
+                \item
+                    El escalar:
+                    \begin{MultiLineEquation*}{3}
+                        \vec v_2^t \; \vec v_2
+                            &= (-1-\sqrt{2})^2 + 0^2 + 1^2 \\
+                            &= 1 - 2\sqrt{2} + 2 + 1 \\
+                            &= 4 - 2\sqrt{2}
+                    \end{MultiLineEquation*}
+            \end{itemize}
+
+            Ahora si podemos hacer la segunda matriz de Householder:
+            \begin{MultiLineEquation*}{3}
+                H_2 
+                    &= I - 2 \dfrac{\vec v_2 \; \vec v_2^t}{\vec v_2^t \; \vec v_2} \\
+                    &= \bVector{
+                        1 & 0 & 0 \\
+                        0 & 1 & 0 \\
+                        0 & 0 & 1 \\
+                    }
+                    -
+                    \dfrac{2}{4 - 2\sqrt{2}}
+                    \bVector{
+                        3 + 2\sqrt{2} & 0 & - 1 - \sqrt{2} \\
+                        0 & 0 & 0  \\
+                        -1-\sqrt{2} & 0 & 1 \\
+                        0 & 0 & 0  \\
+                    }   \\
+                    &= 
+                    \bVector{
+                        -\frac{1}{\sqrt{2}}  & 0 & \frac{1}{\sqrt{2}}  \\
+                        0 & 1 & 0  \\
+                        \frac{1}{\sqrt{2}}  & 0 & \frac{1}{\sqrt{2}}  \\
+                    }
+            \end{MultiLineEquation*}
+
+            Pero recuerda que antes tenemos que hacer que tenga el tamaño correcto,
+            esto lo hacemos metiendola dentro de la identidad al fondo y la derecha.
+            \begin{MultiLineEquation*}{3}
+                H_2 = 
+                    \bVector{
+                        1 & 0 & 0 & 0 \\
+                        0 & -\frac{1}{\sqrt{2}}  & 0 & \frac{1}{\sqrt{2}}  \\
+                        0 & 0 & 1 & 0  \\
+                        0 & \frac{1}{\sqrt{2}}  & 0 & \frac{1}{\sqrt{2}}  \\
+                    }
+            \end{MultiLineEquation*}
+
+            Entonces tenemos que:
+            \begin{MultiLineEquation*}{3}
+                H_2 A &= H_2A   \\
+                \bVector{
+                    1 & 0 & 0 & 0 \\
+                    0 & -\frac{1}{\sqrt{2}}  & 0 & \frac{1}{\sqrt{2}}  \\
+                    0 & 0 & 1 & 0  \\
+                    0 & \frac{1}{\sqrt{2}}  & 0 & \frac{1}{\sqrt{2}}  \\
+                }
+                \bVector{
+                    -\sqrt{2} & 0   \\
+                    0 & -1  \\
+                    0 & 0   \\
+                    0 & 1   \\ 
+                }
+                &= 
+                \bVector{
+                    -\sqrt{2} & 0   \\
+                    0 & \sqrt{2}  \\
+                    0 & 0   \\
+                    0 & 0   \\ 
+                }
+            \end{MultiLineEquation*}
+
+            \clearpage
+
+            Finalmente podemos llamar a $R$ como $R = H_2 H_1 A$
+            entonces decimos:
+            \begin{MultiLineEquation*}{3}
+                R 
+                    &= H_2 H_1 A \\
+                    &= \bVector{
+                        1 & 0 & 0 & 0 \\
+                        0 & -\frac{1}{\sqrt{2}}  & 0 & \frac{1}{\sqrt{2}}  \\
+                        0 & 0 & 1 & 0  \\
+                        0 & \frac{1}{\sqrt{2}}  & 0 & \frac{1}{\sqrt{2}}  \\
+                    }
+                    \bVector{
+                        -\dfrac{1}{\sqrt{2}}  & 0 & -\dfrac{1}{\sqrt{2}} & 0 \\
+                        0 & 1 & 0 & 0 \\
+                        -\dfrac{1}{\sqrt{2}}  & 0 & \dfrac{1}{\sqrt{2}} & 0 \\
+                        0 & 0 & 0 & 1 \\
+                    }
+                    \bVector{
+                        1 & 0   \\
+                        0 & -1  \\
+                        1 & 0   \\
+                        0 & 1   \\ 
+                    }
+                    &= \bVector{
+                        -\sqrt{2} & 0   \\
+                        0 & \sqrt{2}  \\
+                        0 & 0   \\
+                        0 & 0   \\ 
+                    } 
+            \end{MultiLineEquation*}
+
+
+
+            Ahora si:
+            \begin{MultiLineEquation*}{3}
+                H_2 H_1 A &= R                                          \\
+                A &= H_1^T H_2^T R   && \Remember{Por ser ortogonal}     \\
+                A &= H_1 H_2 R       && \Remember{Por ser Householder}   \\
+                A &= Q R             
+            \end{MultiLineEquation*}
+
+            Entonces podemos hacer lo que siempre hacemos:
+            \begin{itemize}
+                \item $A \vec x = \vec b$
+                \item $QR \vec x = \vec b$
+                \item $R \vec x = \vec y$
+                \item $Q \vec y = \vec b$
+            \end{itemize}
+
+            Ahora, la primera que podemos hacer es resolver
+            $Q \vec y = \vec b$ porque sabemos que $Q$ sigue siendo ortogonal
+            por lo que podemos sacar su inversa simplemente transponiendo,
+            pero como esta hecha por matrices de Householder entonces
+            también es una matriz simetrica, por lo que resolver el sistema
+            es tan sencillo como:
+            \begin{MultiLineEquation*}{3}
+                \vec y 
+                    &= Q \vec b             \\
+                    &= 
+                    \bVector{
+                        -\frac{1}{\sqrt{2}}  &   0                 & -\frac{1}{\sqrt{2}} &    0                 \\
+                        0                    & -\frac{1}{\sqrt{2}} & 0                   &  \frac{1}{\sqrt{2}}  \\
+                        -\frac{1}{\sqrt{2}}  &   0                 &  \frac{1}{\sqrt{2}} &    0                 \\
+                        0                    &  \frac{1}{\sqrt{2}} & 0                   & -\frac{1}{\sqrt{2}}  \\
+                    }  
+                    \bVector{
+                        1   \\
+                        -1   \\
+                        0   \\
+                        2   \\
+                    }   \\
+                    &=
+                    \bVector{
+                        -\frac{1}{\sqrt{2}}     \\
+                        \frac{3}{2\sqrt{2}}     \\
+                        -\frac{1}{\sqrt{2}}     \\
+                        \frac{1}{\sqrt{2}}
+                    }  
+            \end{MultiLineEquation*}
+
+            Ahora podemos escribir nuestra tan ansiada solución como:
+            \begin{MultiLineEquation*}{3}
+                R \vec x &= \vec y
+                \bVector{
+                        -\sqrt{2} & 0   \\
+                        0 & \sqrt{2}  \\
+                        0 & 0   \\
+                        0 & 0   \\ 
+                    }
+                \bVector{
+                    x_1 \\ x_2
+                }
+                &= 
+                \bVector{
+                    -\frac{1}{\sqrt{2}}     \\
+                    \frac{3}{2\sqrt{2}}     \\
+                    -\frac{1}{\sqrt{2}}     \\
+                    \frac{1}{\sqrt{2}}
+                }
+            \end{MultiLineEquation*}
+
+            Esta la podemos hacer por backward substitution porque despues de todo $R$ es triangular superior,
+            es mas podemos hacer a mano porque no estan tan dificiles:
+
+            De la primera ecuación tenemos que:
+            $-\sqrt{2} x_1 = \dfrac{-1}{\sqrt{2}}$, podemos multiplicar todo por menos la raíz de dos y tenemos
+            que $2x_1 = 1 \;\lInfire\; x_1 = \dfrac{1}{2}$ 
+            y por otro lado $\sqrt{2}x_2 = \dfrac{3}{2\sqrt{2}} \Space \lInfire x_2 = \dfrac{3}{2}$
+            
+
+            Por lo tanto nuestra solución es $\tilde x = \bVector{0.5 \\1.5}$
+            y por lo tanto $A \tilde x = \bVector{
+                0.5 \\
+                -1.5 \\
+                0.5 \\
+                1.5 \\
+                }$
+
+            Es decir $\Abs{\tilde x - (Ax)} = 1$
+
+
+
+    % ===============================================================================
+    % ===================          GRAM-SCHIMIDT                  ===================
+    % ===============================================================================
+    \chapter{Gram-Schimidt}
+  
+        % ==============================================
+        % ========          PSEUDOINVERSA        =======
+        % ==============================================
+        \clearpage
+        \section{Definición}
+
+            Sea $\Set{\vec a_1, \vec a_2, \vec a_3, \dots}$ tal que forman una base
+            para nuestro espacio vectorial, ahora lo que queremos hacer es transformar 
+            este conjunto de tal manera que sea ortogonal:
+            
+            Para hacerlo hay que recordar algo:
+            
+            % ==============================================
+            % ========          DESCOMPOSICION       =======
+            % ==============================================
+            \subsection{descomposición}
+
+                Si tenemos una base que es ortogonal y queremos descomponer un vector
+                cualquiera $\vec v$ en sus componentes (como combinación lineal de la base)
+                entonces tenemos que para encontrar la $i$-esíma componente solo tenemos que hacer
+                que:
+                \begin{MultiLineEquation*}{3}
+                    \alpha_i = \dfrac{1}{(e_i, e_i)} (\vec v, e_i)
+                \end{MultiLineEquation*}
+                
+            % ==============================================
+            % ========             WEAS              =======
+            % ==============================================
+            \subsection{Hacer un vector ortogonal a otro}
+
+                Si tienes un vector $\vec a$ y otro vector $\vec b$ tal que no son
+                ortogonales entre ellos, entonces lo que podemos hacer es tomar la proyección
+                de $\vec b$ sobre $\vec a$ y eliminarla del vector $\vec b$, de esta manera
+                lo que estamos haciendo es descomponer a nuestro vector en la parte que es
+                paralela a $\vec a$ y la que es ortogonal, y eliminamos la parte que es paralela.
+
+                Con esta idea tenemos la siguiente fórmula:
+                \begin{MultiLineEquation*}{3}
+                    \vec b' = \vec b - \dfrac{(\vec b, \vec a)}{(\vec a, \vec a)} \vec a
+                \end{MultiLineEquation*}
+
+            % ==============================================
+            % ======   ALGORITMO EN GENERAL          =======
+            % ==============================================
+            \subsection{Algoritmo en General}
+
+                Sea $\Set{\vec a_1, \vec a_2, \vec a_3, \dots}$ entonces lo que queremos hacer
+                es un conjunto de vectores $\Set{\vec w_1, \vec w_2, \vec w_3, \dots}$ que sean
+                ortogonales.
+
+                El algoritmo ahora debe de parecer muy sencillo:
+                \begin{itemize}
+                    \item $\vec w_1 = \vec a_1$
+                    \item $\vec w_2 = \vec a_2 - \dfrac{(\vec a_2, \vec w_1)}{(\vec w_1, \vec w_1)} \vec w_1$
+                    \item $\vec w_i 
+                        = \vec a_i - \displaystyle \sum_{j = 1}^{i-1} \dfrac{(\vec a_i, \vec w_j)}{(\vec w_j, \vec w_j)} \vec w_j$
+                \end{itemize}
+                
 
     % ===============================================================================
     % ===================          MINIMOS CUADRADOS              ===================
@@ -8734,69 +9428,6 @@
                 \end{MultiLineEquation*}
 
 
-    % ===============================================================================
-    % ===================          GRAM-SCHIMIDT                  ===================
-    % ===============================================================================
-    \chapter{Gram-Schimidt}
-  
-        % ==============================================
-        % ========          PSEUDOINVERSA        =======
-        % ==============================================
-        \clearpage
-        \section{Definición}
-
-            Sea $\Set{\vec a_1, \vec a_2, \vec a_3, \dots}$ tal que forman una base
-            para nuestro espacio vectorial, ahora lo que queremos hacer es transformar 
-            este conjunto de tal manera que sea ortogonal:
-            
-            Para hacerlo hay que recordar algo:
-            
-            % ==============================================
-            % ========          DESCOMPOSICION       =======
-            % ==============================================
-            \subsection{Descomposicón}
-
-                Si tenemos una base que es ortogonal y queremos descomponer un vector
-                cualquiera $\vec v$ en sus componentes (como combinación lineal de la base)
-                entonces tenemos que para encontrar la $i$-esíma componente solo tenemos que hacer
-                que:
-                \begin{MultiLineEquation*}{3}
-                    \alpha_i = \dfrac{1}{(e_i, e_i)} (\vec v, e_i)
-                \end{MultiLineEquation*}
-                
-            % ==============================================
-            % ========             WEAS              =======
-            % ==============================================
-            \subsection{Hacer un vector ortogonal a otro}
-
-                Si tienes un vector $\vec a$ y otro vector $\vec b$ tal que no son
-                ortogonales entre ellos, entonces lo que podemos hacer es tomar la proyección
-                de $\vec b$ sobre $\vec a$ y eliminarla del vector $\vec b$, de esta manera
-                lo que estamos haciendo es descomponer a nuestro vector en la parte que es
-                paralela a $\vec a$ y la que es ortogonal, y eliminamos la parte que es paralela.
-
-                Con esta idea tenemos la siguiente fórmula:
-                \begin{MultiLineEquation*}{3}
-                    \vec b' = \vec b - \dfrac{(\vec b, \vec a)}{(\vec a, \vec a)} \vec a
-                \end{MultiLineEquation*}
-
-            % ==============================================
-            % ======   ALGORITMO EN GENERAL          =======
-            % ==============================================
-            \subsection{Algoritmo en General}
-
-                Sea $\Set{\vec a_1, \vec a_2, \vec a_3, \dots}$ entonces lo que queremos hacer
-                es un conjunto de vectores $\Set{\vec w_1, \vec w_2, \vec w_3, \dots}$ que sean
-                ortogonales.
-
-                El algoritmo ahora debe de parecer muy sencillo:
-                \begin{itemize}
-                    \item $\vec w_1 = \vec a_1$
-                    \item $\vec w_2 = \vec a_2 - \dfrac{(\vec a_2, \vec w_1)}{(\vec w_1, \vec w_1)} \vec w_1$
-                    \item $\vec w_i 
-                        = \vec a_i - \displaystyle \sum_{j = 1}^{i-1} \dfrac{(\vec a_i, \vec w_j)}{(\vec w_j, \vec w_j)} \vec w_j$
-                \end{itemize}
-                
 
 % ===============================================
 % ========        BIBLIO      ===================
