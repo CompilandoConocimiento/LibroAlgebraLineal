@@ -9456,6 +9456,7 @@
             % ==============================================
             % ======   VERSIONES ALTERNAS            =======
             % ==============================================
+            \clearpage
             \subsection{Versiones Alternas}
 
                 Definimos a $Q_{i-1} = \bVector{q_1, q_2, \dots, q_{i-1}}$
@@ -9465,17 +9466,110 @@
                 \begin{MultiLineEquation*}{3}
                     \vec w_i = (Id - Q_{i-1} Q^T_{i-1}) \vec a_i
                 \end{MultiLineEquation*}
+                
+                % ======== DEMOSTRACION ========
+                \begin{SmallIndentation}[1em]
+                    \textbf{Demostración}:
+                
+                    Ve que:
+                    \begin{MultiLineEquation*}{3}
+                        w_i 
+                            &= (Id - Q_{i-1} Q^T_{i-1}) \vec a_i                                        \\
+                            &= \Wrap{
+                                Id - 
+                                    \bVector{q_{1,1} & q_{2,1} & q_{3,1} & \dots & q_{i-1, 1}}
+                                    \bVector{q_{1,1} \\ q_{2,1} \\ q_{3,1} \\ \dots \\ q_{i-1, 1}} 
+                                } \vec a_i                                                              \\
+                            &= \Wrap{
+                                Id - 
+                                    \bVector{q_{1} & q_{2} & q_{3} & \dots & q_{i-1}}
+                                    \bVector{q_{1} \\ q_{2} \\ q_{3} \\ \dots \\ q_{i-1}} 
+                                } \vec a_i                                                              \\
+                            &= \vec a_i - \Sum_{j = 1}^{i-1}  (q_j^t a_i) \; \vec q_j                   \\
+                            &= \vec a_i - \Sum_{j = 1}^{i-1} \cdotP{\vec q_j}{\vec a_i} \vec q_j        \\
+                            &= \vec a_i - \Sum_{j = 1}^{i-1} \dfrac{ \cdotP{\vec a_i}{\vec w_j} }{ \cdotP{\vec w_j}{\vec w_j} } \vec w_j
+                    \end{MultiLineEquation*}
+                    
+                
+                \end{SmallIndentation}
 
 
             % ==============================================
             % ===   COMO SE FORMA LA SOLUCION QR       =====
             % ==============================================
+            \clearpage
             \subsection{Como se forma la solución QR}
 
                 Sea $\vec w_i = \vec a_i - \Sum_{j = 1}^{i-1} \dfrac{ \cdotP{\vec a_i}{\vec w_j} }{ \cdotP{\vec w_j}{\vec w_j} } \vec w_j$
-                El paso general del algoritmo, 
+                el paso general del algoritmo, recuerda que podemos escribirlo usando que $\vec q_i = \dfrac{\vec w_i}{\Abs{\vec w_i}}$
+                y decir que el paso general del algoritmo es:
+                \begin{MultiLineEquation*}{3}
+                    \vec w_i = \vec a_i - \Sum_{j = 1}^{i-1} (\vec q_j^{\; t} a_i) \; \vec q_j
+                \end{MultiLineEquation*}
+
+                Es decir, podemos despejar y decir que:
+                \begin{MultiLineEquation*}{3}
+                    \vec a_i = \vec w_i + \Sum_{j = 1}^{i-1} (\vec q_j^{\; t} a_i) \; \vec q_j
+                \end{MultiLineEquation*}
+
+                Vamos a hacer un cambio de variable de $i$ a $j$, solo para que las coordenadas de la matriz tengan sentido:
+                \begin{MultiLineEquation*}{3}
+                    \vec a_j = \vec w_j + \Sum_{i = 1}^{j-1} (\vec q_i^{\; t} a_j) \; \vec q_i
+                \end{MultiLineEquation*}
+
+                Ahora nuestro truco principal será tomar un cambio de variable y decir que $r_{i, j} = (\vec q_i^{\; t} a_j)$
+                y a $r_{i, i} = \Abs{\vec w_j}$ y recordando que $\vec q_i = \frac{\vec w_i}{\Abs{\vec w_i}}$
+                entonces tenemos que:
+                \begin{MultiLineEquation*}{3}
+                    \vec a_j 
+                        &= \vec w_j + \Sum_{i = 1}^{j-1} r_{i, j} \; \vec q_i           \\
+                        &= \Abs{\vec w_j} q_j + \Sum_{i = 1}^{j-1} r_{i, j} \; \vec q_i \\
+                        &= r_{j, j} q_j + \Sum_{i = 1}^{j-1} r_{i, j} \; \vec q_i       \\
+                        &= \Sum_{i = 1}^j r_{i, j} \; \vec q_i                          \\
+                \end{MultiLineEquation*}
+
+                Nota que con este ultimo paso hemos descrito una columna de una matriz $\MatrixA$ como el producto de 
+                de dos matrices $\MatrixR$ y $\MatrixQ$ 
                 
                 
+                
+            % ==============================================
+            % ===     IMPLEMENTACION DE ALGORITMOS     =====
+            % ==============================================
+            \clearpage
+            \subsection{Implementación de Algoritmos}
+
+                La implementación es casi casi como la describimos en las páginas pasadas:
+                \begin{lstlisting}[gobble=16]
+                    for j = 1 -> n:
+                        q_j = a_j
+    
+                        for i = 1 -> j - 1:
+                            q_j = q_j - (q_i^t a_j) q_i
+
+                        end
+
+                        q_j = q_j / ||q_j||
+
+                    end
+
+                \end{lstlisting}
+
+                Existe una versión modificada del algoritmo que solo cambia una linea:
+                \begin{lstlisting}[gobble=16]
+                    for j = 1 -> n:
+                        q_j = a_j
+    
+                        for i = 1 -> j - 1:
+                            q_j = q_j - (q_i^t q_j) q_i
+                        end
+
+                        q_j = q_j / ||q_j||
+
+                    end
+
+                \end{lstlisting}
+
 
 
 
