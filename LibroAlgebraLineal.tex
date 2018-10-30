@@ -9579,10 +9579,10 @@
     \chapter{Givens: Rotaciones}
   
         % ==============================================
-        % ========          PSEUDOINVERSA        =======
+        % ========          DEFINICION           =======
         % ==============================================
         \clearpage
-        \section{Definición}
+        \section{Definición en 2D}
 
             Sea la matriz de rotación dada por:
             \begin{MultiLineEquation*}{3}
@@ -9597,6 +9597,48 @@
                 \item $C = \Cos{\Theta}$
                 \item $S = \Sin{\Theta}$
             \end{itemize}
+
+
+            Esta esta creada basada en la idea de una transformación lineal
+            que rota nuestro sistema $\theta$ ángulos.
+
+            Es decir, lo que buscamos es una $G$ tal que:
+            $G \vec x = \bVector{\Abs{\vec x} \\ 0}$
+
+            Podemos tener otra definición alterna usando esta idea
+            y decir que:
+            \begin{itemize}
+                \item $C = \dfrac{a_1}{\sqrt{a_1^2 + a_2^2}}$
+                \item $S = \dfrac{a_2}{\sqrt{a_1^2 + a_2^2}}$
+            \end{itemize}
+
+            % ==============================================
+            % ========          DEFINICION           =======
+            % ==============================================
+            \clearpage
+            \subsection{Definición en n-D}
+
+
+                Sea $\vec a = \bVector{a_1 \\ a_2 \\ \dots \\ a_n}$.
+
+                Usando esta idea podemos extender la idea de una matriz
+                de rotación para usando $a_i$ eliminar $a_j$ y $i < j$ definida
+                a la matriz $G$ como la identidad donde:
+                \begin{itemize}
+                    \item $I_{i, i} =  C$
+                    \item $I_{i, j} =  S$
+                    \item $I_{j, i} = -S$
+                    \item $I_{j, j} =  C$
+                \end{itemize}
+
+                Entonces tenemos que $G \vec a$ será un vector columna casi
+                igual que $\vec a$, la única diferencia es que en 
+                $[G \vec a]_i = \abs{\vec a}$ y $[G \vec a]_j = 0$  
+        
+                
+
+
+
 
 
 
