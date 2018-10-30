@@ -4244,7 +4244,7 @@
                         $T, U \in \Laplace(\VectorSet, \SubVectorSet)$ no nulas. 
 
                         Si $R[T] \cap R[U] = \Set{\vec 0}$, entonces ${T, U}$ es un
-                        subconjunto linealmente independiende de $\Laplace(\VectorSet, \SubVectorSet)$. 
+                        subconjunto linealmente independiente de $\Laplace(\VectorSet, \SubVectorSet)$. 
 
                         % ======== DEMOSTRACION ========
                         \begin{SmallIndentation}[1em]
@@ -4262,7 +4262,7 @@
                             Pero eso es imposible, dijimos que $R[T] \cap R[U] = \Set{\vec 0}$, por lo tanto
                             contradicción.
 
-                            ${T, U}$ es un subconjunto linealmente independiende de $\Laplace(\VectorSet, \SubVectorSet)$
+                            ${T, U}$ es un subconjunto linealmente independiente de $\Laplace(\VectorSet, \SubVectorSet)$
 
                         \end{SmallIndentation}
 
@@ -8698,13 +8698,12 @@
 
                     Ahora, vamos a derivar:
                     \begin{MultiLineEquation*}{3}
-                        \phi'(x) 
-                            &= 2A^t A \vec x - 2A^t \vec b      \\
-                        \phi''(x) 
-                            &= 2A^t A 
+                        \phi'(x) = 2A^t A \vec x - 2A^t \vec b     \MegaSpace \MegaSpace
+                        \phi''(x) = 2A^t A 
                     \end{MultiLineEquation*}
 
-                    Ahora, si $A^t A$ es definida positiva entonces podemos asegurar que ese punto es en el cual
+                    Ahora, si $A^t A$ es definida positiva (cosa que siempre pasa si es que $A \in M_{m \times n}$ tiene una
+                    rango de $n$, es decir $n$ vectores columna linealmente independientes ) entonces podemos asegurar que ese punto es en el cual
                     $\phi(x)$ esta en un mínimo, osea podemos asegurar que basta con solucionar
                     el sistema y obtendremos el mínimo de la función:
                     \begin{largeEq}
@@ -8718,6 +8717,72 @@
                     
                 \end{SmallIndentation}
          
+    
+    % ===============================================================================
+    % ===================          MINIMOS CUADRADOS              ===================
+    % ===============================================================================
+    \chapter{Mínimos Cuadrados}
+
+        % ==============================================
+        % ========          PSEUDOINVERSA        =======
+        % ==============================================
+        \clearpage
+        \section{PseudoInversa}
+
+            Sea $\MatrixA \in M_{m \times n}$ de rango completo, entonces
+            se define la pseudo inversa como:
+            \begin{LargeEq}
+                \begin{MultiLineEquation*}{3}
+                    \Color{\ColorMatrixA}{A^+ = (A^t A)^{-1} A^t}
+                \end{MultiLineEquation*}
+            \end{LargeEq}
+
+            Esto se define así porque:
+            \begin{MultiLineEquation*}{3}
+                A^+ A
+                    &= ((A^t A)^{-1} A^t) A     \\
+                    &= (A^t A)^{-1} (A^t A)     \\
+                    &= I_n     
+            \end{MultiLineEquation*}
+
+            Ahora, ve que tendremos dos sistemas:
+            \begin{itemize}
+                \item $A \vec x = \vec b$
+                \item $A \tilde x = \tilde b$
+            \end{itemize}
+
+            Y asociados a ellos, dos sistemas:
+            \begin{itemize}
+                \item $A^t A \vec x = A^t \vec b$
+                \item $A^t A \tilde x = A^t \tilde b$
+            \end{itemize}
+
+            Entonces podemos despejarlos:
+            \begin{itemize}
+                \item $\vec x = (A^t A)^{-1} A^t \vec b$
+                \item $\tilde x = (A^t A)^{-1} A^t  \tilde b$
+            \end{itemize}
+
+            \clearpage
+
+            Ahora veamos esto:
+            \begin{MultiLineEquation*}{3}
+                \tilde x - \vec x 
+                    &= (A^t A)^{-1} A^t  \tilde b - (A^t A)^{-1} A^t \vec b             \\
+                    &= (A^t A)^{-1} A^t (\tilde b - \vec b)                             \\
+                \Abs{\tilde x - \vec x} 
+                    &= \Abs{(A^t A)^{-1} A^t (\tilde b - \vec b)}                       \\
+                \Abs{\tilde x - \vec x} 
+                    &\leq \Abs{(A^t A)^{-1} A^t} \Abs{(\tilde b - \vec b)}              \\
+                    &\leq \Abs{A^+} \Abs{(\tilde b - \vec b)}                           \\
+                    &\leq \Abs{A} \Abs{A^+} \dfrac{\Abs{(\tilde b - \vec b)}}{\Abs{A}}  \\                 
+                \dfrac{\Abs{\tilde x - \vec x}}{\Abs{\vec x}} 
+                    &\leq \Abs{A} \Abs{A^+} \dfrac{\Abs{(\tilde b - \vec b)}}{\Abs{\vec b}} \dfrac{\Abs{A}}{\Abs{A}\Abs{\vec x}}  \\
+                Error(\vec x)
+                    &\leq Cond(A) Error(\vec b) \dfrac{\Abs{A}}{\Abs{A}\Abs{\vec x}} \leq Cond(A) Error(\vec b) \dfrac{1}{cos \theta}
+                \end{MultiLineEquation*}
+
+
 
     % ===============================================================================
     % ===================          DESCOMPOSICION QR              ===================
@@ -8857,7 +8922,7 @@
                 \end{MultiLineEquation*}
             \end{largeEq}
 
-            Donde $\MatrixQ = H_n H_{n-1} \dots H_1$
+            Donde $\MatrixQ = H_1 \dots H_{n-1} H_n$
             
         
         % ==============================================
@@ -9306,7 +9371,7 @@
     % ===============================================================================
     % ===================          GRAM-SCHIMIDT                  ===================
     % ===============================================================================
-    \chapter{Gram-Schimidt}
+    \chapter{Gram-Schimidt: Ortogonalizar}
   
         % ==============================================
         % ========          PSEUDOINVERSA        =======
@@ -9344,6 +9409,13 @@
                 lo que estamos haciendo es descomponer a nuestro vector en la parte que es
                 paralela a $\vec a$ y la que es ortogonal, y eliminamos la parte que es paralela.
 
+                Recuerda que:
+                \begin{MultiLineEquation*}{3}
+                    Proy_{\vec a} (\vec b)
+                        &= \dfrac{\vec a \dotP \vec b}{\Abs{\vec a}^2} \vec a
+                \end{MultiLineEquation*}
+                
+
                 Con esta idea tenemos la siguiente fórmula:
                 \begin{MultiLineEquation*}{3}
                     \vec b' = \vec b - \dfrac{ \cdotP{\vec b}{\vec a} }{ \cdotP{\vec a}{\vec a} } \vec a
@@ -9366,71 +9438,73 @@
                     \item $\vec w_i 
                         = \vec a_i - \Sum_{j = 1}^{i-1} \dfrac{ \cdotP{\vec a_i}{\vec w_j} }{ \cdotP{\vec w_j}{\vec w_j} } \vec w_j$
                 \end{itemize}
+
+
+            % ==============================================
+            % ======       ORTONORMALIZACION         =======
+            % ==============================================
+            \subsection{Ortonormales}
+                
+                Si lo que queremos el un conjunto de vectores ortonormales basta con seguir nuestro algoritmo, 
+                después basta con tomas cada vector y hacerlo unitario.
+                \begin{MultiLineEquation*}{3}
+                    \vec q_i = \dfrac{\vec w_i}{\Abs{\vec w_i}}
+                \end{MultiLineEquation*}
+
+                Esto es todo.
+
+            % ==============================================
+            % ======   VERSIONES ALTERNAS            =======
+            % ==============================================
+            \subsection{Versiones Alternas}
+
+                Definimos a $Q_{i-1} = \bVector{q_1, q_2, \dots, q_{i-1}}$
+
+                Entonces podemos definir nuestro procesto de hace rato como el producto de matrices, esto
+                se escribe como:
+                \begin{MultiLineEquation*}{3}
+                    \vec w_i = (Id - Q_{i-1} Q^T_{i-1}) \vec a_i
+                \end{MultiLineEquation*}
+
+
+            % ==============================================
+            % ===   COMO SE FORMA LA SOLUCION QR       =====
+            % ==============================================
+            \subsection{Como se forma la solución QR}
+
+                Sea $\vec w_i = \vec a_i - \Sum_{j = 1}^{i-1} \dfrac{ \cdotP{\vec a_i}{\vec w_j} }{ \cdotP{\vec w_j}{\vec w_j} } \vec w_j$
+                El paso general del algoritmo, 
+                
                 
 
-    % ===============================================================================
-    % ===================          MINIMOS CUADRADOS              ===================
-    % ===============================================================================
-    \chapter{Mínimos Cuadrados}
 
+
+    % ===============================================================================
+    % ===================              GIVENS                     ===================
+    % ===============================================================================
+    \chapter{Givens: Rotaciones}
+  
         % ==============================================
         % ========          PSEUDOINVERSA        =======
         % ==============================================
         \clearpage
-        \section{PseudoInversa}
+        \section{Definición}
 
-            Sea $\MatrixA \in M_{m \times n}$ de rango completo, entonces
-            se define la pseudo inversa como:
-            \begin{LargeEq}
-                \begin{MultiLineEquation*}{3}
-                    \Color{\ColorMatrixA}{A^+ = (A^t A)^{-1} A^t}
-                \end{MultiLineEquation*}
-            \end{LargeEq}
-
-            Esto se define así porque:
+            Sea la matriz de rotación dada por:
             \begin{MultiLineEquation*}{3}
-                A^+ A
-                    &= ((A^t A)^{-1} A^t) A     \\
-                    &= (A^t A)^{-1} (A^t A)     \\
-                    &= I_n     
+                G = \bVector{
+                    C  & S \\
+                    -S & C \\
+                }
             \end{MultiLineEquation*}
-
-            Ahora, ve que tendremos dos sistemas:
+            
+            Dado por:
             \begin{itemize}
-                \item $A \vec x = \vec b$
-                \item $A \tilde x = \tilde b$
+                \item $C = \Cos{\Theta}$
+                \item $S = \Sin{\Theta}$
             \end{itemize}
 
-            Y asociados a ellos, dos sistemas:
-            \begin{itemize}
-                \item $A^t A \vec x = A^t \vec b$
-                \item $A^t A \tilde x = A^t \tilde b$
-            \end{itemize}
 
-            Entonces podemos despejarlos:
-            \begin{itemize}
-                \item $\vec x = (A^t A)^{-1} A^t \vec b$
-                \item $\tilde x = (A^t A)^{-1} A^t  \tilde b$
-            \end{itemize}
-
-            \clearpage
-
-            Ahora veamos esto:
-            \begin{MultiLineEquation*}{3}
-                \tilde x - \vec x 
-                    &= (A^t A)^{-1} A^t  \tilde b - (A^t A)^{-1} A^t \vec b             \\
-                    &= (A^t A)^{-1} A^t (\tilde b - \vec b)                             \\
-                \Abs{\tilde x - \vec x} 
-                    &= \Abs{(A^t A)^{-1} A^t (\tilde b - \vec b)}                       \\
-                \Abs{\tilde x - \vec x} 
-                    &\leq \Abs{(A^t A)^{-1} A^t} \Abs{(\tilde b - \vec b)}              \\
-                    &\leq \Abs{A^+} \Abs{(\tilde b - \vec b)}                           \\
-                    &\leq \Abs{A} \Abs{A^+} \dfrac{\Abs{(\tilde b - \vec b)}}{\Abs{A}}  \\                 
-                \dfrac{\Abs{\tilde x - \vec x}}{\Abs{\vec x}} 
-                    &\leq \Abs{A} \Abs{A^+} \dfrac{\Abs{(\tilde b - \vec b)}}{\Abs{\vec b}} \dfrac{\Abs{A}}{\Abs{A}\Abs{\vec x}}  \\
-                Error(\vec x)
-                    &\leq Cond(A) Error(\vec b) \dfrac{\Abs{A}}{\Abs{A}\Abs{\vec x}} \leq Cond(A) Error(\vec b) \dfrac{1}{cos \theta}
-                \end{MultiLineEquation*}
 
 
 
