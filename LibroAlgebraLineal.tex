@@ -5,7 +5,7 @@
 % =======================================================
 % =======         HEADER FOR DOCUMENT        ============
 % =======================================================
-    
+   
     % *********  SPECIFIC FOR THIS BOOK  ********
     \def\ProjectAuthorLink{https://github.com/CompilandoConocimiento}
     \def\ProjectNameLink{\ProjectAuthorLink/LibroAlgebraLineal}    
@@ -483,8 +483,8 @@
 
     % ============ NAME OF THE BOOK  ===============
     \href{\ProjectNameLink}                                         %Link to Author
-    {\fontsize{65}{78}\selectfont \textbf{Álgebra Lineal}}\\[0.5cm] %Name of the book
-    \textcolor{ColorSubtext}{\textsc{\Huge Matemáticas Discretas}}  %Name of the general theme
+    {\fontsize{65}{78}\selectfont \textbf{Álgebra Lineal y Análisis Númerico}}\\[0.5cm] %Name of the book
+    \textcolor{ColorSubtext}{\textsc{\Huge Matemáticas}}            %Name of the general theme
     
     \vfill                                                          %Fill the space
     
@@ -1248,6 +1248,20 @@
                         Sea $A, B, C$ matrices tales que $A(BC)$ esta bien definido, entonces
                         tenemos que $A(BC) = (AB)C$ también lo esta y todas dan como resultado
                         la misma matriz
+
+                    \item Si $AB = Id$ entonces $BA = Id$
+                        \begin{SmallIndentation}[1em]
+                            \textbf{Demostración}:
+                        
+                            \begin{MultiLineEquation*}{3}
+                                AB = 1          \\
+                                BAB = B         \\
+                                BA(B) = B       \\
+                                BA = B B^{-1}   \\
+                                BA = Id         \\
+                            \end{MultiLineEquation*}
+                        
+                        \end{SmallIndentation}
 
                 \end{itemize}
 
@@ -3483,7 +3497,7 @@
             % ==============================================
             \subsection{Ortogonalidad}
 
-                Definimos que un vector es ortogonal a otro si y solo si su producto interno es cero escalar.
+                Definimos que un vector $\vec a$ es ortogonal a otro vector $\vec b$ otro si y solo si su producto interno es cero escalar.
                 \begin{MultiLineEquation*}{3}
                     (\vec a, \vec b) = 0
                 \end{MultiLineEquation*}
@@ -3554,7 +3568,11 @@
                         Q Q^t = I_n = Q^t Q
                     }                    
                 \end{MultiLineEquation*}
-            \end{LargeEq} 
+            \end{LargeEq}
+
+            Decimos de otra manera que una matriz ortogonal es aquella que esta formada por
+            vectores columna que son ortonormales, y si lo dije bien, tienen que ser
+            ortogonales.
 
             % ==============================================
             % ========          PROPIEDADES          =======
@@ -3582,7 +3600,16 @@
                             
                         
                         \end{SmallIndentation}
-                \end{itemize}
+
+                    \item Una matriz creada con vectores columna que son
+                        ortogonales entonces eso no implica que sus filas sean ortogonales
+                    
+                    \item Una matriz creada con vectores columna que son
+                        ortonormales (una matriz ortogonal) entonces eso implica que sus filas son ortonormales
+
+                    \item Si $Q$ es una matriz ortogonal entonces $|Q| = \pm 1$
+                
+                    \end{itemize}
 
 
           
@@ -8642,16 +8669,17 @@
                 \caption{Ejemplo del $span(A)$}
             \end{figure}
 
+
     % ===============================================================================
-    % ===================          ECUACIONES NORMALES            ===================
+    % ===================          MINIMOS CUADRADOS              ===================
     % ===============================================================================
-    \chapter{Ecuaciones Normales}
+    \chapter{Mínimos Cuadrados}
 
         % ==============================================
-        % ========          INTRODUCCION         =======
+        % ======     ECUACIONES NORMALES         =======
         % ==============================================
         \clearpage
-        \section{Introducción}
+        \section{Ecuaciones Normales}
 
             Ok, tenemos un sistema $A \vec x = \vec b$ donde $A \in M_{m \times n}$ donde $m > n$
             tal que no tiene solución.
@@ -8661,12 +8689,10 @@
             Ahora, lo que haremos será aproximar una solución, para hacer eso vamos a tomar a todos
             los elementos del $span(A)$ e intentar reducir su distancia con el vector resultado $\vec b$
 
-
             % ==============================================
-            % ====           FUNCION DE ERROR           ====
+            % ====             DESARROLLO              ====
             % ==============================================
-            \vspace{1em}
-            \subsection{Función de Error}
+            \subsection{Desarrollo}
 
                 Vamos a definir la función de error como:
                 \begin{MultiLineEquation*}{3}
@@ -8712,17 +8738,13 @@
                         \end{MultiLineEquation*}
                     \end{largeEq}
 
+
                     Esto lo podemos solucionar con factorización de Cholesky porque $\Color{Teal700MD}{A^t A}$ 
                     es simétrico y si todo sale bien también definida positiva.
                     
                 \end{SmallIndentation}
          
     
-    % ===============================================================================
-    % ===================          MINIMOS CUADRADOS              ===================
-    % ===============================================================================
-    \chapter{Mínimos Cuadrados}
-
         % ==============================================
         % ========          PSEUDOINVERSA        =======
         % ==============================================
@@ -8745,6 +8767,14 @@
                     &= I_n     
             \end{MultiLineEquation*}
 
+
+            
+        % ==============================================
+        % ======       ANALISIS DEL ERROR        =======
+        % ==============================================
+        \clearpage
+        \section{Análisis del Error}
+
             Ahora, ve que tendremos dos sistemas:
             \begin{itemize}
                 \item $A \vec x = \vec b$
@@ -8762,8 +8792,6 @@
                 \item $\vec x = (A^t A)^{-1} A^t \vec b$
                 \item $\tilde x = (A^t A)^{-1} A^t  \tilde b$
             \end{itemize}
-
-            \clearpage
 
             Ahora veamos esto:
             \begin{MultiLineEquation*}{3}
@@ -9010,6 +9038,22 @@
                     
                     \end{SmallIndentation}
             \end{itemize}
+
+
+            % ==============================================
+            % ========              QR               =======
+            % ==============================================
+            \subsection{QR}
+
+                Para poder hacer la factorización QR tenemos que hacer:
+                \begin{MultiLineEquation*}{3}
+                    H_i \dots H_2 H_1 A &= R                     \\
+                    A &= (H_i \dots H_2 H_1)^{-1} R              \\
+                    A &= (H_1)^{-1} (H_2)^{-1}  \dots (H_i)^{-1} \\
+                    A &= H_1 H_2 \dots H_i R                     \\
+                    A &= QR
+                \end{MultiLineEquation*}
+                
 
         
         % ==============================================
@@ -9625,21 +9669,30 @@
                 de rotación para usando $a_i$ eliminar $a_j$ y $i < j$ definida
                 a la matriz $G$ como la identidad donde:
                 \begin{itemize}
-                    \item $I_{i, i} =  C$
-                    \item $I_{i, j} =  S$
-                    \item $I_{j, i} = -S$
-                    \item $I_{j, j} =  C$
+                    \item $G_{i, i} =  C$
+                    \item $G_{i, j} =  S$
+                    \item $G_{j, i} = -S$
+                    \item $G_{j, j} =  C$
                 \end{itemize}
 
                 Entonces tenemos que $G \vec a$ será un vector columna casi
                 igual que $\vec a$, la única diferencia es que en 
                 $[G \vec a]_i = \abs{\vec a}$ y $[G \vec a]_j = 0$  
-        
+
+            % ==============================================
+            % ========              QR               =======
+            % ==============================================
+            \subsection{QR}
+
+                Para poder hacer la factorización QR tenemos que hacer:
+                \begin{MultiLineEquation*}{3}
+                    G_i \dots G_2 G_1 A &= R                  \\
+                    A &= (G_i \dots G_2 G_1)^{-1} R           \\
+                    A &= (G_1)^{-1} (G_2)^{-1} \dots (G_i)^{-1} R    \\
+                    A &= (G_1)^t (G_2)^t (G_i)^t R          \\
+                    A &= QR
+                \end{MultiLineEquation*}
                 
-
-
-
-
 
 
 
