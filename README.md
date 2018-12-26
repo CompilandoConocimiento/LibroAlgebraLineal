@@ -50,7 +50,7 @@ En este libro podrás aprender sobre los siguientes temas:
 
 - **Intro a Matrices**
 	- Definición
-	- Simbología
+	- Simbología y notación
 	- Clasificación
 	- Matrices Diagonales
 - **Álgebra Matricial**
@@ -66,12 +66,19 @@ En este libro podrás aprender sobre los siguientes temas:
 	- Generadores
 	- Dependencia Lineal
 	- Bases
+- **Producto Interno**
+	- Definición
+	- Longitud
+	- Ortogonalidad
+	- Proyección y Ortogonales
+	- Dependencia Lineal
+	- Descomposición
 - **Transformaciones Lineales**
-	- Definición, 
-	- Kernel, 
-	- Rango, 
-	- Proyecciones, 
-	- Invariantes,
+	- Definición
+	- Kernel
+	- Rango 
+	- Proyecciones
+	- Invariantes
 - **Transformaciones y Matrices**
 	- Definición
 	- Base Ordenada
@@ -92,8 +99,23 @@ En este libro podrás aprender sobre los siguientes temas:
 	- Propiedades
 	- Cofactor
 	- Adjunta
-
-
+	- Normas Vectoriales
+	- Normas Matriciales
+- **Análisis Númerico: Solucionar Ax = b**
+	- Factorización LU
+	- Factorización con Pivoteo
+	- Factorización de Cholesky
+	- Matrices definidas positivas 
+	- Analisis del Error (Condición de una matriz)
+- **Análisis Númerico: Aproximar Ax = b**
+	- Mínimos Cuadradados
+	- Ecuaciones Normales
+	- PseudoInversa
+	- Factorización QR
+	- HouseHolder: Reflexiones
+	- Gram-Schimidt: Ortogonalizar
+	- Givens: Rotaciones
+	
 <br><br>
 
 ## Sobre este Documento
